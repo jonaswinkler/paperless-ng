@@ -1,3 +1,6 @@
+import json
+from xmlrpc.client import ServerProxy
+
 from django.db.models import Count, Max
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.cache import cache_control
@@ -229,6 +232,14 @@ class SearchAutoCompleteView(APIView):
             return Response([])
 
 
+def get_consumer_status():
+    try:
+        server = ServerProxy('http://localhost:9001/RPC2')
+        return server.supervisor.getProcessInfo('consumer')
+    except Exception as e:
+        return str(e)
+
+
 class StatisticsView(APIView):
 
     permission_classes = (IsAuthenticated,)
@@ -236,5 +247,6 @@ class StatisticsView(APIView):
     def get(self, request, format=None):
         return Response({
             'documents_total': Document.objects.all().count(),
-            'documents_inbox': Document.objects.filter(tags__is_inbox_tag=True).distinct().count()
+            'documents_inbox': Document.objects.filter(tags__is_inbox_tag=True).distinct().count(),
+            'consumer_status': get_consumer_status()
         })
