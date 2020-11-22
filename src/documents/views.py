@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, Http404
 from django.views.decorators.cache import cache_control
 from django.views.generic import TemplateView
 from django_filters.rest_framework import DjangoFilterBackend
+from django_q.status import Stat
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.mixins import (
@@ -249,12 +250,21 @@ class SearchAutoCompleteView(APIView):
         return Response(index.autocomplete(self.ix, term, limit))
 
 
-def get_consumer_status():
+def get_supervisor_process_info(process):
     try:
         server = ServerProxy('http://localhost:9001/RPC2')
-        return server.supervisor.getProcessInfo('consumer')
+        return server.supervisor.getProcessInfo(process)
     except Exception as e:
         return str(e)
+
+
+def get_django_q_status():
+    stats = Stat.get_all()
+    return [{
+        "status": stat.status,
+        "done_q_size": stat.done_q_size,
+        "task_q_size": stat.task_q_size
+    } for stat in stats]
 
 
 class StatisticsView(APIView):
@@ -266,5 +276,7 @@ class StatisticsView(APIView):
             'documents_total': Document.objects.all().count(),
             'documents_inbox': Document.objects.filter(
                 tags__is_inbox_tag=True).distinct().count(),
-            'consumer_status': get_consumer_status()
+            'consumer_status': get_supervisor_process_info('consumer'),
+            'scheduler_status': get_supervisor_process_info('scheduler'),
+            'queue_status': get_django_q_status()
         })
