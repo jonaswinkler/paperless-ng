@@ -2,7 +2,8 @@ import logging
 
 from django.core.management.base import BaseCommand
 
-from documents.classifier import DocumentClassifier
+from documents.classifier import DocumentClassifier, \
+    IncompatibleClassifierVersionError
 from documents.models import Document
 from ...mixins import Renderable
 from ...signals.handlers import set_correspondent, set_document_type, set_tags
@@ -72,16 +73,14 @@ class Command(Renderable, BaseCommand):
         classifier = DocumentClassifier()
         try:
             classifier.reload()
-        except FileNotFoundError:
-            logging.getLogger(__name__).warning("Cannot classify documents, "
-                                              "classifier model file was not "
-                                              "found.")
+        except (FileNotFoundError, IncompatibleClassifierVersionError) as e:
+            logging.getLogger(__name__).warning(
+                f"Cannot classify documents: {e}.")
             classifier = None
 
         for document in documents:
             logging.getLogger(__name__).info(
-                "Processing document {}".format(document.title)
-            )
+                f"Processing document {document.title}")
 
             if options['correspondent']:
                 set_correspondent(

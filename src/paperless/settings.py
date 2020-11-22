@@ -1,4 +1,5 @@
 import json
+import math
 import multiprocessing
 import os
 import re
@@ -13,6 +14,18 @@ elif os.path.exists("/etc/paperless.conf"):
 elif os.path.exists("/usr/local/etc/paperless.conf"):
     load_dotenv("/usr/local/etc/paperless.conf")
 
+# There are multiple levels of concurrency in paperless:
+#  - Multiple consumers may be run in parallel.
+#  - Each consumer may process multiple pages in parallel.
+#  - Each Tesseract OCR run may spawn multiple threads to process a single page
+#    slightly faster.
+# The performance gains from having tesseract use multiple threads are minimal.
+# However, when multiple pages are processed in parallel, the total number of
+# OCR threads may exceed the number of available cpu cores, which will
+# dramatically slow down the consumption process. This settings limits each
+# Tesseract process to one thread.
+os.environ['OMP_THREAD_LIMIT'] = "1"
+
 
 def __get_boolean(key, default="NO"):
     """
@@ -20,6 +33,11 @@ def __get_boolean(key, default="NO"):
     environment based on whether the value "looks like" it's True or not.
     """
     return bool(os.getenv(key, default).lower() in ("yes", "y", "1", "t", "true"))
+
+
+# NEVER RUN WITH DEBUG IN PRODUCTION.
+DEBUG = __get_boolean("PAPERLESS_DEBUG", "NO")
+
 
 ###############################################################################
 # Directories                                                                 #
@@ -62,22 +80,28 @@ INSTALLED_APPS = [
     "documents.apps.DocumentsConfig",
     "paperless_tesseract.apps.PaperlessTesseractConfig",
     "paperless_text.apps.PaperlessTextConfig",
+    "paperless_mail.apps.PaperlessMailConfig",
 
     "django.contrib.admin",
 
     "rest_framework",
-    "rest_framework.authtoken",
     "django_filters",
+
+    "django_q",
 
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'paperless.auth.QueryTokenAuthentication'
+        'rest_framework.authentication.SessionAuthentication'
     ]
 }
+
+if DEBUG:
+    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
+        'paperless.auth.AngularApiAuthenticationOverride'
+    )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,8 +116,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'paperless.urls'
-
-LOGIN_URL = "admin:login"
 
 FORCE_SCRIPT_NAME = os.getenv("PAPERLESS_FORCE_SCRIPT_NAME")
 
@@ -122,9 +144,6 @@ TEMPLATES = [
 # Security                                                                    #
 ###############################################################################
 
-# NEVER RUN WITH DEBUG IN PRODUCTION.
-DEBUG = __get_boolean("PAPERLESS_DEBUG", "NO")
-
 if DEBUG:
     X_FRAME_OPTIONS = ''
     # this should really be 'allow-from uri' but its not supported in any mayor
@@ -133,16 +152,11 @@ else:
     X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # We allow CORS from localhost:8080
-CORS_ORIGIN_WHITELIST = tuple(os.getenv("PAPERLESS_CORS_ALLOWED_HOSTS", "http://localhost:8080,https://localhost:8080").split(","))
+CORS_ALLOWED_ORIGINS = tuple(os.getenv("PAPERLESS_CORS_ALLOWED_HOSTS", "http://localhost:8000").split(","))
 
 if DEBUG:
     # Allow access from the angular development server during debugging
-    CORS_ORIGIN_WHITELIST += ('http://localhost:4200',)
-
-# If auth is disabled, we just use our "bypass" authentication middleware
-if bool(os.getenv("PAPERLESS_DISABLE_LOGIN", "false").lower() in ("yes", "y", "1", "t", "true")):
-    _index = MIDDLEWARE.index("django.contrib.auth.middleware.AuthenticationMiddleware")
-    MIDDLEWARE[_index] = "paperless.middleware.Middleware"
+    CORS_ALLOWED_ORIGINS += ('http://localhost:4200',)
 
 # The secret key has a default that should be fine so long as you're hosting
 # Paperless on a closed network.  However, if you're putting this anywhere
@@ -194,11 +208,11 @@ DATABASES = {
     }
 }
 
-# Always have sqlite available as a second option for management commands
-# This is important when migrating to/from sqlite
-DATABASES['sqlite'] = DATABASES['default'].copy()
-
 if os.getenv("PAPERLESS_DBHOST"):
+    # Have sqlite available as a second option for management commands
+    # This is important when migrating to/from sqlite
+    DATABASES['sqlite'] = DATABASES['default'].copy()
+
     DATABASES["default"] = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "HOST": os.getenv("PAPERLESS_DBHOST"),
@@ -243,19 +257,75 @@ LOGGING = {
             "handlers": ["dbhandler", "streamhandler"],
             "level": "DEBUG"
         },
+        "paperless_mail": {
+            "handlers": ["dbhandler", "streamhandler"],
+            "level": "DEBUG"
+        },
+        "paperless_tesseract": {
+            "handlers": ["dbhandler", "streamhandler"],
+            "level": "DEBUG"
+        },
     },
 }
+
+###############################################################################
+# Task queue                                                                  #
+###############################################################################
+
+
+# Sensible defaults for multitasking:
+# use a fair balance between worker processes and threads epr worker so that
+# both consuming many documents in parallel and consuming large documents is
+# reasonably fast.
+# Favors threads per worker on smaller systems and never exceeds cpu_count()
+# in total.
+
+def default_task_workers():
+    try:
+        return max(
+            math.floor(math.sqrt(multiprocessing.cpu_count())),
+            1
+        )
+    except NotImplementedError:
+        return 1
+
+
+TASK_WORKERS = int(os.getenv("PAPERLESS_TASK_WORKERS", default_task_workers()))
+
+Q_CLUSTER = {
+    'name': 'paperless',
+    'catch_up': False,
+    'workers': TASK_WORKERS,
+    'redis': os.getenv("PAPERLESS_REDIS", "redis://localhost:6379")
+}
+
+
+def default_threads_per_worker():
+    try:
+        return max(
+            math.floor(multiprocessing.cpu_count() / TASK_WORKERS),
+            1
+        )
+    except NotImplementedError:
+        return 1
+
+
+THREADS_PER_WORKER = os.getenv("PAPERLESS_THREADS_PER_WORKER", default_threads_per_worker())
 
 ###############################################################################
 # Paperless Specific Settings                                                 #
 ###############################################################################
 
+CONSUMER_POLLING = int(os.getenv("PAPERLESS_CONSUMER_POLLING", 0))
+
+CONSUMER_DELETE_DUPLICATES = __get_boolean("PAPERLESS_CONSUMER_DELETE_DUPLICATES")
+
+OPTIMIZE_THUMBNAILS = __get_boolean("PAPERLESS_OPTIMIZE_THUMBNAILS", "true")
+
 # The default language that tesseract will attempt to use when parsing
 # documents.  It should be a 3-letter language code consistent with ISO 639.
 OCR_LANGUAGE = os.getenv("PAPERLESS_OCR_LANGUAGE", "eng")
 
-# The amount of threads to use for OCR
-OCR_THREADS = int(os.getenv("PAPERLESS_OCR_THREADS", multiprocessing.cpu_count()))
 
 # OCR all documents?
 OCR_ALWAYS = __get_boolean("PAPERLESS_OCR_ALWAYS", "false")
@@ -299,3 +369,7 @@ FILENAME_DATE_ORDER = os.getenv("PAPERLESS_FILENAME_DATE_ORDER")
 FILENAME_PARSE_TRANSFORMS = []
 for t in json.loads(os.getenv("PAPERLESS_FILENAME_PARSE_TRANSFORMS", "[]")):
     FILENAME_PARSE_TRANSFORMS.append((re.compile(t["pattern"]), t["repl"]))
+
+# TODO: this should not have a prefix.
+# Specify the filename format for out files
+PAPERLESS_FILENAME_FORMAT = os.getenv("PAPERLESS_FILENAME_FORMAT")

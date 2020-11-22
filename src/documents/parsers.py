@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 
 import dateparser
+import magic
 from django.conf import settings
 from django.utils import timezone
 
@@ -20,13 +21,16 @@ from django.utils import timezone
 # - XX. MONTH ZZZZ with XX being 1 or 2 and ZZZZ being 2 or 4 digits
 # - MONTH ZZZZ, with ZZZZ being 4 digits
 # - MONTH XX, ZZZZ with XX being 1 or 2 and ZZZZ being 4 digits
+from documents.loggers import LoggingMixin
 from documents.signals import document_consumer_declaration
 
+# TODO: isnt there a date parsing library for this?
+
 DATE_REGEX = re.compile(
-    r'(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|' +  # NOQA: E501
-    r'(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|' +  # NOQA: E501
-    r'(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[^ ]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|' +  # NOQA: E501
-    r'(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|' +
+    r'(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|'   # NOQA: E501
+    r'(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|'   # NOQA: E501
+    r'(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[^ ]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|'   # NOQA: E501
+    r'(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|'
     r'(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))'
 )
 
@@ -34,22 +38,22 @@ DATE_REGEX = re.compile(
 logger = logging.getLogger(__name__)
 
 
-def get_parser_class(doc):
-    """
-    Determine the appropriate parser class based on the file
-    """
+def is_mime_type_supported(mime_type):
+    return get_parser_class_for_mime_type(mime_type) is not None
 
-    parsers = []
-    for response in document_consumer_declaration.send(None):
-        parsers.append(response[1])
 
-    #TODO: add a check that checks parser availability.
+def get_parser_class_for_mime_type(mime_type):
 
     options = []
-    for parser in parsers:
-        result = parser(doc)
-        if result:
-            options.append(result)
+
+    # Sein letzter Befehl war: KOMMT! Und sie kamen. Alle. Sogar die Parser.
+
+    for response in document_consumer_declaration.send(None):
+        parser_declaration = response[1]
+        supported_mime_types = parser_declaration["mime_types"]
+
+        if mime_type in supported_mime_types:
+            options.append(parser_declaration)
 
     if not options:
         return None
@@ -59,7 +63,28 @@ def get_parser_class(doc):
         options, key=lambda _: _["weight"], reverse=True)[0]["parser"]
 
 
-def run_convert(input, output, density=None, scale=None, alpha=None, strip=False, trim=False, type=None, depth=None, extra=None, logging_group=None):
+def get_parser_class(path):
+    """
+    Determine the appropriate parser class based on the file
+    """
+
+    mime_type = magic.from_file(path, mime=True)
+
+    return get_parser_class_for_mime_type(mime_type)
+
+
+def run_convert(input_file,
+                output_file,
+                density=None,
+                scale=None,
+                alpha=None,
+                strip=False,
+                trim=False,
+                type=None,
+                depth=None,
+                extra=None,
+                logging_group=None):
+
     environment = os.environ.copy()
     if settings.CONVERT_MEMORY_LIMIT:
         environment["MAGICK_MEMORY_LIMIT"] = settings.CONVERT_MEMORY_LIMIT
@@ -74,7 +99,7 @@ def run_convert(input, output, density=None, scale=None, alpha=None, strip=False
     args += ['-trim'] if trim else []
     args += ['-type', str(type)] if type else []
     args += ['-depth', str(depth)] if depth else []
-    args += [input, output]
+    args += [input_file, output_file]
 
     logger.debug("Execute: " + " ".join(args), extra={'group': logging_group})
 
@@ -88,10 +113,13 @@ def run_unpaper(pnm, logging_group=None):
     command_args = (settings.UNPAPER_BINARY, "--overwrite", "--quiet", pnm,
                     pnm_out)
 
-    logger.debug("Execute: " + " ".join(command_args), extra={'group': logging_group})
+    logger.debug(f"Execute: {' '.join(command_args)}",
+                 extra={'group': logging_group})
 
-    if not subprocess.Popen(command_args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).wait() == 0:
-        raise ParseError("Unpaper failed at {}".format(command_args))
+    if not subprocess.Popen(command_args,
+                            stdout=subprocess.DEVNULL,
+                            stderr=subprocess.DEVNULL).wait() == 0:
+        raise ParseError(f"Unpaper failed at {command_args}")
 
     return pnm_out
 
@@ -100,17 +128,18 @@ class ParseError(Exception):
     pass
 
 
-class DocumentParser:
+class DocumentParser(LoggingMixin):
     """
     Subclass this to make your own parser.  Have a look at
     `paperless_tesseract.parsers` for inspiration.
     """
 
     def __init__(self, path, logging_group):
-        self.document_path = path
-        self.tempdir = tempfile.mkdtemp(prefix="paperless-", dir=settings.SCRATCH_DIR)
-        self.logger = logging.getLogger(__name__)
+        super().__init__()
         self.logging_group = logging_group
+        self.document_path = path
+        self.tempdir = tempfile.mkdtemp(
+            prefix="paperless-", dir=settings.SCRATCH_DIR)
 
     def get_thumbnail(self):
         """
@@ -120,16 +149,20 @@ class DocumentParser:
 
     def optimise_thumbnail(self, in_path):
 
-        out_path = os.path.join(self.tempdir, "optipng.png")
+        if settings.OPTIMIZE_THUMBNAILS:
+            out_path = os.path.join(self.tempdir, "optipng.png")
 
-        args = (settings.OPTIPNG_BINARY, "-silent", "-o5", in_path, "-out", out_path)
+            args = (settings.OPTIPNG_BINARY,
+                    "-silent", "-o5", in_path, "-out", out_path)
 
-        self.log('debug', 'Execute: ' + " ".join(args))
+            self.log('debug', f"Execute: {' '.join(args)}")
 
-        if not subprocess.Popen(args).wait() == 0:
-            raise ParseError("Optipng failed at {}".format(args))
+            if not subprocess.Popen(args).wait() == 0:
+                raise ParseError("Optipng failed at {}".format(args))
 
-        return out_path
+            return out_path
+        else:
+            return in_path
 
     def get_optimised_thumbnail(self):
         return self.optimise_thumbnail(self.get_thumbnail())
@@ -220,11 +253,6 @@ class DocumentParser:
             self.log("info", "Unable to detect date for document")
 
         return date
-
-    def log(self, level, message):
-        getattr(self.logger, level)(message, extra={
-            "group": self.logging_group
-        })
 
     def cleanup(self):
         self.log("debug", "Deleting directory {}".format(self.tempdir))

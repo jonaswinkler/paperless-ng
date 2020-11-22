@@ -1,82 +1,37 @@
-import magic
 import os
-
+import tempfile
 from datetime import datetime
 from time import mktime
 
+import magic
 from django import forms
 from django.conf import settings
+from django_q.tasks import async_task
+from pathvalidate import validate_filename, ValidationError
 
-from .models import Document, Correspondent
+from documents.parsers import is_mime_type_supported
 
 
 class UploadForm(forms.Form):
 
-    TYPE_LOOKUP = {
-        "application/pdf": Document.TYPE_PDF,
-        "image/png": Document.TYPE_PNG,
-        "image/jpeg": Document.TYPE_JPG,
-        "image/gif": Document.TYPE_GIF,
-        "image/tiff": Document.TYPE_TIF,
-    }
-
-    correspondent = forms.CharField(
-        max_length=Correspondent._meta.get_field("name").max_length,
-        required=False
-    )
-    title = forms.CharField(
-        max_length=Document._meta.get_field("title").max_length,
-        required=False
-    )
     document = forms.FileField()
 
-    def __init__(self, *args, **kwargs):
-        forms.Form.__init__(self, *args, **kwargs)
-        self._file_type = None
-
-    def clean_correspondent(self):
-        """
-        I suppose it might look cleaner to use .get_or_create() here, but that
-        would also allow someone to fill up the db with bogus correspondents
-        before all validation was met.
-        """
-
-        corresp = self.cleaned_data.get("correspondent")
-
-        if not corresp:
-            return None
-
-        if not Correspondent.SAFE_REGEX.match(corresp) or " - " in corresp:
-            raise forms.ValidationError(
-                "That correspondent name is suspicious.")
-
-        return corresp
-
-    def clean_title(self):
-
-        title = self.cleaned_data.get("title")
-
-        if not title:
-            return None
-
-        if not Correspondent.SAFE_REGEX.match(title) or " - " in title:
-            raise forms.ValidationError("That title is suspicious.")
-
-        return title
-
     def clean_document(self):
+        document_name = self.cleaned_data.get("document").name
 
-        document = self.cleaned_data.get("document").read()
+        try:
+            validate_filename(document_name)
+        except ValidationError:
+            raise forms.ValidationError("That filename is suspicious.")
 
-        with magic.Magic(flags=magic.MAGIC_MIME_TYPE) as m:
-            file_type = m.id_buffer(document)
+        document_data = self.cleaned_data.get("document").read()
 
-        if file_type not in self.TYPE_LOOKUP:
-            raise forms.ValidationError("The file type is invalid.")
+        mime_type = magic.from_buffer(document_data, mime=True)
 
-        self._file_type = self.TYPE_LOOKUP[file_type]
+        if not is_mime_type_supported(mime_type):
+            raise forms.ValidationError("This mime type is not supported.")
 
-        return document
+        return document_name, document_data
 
     def save(self):
         """
@@ -85,16 +40,20 @@ class UploadForm(forms.Form):
         form do that as well.  Think of it as a poor-man's queue server.
         """
 
-        correspondent = self.cleaned_data.get("correspondent")
-        title = self.cleaned_data.get("title")
-        document = self.cleaned_data.get("document")
+        original_filename, data = self.cleaned_data.get("document")
 
         t = int(mktime(datetime.now().timetuple()))
-        file_name = os.path.join(
-            settings.CONSUMPTION_DIR,
-            "{} - {}.{}".format(correspondent, title, self._file_type)
-        )
 
-        with open(file_name, "wb") as f:
-            f.write(document)
-            os.utime(file_name, times=(t, t))
+        os.makedirs(settings.SCRATCH_DIR, exist_ok=True)
+
+        with tempfile.NamedTemporaryFile(prefix="paperless-upload-",
+                                         dir=settings.SCRATCH_DIR,
+                                         delete=False) as f:
+
+            f.write(data)
+            os.utime(f.name, times=(t, t))
+
+            async_task("documents.tasks.consume_file",
+                       f.name,
+                       override_filename=original_filename,
+                       task_name=os.path.basename(original_filename))

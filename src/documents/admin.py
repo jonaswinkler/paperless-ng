@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group, User
 from django.utils.html import format_html, format_html_join
 from django.utils.safestring import mark_safe
+from whoosh.writing import AsyncWriter
 
+from . import index
 from .models import Correspondent, Document, DocumentType, Log, Tag
 
 
@@ -30,7 +31,7 @@ class TagAdmin(admin.ModelAdmin):
     list_filter = ("colour", "matching_algorithm")
     list_editable = ("colour", "match", "matching_algorithm")
 
-    readonly_fields = ("slug",)
+    readonly_fields = ("slug", )
 
 
 class DocumentTypeAdmin(admin.ModelAdmin):
@@ -49,9 +50,17 @@ class DocumentTypeAdmin(admin.ModelAdmin):
 class DocumentAdmin(admin.ModelAdmin):
 
     search_fields = ("correspondent__name", "title", "content", "tags__name")
-    readonly_fields = ("added", "file_type", "storage_type",)
-    list_display = ("title", "created", "added", "correspondent",
-                    "tags_", "archive_serial_number", "document_type")
+    readonly_fields = ("added", "mime_type", "storage_type", "filename")
+
+    list_display_links = ("title",)
+
+    list_display = (
+        "correspondent",
+        "title",
+        "tags_",
+        "created",
+    )
+
     list_filter = (
         "document_type",
         "tags",
@@ -70,6 +79,21 @@ class DocumentAdmin(admin.ModelAdmin):
     def created_(self, obj):
         return obj.created.date().strftime("%Y-%m-%d")
     created_.short_description = "Created"
+
+    def delete_queryset(self, request, queryset):
+        ix = index.open_index()
+        with AsyncWriter(ix) as writer:
+            for o in queryset:
+                index.remove_document(writer, o)
+        super(DocumentAdmin, self).delete_queryset(request, queryset)
+
+    def delete_model(self, request, obj):
+        index.remove_document_from_index(obj)
+        super(DocumentAdmin, self).delete_model(request, obj)
+
+    def save_model(self, request, obj, form, change):
+        index.add_or_update_document(obj)
+        super(DocumentAdmin, self).save_model(request, obj, form, change)
 
     @mark_safe
     def tags_(self, obj):
@@ -94,8 +118,18 @@ class DocumentAdmin(admin.ModelAdmin):
 
 class LogAdmin(admin.ModelAdmin):
 
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
     list_display = ("created", "message", "level",)
     list_filter = ("level", "created",)
+
+    ordering = ('-created',)
+
+    list_display_links = ("created", "message")
 
 
 admin.site.register(Correspondent, CorrespondentAdmin)
@@ -103,8 +137,3 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(DocumentType, DocumentTypeAdmin)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Log, LogAdmin)
-
-
-# Unless we implement multi-user, these default registrations don't make sense.
-admin.site.unregister(Group)
-admin.site.unregister(User)

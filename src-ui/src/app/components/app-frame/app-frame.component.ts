@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { from, Observable, of, scheduled, Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { PaperlessDocument } from 'src/app/data/paperless-document';
-import { AuthService } from 'src/app/services/auth.service';
 import { OpenDocumentsService } from 'src/app/services/open-documents.service';
 import { SearchService } from 'src/app/services/rest/search.service';
 import { SavedViewConfigService } from 'src/app/services/saved-view-config.service';
+import { DocumentDetailComponent } from '../document-detail/document-detail.component';
   
 @Component({
   selector: 'app-app-frame',
@@ -18,12 +18,14 @@ export class AppFrameComponent implements OnInit, OnDestroy {
 
   constructor (
     public router: Router,
+    private activatedRoute: ActivatedRoute,
     private openDocumentsService: OpenDocumentsService,
-    private authService: AuthService,
     private searchService: SearchService,
     public viewConfigService: SavedViewConfigService
     ) {
   }
+
+  isMenuCollapsed: boolean = true
 
   searchField = new FormControl('')
 
@@ -64,8 +66,17 @@ export class AppFrameComponent implements OnInit, OnDestroy {
     this.router.navigate(['search'], {queryParams: {query: this.searchField.value}})
   }
 
-  logout() {
-    this.authService.logout()
+  closeAll() {
+    this.openDocumentsService.closeAll()
+
+    // TODO: is there a better way to do this?
+    let route = this.activatedRoute
+    while (route.firstChild) {
+      route = route.firstChild
+    }
+    if (route.component == DocumentDetailComponent) {
+      this.router.navigate([""])
+    }
   }
 
   ngOnInit() {

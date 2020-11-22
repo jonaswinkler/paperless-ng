@@ -1,7 +1,8 @@
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <span class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Paperless</span>
+  <span class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Paperless-ng</span>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
+    (click)="isMenuCollapsed = !isMenuCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <form (ngSubmit)="search()" class="w-100">
@@ -10,7 +11,7 @@
   </form>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" (click)="logout()" style="cursor: pointer;">
+      <a class="nav-link" href="accounts/logout/">
         <svg class="buttonicon" fill="currentColor">
           <use xlink:href="assets/bootstrap-icons.svg#door-closed"/>
         </svg>
@@ -22,7 +23,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" [ngbCollapse]="isMenuCollapsed">
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
@@ -67,6 +68,14 @@
                 <use xlink:href="assets/bootstrap-icons.svg#file-text"/>
               </svg>
               {{d.title}}
+            </a>
+          </li>
+          <li class="nav-item w-100" *ngIf="openDocuments.length > 1">
+            <a class="nav-link text-truncate" [routerLink]="" (click)="closeAll()">
+              <svg class="sidebaricon" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#x"/>
+              </svg>
+              Close all
             </a>
           </li>
         </ul>
@@ -121,6 +130,28 @@
                 <use xlink:href="assets/bootstrap-icons.svg#toggles"/>
               </svg>
               Admin
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Misc</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="https://paperless-ng.readthedocs.io/en/latest/">
+              <svg class="sidebaricon" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#question-circle"/>
+              </svg>
+              Documentation
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/jonaswinkler/paperless-ng">
+              <svg class="sidebaricon" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#link"/>
+              </svg>
+              Github
             </a>
           </li>
         </ul>

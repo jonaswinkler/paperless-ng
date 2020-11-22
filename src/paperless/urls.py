@@ -1,12 +1,11 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.contrib import admin
-from django.urls import path
+from django.contrib.auth.decorators import login_required
+from django.urls import path, re_path
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import RedirectView
-from rest_framework.authtoken import views
 from rest_framework.routers import DefaultRouter
 
-from paperless.views import FaviconView
 from documents.views import (
     CorrespondentViewSet,
     DocumentViewSet,
@@ -18,6 +17,7 @@ from documents.views import (
     SearchAutoCompleteView,
     StatisticsView
 )
+from paperless.views import FaviconView
 
 api_router = DefaultRouter()
 api_router.register(r"correspondents", CorrespondentViewSet)
@@ -28,46 +28,61 @@ api_router.register(r"tags", TagViewSet)
 
 
 urlpatterns = [
+    re_path(r"^api/", include([
+        re_path(r"^auth/",
+                include(('rest_framework.urls', 'rest_framework'),
+                        namespace="rest_framework")),
 
-    # API
-    url(r"^api/auth/",include(('rest_framework.urls', 'rest_framework'), namespace="rest_framework")),
-    url(r"^api/search/autocomplete/", SearchAutoCompleteView.as_view(), name="autocomplete"),
-    url(r"^api/search/", SearchView.as_view(), name="search"),
-    url(r"^api/statistics/", StatisticsView.as_view(), name="statistics"),
-    url(r"^api/token/", views.obtain_auth_token), url(r"^api/", include((api_router.urls, 'drf'), namespace="drf")),
+        re_path(r"^search/autocomplete/",
+                SearchAutoCompleteView.as_view(),
+                name="autocomplete"),
 
-    # Favicon
-    url(r"^favicon.ico$", FaviconView.as_view(), name="favicon"),
+        re_path(r"^search/",
+                SearchView.as_view(),
+                name="search"),
 
-    # The Django admin
-    url(r"admin/", admin.site.urls),
+        re_path(r"^statistics/",
+                StatisticsView.as_view(),
+                name="statistics"),
 
-    # These redirects are here to support clients that use the old FetchView.
-    url(
-        r"^fetch/doc/(?P<pk>\d+)$",
-        RedirectView.as_view(url='/api/documents/%(pk)s/download/'),
-    ),
-    url(
-        r"^fetch/thumb/(?P<pk>\d+)$",
-        RedirectView.as_view(url='/api/documents/%(pk)s/thumb/'),
-    ),
-    url(
-        r"^fetch/preview/(?P<pk>\d+)$",
-        RedirectView.as_view(url='/api/documents/%(pk)s/preview/'),
-    ),
-    url(r"^push$", csrf_exempt(RedirectView.as_view(url='/api/documents/post_document/'))),
+    ] + api_router.urls)),
 
-    # Frontend assets TODO: this is pretty bad.
-    path('assets/<path:path>', RedirectView.as_view(url='/static/assets/%(path)s')),
+    re_path(r"^favicon.ico$", FaviconView.as_view(), name="favicon"),
+
+    re_path(r"admin/", admin.site.urls),
+
+    re_path(r"^fetch/", include([
+        re_path(
+            r"^doc/(?P<pk>\d+)$",
+            RedirectView.as_view(url='/api/documents/%(pk)s/download/'),
+        ),
+        re_path(
+            r"^thumb/(?P<pk>\d+)$",
+            RedirectView.as_view(url='/api/documents/%(pk)s/thumb/'),
+        ),
+        re_path(
+            r"^preview/(?P<pk>\d+)$",
+            RedirectView.as_view(url='/api/documents/%(pk)s/preview/'),
+        ),
+    ])),
+
+    re_path(r"^push$", csrf_exempt(
+        RedirectView.as_view(url='/api/documents/post_document/'))),
+
+    # Frontend assets TODO: this is pretty bad, but it works.
+    path('assets/<path:path>',
+         RedirectView.as_view(url='/static/frontend/assets/%(path)s')),
+
+    # login, logout
+    path('accounts/', include('django.contrib.auth.urls')),
 
     # Root of the Frontent
-    url(r".*", IndexView.as_view()),
-
+    re_path(r".*", login_required(IndexView.as_view())),
 ]
 
 # Text in each page's <h1> (and above login form).
-admin.site.site_header = 'Paperless'
+admin.site.site_header = 'Paperless-ng'
 # Text at the end of each page's <title>.
-admin.site.site_title = 'Paperless'
+admin.site.site_title = 'Paperless-ng'
 # Text at the top of the admin index page.
-admin.site.index_title = 'Paperless administration'
+admin.site.index_title = 'Paperless-ng administration'

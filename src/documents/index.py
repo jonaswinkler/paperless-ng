@@ -1,14 +1,17 @@
 import logging
+import os
+from contextlib import contextmanager
 
-from django.db import models
-from django.dispatch import receiver
+from django.conf import settings
+from whoosh import highlight
 from whoosh.fields import Schema, TEXT, NUMERIC
 from whoosh.highlight import Formatter, get_text
 from whoosh.index import create_in, exists_in, open_dir
+from whoosh.qparser import MultifieldParser
 from whoosh.writing import AsyncWriter
 
-from documents.models import Document
-from paperless import settings
+
+logger = logging.getLogger(__name__)
 
 
 class JsonFormatter(Formatter):
@@ -55,7 +58,8 @@ def get_schema():
     return Schema(
         id=NUMERIC(stored=True, unique=True, numtype=int),
         title=TEXT(stored=True),
-        content=TEXT()
+        content=TEXT(),
+        correspondent=TEXT(stored=True)
     )
 
 
@@ -63,36 +67,60 @@ def open_index(recreate=False):
     if exists_in(settings.INDEX_DIR) and not recreate:
         return open_dir(settings.INDEX_DIR)
     else:
+        # TODO: this is not thread safe. If 2 instances try to create the index
+        #  at the same time, this fails. This currently prevents parallel
+        #  tests.
+        if not os.path.isdir(settings.INDEX_DIR):
+            os.makedirs(settings.INDEX_DIR, exist_ok=True)
         return create_in(settings.INDEX_DIR, get_schema())
 
 
 def update_document(writer, doc):
-    logging.getLogger(__name__).debug("Updating index with document{}".format(str(doc)))
+    logger.debug("Indexing {}...".format(doc))
     writer.update_document(
         id=doc.pk,
         title=doc.title,
-        content=doc.content
+        content=doc.content,
+        correspondent=doc.correspondent.name if doc.correspondent else None
     )
 
 
-@receiver(models.signals.post_save, sender=Document)
-def add_document_to_index(sender, instance, **kwargs):
-    ix = open_index()
-    with AsyncWriter(ix) as writer:
-        update_document(writer, instance)
+def remove_document(writer, doc):
+    logger.debug("Removing {} from index...".format(doc))
+    writer.delete_by_term('id', doc.pk)
 
 
-@receiver(models.signals.post_delete, sender=Document)
-def remove_document_from_index(sender, instance, **kwargs):
-    logging.getLogger(__name__).debug("Removing document {} from index".format(str(instance)))
+def add_or_update_document(document):
     ix = open_index()
     with AsyncWriter(ix) as writer:
-        writer.delete_by_term('id', instance.pk)
+        update_document(writer, document)
+
+
+def remove_document_from_index(document):
+    ix = open_index()
+    with AsyncWriter(ix) as writer:
+        remove_document(writer, document)
+
+
+@contextmanager
+def query_page(ix, query, page):
+    searcher = ix.searcher()
+    try:
+        query_parser = MultifieldParser(["content", "title", "correspondent"],
+                                        ix.schema).parse(query)
+        result_page = searcher.search_page(query_parser, page)
+        result_page.results.fragmenter = highlight.ContextFragmenter(
+            surround=50)
+        result_page.results.formatter = JsonFormatter()
+        yield result_page
+    finally:
+        searcher.close()
 
 
 def autocomplete(ix, term, limit=10):
     with ix.reader() as reader:
         terms = []
-        for (score, t) in reader.most_distinctive_terms("content", limit, term.lower()):
+        for (score, t) in reader.most_distinctive_terms(
+                "content", number=limit, prefix=term.lower()):
             terms.append(t)
         return terms

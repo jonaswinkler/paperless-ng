@@ -1,9 +1,7 @@
-import logging
-
 from django.core.management.base import BaseCommand
-from documents.classifier import DocumentClassifier
-from paperless import settings
+
 from ...mixins import Renderable
+from ...tasks import train_classifier
 
 
 class Command(Renderable, BaseCommand):
@@ -17,14 +15,4 @@ class Command(Renderable, BaseCommand):
         BaseCommand.__init__(self, *args, **kwargs)
 
     def handle(self, *args, **options):
-        classifier = DocumentClassifier()
-        try:
-            classifier.train()
-            logging.getLogger(__name__).info(
-                "Saving models to {}...".format(settings.MODEL_FILE)
-            )
-            classifier.save_classifier()
-        except Exception as e:
-            logging.getLogger(__name__).error(
-                "Classifier error: " + str(e)
-            )
+        train_classifier()
