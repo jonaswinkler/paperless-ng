@@ -3,13 +3,16 @@ import os
 import shutil
 import time
 
+from django.conf import settings
 from django.core import serializers
 from django.core.management.base import BaseCommand, CommandError
+from django.utils.text import slugify
 
 from documents.models import Document, Correspondent, Tag, DocumentType
 from documents.settings import EXPORTER_FILE_NAME, EXPORTER_THUMBNAIL_NAME, \
     EXPORTER_ARCHIVE_NAME
 from paperless.db import GnuPG
+from ...file_handling import generate_filename
 from ...mixins import Renderable
 
 
@@ -53,32 +56,42 @@ class Command(Renderable, BaseCommand):
             manifest[index]["fields"]["storage_type"] = Document.STORAGE_TYPE_UNENCRYPTED  # NOQA: E501
 
             document = document_map[document_dict["pk"]]
+            document.storage_type = Document.STORAGE_TYPE_UNENCRYPTED
 
-            unique_filename = f"{document.pk:07}_{document.file_name}"
-            file_target = os.path.join(self.target, unique_filename)
+            if settings.PAPERLESS_FILENAME_FORMAT:
+                name = generate_filename(document)
+            else:
+                name = f"{slugify(str(document))}_{document.id}{document.file_type}"
+            original_name = os.path.join("originals", name)
+            original_target = os.path.join(self.target, original_name)
+            os.makedirs(os.path.dirname(original_target), exist_ok=True)
 
-            thumbnail_name = unique_filename + "-thumbnail.png"
+            thumbnail_name = os.path.splitext(name)[0] + ".png"
+            thumbnail_name = os.path.join("thumbnails", thumbnail_name)
             thumbnail_target = os.path.join(self.target, thumbnail_name)
+            os.makedirs(os.path.dirname(thumbnail_target), exist_ok=True)
 
-            document_dict[EXPORTER_FILE_NAME] = unique_filename
+            document_dict[EXPORTER_FILE_NAME] = original_name
             document_dict[EXPORTER_THUMBNAIL_NAME] = thumbnail_name
 
             if os.path.exists(document.archive_path):
-                archive_name = \
-                    f"{document.pk:07}_archive_{document.archive_file_name}"
+                archive_name = os.path.splitext(name)[0] + ".pdf"
+                archive_name = os.path.join("archive", archive_name)
                 archive_target = os.path.join(self.target, archive_name)
+                os.makedirs(os.path.dirname(archive_target), exist_ok=True)
                 document_dict[EXPORTER_ARCHIVE_NAME] = archive_name
             else:
+                archive_name = None
                 archive_target = None
 
-            print(f"Exporting: {file_target}")
+            print(f"Exporting: {document}")
 
             t = int(time.mktime(document.created.timetuple()))
             if document.storage_type == Document.STORAGE_TYPE_GPG:
 
-                with open(file_target, "wb") as f:
+                with open(original_target, "wb") as f:
                     f.write(GnuPG.decrypted(document.source_file))
-                    os.utime(file_target, times=(t, t))
+                    os.utime(original_target, times=(t, t))
 
                 with open(thumbnail_target, "wb") as f:
                     f.write(GnuPG.decrypted(document.thumbnail_file))
@@ -90,7 +103,7 @@ class Command(Renderable, BaseCommand):
                         os.utime(archive_target, times=(t, t))
             else:
 
-                shutil.copy(document.source_path, file_target)
+                shutil.copy(document.source_path, original_target)
                 shutil.copy(document.thumbnail_path, thumbnail_target)
 
                 if archive_target:
