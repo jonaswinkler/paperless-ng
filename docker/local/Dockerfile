@@ -18,6 +18,7 @@ RUN apt-get update \
 		libmagic-dev \
 		libpoppler-cpp-dev \
 		libpq-dev \
+		libqpdf-dev \
 		libxml2 \
 		optipng \
 		pngquant \
