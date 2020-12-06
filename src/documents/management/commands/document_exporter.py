@@ -56,10 +56,15 @@ class Command(Renderable, BaseCommand):
             manifest[index]["fields"]["storage_type"] = Document.STORAGE_TYPE_UNENCRYPTED  # NOQA: E501
 
             document = document_map[document_dict["pk"]]
-            document.storage_type = Document.STORAGE_TYPE_UNENCRYPTED
 
             if settings.PAPERLESS_FILENAME_FORMAT:
+                # set storagy type temporarily for filename generation
+                storage_type_actual = document.storage_type
+
+                document.storage_type = Document.STORAGE_TYPE_UNENCRYPTED
                 name = generate_filename(document)
+
+                document.storage_type = storage_type_actual
             else:
                 name = f"{slugify(str(document))}_{document.id}{document.file_type}"
             original_name = os.path.join("originals", name)

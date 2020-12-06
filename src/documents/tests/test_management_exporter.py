@@ -69,3 +69,9 @@ class TestExportImport(DirectoriesMixin, TestCase):
         call_command('document_exporter', target)
         Document.objects.create(checksum="AAAAAAAAAAAAAAAAA", title="wow", filename="0000004.pdf", id=3, mime_type="application/pdf")
         self.assertRaises(FileNotFoundError, call_command, 'document_exporter', target)
+
+    @override_settings(
+        PAPERLESS_FILENAME_FORMAT="{correspondent}/{year}/{title}"
+    )
+    def test_export_with_filename_format(self):
+        self.test_exporter()
