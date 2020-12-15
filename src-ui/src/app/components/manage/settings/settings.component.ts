@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { PaperlessSavedView } from 'src/app/data/paperless-saved-view';
+import { Title } from '@angular/platform-browser';
+import { SavedViewConfig } from 'src/app/data/saved-view-config';
 import { GENERAL_SETTINGS } from 'src/app/data/storage-keys';
 import { DocumentListViewService } from 'src/app/services/document-list-view.service';
-import { SavedViewService } from 'src/app/services/rest/saved-view.service';
-import { Toast, ToastService } from 'src/app/services/toast.service';
+import { SavedViewConfigService } from 'src/app/services/saved-view-config.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-settings',
@@ -13,53 +14,26 @@ import { Toast, ToastService } from 'src/app/services/toast.service';
 })
 export class SettingsComponent implements OnInit {
 
-  savedViewGroup = new FormGroup({})
-
   settingsForm = new FormGroup({
-    'documentListItemPerPage': new FormControl(+localStorage.getItem(GENERAL_SETTINGS.DOCUMENT_LIST_SIZE) || GENERAL_SETTINGS.DOCUMENT_LIST_SIZE_DEFAULT),
-    'savedViews': this.savedViewGroup
+    'documentListItemPerPage': new FormControl(+localStorage.getItem(GENERAL_SETTINGS.DOCUMENT_LIST_SIZE) || GENERAL_SETTINGS.DOCUMENT_LIST_SIZE_DEFAULT)
   })
 
   constructor(
-    public savedViewService: SavedViewService,
+    private savedViewConfigService: SavedViewConfigService,
     private documentListViewService: DocumentListViewService,
-    private toastService: ToastService
+    private titleService: Title
   ) { }
 
-  savedViews: PaperlessSavedView[]
-
-  ngOnInit() {
-    this.savedViewService.listAll().subscribe(r => {
-      this.savedViews = r.results
-      for (let view of this.savedViews) {
-        this.savedViewGroup.addControl(view.id.toString(), new FormGroup({
-          "id": new FormControl(view.id),
-          "name": new FormControl(view.name),
-          "show_on_dashboard": new FormControl(view.show_on_dashboard),
-          "show_in_sidebar": new FormControl(view.show_in_sidebar)
-        }))
-      }
-    })
+  ngOnInit(): void {
+    this.titleService.setTitle(`Settings - ${environment.appTitle}`)
   }
 
-  deleteSavedView(savedView: PaperlessSavedView) {
-    this.savedViewService.delete(savedView).subscribe(() => {
-      this.savedViewGroup.removeControl(savedView.id.toString())
-      this.savedViews.splice(this.savedViews.indexOf(savedView), 1)
-      this.toastService.showToast(Toast.make("Information", `Saved view "${savedView.name} deleted.`))
-    })
+  deleteViewConfig(config: SavedViewConfig) {
+    this.savedViewConfigService.deleteConfig(config)
   }
 
   saveSettings() {
-    let x = []
-    for (let id in this.savedViewGroup.value) {
-      x.push(this.savedViewGroup.value[id])
-    }
-    this.savedViewService.patchMany(x).subscribe(s => {
-      this.toastService.showToast(Toast.make("Information", "Settings saved successfully."))
-      localStorage.setItem(GENERAL_SETTINGS.DOCUMENT_LIST_SIZE, this.settingsForm.value.documentListItemPerPage)
-      this.documentListViewService.updatePageSize()
-    })
-
+    localStorage.setItem(GENERAL_SETTINGS.DOCUMENT_LIST_SIZE, this.settingsForm.value.documentListItemPerPage)
+    this.documentListViewService.updatePageSize()
   }
 }

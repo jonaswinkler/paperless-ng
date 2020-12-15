@@ -1,29 +1,21 @@
-import { Component, Input } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { environment } from 'src/environments/environment';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss']
 })
-export class PageHeaderComponent {
+export class PageHeaderComponent implements OnInit {
 
-  constructor(private titleService: Title) { }
-
-  _title = ""
+  constructor() { }
 
   @Input()
-  set title(title: string) {
-    this._title = title
-    this.titleService.setTitle(`${this.title} - ${environment.appTitle}`)
-  }
-
-  get title() {
-    return this._title
-  }
+  title: string = ""
 
   @Input()
   subTitle: string = ""
+
+  ngOnInit(): void {
+  }
 
 }

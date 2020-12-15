@@ -4,8 +4,7 @@ from django.utils.safestring import mark_safe
 from whoosh.writing import AsyncWriter
 
 from . import index
-from .models import Correspondent, Document, DocumentType, Log, Tag, \
-    SavedView, SavedViewFilterRule
+from .models import Correspondent, Document, DocumentType, Log, Tag
 
 
 class CorrespondentAdmin(admin.ModelAdmin):
@@ -132,22 +131,8 @@ class LogAdmin(admin.ModelAdmin):
     list_display_links = ("created", "message")
 
 
-class RuleInline(admin.TabularInline):
-    model = SavedViewFilterRule
-
-
-class SavedViewAdmin(admin.ModelAdmin):
-
-    list_display = ("name", "user")
-
-    inlines = [
-        RuleInline
-    ]
-
-
 admin.site.register(Correspondent, CorrespondentAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(DocumentType, DocumentTypeAdmin)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Log, LogAdmin)
-admin.site.register(SavedView, SavedViewAdmin)

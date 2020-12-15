@@ -38,7 +38,7 @@ from .filters import (
     DocumentTypeFilterSet,
     LogFilterSet
 )
-from .models import Correspondent, Document, Log, Tag, DocumentType, SavedView
+from .models import Correspondent, Document, Log, Tag, DocumentType
 from .parsers import get_parser_class_for_mime_type
 from .serialisers import (
     CorrespondentSerializer,
@@ -46,8 +46,7 @@ from .serialisers import (
     LogSerializer,
     TagSerializer,
     DocumentTypeSerializer,
-    PostDocumentSerializer,
-    SavedViewSerializer
+    PostDocumentSerializer
 )
 
 
@@ -239,22 +238,6 @@ class LogViewSet(ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = LogFilterSet
     ordering_fields = ("created",)
-
-
-class SavedViewViewSet(ModelViewSet):
-    model = SavedView
-
-    queryset = SavedView.objects.all()
-    serializer_class = SavedViewSerializer
-    pagination_class = StandardPagination
-    permission_classes = (IsAuthenticated,)
-
-    def get_queryset(self):
-        user = self.request.user
-        return SavedView.objects.filter(user=user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 class PostDocumentView(APIView):

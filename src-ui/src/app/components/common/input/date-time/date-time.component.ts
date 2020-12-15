@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractInputComponent } from '../abstract-input';
 
 @Component({
   providers: [{

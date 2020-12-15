@@ -15,9 +15,9 @@ export class SaveViewConfigDialogComponent implements OnInit {
   public saveClicked = new EventEmitter()
 
   saveViewConfigForm = new FormGroup({
-    name: new FormControl(''),
+    title: new FormControl(''),
     showInSideBar: new FormControl(false),
-    showOnDashboard: new FormControl(false),
+    showInDashboard: new FormControl(false),
   })
 
   ngOnInit(): void {

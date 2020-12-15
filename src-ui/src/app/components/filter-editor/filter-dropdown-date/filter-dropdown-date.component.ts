@@ -1,12 +1,7 @@
-import { Component, EventEmitter, Input, Output, ElementRef, ViewChild, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ElementRef, ViewChild, OnChanges, SimpleChange } from '@angular/core';
+import { FilterRule } from 'src/app/data/filter-rule';
+import { ObjectWithId } from 'src/app/data/object-with-id';
 import { NgbDate, NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
-
-
-export interface DateSelection {
-  before?: NgbDateStruct
-  after?: NgbDateStruct
-}
-
 
 @Component({
   selector: 'app-filter-dropdown-date',
@@ -25,7 +20,10 @@ export class FilterDropdownDateComponent {
   title: string
 
   @Output()
-  datesSet = new EventEmitter<DateSelection>()
+  dateBeforeSet = new EventEmitter()
+
+  @Output()
+  dateAfterSet = new EventEmitter()
 
   @ViewChild('dpAfter') dpAfter: NgbDatepicker
   @ViewChild('dpBefore') dpBefore: NgbDatepicker
@@ -62,7 +60,7 @@ export class FilterDropdownDateComponent {
         dpAfterElRef.nativeElement.value = dateString
       } else if (dateBeforeChange && dateBeforeChange.currentValue) {
         let dateBeforeDate = dateBeforeChange.currentValue as NgbDateStruct
-        dateString = `${dateBeforeDate.year}-${dateBeforeDate.month.toString().padStart(2,'0')}-${dateBeforeDate.day.toString().padStart(2,'0')}`
+        dateString = `${dateBeforeChange.currentValue.year}-${dateBeforeChange.currentValue.month.toString().padStart(2,'0')}-${dateBeforeChange.currentValue.day.toString().padStart(2,'0')}`
         dpBeforeElRef.nativeElement.value = dateString
       } else {
         dpAfterElRef.nativeElement.value = dateString
@@ -92,18 +90,19 @@ export class FilterDropdownDateComponent {
         break
     }
     this._dateAfter = newDate
-    this.datesSet.emit({after: newDate, before: null})
+    this.onDateSelected(this._dateAfter)
   }
 
-  onBeforeSelected(date: NgbDateStruct) {
-    this.datesSet.emit({after: this._dateAfter, before: date})
+  onDateSelected(date:NgbDateStruct) {
+    let emitter = this._dateAfter && NgbDate.from(this._dateAfter).equals(date) ? this.dateAfterSet : this.dateBeforeSet
+    emitter.emit(date)
   }
 
-  onAfterSelected(date: NgbDateStruct) {
-    this.datesSet.emit({after: date, before: this._dateBefore})
+  clearAfter() {
+    this.dateAfterSet.next()
   }
 
-  clear() {
-    this.datesSet.emit({after: null, before: null})
+  clearBefore() {
+    this.dateBeforeSet.next()
   }
 }

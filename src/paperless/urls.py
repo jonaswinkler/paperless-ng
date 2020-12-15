@@ -17,8 +17,7 @@ from documents.views import (
     IndexView,
     SearchAutoCompleteView,
     StatisticsView,
-    PostDocumentView,
-    SavedViewViewSet
+    PostDocumentView
 )
 from paperless.views import FaviconView
 
@@ -28,7 +27,6 @@ api_router.register(r"document_types", DocumentTypeViewSet)
 api_router.register(r"documents", DocumentViewSet)
 api_router.register(r"logs", LogViewSet)
 api_router.register(r"tags", TagViewSet)
-api_router.register(r"saved_views", SavedViewViewSet)
 
 
 urlpatterns = [

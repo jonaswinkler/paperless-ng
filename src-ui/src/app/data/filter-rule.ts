@@ -1,8 +1,10 @@
+import { FilterRuleType } from './filter-rule-type';
+
 export function cloneFilterRules(filterRules: FilterRule[]): FilterRule[] {
   if (filterRules) {
     let newRules: FilterRule[] = []
     for (let rule of filterRules) {
-      newRules.push({rule_type: rule.rule_type, value: rule.value})
+      newRules.push({type: rule.type, value: rule.value})
     }
     return newRules      
   } else {
@@ -11,6 +13,6 @@ export function cloneFilterRules(filterRules: FilterRule[]): FilterRule[] {
 }
 
 export interface FilterRule {
-  rule_type: number
-  value: string
+  type: FilterRuleType
+  value: any
 }

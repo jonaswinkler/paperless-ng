@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PaperlessSavedView } from 'src/app/data/paperless-saved-view';
-import { SavedViewService } from 'src/app/services/rest/saved-view.service';
+import { Title } from '@angular/platform-browser';
+import { SavedViewConfigService } from 'src/app/services/saved-view-config.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -11,15 +12,15 @@ import { SavedViewService } from 'src/app/services/rest/saved-view.service';
 export class DashboardComponent implements OnInit {
 
   constructor(
-    private savedViewService: SavedViewService) { }
+    public savedViewConfigService: SavedViewConfigService,
+    private titleService: Title) { }
 
 
-  savedViews: PaperlessSavedView[] = []
+  savedViews = []
 
   ngOnInit(): void {
-    this.savedViewService.listAll().subscribe(results => {
-      this.savedViews = results.results.filter(savedView => savedView.show_on_dashboard)
-    })
+    this.savedViews = this.savedViewConfigService.getDashboardConfigs()
+    this.titleService.setTitle(`Dashboard - ${environment.appTitle}`)
   }
 
 }

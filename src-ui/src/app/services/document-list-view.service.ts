@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { cloneFilterRules, FilterRule } from '../data/filter-rule';
 import { PaperlessDocument } from '../data/paperless-document';
-import { PaperlessSavedView } from '../data/paperless-saved-view';
+import { SavedViewConfig } from '../data/saved-view-config';
 import { DOCUMENT_LIST_SERVICE, GENERAL_SETTINGS } from '../data/storage-keys';
 import { DocumentService } from './rest/document.service';
 
@@ -29,17 +29,17 @@ export class DocumentListViewService {
   /**
    * This is the current config for the document list. The service will always remember the last settings used for the document list.
    */
-  private _documentListViewConfig: PaperlessSavedView
+  private _documentListViewConfig: SavedViewConfig
   /**
    * Optionally, this is the currently selected saved view, which might be null.
    */
-  private _savedViewConfig: PaperlessSavedView
+  private _savedViewConfig: SavedViewConfig
 
-  get savedView(): PaperlessSavedView {
+  get savedView() {
     return this._savedViewConfig
   }
 
-  set savedView(value: PaperlessSavedView) {
+  set savedView(value) {
     if (value) {
       //this is here so that we don't modify value, which might be the actual instance of the saved view.
       this._savedViewConfig = Object.assign({}, value)
@@ -53,7 +53,7 @@ export class DocumentListViewService {
   }
 
   get savedViewTitle() {
-    return this.savedView?.name
+    return this.savedView?.title
   }
 
   get documentListView() {
@@ -75,11 +75,11 @@ export class DocumentListViewService {
     return this.savedView || this.documentListView
   }
 
-  load(view: PaperlessSavedView) {
-    this.documentListView.filter_rules = cloneFilterRules(view.filter_rules)
-    this.documentListView.sort_reverse = view.sort_reverse
-    this.documentListView.sort_field = view.sort_field
-    this.saveDocumentListView()
+  load(config: SavedViewConfig) {
+    this.view.filterRules = cloneFilterRules(config.filterRules)
+    this.view.sortDirection = config.sortDirection
+    this.view.sortField = config.sortField
+    this.reload()
   }
 
   clear() {
@@ -93,9 +93,9 @@ export class DocumentListViewService {
     this.documentService.list(
       this.currentPage,
       this.currentPageSize,
-      this.view.sort_field,
-      this.view.sort_reverse,
-      this.view.filter_rules).subscribe(
+      this.view.sortField,
+      this.view.sortDirection,
+      this.view.filterRules).subscribe(
         result => {
           this.collectionSize = result.count
           this.documents = result.results
@@ -116,33 +116,33 @@ export class DocumentListViewService {
   set filterRules(filterRules: FilterRule[]) {
     //we're going to clone the filterRules object, since we don't
     //want changes in the filter editor to propagate into here right away.
-    this.view.filter_rules = cloneFilterRules(filterRules)
+    this.view.filterRules = cloneFilterRules(filterRules)
     this.reload()
     this.saveDocumentListView()
   }
 
   get filterRules(): FilterRule[] {
-    return cloneFilterRules(this.view.filter_rules)
+    return cloneFilterRules(this.view.filterRules)
   }
 
   set sortField(field: string) {
-    this.view.sort_field = field
+    this.view.sortField = field
     this.saveDocumentListView()
     this.reload()
   }
 
   get sortField(): string {
-    return this.view.sort_field
+    return this.view.sortField
   }
 
-  set sortReverse(reverse: boolean) {
-    this.view.sort_reverse = reverse
+  set sortDirection(direction: string) {
+    this.view.sortDirection = direction
     this.saveDocumentListView()
     this.reload()
   }
 
-  get sortReverse(): boolean {
-    return this.view.sort_reverse
+  get sortDirection(): string {
+    return this.view.sortDirection
   }
 
   private saveDocumentListView() {
@@ -188,6 +188,7 @@ export class DocumentListViewService {
     let newPageSize = +localStorage.getItem(GENERAL_SETTINGS.DOCUMENT_LIST_SIZE) || GENERAL_SETTINGS.DOCUMENT_LIST_SIZE_DEFAULT
     if (newPageSize != this.currentPageSize) {
       this.currentPageSize = newPageSize
+      //this.reload()
     }
   }
 
@@ -203,9 +204,9 @@ export class DocumentListViewService {
     }
     if (!this.documentListView) {
       this.documentListView = {
-        filter_rules: [],
-        sort_reverse: true,
-        sort_field: 'created'
+        filterRules: [],
+        sortDirection: 'des',
+        sortField: 'created'
       }
     }
   }
