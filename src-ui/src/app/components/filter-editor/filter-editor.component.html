@@ -8,9 +8,9 @@
   <div class="w-100 d-xl-none"></div>
   <div class="col col-xl-auto mb-2 mb-xl-0">
     <div class="d-flex">
-      <app-filter-dropdown class="mr-2" [(items)]="filterEditorService.tags" [itemsSelected]="filterEditorService.selectedTags"(toggle)="onToggleTag($event)"></app-filter-dropdown>
-      <app-filter-dropdown class="mr-2" [(items)]="filterEditorService.correspondents" [itemsSelected]="filterEditorService.selectedCorrespondents" (toggle)="onToggleCorrespondent($event)"></app-filter-dropdown>
-      <app-filter-dropdown class="mr-2" [(items)]="filterEditorService.documentTypes" [itemsSelected]="filterEditorService.selectedDocumentTypes" (toggle)="onToggleDocumentType($event)"></app-filter-dropdown>
+      <app-filter-dropdown class="mr-2" [(items)]="filterEditorService.tags" [itemsSelected]="filterEditorService.selectedTags" [title]="'Tags'" [icon]="'tag-fill'" (toggle)="onToggleTag($event)"></app-filter-dropdown>
+      <app-filter-dropdown class="mr-2" [(items)]="filterEditorService.correspondents" [itemsSelected]="filterEditorService.selectedCorrespondents" [title]="'Correspondents'" [icon]="'person-fill'" (toggle)="onToggleCorrespondent($event)"></app-filter-dropdown>
+      <app-filter-dropdown class="mr-2" [(items)]="filterEditorService.documentTypes" [itemsSelected]="filterEditorService.selectedDocumentTypes" [title]="'Document Types'" [icon]="'file-earmark-fill'" (toggle)="onToggleDocumentType($event)"></app-filter-dropdown>
       <app-filter-dropdown-date class="mr-2" [dateBefore]="filterEditorService.dateCreatedBefore" [dateAfter]="filterEditorService.dateCreatedAfter" [title]="'Created'" (dateBeforeSet)="onDateCreatedBeforeSet($event)" (dateAfterSet)="onDateCreatedAfterSet($event)"></app-filter-dropdown-date>
       <app-filter-dropdown-date [dateBefore]="filterEditorService.dateAddedBefore" [dateAfter]="filterEditorService.dateAddedAfter" [title]="'Added'"  (dateBeforeSet)="onDateAddedBeforeSet($event)" (dateAfterSet)="onDateAddedAfterSet($event)"></app-filter-dropdown-date>
     </div>

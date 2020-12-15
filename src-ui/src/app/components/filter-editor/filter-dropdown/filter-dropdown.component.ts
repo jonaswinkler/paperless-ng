@@ -13,20 +13,15 @@ import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap'
 export class FilterDropdownComponent {
 
   @Input()
-  set items(items: ObjectWithId[]) {
-    this._items = items
-    this.onItemsSet(items)
-  }
-
-  get items(): ObjectWithId[] {
-    return this._items
-  }
+  items: ObjectWithId[]
 
   @Input()
   itemsSelected: ObjectWithId[]
 
-  _items: ObjectWithId[]
+  @Input()
   title: string
+
+  @Input()
   icon: string
 
   @Output()
@@ -38,23 +33,6 @@ export class FilterDropdownComponent {
   filterText: string
 
   constructor(private filterPipe: FilterPipe) { }
-
-  onItemsSet(items: ObjectWithId[]): void { // like a constructor once items are set
-    if (items && items.length > 0) {
-      let item = items[0]
-
-      if ('is_inbox_tag' in item) { // ~ item instanceof PaperlessTag
-          this.title = 'Tags'
-          this.icon = 'tag-fill'
-      } else if ('last_correspondence' in item) { // ~ item instanceof PaperlessCorrespondent
-          this.title = 'Correspondents'
-          this.icon = 'person-fill'
-      } else { // else this.item is PaperlessDocumentType
-          this.title = 'Document Types'
-          this.icon = 'file-earmark-fill'
-      }
-    }
-  }
 
   toggleItem(item: ObjectWithId): void {
     this.toggle.emit(item)
