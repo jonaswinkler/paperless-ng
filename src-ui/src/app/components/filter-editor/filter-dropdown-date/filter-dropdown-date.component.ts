@@ -141,8 +141,17 @@ export class FilterDropdownDateComponent {
 
   dropdownOpenChange(opened) {
     if (!opened) {
+      let dateSelection: DateSelection = {}
+
+      // clear date if invalid
       if (!this.afterForm.valid) this._dateAfter = this.dateAfter
+      else dateSelection.after = this._dateAfter
+
       if (!this.beforeForm.valid) this._dateBefore = this.dateBefore
+      else dateSelection.before = this._dateBefore
+
+      // apply the date if it is valid
+      if (this.afterForm.valid || this.beforeForm.valid) this.datesSet.emit(dateSelection)
     }
   }
 }
