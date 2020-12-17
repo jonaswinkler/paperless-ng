@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ElementRef, ViewChild, SimpleChange } from '@angular/core';
-import { NgbDate, NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+import { NgbDropdown, NgbDate, NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 
 export interface DateSelection {
   before?: NgbDateStruct
@@ -26,8 +27,11 @@ export class FilterDropdownDateComponent {
   @Output()
   datesSet = new EventEmitter<DateSelection>()
 
-  @ViewChild('dpAfter') dpAfter: NgbDatepicker
-  @ViewChild('dpBefore') dpBefore: NgbDatepicker
+  @ViewChild('filterDateDropdown') filterDateDropdown: NgbDropdown
+  @ViewChild('beforeForm') beforeForm: NgForm
+  @ViewChild('afterForm') afterForm: NgForm
+  @ViewChild('beforeDatepicker') beforeDatepicker: NgbDatepicker
+  @ViewChild('afterDatepicker') afterDatepicker: NgbDatepicker
 
   _dateBefore: NgbDateStruct
   _dateAfter: NgbDateStruct
@@ -51,21 +55,21 @@ export class FilterDropdownDateComponent {
       dateBeforeChange = changes['dateBefore']
     }
 
-    if (this.dpBefore && this.dpAfter) {
-      let dpAfterElRef: ElementRef = this.dpAfter['_elRef']
-      let dpBeforeElRef: ElementRef = this.dpBefore['_elRef']
+    if (this.beforeDatepicker && this.afterDatepicker) {
+      let afterDatepickerElRef: ElementRef = this.afterDatepicker['_elRef']
+      let beforeDatepickerElRef: ElementRef = this.beforeDatepicker['_elRef']
 
       if (dateAfterChange && dateAfterChange.currentValue) {
         let dateAfterDate = dateAfterChange.currentValue as NgbDateStruct
         dateString = `${dateAfterDate.year}-${dateAfterDate.month.toString().padStart(2,'0')}-${dateAfterDate.day.toString().padStart(2,'0')}`
-        dpAfterElRef.nativeElement.value = dateString
+        afterDatepickerElRef.nativeElement.value = dateString
       } else if (dateBeforeChange && dateBeforeChange.currentValue) {
         let dateBeforeDate = dateBeforeChange.currentValue as NgbDateStruct
         dateString = `${dateBeforeDate.year}-${dateBeforeDate.month.toString().padStart(2,'0')}-${dateBeforeDate.day.toString().padStart(2,'0')}`
-        dpBeforeElRef.nativeElement.value = dateString
+        beforeDatepickerElRef.nativeElement.value = dateString
       } else {
-        dpAfterElRef.nativeElement.value = dateString
-        dpBeforeElRef.nativeElement.value = dateString
+        afterDatepickerElRef.nativeElement.value = dateString
+        beforeDatepickerElRef.nativeElement.value = dateString
       }
     }
   }
@@ -112,5 +116,25 @@ export class FilterDropdownDateComponent {
   clearAfter() {
     this._dateAfter = null
     this.datesSet.emit({after: null})
+  }
+
+  keyupAfter(event: KeyboardEvent) {
+    if (event.key == 'Enter') {
+      this.filterDateDropdown.close()
+    }
+
+    if (this.afterForm.valid && typeof this._dateAfter !== 'string') {
+      this.datesSet.emit({after: this._dateAfter})
+    }
+  }
+
+  keyupBefore(event: KeyboardEvent) {
+    if (event.key == 'Enter') {
+      this.filterDateDropdown.close()
+    }
+
+    if (this.beforeForm.valid && typeof this._dateBefore !== 'string') {
+      this.datesSet.emit({before: this._dateBefore})
+    }
   }
 }
