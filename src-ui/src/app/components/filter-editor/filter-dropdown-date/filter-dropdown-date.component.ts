@@ -104,9 +104,13 @@ export class FilterDropdownDateComponent {
     this.datesSet.emit({after: date, before: this._dateBefore})
   }
 
-  clear() {
+  clearBefore() {
     this._dateBefore = null
+    this.datesSet.emit({before: null})
+  }
+
+  clearAfter() {
     this._dateAfter = null
-    this.datesSet.emit({after: null, before: null})
+    this.datesSet.emit({after: null})
   }
 }
