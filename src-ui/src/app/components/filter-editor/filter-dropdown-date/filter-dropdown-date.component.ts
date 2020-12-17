@@ -7,7 +7,6 @@ export interface DateSelection {
   after?: NgbDateStruct
 }
 
-
 @Component({
   selector: 'app-filter-dropdown-date',
   templateUrl: './filter-dropdown-date.component.html',
@@ -100,12 +99,12 @@ export class FilterDropdownDateComponent {
 
   onBeforeSelected(date: NgbDateStruct) {
     this._dateBefore = date
-    this.datesSet.emit({after: this._dateAfter, before: date})
+    this.datesSet.emit({before: date})
   }
 
   onAfterSelected(date: NgbDateStruct) {
     this._dateAfter = date
-    this.datesSet.emit({after: date, before: this._dateBefore})
+    this.datesSet.emit({after: date})
   }
 
   clearBefore() {
