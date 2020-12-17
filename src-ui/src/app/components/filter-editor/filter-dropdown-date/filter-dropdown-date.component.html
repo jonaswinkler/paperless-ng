@@ -1,4 +1,4 @@
-  <div class="btn-group" ngbDropdown role="group" #filterDateDropdown="ngbDropdown">
+  <div class="btn-group" ngbDropdown role="group" #filterDateDropdown="ngbDropdown" (openChange)="dropdownOpenChange($event)">
     <button class="btn btn-sm" id="dropdown{{title}}" ngbDropdownToggle [ngClass]="dateBefore || dateAfter ? 'btn-primary' : 'btn-outline-primary'">
       {{title}}
     </button>
@@ -21,7 +21,7 @@
               </a>
             </div>
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-sm" type="text" placeholder="yyyy-mm-dd" name="after" [(ngModel)]="_dateAfter" [maxDate]="this._maxDate" ngbDatepicker (dateSelect)="onAfterSelected($event)" (keyup)="keyupAfter($event)" #afterDatepicker="ngbDatepicker">
+              <input class="form-control form-control-sm" type="text" placeholder="yyyy-mm-dd" name="after" [(ngModel)]="_dateAfter" [maxDate]="_maxDate" ngbDatepicker (dateSelect)="onAfterSelected($event)" (keyup)="keyupAfter($event)" (focus)="_afterHasFocus = true" (blur)="_afterHasFocus = false" #afterDatepicker="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary btn-sm" (click)="afterDatepicker.toggle()" type="button">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-date" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
               </a>
             </div>
             <div class="input-group input-group-sm">
-              <input class="form-control" type="text" placeholder="yyyy-mm-dd" name="before" [(ngModel)]="_dateBefore" [maxDate]="this._maxDate" ngbDatepicker (dateSelect)="onBeforeSelected($event)" (keyup)="keyupBefore($event)" #beforeDatepicker="ngbDatepicker">
+              <input class="form-control" type="text" placeholder="yyyy-mm-dd" name="before" [(ngModel)]="_dateBefore" [maxDate]="_maxDate" ngbDatepicker (dateSelect)="onBeforeSelected($event)" (keyup)="keyupBefore($event)" (focus)="_beforeHasFocus = true" (blur)="_beforeHasFocus = false" #beforeDatepicker="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary btn-sm" (click)="beforeDatepicker.toggle()" type="button">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-date" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

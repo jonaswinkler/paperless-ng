@@ -35,6 +35,9 @@ export class FilterDropdownDateComponent {
   _dateBefore: NgbDateStruct
   _dateAfter: NgbDateStruct
 
+  _afterHasFocus: boolean = false
+  _beforeHasFocus: boolean = false
+
   get _maxDate(): NgbDate {
     let date = new Date()
     return NgbDate.from({year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()})
@@ -59,10 +62,12 @@ export class FilterDropdownDateComponent {
       let beforeDatepickerElRef: ElementRef = this.beforeDatepicker['_elRef']
 
       if (dateAfterChange && dateAfterChange.currentValue) {
+        if (this._afterHasFocus) return
         let dateAfterDate = dateAfterChange.currentValue as NgbDateStruct
         dateString = `${dateAfterDate.year}-${dateAfterDate.month.toString().padStart(2,'0')}-${dateAfterDate.day.toString().padStart(2,'0')}`
         afterDatepickerElRef.nativeElement.value = dateString
       } else if (dateBeforeChange && dateBeforeChange.currentValue) {
+        if (this._beforeHasFocus) return
         let dateBeforeDate = dateBeforeChange.currentValue as NgbDateStruct
         dateString = `${dateBeforeDate.year}-${dateBeforeDate.month.toString().padStart(2,'0')}-${dateBeforeDate.day.toString().padStart(2,'0')}`
         beforeDatepickerElRef.nativeElement.value = dateString
@@ -118,22 +123,21 @@ export class FilterDropdownDateComponent {
   }
 
   keyupAfter(event: KeyboardEvent) {
-    if (event.key == 'Enter') {
-      this.filterDateDropdown.close()
-    }
-
-    if (this.afterForm.valid && typeof this._dateAfter !== 'string') {
+    if (event.key == 'Enter' && this.afterForm.valid && typeof this._dateAfter !== 'string') {
       this.datesSet.emit({after: this._dateAfter})
     }
   }
 
   keyupBefore(event: KeyboardEvent) {
-    if (event.key == 'Enter') {
-      this.filterDateDropdown.close()
-    }
-
-    if (this.beforeForm.valid && typeof this._dateBefore !== 'string') {
+    if (event.key == 'Enter' && this.beforeForm.valid && typeof this._dateBefore !== 'string') {
       this.datesSet.emit({before: this._dateBefore})
+    }
+  }
+
+  dropdownOpenChange(opened) {
+    if (!opened) {
+      if (!this.afterForm.valid) this._dateAfter = this.dateAfter
+      if (!this.beforeForm.valid) this._dateBefore = this.dateBefore
     }
   }
 }
