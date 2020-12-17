@@ -129,8 +129,13 @@ export class FilterDropdownDateComponent {
   }
 
   keyupBefore(event: KeyboardEvent) {
-    if (event.key == 'Enter' && this.beforeForm.valid && typeof this._dateBefore !== 'string') {
-      this.datesSet.emit({before: this._dateBefore})
+    if (event.key == 'Enter') {
+      if (this.beforeForm.valid && typeof this._dateBefore !== 'string') {
+
+        this.datesSet.emit({before: this._dateBefore})
+      } else if (!this.beforeForm.valid) {
+        this.beforeDatepicker
+      }
     }
   }
 
