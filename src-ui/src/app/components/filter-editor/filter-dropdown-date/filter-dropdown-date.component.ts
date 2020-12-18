@@ -73,7 +73,9 @@ export class FilterDropdownDateComponent {
         beforeDatepickerElRef.nativeElement.value = dateString
       } else {
         afterDatepickerElRef.nativeElement.value = dateString
+        this._dateAfter = null
         beforeDatepickerElRef.nativeElement.value = dateString
+        this._dateBefore = null
       }
     }
   }
