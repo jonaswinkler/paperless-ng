@@ -20,7 +20,15 @@
           </div>
 
           <div class="input-group input-group-sm">
-            <input type="date" class="form-control" id="date_after" [(ngModel)]="dateAfter" (change)="onChangeDebounce()">
+            <input class="form-control" type="text" placeholder="yyyy-mm-dd" [(ngModel)]="dateAfter" mask="0000-M0-d0" (change)="onChangeDebounce()">
+            <input class="form-control" type="hidden" ngbDatepicker [(ngModel)]="dpDateAfterValue" (dateSelect)="dpAfterDateSelect($event)" #dpAfter="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="dpAfter.toggle()" type="button">
+                <svg viewBox="0 0 16 16" class="toolbaricon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="assets/bootstrap-icons.svg#calendar-date"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
         <div class="list-group-item d-flex flex-column align-items-start" role="menuitem">
@@ -36,7 +44,15 @@
           </div>
 
           <div class="input-group input-group-sm">
-            <input type="date" class="form-control" id="date_before" [(ngModel)]="dateBefore" (change)="onChangeDebounce()">
+            <input class="form-control" type="text" placeholder="yyyy-mm-dd" [(ngModel)]="dateBefore" mask="0000-M0-d0" (change)="onChangeDebounce()">
+            <input class="form-control" type="hidden" ngbDatepicker [(ngModel)]="dpDateBeforeValue" (dateSelect)="dpBeforeDateSelect($event)" #dpBefore="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="dpBefore.toggle()" type="button">
+                <svg viewBox="0 0 16 16" class="toolbaricon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="assets/bootstrap-icons.svg#calendar-date"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
     </div>

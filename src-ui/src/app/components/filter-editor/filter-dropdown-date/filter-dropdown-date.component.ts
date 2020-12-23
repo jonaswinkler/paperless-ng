@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 export interface DateSelection {
   before?: string
@@ -21,7 +22,7 @@ const FILTER_LAST_YEAR = 3
 export class FilterDropdownDateComponent implements OnInit, OnDestroy {
 
   quickFilters = [
-    {id: FILTER_LAST_7_DAYS, name: "Last 7 days"}, 
+    {id: FILTER_LAST_7_DAYS, name: "Last 7 days"},
     {id: FILTER_LAST_MONTH, name: "Last month"},
     {id: FILTER_LAST_3_MONTHS, name: "Last 3 months"},
     {id: FILTER_LAST_YEAR, name: "Last year"}
@@ -40,9 +41,11 @@ export class FilterDropdownDateComponent implements OnInit, OnDestroy {
   datesSet = new EventEmitter<DateSelection>()
 
   private datesSetDebounce$ = new Subject()
-
   private sub: Subscription
-  
+
+  dpDateBeforeValue: NgbDateStruct
+  dpDateAfterValue: NgbDateStruct
+
   ngOnInit() {
     this.sub = this.datesSetDebounce$.pipe(
       debounceTime(400)
@@ -76,28 +79,56 @@ export class FilterDropdownDateComponent implements OnInit, OnDestroy {
       case FILTER_LAST_YEAR:
         date.setFullYear(date.getFullYear() - 1)
         break
-  
+
       }
     this.dateAfter = formatDate(date, 'yyyy-MM-dd', "en-us", "UTC")
     this.onChange()
   }
 
   onChange() {
+    this.dpDateBeforeValue = this.toNgbDate(this.dateBefore)
+    this.dpDateAfterValue = this.toNgbDate(this.dateAfter)
     this.datesSet.emit({after: this.dateAfter, before: this.dateBefore})
   }
 
   onChangeDebounce() {
-    this.datesSetDebounce$.next({after: this.dateAfter, before: this.dateBefore})
+    if (this.dateAfter?.length < 6) this.dateAfter = null
+    else if (this.dateAfter && this.dateAfter.indexOf('-') == -1) this.dateAfter = this.dateAfter.substring(0,4) + '-' + this.dateAfter.substring(4,6) + '-' + this.dateAfter.substring(6,8)
+
+    if (this.dateBefore?.length < 6) this.dateBefore = null
+    else if (this.dateBefore && this.dateBefore.indexOf('-') == -1) this.dateBefore = this.dateBefore.substring(0,4) + '-' + this.dateBefore.substring(4,6) + '-' + this.dateBefore.substring(6,8)
+    // dont fire on invalid dates using isNaN
+    if (isNaN(new Date(this.dateAfter) as any)) this.dateAfter = null
+    if (isNaN(new Date(this.dateBefore) as any)) this.dateBefore = null
+    this.datesSetDebounce$.next()
+  }
+
+  dpAfterDateSelect(dateAfter: NgbDateStruct) {
+    this.dateAfter = formatDate(dateAfter.year + '-' + dateAfter.month + '-' + dateAfter.day, 'yyyy-MM-dd', "en-US")
+    this.onChange()
+  }
+
+  dpBeforeDateSelect(dateBefore: NgbDateStruct) {
+    this.dateBefore = formatDate(dateBefore.year + '-' + dateBefore.month + '-' + dateBefore.day, 'yyyy-MM-dd', "en-US")
+    this.onChange()
   }
 
   clearBefore() {
-    this.dateBefore = null;
+    this.dateBefore = null
     this.onChange()
   }
 
   clearAfter() {
-    this.dateAfter = null;
+    this.dateAfter = null
     this.onChange()
+  }
+
+  toNgbDate(dateFormatted: string): NgbDateStruct {
+    if (!dateFormatted) return null
+    else {
+      let date = new Date(dateFormatted)
+      return {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() + 1}
+    }
   }
 
 }
