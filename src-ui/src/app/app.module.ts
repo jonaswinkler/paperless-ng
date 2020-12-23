@@ -56,6 +56,7 @@ import { DocumentTitlePipe } from './pipes/document-title.pipe';
 import { MetadataCollapseComponent } from './components/document-detail/metadata-collapse/metadata-collapse.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SelectDialogComponent } from './components/common/select-dialog/select-dialog.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { SelectDialogComponent } from './components/common/select-dialog/select-
     NgxFileDropModule,
     InfiniteScrollModule,
     PdfViewerModule,
-    NgSelectModule
+    NgSelectModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     DatePipe,

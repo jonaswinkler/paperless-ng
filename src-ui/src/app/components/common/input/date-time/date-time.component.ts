@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   providers: [{
@@ -18,7 +19,7 @@ export class DateTimeComponent implements OnInit,ControlValueAccessor  {
   }
 
   onChange = (newValue: any) => {};
-  
+
   onTouched = () => {};
 
   writeValue(newValue: any): void {
@@ -47,15 +48,26 @@ export class DateTimeComponent implements OnInit,ControlValueAccessor  {
   @Input()
   hint: string
 
-  timeValue
+  timeValue: string
 
-  dateValue
+  dateValue: string
+
+  dpDateValue: NgbDateStruct
 
   ngOnInit(): void {
   }
 
+  dpDateSelect(date: NgbDateStruct) {
+    this.dateValue = formatDate(date.year + '-' + date.month + '-' + date.day, 'yyyy-MM-dd', "en-US")
+  }
+
   dateOrTimeChanged() {
-    this.onChange(formatDate(this.dateValue + "T" + this.timeValue,"yyyy-MM-ddTHH:mm:ssZZZZZ", "en-us", "UTC"))
+    if (this.dateValue) {
+      let dateTimeFormatted = formatDate(this.dateValue + "T" + this.timeValue, "yyyy-MM-ddTHH:mm:ssZZZZZ", "en-us", "UTC")
+      let date = new Date(dateTimeFormatted)
+      this.dpDateValue = {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}
+      this.onChange(dateTimeFormatted)
+    }
   }
 
 }
