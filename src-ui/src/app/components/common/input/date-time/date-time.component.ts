@@ -25,6 +25,7 @@ export class DateTimeComponent implements OnInit,ControlValueAccessor  {
   writeValue(newValue: any): void {
     this.dateValue = formatDate(newValue, 'yyyy-MM-dd', "en-US")
     this.timeValue = formatDate(newValue, 'HH:mm:ss', 'en-US')
+    this.updateDatePicker(this.dateValue)
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -59,15 +60,22 @@ export class DateTimeComponent implements OnInit,ControlValueAccessor  {
 
   dpDateSelect(date: NgbDateStruct) {
     this.dateValue = formatDate(date.year + '-' + date.month + '-' + date.day, 'yyyy-MM-dd', "en-US")
+    this.dateOrTimeChanged()
   }
 
   dateOrTimeChanged() {
     if (this.dateValue) {
-      let dateTimeFormatted = formatDate(this.dateValue + "T" + this.timeValue, "yyyy-MM-ddTHH:mm:ssZZZZZ", "en-us", "UTC")
-      let date = new Date(dateTimeFormatted)
-      this.dpDateValue = {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}
+      let dateTimeStr = this.dateValue
+      if (this.timeValue) dateTimeStr += "T" + this.timeValue
+      let dateTimeFormatted = formatDate(dateTimeStr, "yyyy-MM-ddTHH:mm:ssZZZZZ", "en-us", "UTC")
+      this.updateDatePicker(dateTimeFormatted)
       this.onChange(dateTimeFormatted)
     }
+  }
+
+  updateDatePicker(dateTimeFormatted: string) {
+    let date = new Date(dateTimeFormatted)
+    this.dpDateValue = {year: date.getUTCFullYear(), month: date.getUTCMonth() + 1, day: date.getUTCDate()}
   }
 
 }

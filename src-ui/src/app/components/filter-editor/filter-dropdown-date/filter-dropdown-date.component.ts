@@ -127,7 +127,7 @@ export class FilterDropdownDateComponent implements OnInit, OnDestroy {
     if (!dateFormatted) return null
     else {
       let date = new Date(dateFormatted)
-      return {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() + 1}
+      return {year: date.getUTCFullYear(), month: date.getUTCMonth() + 1, day: date.getUTCDate()}
     }
   }
 
