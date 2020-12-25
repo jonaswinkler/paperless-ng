@@ -190,6 +190,12 @@ Docker Route
     .. code-block:: shell-session
 
         $ docker-compose run --rm webserver createsuperuser
+				
+    Alternatively, if you are not using docker-compose, execute the following command inside the container:
+		
+    .. code-block:: shell-session
+		
+        $ python3 /usr/src/paperless/src/manage.py createsuperuser
 
     This will prompt you to set a username, an optional e-mail address and
     finally a password.
