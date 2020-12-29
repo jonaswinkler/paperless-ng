@@ -162,6 +162,26 @@ PAPERLESS_COOKIE_PREFIX=<str>
 
     Defaults to ``""``, which does not alter the cookie names.
 
+
+.. _configuration-text:
+
+Text generation
+###############
+
+Paperless generates thumbnails from text files. The font used to generate these
+can be tweaked using configuration settings.
+
+PAPERLESS_TEXT_FONT=<path>
+    Customize the font used. You probably want to pick a mono-sized font.
+
+    Defaults to "/usr/share/fonts/liberation/LiberationSerif-Regular.ttf"
+
+PAPERLESS_TEXT_SIZE=<int>
+    Customize the font size.
+
+    Defaults to "20"
+
+
 .. _configuration-ocr:
 
 OCR settings

@@ -23,8 +23,10 @@ class TextDocumentParser(DocumentParser):
         img = Image.new("RGB", (500, 700), color="white")
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype(
-            "/usr/share/fonts/liberation/LiberationSerif-Regular.ttf", 20,
-            layout_engine=ImageFont.LAYOUT_BASIC)
+            settings.PAPERLESS_TEXT_FONT,
+            settings.PAPERLESS_TEXT_SIZE,
+            layout_engine=ImageFont.LAYOUT_BASIC,
+        )
         draw.text((5, 5), read_text(), font=font, fill="black")
 
         out_path = os.path.join(self.tempdir, "thumb.png")

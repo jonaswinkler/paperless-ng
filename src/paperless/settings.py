@@ -422,3 +422,7 @@ for t in json.loads(os.getenv("PAPERLESS_FILENAME_PARSE_TRANSFORMS", "[]")):
 # TODO: this should not have a prefix.
 # Specify the filename format for out files
 PAPERLESS_FILENAME_FORMAT = os.getenv("PAPERLESS_FILENAME_FORMAT")
+
+# Specify the font and size used for text file thumbnails
+PAPERLESS_TEXT_FONT = os.getenv("PAPERLESS_TEXT_FONT", "/usr/share/fonts/liberation/LiberationSerif-Regular.ttf")
+PAPERLESS_TEXT_SIZE = int(os.getenv("PAPERLESS_TEXT_SIZE", 20))
