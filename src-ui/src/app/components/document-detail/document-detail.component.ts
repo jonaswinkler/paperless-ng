@@ -60,7 +60,9 @@ export class DocumentDetailComponent implements OnInit {
     private modalService: NgbModal,
     private openDocumentService: OpenDocumentsService,
     private documentListViewService: DocumentListViewService,
-    private documentTitlePipe: DocumentTitlePipe) { }
+    private documentTitlePipe: DocumentTitlePipe) {
+      (window as any).pdfWorkerSrc = '/assets/js/pdf.worker.min.js';
+    }
 
   getContentType() {
     return this.metadata?.has_archive_version ? 'application/pdf' : this.metadata?.original_mime_type
