@@ -89,23 +89,15 @@
           <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="546b2014cc578af06b6023a7f38fa77aa9d58f5d">
-        <source>{VAR_PLURAL, plural, =1 {document} other {documents}}</source>
+      <trans-unit datatype="html" id="439e7cc3c1ecefded167ed4d37f7d22dad6a9159">
+        <source>{VAR_PLURAL, plural, =1 {Selected <x id="INTERPOLATION"/> of one document} other {Selected <x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/> documents}}</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="3c298bb50741c8b2641889b0a0e0009769e66370">
-        <source>Selected <x equiv-text="{{list.selected.size}}" id="INTERPOLATION"/> of <x equiv-text="{{list.collectionSize || 0}}" id="INTERPOLATION_1"/> <x equiv-text="{list.collectionSize, plural, =1 {document} other {documents}}" id="ICU"/></source>
-        <target>Kijelölve <x equiv-text="{{list.selected.size}}" id="INTERPOLATION"/>/<x equiv-text="{{list.collectionSize || 0}}" id="INTERPOLATION_1"/><x equiv-text="{list.collectionSize, plural, =1 {document} other {documents}}" id="ICU"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
-          <context context-type="linenumber">86</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="8b04a8e375ac6760a54aabaf5df0287d53ce4a4a">
-        <source>{VAR_PLURAL, plural, =1 {1 document} other {<x id="INTERPOLATION"/> documents}}</source>
+      <trans-unit datatype="html" id="bb773fdeaad5e7fb8e6cd77e1cc558e1b194a0c9">
+        <source>{VAR_PLURAL, plural, =1 {One document} other {<x id="INTERPOLATION"/> documents}}</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">87</context>
@@ -167,9 +159,8 @@
           <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="5277522254327902345">
-        <source>Do you really want to delete document '<x equiv-text="this.document.title" id="PH"/>'?</source>
-        <target>Valóban törölni akarod ezt a dokumentumot: <x equiv-text="this.document.title" id="PH"/>?</target>
+      <trans-unit datatype="html" id="5382975254277698192">
+        <source>Do you really want to delete document &quot;<x equiv-text="this.document.title" id="PH"/>&quot;?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.ts</context>
           <context context-type="linenumber">162</context>
@@ -428,7 +419,7 @@
         <target>Valóban törölni akarod a &quot;<x equiv-text="object.name" id="PH"/>&quot; címkét?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="70a67e04629f6d412db0a12d51820b480788d795">
@@ -500,7 +491,7 @@
         <target>Valóban törölni akarod a &quot;<x equiv-text="object.name" id="PH"/>&quot; dokumentum típust?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/document-type-list/document-type-list.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="bc000b39af12c0925c424f4cb85f0c31c0f8eca8">
@@ -527,12 +518,11 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="1153806754022288374">
-        <source>Saved view &quot;<x equiv-text="savedView.name" id="PH"/> deleted.</source>
-        <target>Nézet &quot;<x equiv-text="savedView.name" id="PH"/>&quot; sikeresen törölve.</target>
+      <trans-unit datatype="html" id="5610279464668232148">
+        <source>Saved view &quot;<x equiv-text="savedView.name" id="PH"/>&quot; deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="5647210819299459618">
@@ -540,7 +530,7 @@
         <target>Beállítások elmentve.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="8488620293789898901">
@@ -548,7 +538,15 @@
         <target>Hiba történt a beállitások mentése közben: <x equiv-text="JSON.stringify(error.error)" id="PH"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="121cc5391cd2a5115bc2b3160379ee5b36cd7716">
+        <source>Settings</source>
+        <target>Beállitások</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="11ebd254cc9294717105c5982eb0cd2af30a446d">
@@ -564,12 +562,11 @@
         <target>Mentett nézetek</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="0d8ceb153aa715eb905da0710cc0b2ac73159abc">
-        <source>Document list</source>
-        <target>Dokumentum lista</target>
+      <trans-unit datatype="html" id="bbe41ac2ea4a6c00ea941a41b33105048f8e9f13">
+        <source>Appearance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">13</context>
@@ -583,12 +580,26 @@
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
+      <trans-unit datatype="html" id="9ee5d1cbfd6ee168dae37aaba2b59b50bcabb2ff">
+        <source>Dark mode</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="f8cb5506e70fd71fddc9bb71cee18bfff7b29637">
+        <source>Use system settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
       <trans-unit datatype="html" id="3863a86cd9e69a61d143d3daf51df44203df4a82">
         <source>Bulk editing</source>
         <target>Csoportos szerkesztés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c0ac61661c6c326d6e0e00c231b95cf2ac0c6586">
@@ -596,7 +607,7 @@
         <target>Jóváhagyó dialógusok mutatása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="291bbe56ecbe945dcf05580a57d679fa7bd1e06a">
@@ -604,7 +615,7 @@
         <target>Dokumentumok törlése mindig jóváhagyást igényel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="8cfddc13e04f5545ac63f419ef363505d6f78c2e">
@@ -612,7 +623,7 @@
         <target>Alkalmazás bezárás után</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="8cb90334f5dfd7fc67205085f59381e2a334ccfc">
@@ -620,7 +631,7 @@
         <target>Megjelenés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6717cf1acf04728fc2b7c39f6d3297f8ff15fde5">
@@ -628,7 +639,7 @@
         <target>Vezérlőpulton megjelenítés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="541bfc5b123b3f8867fd681eaceefb663a811973">
@@ -636,7 +647,7 @@
         <target>Oldal menüben megjelenítés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="abba764a7a595d04dc8c3b26e04b3780d4fdb540">
@@ -644,7 +655,7 @@
         <target>Nincs mentett nézet definiálva.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ef60a738a565f498b858e903e42bc5ffc3cc1299">
@@ -660,7 +671,7 @@
         <target>Valóban törölni szerenéd a következő partnert: &quot;<x equiv-text="object.name" id="PH"/>&quot; ?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-list.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c3f3334de899327bf3ec8999236e10798ff76e72">
@@ -727,9 +738,8 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="180092a6b8a6151a05f4a7552a2fb75fd159dfa8">
-        <source>Match</source>
-        <target>Egyezés</target>
+      <trans-unit datatype="html" id="eab7fc7cf2d663e54de934b779fce4275a303f0f">
+        <source>Matching pattern</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-edit-dialog/correspondent-edit-dialog.component.html</context>
           <context context-type="linenumber">12</context>
@@ -883,29 +893,28 @@
         <target>Paperless-ng</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <note from="description" priority="1">app title</note>
       </trans-unit>
-      <trans-unit datatype="html" id="8d667444401ef6380fd262e4fe4795f261a427b1">
-        <source>Search for documents</source>
-        <target>Dokumentum keresése</target>
+      <trans-unit datatype="html" id="069566c6ed4f051b5b5617ef1935837226585dad">
+        <source>Search documents</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="bb694b49d408265c91c62799c2b3a7e3151c824d">
+        <source>Logout</source>
+        <target>Kilépés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="68949525c4d9a901e0cd15a94e3fc8d2711e9918">
         <source>Manage</source>
         <target>Menedzselés</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">77</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="121cc5391cd2a5115bc2b3160379ee5b36cd7716">
-        <source>Settings</source>
-        <target>Beállitások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">112</context>
@@ -916,7 +925,7 @@
         <target>Adminisztráció</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="46aa32e581922d6d2c3d7bc4c87209ad5808b029">
@@ -924,7 +933,7 @@
         <target>Egyéb</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fcfd4675b4c90f08d18d3abede9a9a4dff4cfdc7">
@@ -932,7 +941,7 @@
         <target>Dokumentáció</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="355a222236bc01b9a8cd3cb9ecf76891125aed69">
@@ -940,15 +949,14 @@
         <target>GitHub</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="bb694b49d408265c91c62799c2b3a7e3151c824d">
-        <source>Logout</source>
-        <target>Kilépés</target>
+      <trans-unit datatype="html" id="af665f8de8fabe306aaf27443957e69bcbbce63c">
+        <source>Logged in as <x equiv-text="{{displayName}}" id="INTERPOLATION"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">146</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="4f55b670f49d927c6026bb614c7c62b1f2a394c0">
@@ -956,7 +964,7 @@
         <target>Dokumentum megnyitása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="dca5bf9344a759fa5a07f1b21f50286ec242ba44">
@@ -964,7 +972,7 @@
         <target>Összes bezárása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="5195932016807797291">
@@ -972,7 +980,14 @@
         <target>Partner: <x equiv-text="this.correspondents.find(c =&gt; c.id == +rule.value)?.name" id="PH"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="8170755470576301659">
+        <source>Without correspondent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="8705701325879965907">
@@ -980,7 +995,14 @@
         <target>Típus: <x equiv-text="this.documentTypes.find(dt =&gt; dt.id == +rule.value)?.name" id="PH"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="4362173610367509215">
+        <source>Without document type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="8180755793012580465">
@@ -988,7 +1010,14 @@
         <target>Cimke: <x equiv-text="this.tags.find(t =&gt; t.id == +rule.value)?.name" id="PH"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="6494566478302448576">
+        <source>Without any tag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ddb40946e790522301687ecddb9ce1cb8ad40dd1">
@@ -1036,7 +1065,7 @@
         <target>Nincs hozzárendelés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/common/filterable-dropdown/filterable-dropdown.component.ts</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">161</context>
         </context-group>
         <note from="description" priority="1">Filter drop down element to filter for documents with no correspondent/type/tag assigned</note>
       </trans-unit>
@@ -1112,14 +1141,6 @@
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="9c5fdf21ec2cc7baa6f062f2dc417af45c8dbe60">
-        <source>Score:</source>
-        <target>Pont:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/document-list/document-card-large/document-card-large.component.html</context>
-          <context context-type="linenumber">61</context>
-        </context-group>
-      </trans-unit>
       <trans-unit datatype="html" id="1b29a8153575e5ad26cc7dd8bd75c4f45f6bfe7e">
         <source>Created: <x equiv-text="{{document.created | date}}" id="INTERPOLATION"/></source>
         <target>Létrehozva: <x equiv-text="{{document.created | date}}" id="INTERPOLATION"/></target>
@@ -1142,6 +1163,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/document-card-large/document-card-large.component.html</context>
           <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="9c5fdf21ec2cc7baa6f062f2dc417af45c8dbe60">
+        <source>Score:</source>
+        <target>Pont:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/document-list/document-card-large/document-card-large.component.html</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2840db547019ce8c76b2cdbe3a1653c5b68b06af">
@@ -1194,36 +1223,36 @@
           <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="8965789168028339624">
-        <source>This operation will add the tag &quot;<x equiv-text="tag.name" id="PH"/>&quot; to all <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
+      <trans-unit datatype="html" id="6619516195038467207">
+        <source>This operation will add the tag &quot;<x equiv-text="tag.name" id="PH"/>&quot; to <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="4791265247184178563">
-        <source>This operation will add the tags <x equiv-text="this._localizeList(changedTags.itemsToAdd)" id="PH"/> to all <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
+      <trans-unit datatype="html" id="1894412783609570695">
+        <source>This operation will add the tags <x equiv-text="this._localizeList(changedTags.itemsToAdd)" id="PH"/> to <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="7567916006270093567">
-        <source>This operation will remove the tag &quot;<x equiv-text="tag.name" id="PH"/>&quot; from all <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
+      <trans-unit datatype="html" id="7181166515756808573">
+        <source>This operation will remove the tag &quot;<x equiv-text="tag.name" id="PH"/>&quot; from <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="247266594076352528">
-        <source>This operation will remove the tags <x equiv-text="this._localizeList(changedTags.itemsToRemove)" id="PH"/> from all <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
+      <trans-unit datatype="html" id="3819792277998068944">
+        <source>This operation will remove the tags <x equiv-text="this._localizeList(changedTags.itemsToRemove)" id="PH"/> from <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="4286636723521919383">
-        <source>This operation will add the tags <x equiv-text="this._localizeList(changedTags.itemsToAdd)" id="PH"/> and remove the tags <x equiv-text="this._localizeList(changedTags.itemsToRemove)" id="PH_1"/> on all <x equiv-text="this.list.selected.size" id="PH_2"/> selected document(s).</source>
+      <trans-unit datatype="html" id="2739066218579571288">
+        <source>This operation will add the tags <x equiv-text="this._localizeList(changedTags.itemsToAdd)" id="PH"/> and remove the tags <x equiv-text="this._localizeList(changedTags.itemsToRemove)" id="PH_1"/> on <x equiv-text="this.list.selected.size" id="PH_2"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">127</context>
@@ -1237,15 +1266,15 @@
           <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="3171547143349510312">
-        <source>This operation will assign the correspondent &quot;<x equiv-text="correspondent.name" id="PH"/>&quot; to all <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
+      <trans-unit datatype="html" id="6900893559485781849">
+        <source>This operation will assign the correspondent &quot;<x equiv-text="correspondent.name" id="PH"/>&quot; to <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="5197985579238314950">
-        <source>This operation will remove the correspondent from all <x equiv-text="this.list.selected.size" id="PH"/> selected document(s).</source>
+      <trans-unit datatype="html" id="1257522660364398440">
+        <source>This operation will remove the correspondent from <x equiv-text="this.list.selected.size" id="PH"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">161</context>
@@ -1259,15 +1288,15 @@
           <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="5346233369873832070">
-        <source>This operation will assign the document type &quot;<x equiv-text="documentType.name" id="PH"/>&quot; to all <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
+      <trans-unit datatype="html" id="332180123895325027">
+        <source>This operation will assign the document type &quot;<x equiv-text="documentType.name" id="PH"/>&quot; to <x equiv-text="this.list.selected.size" id="PH_1"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="6005206188202839923">
-        <source>This operation will remove the document type from all <x equiv-text="this.list.selected.size" id="PH"/> selected document(s).</source>
+      <trans-unit datatype="html" id="2236642492594872779">
+        <source>This operation will remove the document type from <x equiv-text="this.list.selected.size" id="PH"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">194</context>
@@ -1281,8 +1310,8 @@
           <context context-type="linenumber">219</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="3928393581343272038">
-        <source>This operation will permanently delete all <x equiv-text="this.list.selected.size" id="PH"/> selected document(s).</source>
+      <trans-unit datatype="html" id="4303174930844518780">
+        <source>This operation will permanently delete <x equiv-text="this.list.selected.size" id="PH"/> selected document(s).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">220</context>
@@ -1416,16 +1445,8 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="a7b50b2df68e875a918d1f4f98f358d756139c13">
-        <source>{VAR_PLURAL, plural, =1 {file} =other {<x id="INTERPOLATION"/> files}}</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/dashboard/widgets/upload-file-widget/upload-file-widget.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="ec37c68a90632530f5cc8b7e5245cab89ef8bf82">
-        <source>Uploading <x equiv-text="{uploadStatus.length, plural, =1 {file} =other {{{uploadStatus.length}} files}}" id="ICU"/>...</source>
-        <target>Feltöltés alatt: <x equiv-text="{uploadStatus.length, plural, =1 {file} =other {{{uploadStatus.length}} files}}" id="ICU"/> </target>
+      <trans-unit datatype="html" id="33c76d75ce25ce3b05ab22877f1b6b09dcf603ae">
+        <source>{VAR_PLURAL, plural, =1 {Uploading file...} =other {Uploading <x id="INTERPOLATION"/> files...}}</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/upload-file-widget/upload-file-widget.component.html</context>
           <context context-type="linenumber">13</context>
@@ -1447,8 +1468,8 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="80e9f19d307b1611c56aa0bdddc930d85418734c">
-        <source>You can start uploading documents by dropping them in the file upload box to the right or by dropping them in the configured consumption folder and they'll start showing up in the documents list. After you've added some metadata to your documents, use the filtering mechanisms of paperless to create custom views (such as 'Recently added', 'Tagged TODO') and have they will be shown on the dashboard instead of this message.</source>
+      <trans-unit datatype="html" id="ea8d9a9486d5639d1c38c012900b8d34d5e4135d">
+        <source>You can start uploading documents by dropping them in the file upload box to the right or by dropping them in the configured consumption folder and they'll start showing up in the documents list. After you've added some metadata to your documents, use the filtering mechanisms of paperless to create custom views (such as 'Recently added', 'Tagged TODO') and they will appear on the dashboard instead of this message.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">6,7</context>
@@ -1762,25 +1783,43 @@
           <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="3184700926171002527">
-        <source>Any</source>
-        <target>Bármelyik</target>
+      <trans-unit datatype="html" id="5851669019930456395">
+        <source>Any word</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="1616102757855967475">
-        <source>All</source>
-        <target>Mindegyik</target>
+      <trans-unit datatype="html" id="7517655726614958140">
+        <source>Any: Document contains any of these words (space separated)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data/matching-model.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="700315718208181326">
+        <source>All words</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="1968183742008490888">
-        <source>Literal</source>
-        <target>Szó szerinti</target>
+      <trans-unit datatype="html" id="111914402588955480">
+        <source>All: Document contains all of these words (space separated)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data/matching-model.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="9180173992399180575">
+        <source>Exact match</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data/matching-model.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="7109184332944610787">
+        <source>Exact: Document contains this string</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">14</context>
@@ -1794,17 +1833,29 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="701356546322112069">
-        <source>Fuzzy match</source>
-        <target>&quot;Fuzzy&quot; találat</target>
+      <trans-unit datatype="html" id="7548151332424148033">
+        <source>Regular expression: Document matches this regular expression</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data/matching-model.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="1856513373880048959">
+        <source>Fuzzy word</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="616064537937996961">
-        <source>Auto</source>
-        <target>Automatikus</target>
+      <trans-unit datatype="html" id="8419167206585286450">
+        <source>Fuzzy: Document contains a word similar to this word</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data/matching-model.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="2167862279705099846">
+        <source>Auto: Learn matching automatically</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">17</context>
