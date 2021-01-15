@@ -49,7 +49,7 @@ RUN apt-get update \
 		tesseract-ocr-spa \
 		unpaper \
 		zlib1g \
-		&& rm -rf /var/lib/apt/lists/*
+		&& rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # This pulls in updated dependencies from bullseye to fix some issues with file type detection.
 # TODO: Remove this once bullseye releases.
