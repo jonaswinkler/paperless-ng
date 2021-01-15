@@ -56,7 +56,7 @@ RUN apt-get update \
 RUN echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list \
   && apt-get update \
   && apt-get install --no-install-recommends -y file libmagic-dev \
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/*  /var/cache/apt/* \
   && rm /etc/apt/sources.list.d/bullseye.list
 
 # Python dependencies
@@ -70,7 +70,7 @@ RUN apt-get update \
   && python3 -m pip install --no-cache-dir -r requirements.txt \
 	&& apt-get -y purge build-essential libqpdf-dev \
 	&& apt-get -y autoremove --purge \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
 	&& mkdir /var/log/supervisord /var/run/supervisord
 
 
