@@ -1,8 +1,11 @@
-import { formatDate } from '@angular/common';
-import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
+import { formatDate, getLocaleDateFormat, FormatWidth } from '@angular/common';
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, LOCALE_ID, Inject } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { DateMaskFormatPipe } from 'src/app/pipes/date-mask-format.pipe';
+import { DatePlaceholderFormatPipe } from 'src/app/pipes/date-placeholder-format.pipe';
+import { DateDeformatPipe } from 'src/app/pipes/date-deformat.pipe';
 
 export interface DateSelection {
   before?: string
@@ -27,6 +30,20 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
     {id: LAST_3_MONTHS, name: $localize`Last 3 months`},
     {id: LAST_YEAR, name: $localize`Last year`}
   ]
+
+  constructor(
+    @Inject(LOCALE_ID) private locale: string,
+    private datePlaceholderFormatPipe: DatePlaceholderFormatPipe,
+    private dateMaskFormatPipe: DateMaskFormatPipe,
+    private dateDeformatPipe: DateDeformatPipe
+  ) {
+    this.locale = locale
+    this.placeholder = datePlaceholderFormatPipe.transform(this.locale)
+    this.mask = dateMaskFormatPipe.transform(this.placeholder)
+  }
+
+  placeholder: string = 'yyyy-mm-dd'
+  mask: string = '0000-M0-d0'
 
   @Input()
   dateBefore: string
@@ -87,37 +104,38 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
         break
 
       }
-    this.dateAfter = formatDate(date, 'yyyy-MM-dd', "en-us", "UTC")
+    this.dateAfter = formatDate(date, 'shortDate', this.locale, "UTC")
     this.onChange()
   }
 
   onChange() {
-    this.dpDateBeforeValue = this.toNgbDate(this.dateBefore)
-    this.dpDateAfterValue = this.toNgbDate(this.dateAfter)
     this.dateAfterChange.emit(this.dateAfter)
     this.dateBeforeChange.emit(this.dateBefore)
-    this.datesSet.emit({after: this.dateAfter, before: this.dateBefore})
+    this.dpDateBeforeValue = this.dateBefore ? this.toNgbDate(this.dateDeformatPipe.transform(this.dateBefore, this.placeholder)) : null
+    this.dpDateAfterValue = this.dateAfter ? this.toNgbDate(this.dateDeformatPipe.transform(this.dateAfter, this.placeholder)) : null
+
+    this.datesSet.emit({
+      after: this.dateAfter ? formatDate(this.dateDeformatPipe.transform(this.dateAfter, this.placeholder), 'yyyy-MM-dd', this.locale) : null,
+      before: this.dateBefore ? formatDate(this.dateDeformatPipe.transform(this.dateBefore, this.placeholder), 'yyyy-MM-dd', this.locale) : null
+    })
   }
 
   onChangeDebounce() {
-    if (this.dateAfter?.length < 6) this.dateAfter = null
-    else if (this.dateAfter && this.dateAfter.indexOf('-') == -1) this.dateAfter = this.dateAfter.substring(0,4) + '-' + this.dateAfter.substring(4,6) + '-' + this.dateAfter.substring(6,8)
-
-    if (this.dateBefore?.length < 6) this.dateBefore = null
-    else if (this.dateBefore && this.dateBefore.indexOf('-') == -1) this.dateBefore = this.dateBefore.substring(0,4) + '-' + this.dateBefore.substring(4,6) + '-' + this.dateBefore.substring(6,8)
+    if (this.dateAfter?.length < (this.mask.length - 2)) this.dateAfter = null
+    if (this.dateBefore?.length < (this.mask.length - 2)) this.dateBefore = null
     // dont fire on invalid dates using isNaN
-    if (isNaN(new Date(this.dateAfter) as any)) this.dateAfter = null
-    if (isNaN(new Date(this.dateBefore) as any)) this.dateBefore = null
+    if (this.dateAfter && isNaN(this.dateDeformatPipe.transform(this.dateAfter, this.placeholder) as any)) this.dateAfter = null
+    if (this.dateBefore && isNaN(this.dateDeformatPipe.transform(this.dateBefore, this.placeholder) as any)) this.dateBefore = null
     this.datesSetDebounce$.next()
   }
 
   dpAfterDateSelect(dateAfter: NgbDateStruct) {
-    this.dateAfter = formatDate(dateAfter.year + '-' + dateAfter.month + '-' + dateAfter.day, 'yyyy-MM-dd', "en-US")
+    this.dateAfter = formatDate(dateAfter.year + '-' + dateAfter.month + '-' + dateAfter.day, 'shortDate', this.locale)
     this.onChange()
   }
 
   dpBeforeDateSelect(dateBefore: NgbDateStruct) {
-    this.dateBefore = formatDate(dateBefore.year + '-' + dateBefore.month + '-' + dateBefore.day, 'yyyy-MM-dd', "en-US")
+    this.dateBefore = formatDate(dateBefore.year + '-' + dateBefore.month + '-' + dateBefore.day, 'shortDate', this.locale)
     this.onChange()
   }
 
@@ -131,10 +149,9 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
     this.onChange()
   }
 
-  toNgbDate(dateFormatted: string): NgbDateStruct {
-    if (!dateFormatted) return null
+  toNgbDate(date: Date): NgbDateStruct {
+    if (!date) return null
     else {
-      let date = new Date(dateFormatted)
       return {year: date.getUTCFullYear(), month: date.getUTCMonth() + 1, day: date.getUTCDate()}
     }
   }

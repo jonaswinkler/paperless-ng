@@ -2,8 +2,8 @@
   <div class="form-group col">
       <label for="created_date">{{titleDate}}</label>
       <div class="input-group">
-        <input class="form-control" type="text" placeholder="yyyy-mm-dd" name="created_date" [(ngModel)]="dateValue" mask="0000-M0-d0" (change)="dateOrTimeChanged()">
-        <input class="form-control dark" type="hidden" ngbDatepicker [(ngModel)]="dpDateValue" (dateSelect)="dpDateSelect($event)" #datePicker="ngbDatepicker">
+        <input class="form-control" type="text" [placeholder]="placeholder" name="created_date" [(ngModel)]="dateValue" [mask]="mask" [dropSpecialCharacters]="false" [leadZeroDateTime]="true" (change)="dateOrTimeChanged()">
+        <input class="form-control" type="hidden" ngbDatepicker [(ngModel)]="dpDateValue" (dateSelect)="dpDateSelect($event)" #datePicker="ngbDatepicker">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" (click)="datePicker.toggle()" type="button">
             <svg viewBox="0 0 16 16" class="toolbaricon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

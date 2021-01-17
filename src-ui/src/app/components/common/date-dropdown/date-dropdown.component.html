@@ -20,7 +20,7 @@
           </div>
 
           <div class="input-group input-group-sm">
-            <input class="form-control" type="text" placeholder="yyyy-mm-dd" [(ngModel)]="dateAfter" mask="0000-M0-d0" (change)="onChangeDebounce()">
+            <input class="form-control" type="text" [placeholder]="placeholder" [(ngModel)]="dateAfter" [mask]="mask" [dropSpecialCharacters]="false" [leadZeroDateTime]="true" (change)="onChangeDebounce()">
             <input class="form-control" type="hidden" ngbDatepicker [(ngModel)]="dpDateAfterValue" (dateSelect)="dpAfterDateSelect($event)" #dpAfter="ngbDatepicker">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" (click)="dpAfter.toggle()" type="button">
@@ -44,7 +44,7 @@
           </div>
 
           <div class="input-group input-group-sm">
-            <input class="form-control" type="text" placeholder="yyyy-mm-dd" [(ngModel)]="dateBefore" mask="0000-M0-d0" (change)="onChangeDebounce()">
+            <input class="form-control" type="text" [placeholder]="placeholder" [(ngModel)]="dateBefore" [mask]="mask" [dropSpecialCharacters]="false" [leadZeroDateTime]="true" (change)="onChangeDebounce()">
             <input class="form-control" type="hidden" ngbDatepicker [(ngModel)]="dpDateBeforeValue" (dateSelect)="dpBeforeDateSelect($event)" #dpBefore="ngbDatepicker">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" (click)="dpBefore.toggle()" type="button">
