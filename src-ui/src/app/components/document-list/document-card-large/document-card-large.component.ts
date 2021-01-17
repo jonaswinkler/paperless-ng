@@ -12,23 +12,14 @@ export class DocumentCardLargeComponent implements OnInit {
 
   constructor(private documentService: DocumentService, private sanitizer: DomSanitizer) { }
 
-  _selected = false
-
-  get selected() {
-    return this._selected
-  }
-
   @Input()
-  set selected(value: boolean) {
-    this._selected = value
-    this.selectedChange.emit(value)
-  }
+  selected = false
 
   @Output()
-  selectedChange = new EventEmitter<boolean>()
+  toggleSelected = new EventEmitter()
 
   get selectable() {
-    return this.selectedChange.observers.length > 0
+    return this.toggleSelected.observers.length > 0
   }
 
   @Input()

@@ -1,11 +1,12 @@
-[![Build Status](https://travis-ci.org/jonaswinkler/paperless-ng.svg?branch=master)](https://travis-ci.org/jonaswinkler/paperless-ng)
+![ci](https://github.com/jonaswinkler/paperless-ng/workflows/ci/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/paperless-ng/badge/?version=latest)](https://paperless-ng.readthedocs.io/en/latest/?badge=latest)
+[![Gitter](https://badges.gitter.im/paperless-ng/community.svg)](https://gitter.im/paperless-ng/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Docker Hub Pulls](https://img.shields.io/docker/pulls/jonaswinkler/paperless-ng.svg)](https://hub.docker.com/r/jonaswinkler/paperless-ng)
 [![Coverage Status](https://coveralls.io/repos/github/jonaswinkler/paperless-ng/badge.svg?branch=master)](https://coveralls.io/github/jonaswinkler/paperless-ng?branch=master)
 
 # Paperless-ng
 
-[Paperless](https://github.com/the-paperless-project/paperless) is an application by Daniel Quinn and others that indexes your scanned documents and allows you to easily search for documents and store metadata alongside your documents.
+[Paperless](https://github.com/the-paperless-project/paperless) is an application by Daniel Quinn and contributors that indexes your scanned documents and allows you to easily search for documents and store metadata alongside your documents.
 
 Paperless-ng is a fork of the original project, adding a new interface and many other changes under the hood. For a detailed list of changes, have a look at the changelog in the documentation.
 
@@ -35,15 +36,17 @@ Here's what you get:
 	* Includes a dashboard that shows basic statistics and has document upload.
 	* Filtering by tags, correspondents, types, and more.
 	* Customizable views can be saved and displayed on the dashboard.
-	* Full text search with auto completion, scored results and query highlighting allows you to quickly find what you need.
+* Full text search helps you find what you need.
+	* Auto completion suggests relevant words from your documents.
+	* Results are sorted by relevance to your search query.
+	* Highlighting shows you which parts of the document matched the query.
+	* Searching for similar documents ("More like this")
 * Email processing: Paperless adds documents from your email accounts.
 	* Configure multiple accounts and filters for each account.
 	* When adding documents from mails, paperless can move these mails to a new folder, mark them as read, flag them or delete them.
 * Machine learning powered document matching.
 	* Paperless learns from your documents and will be able to automatically assign tags, correspondents and types to documents once you've stored a few documents in paperless.
 * A task processor that processes documents in parallel and also tells you when something goes wrong. On modern multi core systems, consumption is blazing fast.
-* Code cleanup in many, MANY areas. Some of the code from OG paperless was just overly complicated.
-* More tests, more stability.
 
 If you want to see some screenshots of paperless-ng in action, [some are available in the documentation](https://paperless-ng.readthedocs.io/en/latest/screenshots.html).
 
@@ -52,30 +55,39 @@ For a complete list of changes from paperless, check out the [changelog](https:/
 # Roadmap for 1.0
 
 - Make the front end nice (except mobile).
-- Test coverage at 90%.
 - Fix whatever bugs I and you find.
+- Make the documentation nice.
 
 ## Roadmap for versions beyond 1.0
 
 These are things that I want to add to paperless eventually. They are sorted by priority.
 
-- **Bulk editing**. Add/remove metadata from multiple documents at once.
 - **More search.** The search backend is incredibly versatile and customizable. Searching is the most important feature of this project and thus, I want to implement things like:
   - Group and limit search results by correspondent, show “more from this” links in the results.
-  - Ability to search for “Similar documents” in the search results
 - **Nested tags**. Organize tags in a hierarchical structure. This will combine the benefits of folders and tags in one coherent system.
 - **An interactive consumer** that shows its progress for documents it processes on the web page.
-	- With live updates ans websockets. This already works on a dev branch, but requires a lot of new dependencies, which I'm not particular happy about.
+	- With live updates and websockets. This already works on a dev branch, but requires a lot of new dependencies, which I'm not particularly happy about.
 	- Notifications when a document was added with buttons to open the new document right away.
 - **Arbitrary tag colors**. Allow the selection of any color with a color picker.
+
+Apart from that, paperless is pretty much feature complete.
 
 ## On the chopping block.
 
 - **GnuPG encrypion.** [Here's a note about encryption in paperless](https://paperless-ng.readthedocs.io/en/latest/administration.html#managing-encryption). The gist of it is that I don't see which attacks this implementation protects against. It gives a false sense of security to users who don't care about how it works.
 
+## Wont-do list.
+
+These features will probably never make it into paperless, since paperless is meant to be an easy to use set-and-forget solution.
+
+- **Document versions.** I might consider adding the ability to update a document with a newer version, but that's about it. The kind of documents that get added to paperless usually don't change at all.
+- **Workflows.** I don't see a use case for these, yet.
+- **Folders.** Tags are superior in just about every way.
+- **Apps / extension support.** Again, paperless is meant to be simple.
+
 # Getting started
 
-The recommended way to deploy paperless is docker-compose. Don't clone the repository, grab the latest release to get started instead. The dockerfiles archive contains just the docker files which will pull the image from docker hub. The source archive contains everything you need to build the docker image yourself (i.e. if you want to run on Raspberry Pi).
+The recommended way to deploy paperless is docker-compose. The files in the /docker/hub directory are configured to pull the image from Docker Hub.
 
 Read the [documentation](https://paperless-ng.readthedocs.io/en/latest/setup.html#installation) on how to get started.
 
@@ -88,6 +100,12 @@ Read the section about [migration](https://paperless-ng.readthedocs.io/en/latest
 # Documentation
 
 The documentation for Paperless-ng is available on [ReadTheDocs](https://paperless-ng.readthedocs.io/).
+
+# Translation
+
+Paperless is currently available in English, German, Dutch and French. Translation is coordinated at transifex: https://www.transifex.com/paperless/paperless-ng
+
+If you want to see paperless in your own language, request that language at transifex and you can start translating after I approve the language.
 
 # Suggestions? Questions? Something not working?
 
@@ -109,7 +127,6 @@ Paperless has been around a while now, and people are starting to build stuff on
 These projects also exist, but their status and compatibility with paperless-ng is unknown.
 
 * [Paperless Desktop](https://github.com/thomasbrueggemann/paperless-desktop): A desktop UI for your Paperless installation.  Runs on Mac, Linux, and Windows.
-* [ansible-role-paperless](https://github.com/ovv/ansible-role-paperless): An easy way to get Paperless running via Ansible.
 * [paperless-cli](https://github.com/stgarf/paperless-cli): A golang command line binary to interact with a Paperless instance.
 
 # Important Note

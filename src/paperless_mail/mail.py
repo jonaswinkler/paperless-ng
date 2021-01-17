@@ -1,11 +1,12 @@
 import os
 import tempfile
 from datetime import timedelta, date
+from fnmatch import fnmatch
 
 import magic
+import pathvalidate
 from django.conf import settings
 from django.db import DatabaseError
-from django.utils.text import slugify
 from django_q.tasks import async_task
 from imap_tools import MailBox, MailBoxUnencrypted, AND, MailMessageFlags, \
     MailboxFolderSelectError
@@ -198,7 +199,7 @@ class MailAccountHandler(LoggingMixin):
 
         try:
             messages = M.fetch(criteria=AND(**criterias),
-                               mark_seen=False)
+                               mark_seen=False, charset='UTF-8')
         except Exception:
             raise MailError(
                 f"Rule {rule}: Error while fetching folder {rule.folder}")
@@ -263,13 +264,17 @@ class MailAccountHandler(LoggingMixin):
 
         for att in message.attachments:
 
-            if not att.content_disposition == "attachment":
+            if not att.content_disposition == "attachment" and rule.attachment_type == MailRule.ATTACHMENT_TYPE_ATTACHMENTS_ONLY:  # NOQA: E501
                 self.log(
                     'debug',
                     f"Rule {rule}: "
                     f"Skipping attachment {att.filename} "
                     f"with content disposition {att.content_disposition}")
                 continue
+
+            if rule.filter_attachment_filename:
+                if not fnmatch(att.filename, rule.filter_attachment_filename):
+                    continue
 
             title = self.get_title(message, att, rule)
 
@@ -294,7 +299,7 @@ class MailAccountHandler(LoggingMixin):
                 async_task(
                     "documents.tasks.consume_file",
                     path=temp_filename,
-                    override_filename=att.filename,
+                    override_filename=pathvalidate.sanitize_filename(att.filename),  # NOQA: E501
                     override_title=title,
                     override_correspondent_id=correspondent.id if correspondent else None,  # NOQA: E501
                     override_document_type_id=doc_type.id if doc_type else None,  # NOQA: E501
