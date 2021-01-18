@@ -2,9 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, forwardRef, Input, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { DatePlaceholderFormatPipe } from 'src/app/pipes/date-placeholder-format.pipe';
-import { DateMaskFormatPipe } from 'src/app/pipes/date-mask-format.pipe';
-import { DateDeformatPipe } from 'src/app/pipes/date-deformat.pipe';
+import { CustomDatePipe } from 'src/app/pipes/custom-date.pipe';
 
 @Component({
   providers: [{
@@ -18,17 +16,6 @@ import { DateDeformatPipe } from 'src/app/pipes/date-deformat.pipe';
 })
 export class DateTimeComponent implements OnInit,ControlValueAccessor  {
 
-  constructor(
-    @Inject(LOCALE_ID) private locale: string,
-    private datePlaceholderFormatPipe: DatePlaceholderFormatPipe,
-    private dateMaskFormatPipe: DateMaskFormatPipe,
-    private dateDeformatPipe: DateDeformatPipe
-  ) {
-    this.locale = locale
-    this.placeholder = datePlaceholderFormatPipe.transform(this.locale)
-    this.mask = dateMaskFormatPipe.transform(this.placeholder)
-  }
-
   placeholder: string = 'yyyy-mm-dd'
   mask: string = '0000-M0-d0'
 
@@ -36,18 +23,29 @@ export class DateTimeComponent implements OnInit,ControlValueAccessor  {
 
   onTouched = () => {};
 
+  constructor(
+    @Inject(LOCALE_ID) private locale: string,
+    private datePipe: CustomDatePipe
+  ) {
+    this.placeholder = datePipe.placeholder
+    this.mask = datePipe.mask
+  }
+
   writeValue(newValue: any): void {
     this.dateValue = formatDate(newValue, this.placeholder, this.locale)
     this.timeValue = formatDate(newValue, 'HH:mm:ss', this.locale)
 
-    this.updateDatePicker(this.dateDeformatPipe.transform(this.dateValue, this.placeholder))
+    this.updateDatePicker(this.datePipe.transformLocalizedString(this.dateValue))
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
@@ -80,7 +78,7 @@ export class DateTimeComponent implements OnInit,ControlValueAccessor  {
 
   dateOrTimeChanged() {
     if (this.dateValue) {
-      let date = this.dateDeformatPipe.transform(this.dateValue, this.placeholder)
+      let date = this.datePipe.transformLocalizedString(this.dateValue)
       let dateTimeStr = formatDate(date, "yyyy-MM-dd", this.locale)
       if (this.timeValue) dateTimeStr += "T" + this.timeValue
       let dateTimeFormatted = formatDate(dateTimeStr, "yyyy-MM-ddTHH:mm:ssZZZZZ", this.locale, "UTC")

@@ -61,9 +61,6 @@ import { NumberComponent } from './components/common/input/number/number.compone
 import { SafePipe } from './pipes/safe.pipe';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { DateMaskFormatPipe } from 'src/app/pipes/date-mask-format.pipe';
-import { DatePlaceholderFormatPipe } from 'src/app/pipes/date-placeholder-format.pipe';
-import { DateDeformatPipe } from 'src/app/pipes/date-deformat.pipe';
 
 import localeFr from '@angular/common/locales/fr';
 import localeNl from '@angular/common/locales/nl';
@@ -122,10 +119,7 @@ registerLocaleData(localeDe)
     SelectDialogComponent,
     NumberComponent,
     SafePipe,
-    CustomDatePipe,
-    DateMaskFormatPipe,
-    DatePlaceholderFormatPipe,
-    DateDeformatPipe
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,
@@ -153,9 +147,7 @@ registerLocaleData(localeDe)
       provide: LOCALE_ID,
       useValue: 'en-US'
     },
-    DateMaskFormatPipe,
-    DatePlaceholderFormatPipe,
-    DateDeformatPipe
+    CustomDatePipe
   ],
   bootstrap: [AppComponent]
 })

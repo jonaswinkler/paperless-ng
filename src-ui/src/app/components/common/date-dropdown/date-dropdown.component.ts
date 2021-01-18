@@ -3,9 +3,7 @@ import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, LOCALE_ID, I
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { DateMaskFormatPipe } from 'src/app/pipes/date-mask-format.pipe';
-import { DatePlaceholderFormatPipe } from 'src/app/pipes/date-placeholder-format.pipe';
-import { DateDeformatPipe } from 'src/app/pipes/date-deformat.pipe';
+import { CustomDatePipe } from 'src/app/pipes/custom-date.pipe';
 
 export interface DateSelection {
   before?: string
@@ -30,17 +28,6 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
     {id: LAST_3_MONTHS, name: $localize`Last 3 months`},
     {id: LAST_YEAR, name: $localize`Last year`}
   ]
-
-  constructor(
-    @Inject(LOCALE_ID) private locale: string,
-    private datePlaceholderFormatPipe: DatePlaceholderFormatPipe,
-    private dateMaskFormatPipe: DateMaskFormatPipe,
-    private dateDeformatPipe: DateDeformatPipe
-  ) {
-    this.locale = locale
-    this.placeholder = datePlaceholderFormatPipe.transform(this.locale)
-    this.mask = dateMaskFormatPipe.transform(this.placeholder)
-  }
 
   placeholder: string = 'yyyy-mm-dd'
   mask: string = '0000-M0-d0'
@@ -68,6 +55,14 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
 
   dpDateBeforeValue: NgbDateStruct
   dpDateAfterValue: NgbDateStruct
+
+  constructor(
+    @Inject(LOCALE_ID) private locale: string,
+    private datePipe: CustomDatePipe
+  ) {
+    this.placeholder = datePipe.placeholder
+    this.mask = datePipe.mask
+  }
 
   ngOnInit() {
     this.sub = this.datesSetDebounce$.pipe(
@@ -111,12 +106,12 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
   onChange() {
     this.dateAfterChange.emit(this.dateAfter)
     this.dateBeforeChange.emit(this.dateBefore)
-    this.dpDateBeforeValue = this.dateBefore ? this.toNgbDate(this.dateDeformatPipe.transform(this.dateBefore, this.placeholder)) : null
-    this.dpDateAfterValue = this.dateAfter ? this.toNgbDate(this.dateDeformatPipe.transform(this.dateAfter, this.placeholder)) : null
+    this.dpDateBeforeValue = this.dateBefore ? this.toNgbDate(this.datePipe.transformLocalizedString(this.dateBefore)) : null
+    this.dpDateAfterValue = this.dateAfter ? this.toNgbDate(this.datePipe.transformLocalizedString(this.dateAfter)) : null
 
     this.datesSet.emit({
-      after: this.dateAfter ? formatDate(this.dateDeformatPipe.transform(this.dateAfter, this.placeholder), 'yyyy-MM-dd', this.locale) : null,
-      before: this.dateBefore ? formatDate(this.dateDeformatPipe.transform(this.dateBefore, this.placeholder), 'yyyy-MM-dd', this.locale) : null
+      after: this.dateAfter ? formatDate(this.datePipe.transformLocalizedString(this.dateAfter), 'yyyy-MM-dd', this.locale) : null,
+      before: this.dateBefore ? formatDate(this.datePipe.transformLocalizedString(this.dateBefore), 'yyyy-MM-dd', this.locale) : null
     })
   }
 
@@ -124,8 +119,8 @@ export class DateDropdownComponent implements OnInit, OnDestroy {
     if (this.dateAfter?.length < (this.mask.length - 2)) this.dateAfter = null
     if (this.dateBefore?.length < (this.mask.length - 2)) this.dateBefore = null
     // dont fire on invalid dates using isNaN
-    if (this.dateAfter && isNaN(this.dateDeformatPipe.transform(this.dateAfter, this.placeholder) as any)) this.dateAfter = null
-    if (this.dateBefore && isNaN(this.dateDeformatPipe.transform(this.dateBefore, this.placeholder) as any)) this.dateBefore = null
+    if (this.dateAfter && isNaN(this.datePipe.transformLocalizedString(this.dateAfter) as any)) this.dateAfter = null
+    if (this.dateBefore && isNaN(this.datePipe.transformLocalizedString(this.dateBefore) as any)) this.dateBefore = null
     this.datesSetDebounce$.next()
   }
 
