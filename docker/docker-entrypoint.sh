@@ -49,6 +49,50 @@ wait_for_postgres() {
 
 }
 
+#
+# CREATE SUPERUSER
+#
+superuser() {
+
+    if [[ -n "${PAPERLESS_DBHOST}" ]]
+    then
+        wait_for_postgres
+    fi
+
+    if [[ ! -z "${PAPERLESS_ADMIN_PASSWORD}" ]]; then
+
+      # create admin account if not exists
+      set +e
+      SUPERUSER_EXISTS=$(echo "SELECT * from auth_user;" | python3 manage.py dbshell | grep "${PAPERLESS_ADMIN_USER:=admin}")
+      set -e
+      echo "done"
+      if [[ -z "${SUPERUSER_EXISTS}" ]]; then
+        echo "Create superuser: ${PAPERLESS_ADMIN_USER}"
+        cat <<EOD | python3 manage.py shell
+import os
+from django.contrib.auth.models import User
+User.objects.create_superuser(
+  os.getenv('PAPERLESS_ADMIN_USER', 'admin'),
+  os.getenv('PAPERLESS_ADMIN_MAIL', 'root@localhost'),
+  os.getenv('PAPERLESS_ADMIN_PASSWORD')
+)
+EOD
+      else
+        echo "Superuser \"${PAPERLESS_ADMIN_USER}\" exists already"
+      fi
+
+      # set superuser password
+      echo "Set superuser password"
+      cat <<EOD | python3 manage.py shell
+import os
+from django.contrib.auth.models import User
+u = User.objects.get(username=os.getenv('PAPERLESS_ADMIN_USER', 'admin'))
+u.set_password(os.getenv('PAPERLESS_ADMIN_PASSWORD'))
+u.save()
+EOD
+    fi
+}
+
 
 migrations() {
 
@@ -86,6 +130,7 @@ initialize() {
 	chown -R paperless:paperless /tmp/paperless
 
 	migrations
+    superuser
 
 }
 
