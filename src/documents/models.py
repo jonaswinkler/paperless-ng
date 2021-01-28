@@ -307,6 +307,45 @@ class Document(models.Model):
         return open(self.thumbnail_path, "rb")
 
 
+class CustomMetaDataField(models.Model):
+    type_string = models.CharField(max_length=128)
+
+
+class CustomMetaDataFieldValue(models.Model):
+    field = models.ForeignKey(
+        CustomMetaDataField,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE
+    )
+
+    document = models.ForeignKey(
+        Document,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name="custom_metadata"
+    )
+
+
+class CustomMetaDataFieldShortTextValue(CustomMetaDataFieldValue):
+    value = models.CharField(max_length=128)
+    parent = models.OneToOneField(
+        CustomMetaDataFieldValue,
+        on_delete=models.CASCADE,
+        related_name="shorttext",
+        parent_link=True)
+
+
+class CustomMetaDataFieldBooleanValue(CustomMetaDataFieldValue):
+    value = models.BooleanField()
+    parent = models.OneToOneField(
+        CustomMetaDataFieldValue,
+        on_delete=models.CASCADE,
+        related_name="boolean",
+        parent_link=True)
+
+
 class Log(models.Model):
 
     LEVELS = (
