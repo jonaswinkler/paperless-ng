@@ -52,7 +52,9 @@ from .serialisers import (
     DocumentTypeSerializer,
     PostDocumentSerializer,
     SavedViewSerializer,
-    BulkEditSerializer, SelectionDataSerializer
+    BulkEditSerializer,
+    SelectionDataSerializer,
+    DocumentSplitMergePlanSerializer
 )
 
 
@@ -594,3 +596,30 @@ class StatisticsView(APIView):
             'documents_inbox': Document.objects.filter(
                 tags__is_inbox_tag=True).distinct().count()
         })
+
+
+class DocumentMergeView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+    serializer_class = DocumentSplitMergePlanSerializer
+    parser_classes = (parsers.JSONParser,)
+
+    def get_serializer_context(self):
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+
+    def get_serializer(self, *args, **kwargs):
+        kwargs['context'] = self.get_serializer_context()
+        return self.serializer_class(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # merge_plan = serializer.validated_data.get("merge_plan")
+        # preview = serializer.validated_data.get("preview")
+
+        return Response("Not implemented yet")

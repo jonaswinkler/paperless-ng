@@ -398,3 +398,79 @@ class SelectionDataSerializer(serializers.Serializer):
         required=True,
         child=serializers.IntegerField()
     )
+
+
+class DocumentSplitMergePlanSerializer(serializers.Serializer):
+    """
+    A split/merge plan describes how a set of documents should be transformed
+    into a new set of documents.
+
+    split_merge_plan is a list. The split and merge tool will create a new
+    document for each element in that list. Each item in split_merge_plan
+    is by itself a list that lists document IDs and pages to take from this
+    document.
+
+    Example:
+
+        split_merge_plan = [
+            [
+                {
+                    "document": 1,
+                    "pages": [1,2,3]
+                },
+                {
+                    "document": 2,
+                },
+                {
+                    "document": 1,
+                    "pages": [4]
+                }
+            ],
+            [
+                {
+                    "document": 1,
+                    "pages": [6,5]
+                }
+            ]
+        ]
+
+    This will split document 1 into two documents. The first document contains
+    pages 1 to 4, the second document contains pages 5 and 6 in reverse.
+    Additionally, all pages from document 2 are inserted into the first
+    document between pages 3 and 4.
+
+    If delete_source is true, the split and merge tool will delete the source
+    files in the plan after all resulting documents have been added
+    successfully to paperless.
+
+    metadata selects how to assign new metadata to the created documents.
+    With 'redo', paperless will run the matching algorithms on the resulting
+    document again. With 'copy_first', each document created by the merge plan
+    will keep the metadata of the first document used to create that new
+    document.
+
+    If preview is true, the split and merge tool will execute the split and
+    merge plan without modifying any data in paperless. The previews are
+    temporarily made available for download. If preview is true,
+    delete_source and metadata is ignored.
+
+    """
+
+    split_merge_plan = serializers.ListField(
+        required=True,
+        min_length=1,
+        child=serializers.ListField(
+            required=True,
+            min_length=0,
+            child=serializers.DictField()
+        )
+    )
+
+    delete_source = serializers.BooleanField(default=False)
+
+    metadata = serializers.ChoiceField(
+        required=True,
+        choices=("redo", "copy_first")
+    )
+
+    preview = serializers.BooleanField(default=False)
