@@ -114,6 +114,7 @@ class RasterisedDocumentParser(DocumentParser):
             mode = "redo"
 
         archive_path = os.path.join(self.tempdir, "archive.pdf")
+        sidecar_path = os.path.join(self.tempdir, "contents.txt")
 
         ocr_args = {
             'input_file': document_path,
@@ -123,7 +124,8 @@ class RasterisedDocumentParser(DocumentParser):
             'language': settings.OCR_LANGUAGE,
             'output_type': settings.OCR_OUTPUT_TYPE,
             'progress_bar': False,
-            'clean': True
+            'clean': True,
+            'sidecar': sidecar_path,
         }
 
         if settings.OCR_PAGES > 0:
@@ -179,7 +181,8 @@ class RasterisedDocumentParser(DocumentParser):
             ocrmypdf.ocr(**ocr_args)
             # success! announce results
             self.archive_path = archive_path
-            self.text = get_text_from_pdf(archive_path)
+            with open(sidecar_path) as f:
+                self.text = f.read()
 
         except (InputFileError, EncryptedPdfError) as e:
 
