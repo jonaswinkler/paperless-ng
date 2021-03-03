@@ -2,6 +2,7 @@ import re
 
 import magic
 import math
+import pathvalidate
 from django.utils.text import slugify
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
@@ -210,6 +211,10 @@ class DocumentSerializer(DynamicFieldsModelSerializer):
             return obj.get_public_filename(archive=True)
         else:
             return None
+
+    def get_content(self, obj):
+        return pathvalidate.sanitize_filename(obj.content)
+    content = SerializerMethodField()
 
     class Meta:
         model = Document
