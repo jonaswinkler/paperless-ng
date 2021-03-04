@@ -55,6 +55,7 @@ uvloop = "~=0.14.0"
 # TODO: keep an eye on piwheel builds and update this once available (https://www.piwheels.org/project/cryptography/)
 cryptography = "~=3.4"
 "pdfminer.six" = "*"
+djangorestframework-xml = "*"
 
 [dev-packages]
 coveralls = "*"
