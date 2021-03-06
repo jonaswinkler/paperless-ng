@@ -168,7 +168,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">105</context>
         </context-group>
-        <target state="needs-translation">ASN</target>
+        <target state="translated">ASN</target>
       </trans-unit>
       <trans-unit id="7b5c6286aaded63fb279d6deb8aa8c704e085ced" datatype="html">
         <source>Correspondent</source>
