@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-07 21:34+0100\n"
-"PO-Revision-Date: 2021-03-07 20:36\n"
+"PO-Revision-Date: 2021-03-07 21:35\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -353,7 +353,7 @@ msgstr "правила фильтрации"
 #: documents/serialisers.py:53
 #, python-format
 msgid "Invalid regular expression: %(error)s"
-msgstr ""
+msgstr "неверное регулярное выражение: %(error)s"
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
