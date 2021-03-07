@@ -52,10 +52,11 @@ class TagsFilter(Filter):
             return qs
 
         for tag_id in tag_ids:
+            tag = Tag.objects.get(id=tag_id)
             if self.exclude:
-                qs = qs.exclude(tags__id=tag_id)
+                qs = qs.exclude(tags__path__startswith=tag.path)
             else:
-                qs = qs.filter(tags__id=tag_id)
+                qs = qs.filter(tags__path__startswith=tag.path)
 
         return qs
 

@@ -102,6 +102,8 @@ INSTALLED_APPS = [
 
     "django_q",
 
+    "treebeard",
+
 ] + env_apps
 
 if DEBUG:

@@ -15,6 +15,7 @@ from django.utils import timezone
 from django.utils.timezone import is_aware
 
 from django.utils.translation import gettext_lazy as _
+from treebeard.mp_tree import MP_Node
 
 from documents.parsers import get_default_file_extension
 
@@ -75,7 +76,7 @@ class Correspondent(MatchingModel):
         verbose_name_plural = _("correspondents")
 
 
-class Tag(MatchingModel):
+class Tag(MatchingModel, MP_Node):
 
     color = models.CharField(
         _("color"),

@@ -1,4 +1,6 @@
 from django.contrib import admin
+from treebeard.admin import TreeAdmin
+from treebeard.forms import movenodeform_factory
 
 from .models import Correspondent, Document, DocumentType, Tag, \
     SavedView, SavedViewFilterRule
@@ -15,13 +17,16 @@ class CorrespondentAdmin(admin.ModelAdmin):
     list_editable = ("match", "matching_algorithm")
 
 
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(TreeAdmin):
+
+    form = movenodeform_factory(Tag)
 
     list_display = (
         "name",
         "color",
         "match",
-        "matching_algorithm"
+        "matching_algorithm",
+        "path"
     )
     list_filter = ("color", "matching_algorithm")
     list_editable = ("color", "match", "matching_algorithm")
