@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-07 21:34+0100\n"
-"PO-Revision-Date: 2021-03-07 20:36\n"
+"PO-Revision-Date: 2021-03-07 21:35\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "Language: en_GB\n"
@@ -328,11 +328,11 @@ msgstr "does not have tag"
 
 #: documents/models.py:388
 msgid "does not have ASN"
-msgstr ""
+msgstr "does not have ASN"
 
 #: documents/models.py:389
 msgid "title or content contains"
-msgstr ""
+msgstr "title or content contains"
 
 #: documents/models.py:400
 msgid "rule type"
@@ -353,7 +353,7 @@ msgstr "filter rules"
 #: documents/serialisers.py:53
 #, python-format
 msgid "Invalid regular expression: %(error)s"
-msgstr ""
+msgstr "Invalid regular expression: %(error)s"
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
