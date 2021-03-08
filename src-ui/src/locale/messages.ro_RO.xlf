@@ -8,7 +8,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="translated">Document adaugat</target>
+        <target state="translated">Document adăugat</target>
       </trans-unit>
       <trans-unit id="9204248378636247318" datatype="html">
         <source>Document <x id="PH" equiv-text="status.filename"/> was added to paperless.</source>
@@ -16,7 +16,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="translated">Documentul <x id="PH" equiv-text="status.filename"/> a fost adaugat</target>
+        <target state="translated">Documentul <x id="PH" equiv-text="status.filename"/> a fost adăugat.</target>
       </trans-unit>
       <trans-unit id="1931214133925051574" datatype="html">
         <source>Open document</source>
@@ -32,7 +32,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">59</context>
         </context-group>
-        <target state="translated">Nu s-a putut adauga <x id="PH" equiv-text="status.filename"/>: <x id="PH_1" equiv-text="status.message"/></target>
+        <target state="translated">Nu s-a putut adăuga <x id="PH" equiv-text="status.filename"/>: <x id="PH_1" equiv-text="status.message"/></target>
       </trans-unit>
       <trans-unit id="1710712016675379662" datatype="html">
         <source>New document detected</source>
@@ -48,7 +48,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">65</context>
         </context-group>
-        <target state="translated">Documentul <x id="PH" equiv-text="status.filename"/> este in procesare</target>
+        <target state="translated">Documentul <x id="PH" equiv-text="status.filename"/> este în procesare.</target>
       </trans-unit>
       <trans-unit id="4733307402565258070" datatype="html">
         <source>Documents</source>
@@ -64,7 +64,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.ts</context>
           <context context-type="linenumber">115</context>
         </context-group>
-        <target state="translated">Vizualizarea "<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>" a fost salvata</target>
+        <target state="translated">Vizualizarea "<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>" a fost salvată.</target>
       </trans-unit>
       <trans-unit id="6837554170707123455" datatype="html">
         <source>View &quot;<x id="PH" equiv-text="savedView.name"/>&quot; created successfully.</source>
@@ -72,7 +72,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.ts</context>
           <context context-type="linenumber">136</context>
         </context-group>
-        <target state="translated">Vizualizarea "<x id="PH" equiv-text="savedView.name"/>" a fost creata</target>
+        <target state="translated">Vizualizarea "<x id="PH" equiv-text="savedView.name"/>" a fost creată.</target>
       </trans-unit>
       <trans-unit id="9ca82952a6bc860b5391d5975322d8af8ceddfa4" datatype="html">
         <source>Select</source>
@@ -80,7 +80,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
-        <target state="translated">Selecteaza</target>
+        <target state="translated">Selectează</target>
       </trans-unit>
       <trans-unit id="7e1f9a7054aff842832620c03dedae894787ba41" datatype="html">
         <source>Select none</source>
@@ -168,7 +168,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">105</context>
         </context-group>
-        <target state="translated">ASN</target>
+        <target state="translated">Aviz prealabil de expediție</target>
       </trans-unit>
       <trans-unit id="7b5c6286aaded63fb279d6deb8aa8c704e085ced" datatype="html">
         <source>Correspondent</source>
@@ -1951,7 +1951,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">98</context>
         </context-group>
-        <target state="needs-translation">Russian</target>
+        <target state="translated">Rusă</target>
       </trans-unit>
       <trans-unit id="4912706592792948707" datatype="html">
         <source>ISO 8601</source>
@@ -2091,7 +2091,7 @@
           <context context-type="sourcefile">src/app/services/rest/document.service.ts</context>
           <context context-type="linenumber">17</context>
         </context-group>
-        <target state="translated">ASN</target>
+        <target state="translated">Aviz prealabil de expediție</target>
       </trans-unit>
       <trans-unit id="2691296884221415710" datatype="html">
         <source>Correspondent</source>
