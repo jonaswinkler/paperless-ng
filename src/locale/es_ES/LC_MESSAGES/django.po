@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-07 21:34+0100\n"
-"PO-Revision-Date: 2021-03-07 21:35\n"
+"PO-Revision-Date: 2021-03-09 22:19\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -52,11 +52,11 @@ msgstr "nombre"
 
 #: documents/models.py:45
 msgid "match"
-msgstr ""
+msgstr "coincidencia"
 
 #: documents/models.py:49
 msgid "matching algorithm"
-msgstr ""
+msgstr "Algoritmo de coincidencia"
 
 #: documents/models.py:55
 msgid "is insensitive"
