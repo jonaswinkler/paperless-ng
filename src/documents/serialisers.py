@@ -570,3 +570,7 @@ class DocumentSplitMergePlanSerializer(serializers.Serializer):
     )
 
     preview = serializers.BooleanField(default=False)
+
+    def validate_split_merge_plan(self, split_merge_plan):
+        # TODO: validate this!
+        return split_merge_plan
