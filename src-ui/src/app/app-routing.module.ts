@@ -11,12 +11,14 @@ import { SettingsComponent } from './components/manage/settings/settings.compone
 import { TagListComponent } from './components/manage/tag-list/tag-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SearchComponent } from './components/search/search.component';
+import { SplitMergeComponent } from './components/split-merge/split-merge.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '', component: AppFrameComponent, children: [
     {path: 'dashboard', component: DashboardComponent },
     {path: 'documents', component: DocumentListComponent },
+    {path: 'split_merge', component: SplitMergeComponent },
     {path: 'view/:id', component: DocumentListComponent },
     {path: 'search', component: SearchComponent },
     {path: 'documents/:id', component: DocumentDetailComponent },
@@ -26,7 +28,7 @@ const routes: Routes = [
     {path: 'correspondents', component: CorrespondentListComponent },
     {path: 'logs', component: LogsComponent },
     {path: 'settings', component: SettingsComponent },
-  ]}, 
+  ]},
 
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404', pathMatch: 'full'}

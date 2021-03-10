@@ -68,6 +68,13 @@
               </svg>&nbsp;<ng-container i18n>Documents</ng-container>
             </a>
           </li>
+          <li class="nav-item" *ngIf="splitMergeToolVisible">
+            <a class="nav-link" routerLink="split_merge" routerLinkActive="active" (click)="closeMenu()">
+              <svg class="sidebaricon" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#scissors"/>
+              </svg>&nbsp;<ng-container i18n>Split & merge</ng-container>
+            </a>
+          </li>
         </ul>
 
         <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted" *ngIf='savedViewService.sidebarViews.length > 0'>

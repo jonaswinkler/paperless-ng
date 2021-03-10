@@ -65,6 +65,7 @@ import { LocalizedDateParserFormatter } from './utils/ngb-date-parser-formatter'
 import { ApiVersionInterceptor } from './interceptors/api-version.interceptor';
 import { ColorSliderModule } from 'ngx-color/slider';
 import { ColorComponent } from './components/common/input/color/color.component';
+import { SplitMergeComponent } from './components/split-merge/split-merge.component';
 
 import localeFr from '@angular/common/locales/fr';
 import localeNl from '@angular/common/locales/nl';
@@ -135,7 +136,8 @@ registerLocaleData(localeRu)
     SafePipe,
     CustomDatePipe,
     DateComponent,
-    ColorComponent
+    ColorComponent,
+    SplitMergeComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { TextComponent } from '../common/input/text/text.component';
 import { SettingsService, SETTINGS_KEYS } from 'src/app/services/settings.service';
 import { PaperlessDocumentSuggestions } from 'src/app/data/paperless-document-suggestions';
+import { SplitMergeService } from 'src/app/services/split-merge.service';
 
 @Component({
   selector: 'app-document-detail',
@@ -75,7 +76,8 @@ export class DocumentDetailComponent implements OnInit {
     private documentListViewService: DocumentListViewService,
     private documentTitlePipe: DocumentTitlePipe,
     private toastService: ToastService,
-    private settings: SettingsService) { }
+    private settings: SettingsService,
+    private splitMergeService: SplitMergeService) { }
 
   get useNativePdfViewer(): boolean {
     return this.settings.get(SETTINGS_KEYS.USE_NATIVE_PDF_VIEWER)
@@ -220,6 +222,11 @@ export class DocumentDetailComponent implements OnInit {
 
   moreLike() {
     this.router.navigate(["search"], {queryParams: {more_like:this.document.id}})
+  }
+
+  splitMerge() {
+    this.splitMergeService.addDocument(this.document)
+    this.router.navigate(["split_merge"])
   }
 
   hasNext() {

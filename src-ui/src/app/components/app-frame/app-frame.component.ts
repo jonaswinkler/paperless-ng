@@ -10,6 +10,7 @@ import { SearchService } from 'src/app/services/rest/search.service';
 import { environment } from 'src/environments/environment';
 import { DocumentDetailComponent } from '../document-detail/document-detail.component';
 import { Meta } from '@angular/platform-browser';
+import { SplitMergeService } from 'src/app/services/split-merge.service';
 
 @Component({
   selector: 'app-app-frame',
@@ -24,7 +25,8 @@ export class AppFrameComponent implements OnInit {
     private openDocumentsService: OpenDocumentsService,
     private searchService: SearchService,
     public savedViewService: SavedViewService,
-    private meta: Meta
+    private meta: Meta,
+    private splitMergeService: SplitMergeService
     ) {
 
   }
@@ -101,6 +103,10 @@ export class AppFrameComponent implements OnInit {
     if (route.component == DocumentDetailComponent) {
       this.router.navigate([""])
     }
+  }
+
+  get splitMergeToolVisible() {
+    return this.splitMergeService.hasDocuments()
   }
 
   ngOnInit() {
