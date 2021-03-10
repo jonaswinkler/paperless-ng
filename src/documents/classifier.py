@@ -5,7 +5,6 @@ import pickle
 import re
 
 from django.conf import settings
-from django.core.cache import cache
 
 from documents.models import Document, MatchingModel
 
@@ -31,29 +30,23 @@ def load_classifier():
         )
         return None
 
-    version = os.stat(settings.MODEL_FILE).st_mtime
+    classifier = DocumentClassifier()
+    try:
+        classifier.load()
 
-    classifier = cache.get("paperless-classifier", version=version)
-
-    if not classifier:
-        classifier = DocumentClassifier()
-        try:
-            classifier.load()
-            cache.set("paperless-classifier", classifier,
-                      version=version, timeout=86400)
-        except (EOFError, IncompatibleClassifierVersionError) as e:
-            # there's something wrong with the model file.
-            logger.exception(
-                f"Unrecoverable error while loading document "
-                f"classification model, deleting model file."
-            )
-            os.unlink(settings.MODEL_FILE)
-            classifier = None
-        except OSError as e:
-            logger.error(
-                f"Error while loading document classification model: {str(e)}"
-            )
-            classifier = None
+    except (EOFError, IncompatibleClassifierVersionError) as e:
+        # there's something wrong with the model file.
+        logger.exception(
+            f"Unrecoverable error while loading document "
+            f"classification model, deleting model file."
+        )
+        os.unlink(settings.MODEL_FILE)
+        classifier = None
+    except OSError as e:
+        logger.error(
+            f"Error while loading document classification model: {str(e)}"
+        )
+        classifier = None
 
     return classifier
 
@@ -102,9 +95,6 @@ class DocumentClassifier(object):
             pickle.dump(self.document_type_classifier, f)
 
     def train(self):
-        from sklearn.feature_extraction.text import CountVectorizer
-        from sklearn.neural_network import MLPClassifier
-        from sklearn.preprocessing import MultiLabelBinarizer, LabelBinarizer
 
         data = list()
         labels_tags = list()
@@ -133,10 +123,11 @@ class DocumentClassifier(object):
             m.update(y.to_bytes(4, 'little', signed=True))
             labels_correspondent.append(y)
 
-            tags = [tag.pk for tag in doc.tags.filter(
+            tags = sorted([tag.pk for tag in doc.tags.filter(
                 matching_algorithm=MatchingModel.MATCH_AUTO
-            )]
-            m.update(bytearray(tags))
+            )])
+            for tag in tags:
+                m.update(tag.to_bytes(4, 'little', signed=True))
             labels_tags.append(tags)
 
         if not data:
@@ -168,6 +159,10 @@ class DocumentClassifier(object):
                 num_document_types
             )
         )
+
+        from sklearn.feature_extraction.text import CountVectorizer
+        from sklearn.neural_network import MLPClassifier
+        from sklearn.preprocessing import MultiLabelBinarizer, LabelBinarizer
 
         # Step 2: vectorize data
         logger.debug("Vectorizing data...")

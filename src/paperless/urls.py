@@ -24,6 +24,7 @@ from documents.views import (
     SavedViewViewSet,
     BulkEditView,
     SelectionDataView,
+    BulkDownloadView,
     DocumentMergeView
 )
 from paperless.views import FaviconView
@@ -63,6 +64,9 @@ urlpatterns = [
 
         re_path(r"^documents/selection_data/", SelectionDataView.as_view(),
                 name="selection_data"),
+
+        re_path(r"^documents/bulk_download/", BulkDownloadView.as_view(),
+                name="bulk_download"),
 
         re_path(r"^documents/merge/",
                 DocumentMergeView.as_view(),

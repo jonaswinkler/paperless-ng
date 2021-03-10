@@ -102,16 +102,22 @@ INSTALLED_APPS = [
 
     "django_q",
 
-    "channels",
-
 ] + env_apps
+
+if DEBUG:
+    INSTALLED_APPS.append("channels")
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
-    ]
+    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
+    'DEFAULT_VERSION': '1',
+    # Make sure these are ordered and that the most recent version appears
+    # last
+    'ALLOWED_VERSIONS': ['1', '2']
 }
 
 if DEBUG:
@@ -127,6 +133,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'paperless.middleware.ApiVersionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -141,7 +148,7 @@ ASGI_APPLICATION = "paperless.asgi.application"
 
 STATIC_URL = os.getenv("PAPERLESS_STATIC_URL", "/static/")
 
-# what is this used for?
+# TODO: what is this used for?
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -169,16 +176,6 @@ CHANNEL_LAYERS = {
     },
 }
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.getenv("PAPERLESS_REDIS", "redis://localhost:6379"),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-
 ###############################################################################
 # Security                                                                    #
 ###############################################################################
@@ -192,6 +189,7 @@ if AUTO_LOGIN_USERNAME:
     MIDDLEWARE.insert(_index+1, 'paperless.auth.AutoLoginMiddleware')
 
 ENABLE_HTTP_REMOTE_USER = __get_boolean("PAPERLESS_ENABLE_HTTP_REMOTE_USER")
+HTTP_REMOTE_USER_HEADER_NAME = os.getenv("PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME", "HTTP_REMOTE_USER")
 
 if ENABLE_HTTP_REMOTE_USER:
     MIDDLEWARE.append(
@@ -297,10 +295,15 @@ if os.getenv("PAPERLESS_DBHOST"):
 LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
-    ("en-us", _("English")),
-    ("de", _("German")),
+    ("en-us", _("English (US)")),
+    ("en-gb", _("English (GB)")),
+    ("de-de", _("German")),
     ("nl-nl", _("Dutch")),
-    ("fr", _("French"))
+    ("fr-fr", _("French")),
+    ("pt-br", _("Portuguese (Brazil)")),
+    ("it-it", _("Italian")),
+    ("ro-ro", _("Romanian")),
+    ("ru-ru", _("Russian"))
 ]
 
 LOCALE_PATHS = [
@@ -407,8 +410,9 @@ TASK_WORKERS = int(os.getenv("PAPERLESS_TASK_WORKERS", default_task_workers()))
 Q_CLUSTER = {
     'name': 'paperless',
     'catch_up': False,
+    'recycle': 1,
     'workers': TASK_WORKERS,
-    'django_redis': 'default'
+    'redis': os.getenv("PAPERLESS_REDIS", "redis://localhost:6379")
 }
 
 
@@ -431,6 +435,12 @@ THREADS_PER_WORKER = os.getenv("PAPERLESS_THREADS_PER_WORKER", default_threads_p
 ###############################################################################
 
 CONSUMER_POLLING = int(os.getenv("PAPERLESS_CONSUMER_POLLING", 0))
+
+CONSUMER_POLLING_DELAY = int(os.getenv("PAPERLESS_CONSUMER_POLLING_DELAY", 5))
+
+CONSUMER_POLLING_RETRY_COUNT = int(
+    os.getenv("PAPERLESS_CONSUMER_POLLING_RETRY_COUNT", 5)
+)
 
 CONSUMER_DELETE_DUPLICATES = __get_boolean("PAPERLESS_CONSUMER_DELETE_DUPLICATES")
 
@@ -455,6 +465,14 @@ OCR_OUTPUT_TYPE = os.getenv("PAPERLESS_OCR_OUTPUT_TYPE", "pdfa")
 OCR_MODE = os.getenv("PAPERLESS_OCR_MODE", "skip")
 
 OCR_IMAGE_DPI = os.getenv("PAPERLESS_OCR_IMAGE_DPI")
+
+OCR_CLEAN = os.getenv("PAPERLESS_OCR_CLEAN", "clean")
+
+OCR_DESKEW = __get_boolean("PAPERLESS_OCR_DESKEW", "true")
+
+OCR_ROTATE_PAGES = __get_boolean("PAPERLESS_OCR_ROTATE_PAGES", "true")
+
+OCR_ROTATE_PAGES_THRESHOLD = float(os.getenv("PAPERLESS_OCR_ROTATE_PAGES_THRESHOLD", 12.0))
 
 OCR_USER_ARGS = os.getenv("PAPERLESS_OCR_USER_ARGS", "{}")
 

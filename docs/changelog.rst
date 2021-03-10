@@ -5,10 +5,112 @@
 Changelog
 *********
 
+paperless-ng 1.3.0
+##################
+
+This release contains new database migrations.
+
+* Changes
+
+  * The REST API is versioned from this point onwards. This will allow me to make changes without breaking existing clients. See the documentation about :ref:`api-versioning` for details.
+
+  * Added a color picker for tag colors.
+
+  * Added the ability to use the filter for searching the document content as well.
+
+  * Added translations into Italian and Romanian. Thank you!
+
+  * Close individual documents from the sidebar. Thanks to `Michael Shamoon`_.
+
+  * `BolkoSchreiber <https://github.com/BolkoSchreiber>`_ added an option to disable/enable thumbnail inversion in dark mode.
+
+  * `Simon Taddiken <https://github.com/skuzzle>`_ added the ability to customize the header used for remote user authentication with SSO applications.
+
+* Bug fixes
+
+  * Fixed an issue with the auto matching algorithm when more than 256 tags were used.
+
+
+paperless-ng 1.2.1
+##################
+
+* `Rodrigo Avelino <https://github.com/rodavelino>`_ translated Paperless into Portuguese (Brazil)!
+
+* The date input fields now respect the currently selected date format.
+
+* Added a fancy icon when adding paperless to the home screen on iOS devices. Thanks to `Joel Nordell <https://github.com/joelnordell>`_.
+
+* When using regular expression matching, the regular expression is now validated before saving the tag/correspondent/type.
+
+* Regression fix: Dates on the front end did not respect date locale settings in some cases.
+
+paperless-ng 1.2.0
+##################
+
+* Changes to the OCRmyPDF integration
+
+  * Added support for deskewing and automatic rotation of incorrectly rotated pages. This is enabled by default, see :ref:`configuration-ocr`.
+  * Better support for encrypted files.
+  * Better support for various other PDF files: Paperless will now attempt to force OCR with safe options when OCR fails with the configured options.
+  * Added an explicit option to skip cleaning with ``unpaper``.
+
+* Download multiple selected documents as a zip archive.
+
+* The document list now remembers the current page.
+
+* Improved responsiveness when switching between saved views and the document list.
+
+* Increased the default wait time when observing files in the consumption folder
+  with polling from 1 to 5 seconds. This will decrease the likelihood of paperless
+  consuming partially written files.
+
+* Fixed a crash of the document archiver management command when trying to process documents with unknown mime types.
+
+* Paperless no longer depends on ``libpoppler-cpp-dev``.
+
+.. note::
+
+  Some packages that paperless depends on are slowly dropping Python 3.6
+  support one after another, including the web server. Supporting Python
+  3.6 means that I cannot update these packages anymore.
+
+  At some point, paperless will drop Python 3.6 support. If using a bare
+  metal installation and you're still on Python 3.6, upgrade to 3.7 or newer.
+
+  If using docker, this does not affect you.
+
+paperless-ng 1.1.4
+##################
+
+* Added English (GB) locale.
+
+* Added ISO-8601 date display option.
+
+paperless-ng 1.1.3
+##################
+
+* Added a docker-specific configuration option to adjust the number of
+  worker processes of the web server. See :ref:`configuration-docker`.
+
+* Some more memory usage optimizations.
+
+* Don't show inbox statistics if no inbox tag is defined.
+
 paperless-ng 1.1.2
 ##################
 
 * Always show top left corner of thumbnails, even for extra wide documents.
+
+* Added a management command for executing the sanity checker directly.
+  See :ref:`utilities-sanity-checker`.
+
+* The weekly sanity check now reports messages in the log files.
+
+* Fixed an issue with the metadata tab not reporting anything in case of missing files.
+
+* Reverted a change from 1.1.0 that caused huge memory usage due to redis caching.
+
+* Some memory usage optimizations.
 
 paperless-ng 1.1.1
 ##################

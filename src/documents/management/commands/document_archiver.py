@@ -31,10 +31,24 @@ def handle_document(document_id):
 
     parser_class = get_parser_class_for_mime_type(mime_type)
 
+    if not parser_class:
+        logger.error(f"No parser found for mime type {mime_type}, cannot "
+                     f"archive document {document} (ID: {document_id})")
+        return
+
     parser = parser_class(logging_group=uuid.uuid4())
 
     try:
-        parser.parse(document.source_path, mime_type)
+        parser.parse(
+            document.source_path,
+            mime_type,
+            document.get_public_filename())
+
+        thumbnail = parser.get_optimised_thumbnail(
+            document.source_path,
+            mime_type,
+            document.get_public_filename()
+        )
 
         if parser.get_archive_path():
             with transaction.atomic():
@@ -55,12 +69,14 @@ def handle_document(document_id):
                     create_source_path_directory(document.archive_path)
                     shutil.move(parser.get_archive_path(),
                                 document.archive_path)
+                    shutil.move(thumbnail, document.thumbnail_path)
 
-        with AsyncWriter(index.open_index()) as writer:
-            index.update_document(writer, document)
+            with index.open_index_writer() as writer:
+                index.update_document(writer, document)
 
     except Exception as e:
-        logger.exception(f"Error while parsing document {document}")
+        logger.exception(f"Error while parsing document {document} "
+                         f"(ID: {document_id})")
     finally:
         parser.cleanup()
 

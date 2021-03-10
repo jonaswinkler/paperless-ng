@@ -49,6 +49,21 @@ class TestArchiver(DirectoriesMixin, TestCase):
         self.assertTrue(filecmp.cmp(sample_file, doc.source_path))
         self.assertEqual(doc.archive_filename, "none/A.pdf")
 
+    def test_unknown_mime_type(self):
+        doc = self.make_models()
+        doc.mime_type = "sdgfh"
+        doc.save()
+        shutil.copy(sample_file, doc.source_path)
+
+        handle_document(doc.pk)
+
+        doc = Document.objects.get(id=doc.id)
+
+        self.assertIsNotNone(doc.checksum)
+        self.assertIsNone(doc.archive_checksum)
+        self.assertIsNone(doc.archive_filename)
+        self.assertTrue(os.path.isfile(doc.source_path))
+
     @override_settings(PAPERLESS_FILENAME_FORMAT="{title}")
     def test_naming_priorities(self):
         doc1 = Document.objects.create(checksum="A", title="document", content="first document", mime_type="application/pdf", filename="document.pdf")
@@ -64,6 +79,7 @@ class TestArchiver(DirectoriesMixin, TestCase):
 
         self.assertEqual(doc1.archive_filename, "document.pdf")
         self.assertEqual(doc2.archive_filename, "document_01.pdf")
+
 
 class TestDecryptDocuments(TestCase):
 
@@ -154,3 +170,24 @@ class TestCreateClassifier(TestCase):
         call_command("document_create_classifier")
 
         m.assert_called_once()
+
+
+class TestSanityChecker(DirectoriesMixin, TestCase):
+
+    def test_no_issues(self):
+        with self.assertLogs() as capture:
+            call_command("document_sanity_checker")
+
+        self.assertEqual(len(capture.output), 1)
+        self.assertIn("Sanity checker detected no issues.", capture.output[0])
+
+    def test_errors(self):
+        doc = Document.objects.create(title="test", content="test", filename="test.pdf", checksum="abc")
+        Path(doc.source_path).touch()
+        Path(doc.thumbnail_path).touch()
+
+        with self.assertLogs() as capture:
+            call_command("document_sanity_checker")
+
+        self.assertEqual(len(capture.output), 1)
+        self.assertIn("Checksum mismatch of document", capture.output[0])

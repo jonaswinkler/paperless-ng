@@ -2,6 +2,7 @@ import logging
 import os
 import tempfile
 import uuid
+import zipfile
 from datetime import datetime
 from time import mktime
 
@@ -32,9 +33,10 @@ from rest_framework.viewsets import (
     ViewSet
 )
 
-import documents.index as index
 from paperless.db import GnuPG
 from paperless.views import StandardPagination
+from .bulk_download import OriginalAndArchiveStrategy, OriginalsOnlyStrategy, \
+    ArchiveOnlyStrategy
 from .classifier import load_classifier
 from .filters import (
     CorrespondentFilterSet,
@@ -48,12 +50,14 @@ from .parsers import get_parser_class_for_mime_type
 from .serialisers import (
     CorrespondentSerializer,
     DocumentSerializer,
+    TagSerializerVersion1,
     TagSerializer,
     DocumentTypeSerializer,
     PostDocumentSerializer,
     SavedViewSerializer,
+    DocumentListSerializer,
+    BulkDownloadSerializer,
     BulkEditSerializer,
-    SelectionDataSerializer,
     DocumentSplitMergePlanSerializer
 )
 
@@ -87,6 +91,7 @@ class IndexView(TemplateView):
         context['polyfills_js'] = f"frontend/{self.get_language()}/polyfills.js"  # NOQA: E501
         context['main_js'] = f"frontend/{self.get_language()}/main.js"
         context['webmanifest'] = f"frontend/{self.get_language()}/manifest.webmanifest"  # NOQA: E501
+        context['apple_touch_icon'] = f"frontend/{self.get_language()}/apple-touch-icon.png"  # NOQA: E501
         return context
 
 
@@ -116,7 +121,12 @@ class TagViewSet(ModelViewSet):
     queryset = Tag.objects.annotate(
         document_count=Count('documents')).order_by(Lower('name'))
 
-    serializer_class = TagSerializer
+    def get_serializer_class(self):
+        if int(self.request.version) == 1:
+            return TagSerializerVersion1
+        else:
+            return TagSerializer
+
     pagination_class = StandardPagination
     permission_classes = (IsAuthenticated,)
     filter_backends = (DjangoFilterBackend, OrderingFilter)
@@ -178,10 +188,12 @@ class DocumentViewSet(RetrieveModelMixin,
     def update(self, request, *args, **kwargs):
         response = super(DocumentViewSet, self).update(
             request, *args, **kwargs)
+        from documents import index
         index.add_or_update_document(self.get_object())
         return response
 
     def destroy(self, request, *args, **kwargs):
+        from documents import index
         index.remove_document_from_index(self.get_object())
         return super(DocumentViewSet, self).destroy(request, *args, **kwargs)
 
@@ -227,6 +239,12 @@ class DocumentViewSet(RetrieveModelMixin,
         else:
             return []
 
+    def get_filesize(self, filename):
+        if os.path.isfile(filename):
+            return os.stat(filename).st_size
+        else:
+            return None
+
     @action(methods=['get'], detail=True)
     def metadata(self, request, pk=None):
         try:
@@ -236,7 +254,7 @@ class DocumentViewSet(RetrieveModelMixin,
 
         meta = {
             "original_checksum": doc.checksum,
-            "original_size": os.stat(doc.source_path).st_size,
+            "original_size": self.get_filesize(doc.source_path),
             "original_mime_type": doc.mime_type,
             "media_filename": doc.filename,
             "has_archive_version": doc.has_archive_version,
@@ -247,7 +265,7 @@ class DocumentViewSet(RetrieveModelMixin,
         }
 
         if doc.has_archive_version:
-            meta['archive_size'] = os.stat(doc.archive_path).st_size,
+            meta['archive_size'] = self.get_filesize(doc.archive_path)
             meta['archive_metadata'] = self.get_metadata(
                 doc.archive_path, "application/pdf")
         else:
@@ -439,7 +457,7 @@ class PostDocumentView(APIView):
 class SelectionDataView(APIView):
 
     permission_classes = (IsAuthenticated,)
-    serializer_class = SelectionDataSerializer
+    serializer_class = DocumentListSerializer
     parser_classes = (parsers.MultiPartParser, parsers.JSONParser)
 
     def get_serializer_context(self):
@@ -497,10 +515,6 @@ class SearchView(APIView):
 
     permission_classes = (IsAuthenticated,)
 
-    def __init__(self, *args, **kwargs):
-        super(SearchView, self).__init__(*args, **kwargs)
-        self.ix = index.open_index()
-
     def add_infos_to_hit(self, r):
         try:
             doc = Document.objects.get(id=r['id'])
@@ -521,6 +535,7 @@ class SearchView(APIView):
                 }
 
     def get(self, request, format=None):
+        from documents import index
 
         if 'query' in request.query_params:
             query = request.query_params['query']
@@ -550,8 +565,10 @@ class SearchView(APIView):
         if page < 1:
             page = 1
 
+        ix = index.open_index()
+
         try:
-            with index.query_page(self.ix, page, query, more_like_id, more_like_content) as (result_page, corrected_query):  # NOQA: E501
+            with index.query_page(ix, page, query, more_like_id, more_like_content) as (result_page, corrected_query):  # NOQA: E501
                 return Response(
                     {'count': len(result_page),
                      'page': result_page.pagenum,
@@ -566,10 +583,6 @@ class SearchAutoCompleteView(APIView):
 
     permission_classes = (IsAuthenticated,)
 
-    def __init__(self, *args, **kwargs):
-        super(SearchAutoCompleteView, self).__init__(*args, **kwargs)
-        self.ix = index.open_index()
-
     def get(self, request, format=None):
         if 'term' in request.query_params:
             term = request.query_params['term']
@@ -583,7 +596,11 @@ class SearchAutoCompleteView(APIView):
         else:
             limit = 10
 
-        return Response(index.autocomplete(self.ix, term, limit))
+        from documents import index
+
+        ix = index.open_index()
+
+        return Response(index.autocomplete(ix, term, limit))
 
 
 class StatisticsView(APIView):
@@ -591,11 +608,69 @@ class StatisticsView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
-        return Response({
-            'documents_total': Document.objects.all().count(),
-            'documents_inbox': Document.objects.filter(
+        documents_total = Document.objects.all().count()
+        if Tag.objects.filter(is_inbox_tag=True).exists():
+            documents_inbox = Document.objects.filter(
                 tags__is_inbox_tag=True).distinct().count()
+        else:
+            documents_inbox = None
+
+        return Response({
+            'documents_total': documents_total,
+            'documents_inbox': documents_inbox,
         })
+
+
+class BulkDownloadView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+    serializer_class = BulkDownloadSerializer
+    parser_classes = (parsers.JSONParser,)
+
+    def get_serializer_context(self):
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+
+    def get_serializer(self, *args, **kwargs):
+        kwargs['context'] = self.get_serializer_context()
+        return self.serializer_class(*args, **kwargs)
+
+    def post(self, request, format=None):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        ids = serializer.validated_data.get('documents')
+        compression = serializer.validated_data.get('compression')
+        content = serializer.validated_data.get('content')
+
+        os.makedirs(settings.SCRATCH_DIR, exist_ok=True)
+        temp = tempfile.NamedTemporaryFile(
+            dir=settings.SCRATCH_DIR,
+            suffix="-compressed-archive",
+            delete=False)
+
+        if content == 'both':
+            strategy_class = OriginalAndArchiveStrategy
+        elif content == 'originals':
+            strategy_class = OriginalsOnlyStrategy
+        else:
+            strategy_class = ArchiveOnlyStrategy
+
+        with zipfile.ZipFile(temp.name, "w", compression) as zipf:
+            strategy = strategy_class(zipf)
+            for id in ids:
+                doc = Document.objects.get(id=id)
+                strategy.add_document(doc)
+
+        with open(temp.name, "rb") as f:
+            response = HttpResponse(f, content_type="application/zip")
+            response["Content-Disposition"] = '{}; filename="{}"'.format(
+                "attachment", "documents.zip")
+
+            return response
 
 
 class DocumentMergeView(APIView):

@@ -184,17 +184,17 @@ Downgrades are possible. However, some updates also contain database migrations 
 In order to move back from a version that applied database migrations, you'll have to revert the database migration *before* downgrading,
 and then downgrade paperless.
 
-This table lists the most recent database migrations for each versions:
+This table lists the compatible versions for each database migration number.
 
-+---------+-------------------------+
-| Version | Latest migration number |
-+---------+-------------------------+
-| 1.0.0   | 1011                    |
-+---------+-------------------------+
-| 1.1.0   | 1011                    |
-+---------+-------------------------+
-| 1.1.1   | 1012                    |
-+---------+-------------------------+
++------------------+-----------------+
+| Migration number | Version range   |
++------------------+-----------------+
+| 1011             | 1.0.0           |
++------------------+-----------------+
+| 1012             | 1.1.0 - 1.2.1   |
++------------------+-----------------+
+| 1014             | 1.3.0 - current |
++------------------+-----------------+
 
 Execute the following management command to migrate your database:
 
@@ -408,6 +408,34 @@ the naming scheme.
     document_renamer
 
 The command takes no arguments and processes all your documents at once.
+
+
+.. _utilities-sanity-checker:
+
+Sanity checker
+==============
+
+Paperless has a built-in sanity checker that inspects your document collection for issues.
+
+The issues detected by the sanity checker are as follows:
+
+* Missing original files.
+* Missing archive files.
+* Inaccessible original files due to improper permissions.
+* Inaccessible archive files due to improper permissions.
+* Corrupted original documents by comparing their checksum against what is stored in the database.
+* Corrupted archive documents by comparing their checksum against what is stored in the database.
+* Missing thumbnails.
+* Inaccessible thumbnails due to improper permissions.
+* Documents without any content (warning).
+* Orphaned files in the media directory (warning). These are files that are not referenced by any document im paperless.
+
+
+.. code::
+
+    document_sanity_checker
+
+The command takes no arguments. Depending on the size of your document archive, this may take some time.
 
 
 Fetching e-mail

@@ -280,10 +280,15 @@ writing. Windows is not and will never be supported.
     *   ``imagemagick`` >= 6 for PDF conversion
     *   ``optipng`` for optimizing thumbnails
     *   ``gnupg`` for handling encrypted documents
-    *   ``libpoppler-cpp-dev`` for PDF to text conversion
     *   ``libpq-dev`` for PostgreSQL
     *   ``libmagic-dev`` for mime type detection
     *   ``mime-support`` for mime type detection
+
+    Use this list for your preferred package management:
+
+    .. code:: 
+
+        python3 python3-pip python3-dev imagemagick fonts-liberation optipng gnupg libpq-dev libmagic-dev mime-support
 
     These dependencies are required for OCRmyPDF, which is used for text recognition.
 
@@ -297,6 +302,12 @@ writing. Windows is not and will never be supported.
     *   ``zlib1g``
     *   ``tesseract-ocr`` >= 4.0.0 for OCR
     *   ``tesseract-ocr`` language packs (``tesseract-ocr-eng``, ``tesseract-ocr-deu``, etc)
+
+    Use this list for your preferred package management:
+
+    .. code:: 
+
+        unpaper ghostscript icc-profiles-free qpdf liblept5 libxml2 pngquant zlib1g tesseract-ocr
 
     On Raspberry Pi, these libraries are required as well:
 
@@ -354,7 +365,7 @@ writing. Windows is not and will never be supported.
     .. code:: shell-session
 
         sudo -Hu paperless pip3 install -r requirements.txt
-    
+
     This will install all python dependencies in the home directory of
     the new paperless user.
 
@@ -763,7 +774,8 @@ configuring some options in paperless can help improve performance immensely:
 
 *   Stick with SQLite to save some resources.
 *   Consider setting ``PAPERLESS_OCR_PAGES`` to 1, so that paperless will only OCR
-    the first page of your documents.
+    the first page of your documents. In most cases, this page contains enough
+    information to be able to find it.
 *   ``PAPERLESS_TASK_WORKERS`` and ``PAPERLESS_THREADS_PER_WORKER`` are configured
     to use all cores. The Raspberry Pi models 3 and up have 4 cores, meaning that
     paperless will use 2 workers and 2 threads per worker. This may result in
@@ -774,8 +786,13 @@ configuring some options in paperless can help improve performance immensely:
     your documents before feeding them into paperless. Some scanners are able to
     do this! You might want to even specify ``skip_noarchive`` to skip archive
     file generation for already ocr'ed documents entirely.
+*   If you want to perform OCR on the the device, consider using ``PAPERLESS_OCR_CLEAN=none``.
+    This will speed up OCR times and use less memory at the expense of slightly worse
+    OCR results.
 *   Set ``PAPERLESS_OPTIMIZE_THUMBNAILS`` to 'false' if you want faster consumption
     times. Thumbnails will be about 20% larger.
+*   If using docker, consider setting ``PAPERLESS_WEBSERVER_WORKERS`` to
+    1. This will save some memory.
 
 For details, refer to :ref:`configuration`.
 
@@ -800,7 +817,7 @@ Using nginx as a reverse proxy
 ##############################
 
 If you want to expose paperless to the internet, you should hide it behind a
-reverse proxy with SSL enabled. 
+reverse proxy with SSL enabled.
 
 In addition to the usual configuration for SSL,
 the following configuration is required for paperless to operate:

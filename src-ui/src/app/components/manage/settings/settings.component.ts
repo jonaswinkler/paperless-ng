@@ -21,6 +21,7 @@ export class SettingsComponent implements OnInit {
     'documentListItemPerPage': new FormControl(this.settings.get(SETTINGS_KEYS.DOCUMENT_LIST_SIZE)),
     'darkModeUseSystem': new FormControl(this.settings.get(SETTINGS_KEYS.DARK_MODE_USE_SYSTEM)),
     'darkModeEnabled': new FormControl(this.settings.get(SETTINGS_KEYS.DARK_MODE_ENABLED)),
+    'darkModeInvertThumbs': new FormControl(this.settings.get(SETTINGS_KEYS.DARK_MODE_THUMB_INVERTED)),
     'useNativePdfViewer': new FormControl(this.settings.get(SETTINGS_KEYS.USE_NATIVE_PDF_VIEWER)),
     'savedViews': this.savedViewGroup,
     'displayLanguage': new FormControl(this.settings.getLanguage()),
@@ -35,7 +36,7 @@ export class SettingsComponent implements OnInit {
   savedViews: PaperlessSavedView[]
 
   get computedDateLocale(): string {
-    return this.settingsForm.value.dateLocale || this.settingsForm.value.displayLanguage
+    return this.settingsForm.value.dateLocale || this.settingsForm.value.displayLanguage || this.currentLocale
   }
 
   constructor(
@@ -74,6 +75,7 @@ export class SettingsComponent implements OnInit {
     this.settings.set(SETTINGS_KEYS.DOCUMENT_LIST_SIZE, this.settingsForm.value.documentListItemPerPage)
     this.settings.set(SETTINGS_KEYS.DARK_MODE_USE_SYSTEM, this.settingsForm.value.darkModeUseSystem)
     this.settings.set(SETTINGS_KEYS.DARK_MODE_ENABLED, (this.settingsForm.value.darkModeEnabled == true).toString())
+    this.settings.set(SETTINGS_KEYS.DARK_MODE_THUMB_INVERTED, (this.settingsForm.value.darkModeInvertThumbs == true).toString())
     this.settings.set(SETTINGS_KEYS.USE_NATIVE_PDF_VIEWER, this.settingsForm.value.useNativePdfViewer)
     this.settings.set(SETTINGS_KEYS.DATE_LOCALE, this.settingsForm.value.dateLocale)
     this.settings.set(SETTINGS_KEYS.DATE_FORMAT, this.settingsForm.value.dateFormat)
@@ -88,11 +90,15 @@ export class SettingsComponent implements OnInit {
   }
 
   get displayLanguageOptions(): LanguageOption[] {
-    return [{code: "", name: $localize`Use system language`}].concat(this.settings.getLanguageOptions())
+    return [
+      {code: "", name: $localize`Use system language`}
+    ].concat(this.settings.getLanguageOptions())
   }
 
   get dateLocaleOptions(): LanguageOption[] {
-    return [{code: "", name: $localize`Use date format of display language`}].concat(this.settings.getLanguageOptions())
+    return [
+      {code: "", name: $localize`Use date format of display language`}
+    ].concat(this.settings.getDateLocaleOptions())
   }
 
   get today() {
