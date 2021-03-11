@@ -65,6 +65,22 @@ def consume_many_files(kwargs_list, delete_document_ids=None):
                 Document.objects.get(id=document_id).delete()
 
 
+def copy_pdf_metadata(source: Pdf, target: Pdf):
+    with source.open_metadata() as source_meta:
+        with target.open_metadata() as target_meta:
+            for k in source_meta:
+                target_meta[k] = source_meta[k]
+
+
+def copy_document_metadata(document: Document, consume_task):
+    if document.correspondent:
+        consume_task["override_correspondent_id"] = document.correspondent.id
+    if document.document_type:
+        consume_task["override_document_type_id"] = document.document_type.id
+    if document.tags.count() > 0:
+        consume_task["override_tag_ids"] = [tag.id for tag in document.tags]
+
+
 def execute_split_merge_plan(plan, tempdir: str, metadata: str = "redo", delete_source: bool = False, preview: bool = True):
 
     consume_tasks = []
@@ -72,58 +88,56 @@ def execute_split_merge_plan(plan, tempdir: str, metadata: str = "redo", delete_
     source_documents = set()
 
     try:
-        for (i, target_document_spec) in enumerate(plan):
+        for target_document_spec in plan:
             # create a new document from documents in target_document_spec
 
-            target_pdf: Pdf = Pdf.new()
-            version = target_pdf.pdf_version
+            target_pdf: Pdf = None
+            try:
+                target_pdf = Pdf.new()
+                target_pdf_filename = tempfile.NamedTemporaryFile(suffix="_pdf", dir=tempdir).name
+                version = target_pdf.pdf_version
+                consume_task = {"path": target_pdf_filename}
 
-            for source_document_spec in target_document_spec:
-                source_document_id = source_document_spec['document']
-                source_documents.add(source_document_id)
+                for (source_document_num, source_document_spec) in enumerate(target_document_spec):
+                    source_document_id = source_document_spec['document']
+                    source_documents.add(source_document_id)
 
-                if 'pages' in source_document_spec:
-                    pages = source_document_spec['pages']
-                else:
-                    pages = None
+                    if 'pages' in source_document_spec:
+                        pages = source_document_spec['pages']
+                    else:
+                        pages = None
 
-                try:
-                    source_document: Document = Document.objects.get(id=source_document_id)
-                except Document.DoesNotExist:
-                    raise MergeError()
+                    try:
+                        source_document: Document = Document.objects.get(id=source_document_id)
+                    except Document.DoesNotExist:
+                        raise MergeError()
 
-                source_pdf: Pdf = cache.open_from_document(source_document)
-                version = max(version, source_pdf.pdf_version)
+                    source_pdf: Pdf = cache.open_from_document(source_document)
+                    version = max(version, source_pdf.pdf_version)
 
-                if pages is not None:
-                    for page in pages:
-                        if page >= len(source_pdf.pages):
-                            raise MergeError()
-                        target_pdf.pages.append(source_pdf.pages[page])
-                else:
-                    target_pdf.pages.extend(source_pdf.pages)
+                    if source_document_num == 0:
+                        # first source document for this target
+                        consume_task["override_title"] = source_document.title
+                        copy_pdf_metadata(source_pdf, target_pdf)
+                        if metadata == "copy_first":
+                            copy_document_metadata(source_document, consume_task)
 
-            target_pdf_filename = tempfile.NamedTemporaryFile(suffix="_pdf", dir=tempdir).name
-            target_pdf.remove_unreferenced_resources()
-            target_pdf.save(target_pdf_filename, min_version=version)
-            target_pdf.close()
+                    if pages is not None:
+                        for page in pages:
+                            if page > len(source_pdf.pages) or page < 1:
+                                raise MergeError()
+                            target_pdf.pages.append(source_pdf.pages[page - 1])
+                    else:
+                        target_pdf.pages.extend(source_pdf.pages)
 
-            consume_task = {"path": target_pdf_filename}
+                target_pdf.remove_unreferenced_resources()
+                target_pdf.save(target_pdf_filename, min_version=version)
+                target_pdf.close()
 
-            first_id = target_document_spec[0]["document"]
-            first_doc: Document = Document.objects.get(id=first_id)
-
-            consume_task["override_title"] = first_doc.title
-
-            if metadata == "copy_first":
-                if first_doc.correspondent:
-                    consume_task["override_correspondent_id"] = first_doc.correspondent.id
-                if first_doc.document_type:
-                    consume_task["override_document_type_id"] = first_doc.document_type.hidden
-                if first_doc.tags.count() > 0:
-                    consume_task["override_tag_ids"] = [tag.id for tag in first_doc.tags]
-
-            consume_tasks.append(consume_task)
+                consume_tasks.append(consume_task)
+            finally:
+                if target_pdf is not None:
+                    target_pdf.close()
     finally:
         cache.close_all()
 
