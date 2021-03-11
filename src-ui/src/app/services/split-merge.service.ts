@@ -10,19 +10,22 @@ import { SplitMergeMetadata, SplitMergeRequest } from '../data/split-merge-reque
 })
 export class SplitMergeService {
 
-  // this also needs to incorporate pages.
+  // this also needs to incorporate pages, if we want to support that.
   private documents: PaperlessDocument[] = []
 
   constructor(private http: HttpClient) { }
 
+  // just a demo
   addDocument(document: PaperlessDocument) {
     this.documents.push(document)
   }
 
+  // just a demo
   hasDocuments(): boolean {
     return this.documents.length > 0
   }
 
+  // just a demo
   getDocuments() {
     return this.documents
   }
@@ -40,7 +43,7 @@ export class SplitMergeService {
   }
 
   getPreviewUrl(previewKey: string) {
-    return `${environment.apiBaseUrl}/split_merge/${previewKey}/`
+    return `${environment.apiBaseUrl}split_merge/${previewKey}/`
   }
 
 }
