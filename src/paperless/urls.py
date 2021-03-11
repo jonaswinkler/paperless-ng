@@ -25,17 +25,22 @@ from documents.views import (
     BulkEditView,
     SelectionDataView,
     BulkDownloadView,
-    DocumentMergeView
+    DocumentSplitMergeViewSet
 )
 from paperless.views import FaviconView
 
 api_router = DefaultRouter()
+
+api_router.register(r"documents", DocumentViewSet)
 api_router.register(r"correspondents", CorrespondentViewSet)
 api_router.register(r"document_types", DocumentTypeViewSet)
-api_router.register(r"documents", DocumentViewSet)
-api_router.register(r"logs", LogViewSet, basename="logs")
 api_router.register(r"tags", TagViewSet)
+
+api_router.register(r"logs", LogViewSet, basename="logs")
+
 api_router.register(r"saved_views", SavedViewViewSet)
+
+api_router.register(r"split_merge", DocumentSplitMergeViewSet, basename="split_merge")
 
 
 urlpatterns = [
@@ -67,10 +72,6 @@ urlpatterns = [
 
         re_path(r"^documents/bulk_download/", BulkDownloadView.as_view(),
                 name="bulk_download"),
-
-        re_path(r"^documents/merge/",
-                DocumentMergeView.as_view(),
-                name="merge"),
 
         path('token/', views.obtain_auth_token)
 

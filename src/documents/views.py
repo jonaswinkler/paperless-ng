@@ -6,6 +6,7 @@ import zipfile
 from datetime import datetime
 from time import mktime
 
+import pathvalidate
 from django.conf import settings
 from django.db.models import Count, Max, Case, When, IntegerField
 from django.db.models.functions import Lower
@@ -18,6 +19,7 @@ from django_q.tasks import async_task
 from rest_framework import parsers
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import (
     DestroyModelMixin,
     ListModelMixin,
@@ -673,28 +675,49 @@ class BulkDownloadView(APIView):
             return response
 
 
-class DocumentMergeView(APIView):
+class DocumentSplitMergeViewSet(GenericViewSet):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = DocumentSplitMergePlanSerializer
-    parser_classes = (parsers.JSONParser,)
 
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
+    def __init__(self, **kwargs):
+        super(DocumentSplitMergeViewSet, self).__init__(**kwargs)
+        self.tempdir = os.path.join(settings.SCRATCH_DIR, "paperless-split-merge")
+        os.makedirs(self.tempdir, exist_ok=True)
 
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
+    def get_queryset(self):
+        return os.listdir(self.tempdir)
 
-    def post(self, request, *args, **kwargs):
+    def retrieve(self, request, pk, *args, **kwargs):
+        filename = os.path.join(self.tempdir, pathvalidate.sanitize_filename(pk))
+        if not os.path.isfile(filename):
+            raise Http404()
+
+        with open(filename, "rb") as f:
+            return HttpResponse(f, content_type="application/pdf")
+
+    def list(self, request, *args, **kwargs):
+        return Response(self.get_queryset())
+
+    def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        # merge_plan = serializer.validated_data.get("merge_plan")
-        # preview = serializer.validated_data.get("preview")
+        from .merge import execute_split_merge_plan, MergeError
 
-        return Response("Not implemented yet")
+        split_merge_plan = serializer.validated_data.get("split_merge_plan")
+        preview = serializer.validated_data.get("preview")
+        delete_source = serializer.validated_data.get("delete_source")
+        metadata = serializer.validated_data.get("metadata")
+        try:
+            pdf_files = execute_split_merge_plan(
+                plan=split_merge_plan,
+                preview=preview,
+                delete_source=delete_source,
+                metadata=metadata,
+                tempdir=self.tempdir
+            )
+        except MergeError:
+            raise
+
+        return Response(pdf_files)

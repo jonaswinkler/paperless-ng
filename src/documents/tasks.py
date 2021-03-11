@@ -82,9 +82,7 @@ def consume_file(path,
     )
 
     if document:
-        return "Success. New document id {} created".format(
-            document.pk
-        )
+        return document.pk
     else:
         raise ConsumerError("Unknown error: Returned document was null, but "
                             "no error message was given.")
