@@ -10,6 +10,7 @@ import { SplitMergeMetadata, SplitMergeRequest } from '../data/split-merge-reque
 })
 export class SplitMergeService {
 
+  // this also needs to incorporate pages.
   private documents: PaperlessDocument[] = []
 
   constructor(private http: HttpClient) { }
@@ -22,14 +23,20 @@ export class SplitMergeService {
     return this.documents.length > 0
   }
 
+  getDocuments() {
+    return this.documents
+  }
+
   executeSplitMerge(preview: boolean, delete_source: boolean, metadata: SplitMergeMetadata): Observable<string[]> {
     let request: SplitMergeRequest = {
       delete_source: delete_source,
       preview: preview,
       metadata: metadata,
-      split_merge_plan: []
+      split_merge_plan: [
+        this.documents.map(d => { return {document: d.id} })
+      ]
     }
-    return this.http.post<string[]>(`${environment.apiBaseUrl}/split_merge/`, request)
+    return this.http.post<string[]>(`${environment.apiBaseUrl}split_merge/`, request)
   }
 
   getPreviewUrl(previewKey: string) {

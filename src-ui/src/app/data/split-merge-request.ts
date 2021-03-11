@@ -1,12 +1,12 @@
 export enum SplitMergeMetadata {
 
-  redo,
+  REDO = "redo",
 
-  copy_first
+  COPY_FIRST = "copy_first"
 
 }
 
-export interface SplitMergeDocumentPart {
+export interface SplitMergePlanDocumentPart {
 
   document: number,
 
@@ -14,9 +14,11 @@ export interface SplitMergeDocumentPart {
 
 }
 
+export type SplitMergePlan = SplitMergePlanDocumentPart[][]
+
 export interface SplitMergeRequest {
 
-  split_merge_plan: SplitMergeDocumentPart[][]
+  split_merge_plan: SplitMergePlan
 
   delete_source: boolean
 

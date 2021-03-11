@@ -1,2 +1,8 @@
 <app-page-header i18n-title title="Split & merge documents">
 </app-page-header>
+
+<p *ngFor="let d of documents">
+  {{d.title}}
+</p>
+
+<button class="btn btn-primary" (click)="doIt()">Do it!</button>
