@@ -40,7 +40,8 @@ api_router.register(r"logs", LogViewSet, basename="logs")
 
 api_router.register(r"saved_views", SavedViewViewSet)
 
-api_router.register(r"split_merge", DocumentSplitMergeViewSet, basename="split_merge")
+api_router.register(
+    r"split_merge", DocumentSplitMergeViewSet, basename="split_merge")
 
 
 urlpatterns = [
