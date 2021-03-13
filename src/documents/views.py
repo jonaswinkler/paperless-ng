@@ -720,4 +720,4 @@ class DocumentSplitMergeViewSet(GenericViewSet):
         except MergeError:
             raise
 
-        return Response(pdf_files)
+        return Response([os.path.basename(file) for file in pdf_files])

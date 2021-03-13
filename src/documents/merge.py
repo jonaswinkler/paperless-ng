@@ -150,4 +150,4 @@ def execute_split_merge_plan(plan, tempdir: str, metadata: str = "redo", delete_
             delete_document_ids=list(source_documents) if delete_source else None
         )
 
-    return [os.path.basename(t["path"]) for t in consume_tasks]
+    return [t["path"] for t in consume_tasks]
