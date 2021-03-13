@@ -1,4 +1,5 @@
 import os
+import re
 import tempfile
 
 from django.conf import settings
@@ -44,6 +45,34 @@ class PdfCache:
             self.cache[pk].close()
 
         self.cache.clear()
+
+
+def parse_page_list(page_list: str):
+
+    if not page_list:
+        return []
+
+    result = []
+
+    re_simple = re.compile(r"^\d+$")
+    re_range = re.compile(r"^(\d+)-(\d+)$")
+
+    for page_list_part in page_list.split(","):
+        match_simple = re_simple.match(page_list_part)
+        match_range = re_range.match(page_list_part)
+        if match_simple:
+            result.append(int(page_list_part))
+        elif match_range:
+            first = int(match_range.group(1))
+            last = int(match_range.group(2))
+            if first <= last:
+                result.extend(range(first, last+1))
+            else:
+                result.extend(reversed(range(last, first+1)))
+        else:
+            raise MergeError(f"Invalid page range: {page_list}")
+
+    return result
 
 
 def consume_many_files(kwargs_list, delete_document_ids=None):
@@ -112,7 +141,7 @@ def execute_split_merge_plan(plan,
                     source_documents.add(source_document_id)
 
                     if 'pages' in source_doc_spec:
-                        pages = source_doc_spec['pages']
+                        pages = parse_page_list(source_doc_spec['pages'])
                     else:
                         pages = None
 

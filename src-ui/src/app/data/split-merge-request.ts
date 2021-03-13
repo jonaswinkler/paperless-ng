@@ -10,7 +10,7 @@ export interface SplitMergePlanDocumentPart {
 
   document: number,
 
-  pages?: number[]
+  pages?: string
 
 }
 

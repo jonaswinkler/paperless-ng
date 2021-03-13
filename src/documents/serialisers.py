@@ -512,20 +512,20 @@ class DocumentSplitMergePlanSerializer(serializers.Serializer):
             [
                 {
                     "document": 1,
-                    "pages": [1,2,3]
+                    "pages": "1-3"
                 },
                 {
                     "document": 2,
                 },
                 {
                     "document": 1,
-                    "pages": [4]
+                    "pages": "4"
                 }
             ],
             [
                 {
                     "document": 1,
-                    "pages": [6,5]
+                    "pages": "6,5"
                 }
             ]
         ]

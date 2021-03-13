@@ -13,7 +13,7 @@ from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from documents.consumer import ConsumerError
-from documents.merge import PdfCache, MergeError, execute_split_merge_plan, consume_many_files
+from documents.merge import PdfCache, MergeError, execute_split_merge_plan, consume_many_files, parse_page_list
 from documents.models import Document, Correspondent, Tag, DocumentType
 from documents.tests.utils import DirectoriesMixin
 
@@ -67,6 +67,26 @@ class TestPdfCache(DirectoriesMixin, TestCase):
         self.assertEqual(len(self.cache.cache), 0)
 
 
+class TestParsePageList(TestCase):
+
+    def test_ranges(self):
+        self.assertListEqual(parse_page_list(""), [])
+        self.assertListEqual(parse_page_list(None), [])
+        self.assertListEqual(parse_page_list("1,2,3"), [1, 2, 3])
+        self.assertListEqual(parse_page_list("1,3,2"), [1, 3, 2])
+        self.assertListEqual(parse_page_list("1-3,5"), [1, 2, 3, 5])
+        self.assertListEqual(parse_page_list("1-1,1,2-2,2,6-6,6"), [1, 1, 2, 2, 6, 6])
+        self.assertListEqual(parse_page_list("5-3,1"), [5, 4, 3, 1])
+
+    def test_error(self):
+        self.assertRaises(MergeError, parse_page_list, "as")
+        self.assertRaises(MergeError, parse_page_list, "1--2")
+        self.assertRaises(MergeError, parse_page_list, "1,2,3,")
+        self.assertRaises(MergeError, parse_page_list, "1-8,1-a")
+        self.assertRaises(MergeError, parse_page_list, "8,1-,8")
+        self.assertRaises(MergeError, parse_page_list, "1,,2")
+
+
 class FakePdf:
 
     def __init__(self):
@@ -116,7 +136,7 @@ class TestExecuteSplitMergePlan(DirectoriesMixin, TestCase):
         doc1 = Document.objects.create(content="A B C")
         result = execute_split_merge_plan(
             plan=[
-                [{"document": doc1.pk, "pages": [1, 3]}]
+                [{"document": doc1.pk, "pages": "1,3"}]
             ],
             tempdir=self.tempdir,
         )
@@ -126,8 +146,8 @@ class TestExecuteSplitMergePlan(DirectoriesMixin, TestCase):
         doc1 = Document.objects.create(content="A B C")
         result = execute_split_merge_plan(
             plan=[
-                [{"document": doc1.pk, "pages": [1, 2]}],
-                [{"document": doc1.pk, "pages": [3]}],
+                [{"document": doc1.pk, "pages": "1,2"}],
+                [{"document": doc1.pk, "pages": "3"}],
             ],
             tempdir=self.tempdir,
         )
@@ -149,7 +169,7 @@ class TestExecuteSplitMergePlan(DirectoriesMixin, TestCase):
         doc2 = Document.objects.create(content="D E", checksum="B")
         result = execute_split_merge_plan(
             plan=[
-                [{"document": doc1.pk, "pages": [3, 1]}, {"document": doc2.pk, "pages": [2]}],
+                [{"document": doc1.pk, "pages": "3,1"}, {"document": doc2.pk, "pages": "2"}],
             ],
             tempdir=self.tempdir,
         )
@@ -170,7 +190,7 @@ class TestExecuteSplitMergePlan(DirectoriesMixin, TestCase):
             MergeError,
             "Page 4 is out of range.",
             execute_split_merge_plan,
-            plan=[[{"document": doc1.pk, "pages": [4]}]],
+            plan=[[{"document": doc1.pk, "pages": "4"}]],
             tempdir=self.tempdir,
         )
 
