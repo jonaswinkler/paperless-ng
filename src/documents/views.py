@@ -682,14 +682,15 @@ class DocumentSplitMergeViewSet(GenericViewSet):
 
     def __init__(self, **kwargs):
         super(DocumentSplitMergeViewSet, self).__init__(**kwargs)
-        self.tempdir = os.path.join(settings.SCRATCH_DIR, "paperless-split-merge")
+        self.tempdir = os.path.join(settings.SCRATCH_DIR, "split-merge")
         os.makedirs(self.tempdir, exist_ok=True)
 
     def get_queryset(self):
         return os.listdir(self.tempdir)
 
     def retrieve(self, request, pk, *args, **kwargs):
-        filename = os.path.join(self.tempdir, pathvalidate.sanitize_filename(pk))
+        filename = os.path.join(
+            self.tempdir, pathvalidate.sanitize_filename(pk))
         if not os.path.isfile(filename):
             raise Http404()
 
