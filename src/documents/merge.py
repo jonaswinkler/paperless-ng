@@ -78,7 +78,9 @@ def copy_document_metadata(document: Document, consume_task):
     if document.document_type:
         consume_task["override_document_type_id"] = document.document_type.id
     if document.tags.count() > 0:
-        consume_task["override_tag_ids"] = [tag.id for tag in document.tags]
+        consume_task["override_tag_ids"] = [tag.id for tag in document.tags.all()]
+
+    consume_task['override_date'] = document.created
 
 
 def execute_split_merge_plan(plan, tempdir: str, metadata: str = "redo", delete_source: bool = False, preview: bool = True):

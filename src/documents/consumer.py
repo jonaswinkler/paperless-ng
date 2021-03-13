@@ -74,6 +74,7 @@ class Consumer(LoggingMixin):
         self.path = None
         self.filename = None
         self.override_title = None
+        self.override_date = None
         self.override_correspondent_id = None
         self.override_tag_ids = None
         self.override_document_type_id = None
@@ -157,6 +158,7 @@ class Consumer(LoggingMixin):
                          path,
                          override_filename=None,
                          override_title=None,
+                         override_date=None,
                          override_correspondent_id=None,
                          override_document_type_id=None,
                          override_tag_ids=None,
@@ -168,6 +170,7 @@ class Consumer(LoggingMixin):
         self.path = path
         self.filename = override_filename or os.path.basename(path)
         self.override_title = override_title
+        self.override_date = override_date
         self.override_correspondent_id = override_correspondent_id
         self.override_document_type_id = override_document_type_id
         self.override_tag_ids = override_tag_ids
@@ -386,6 +389,9 @@ class Consumer(LoggingMixin):
         if self.override_tag_ids:
             for tag_id in self.override_tag_ids:
                 document.tags.add(Tag.objects.get(pk=tag_id))
+
+        if self.override_date:
+            document.created = self.override_date
 
     def _write(self, storage_type, source, target):
         with open(source, "rb") as read_file:
