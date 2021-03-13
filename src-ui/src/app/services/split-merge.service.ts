@@ -29,6 +29,10 @@ export class SplitMergeService {
   getDocuments() {
     return this.documents
   }
+  
+  clear() {
+    this.documents = []
+  }
 
   executeSplitMerge(preview: boolean, delete_source: boolean, metadata: SplitMergeMetadata): Observable<string[]> {
     let request: SplitMergeRequest = {

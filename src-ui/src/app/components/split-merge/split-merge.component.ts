@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SplitMergeMetadata } from 'src/app/data/split-merge-request';
 import { SplitMergeService } from 'src/app/services/split-merge.service';
 
@@ -9,7 +10,7 @@ import { SplitMergeService } from 'src/app/services/split-merge.service';
 })
 export class SplitMergeComponent implements OnInit {
 
-  constructor(private splitMergeService: SplitMergeService) { }
+  constructor(private splitMergeService: SplitMergeService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +23,8 @@ export class SplitMergeComponent implements OnInit {
     this.splitMergeService.executeSplitMerge(false, false, SplitMergeMetadata.COPY_FIRST).subscribe(
       result => {
         console.log(result)
+        this.splitMergeService.clear()
+        this.router.navigate([""])
       }
     )
   }

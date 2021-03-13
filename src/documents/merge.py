@@ -103,7 +103,7 @@ def execute_split_merge_plan(plan,
             try:
                 target_pdf = Pdf.new()
                 target_pdf_filename = tempfile.NamedTemporaryFile(
-                    suffix="_pdf", dir=tempdir).name
+                    prefix="merge_", suffix="_pdf", dir=tempdir).name
                 version = target_pdf.pdf_version
                 consume_task = {"path": target_pdf_filename}
 
