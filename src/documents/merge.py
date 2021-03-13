@@ -29,10 +29,10 @@ class PdfCache:
         elif document.has_archive_version:
             filename = document.archive_path
         else:
-            raise MergeError()
+            raise MergeError(f"Document {document.pk} does not have PDF.")
 
         if not os.path.exists(filename):
-            raise MergeError()
+            raise MergeError(f"{filename} does not exist.")
 
         pdf = Pdf.open(filename)
         self.cache[document.pk] = pdf
@@ -112,7 +112,7 @@ def execute_split_merge_plan(plan, tempdir: str, metadata: str = "redo", delete_
                     try:
                         source_document: Document = Document.objects.get(id=source_document_id)
                     except Document.DoesNotExist:
-                        raise MergeError()
+                        raise MergeError(f"Document {source_document_id} does not exist.")
 
                     source_pdf: Pdf = cache.open_from_document(source_document)
                     version = max(version, source_pdf.pdf_version)
@@ -127,7 +127,7 @@ def execute_split_merge_plan(plan, tempdir: str, metadata: str = "redo", delete_
                     if pages is not None:
                         for page in pages:
                             if page > len(source_pdf.pages) or page < 1:
-                                raise MergeError()
+                                raise MergeError(f"Page {page} is out of range.")
                             target_pdf.pages.append(source_pdf.pages[page - 1])
                     else:
                         target_pdf.pages.extend(source_pdf.pages)
