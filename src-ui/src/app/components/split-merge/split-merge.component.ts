@@ -1,19 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SplitMergeMetadata } from 'src/app/data/split-merge-request';
 import { SplitMergeService } from 'src/app/services/split-merge.service';
 import { DocumentService } from 'src/app/services/rest/document.service';
 import { PaperlessDocument } from 'src/app/data/paperless-document';
 import { DndDropEvent } from 'ngx-drag-drop';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-split-merge',
   templateUrl: './split-merge.component.html',
   styleUrls: ['./split-merge.component.scss']
 })
-export class SplitMergeComponent implements OnInit {
+export class SplitMergeComponent implements OnInit, OnDestroy {
+
   loading: Boolean = false
   previewUrl: String
+
+  private previewDebounce$ = new Subject()
+
+  private previewSub: Subscription
 
   constructor(
     private splitMergeService: SplitMergeService,
@@ -21,7 +28,17 @@ export class SplitMergeComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.previewSub = this.previewDebounce$.pipe(
+      debounceTime(400)
+    ).subscribe(() => {
+      this.save(true)
+    })
+    if (this.documents.length > 0) this.previewDebounce$.next()
+  }
+
+  ngOnDestroy() {
+    this.previewDebounce$.complete()
   }
 
   get documents(): PaperlessDocument[] {
@@ -43,6 +60,7 @@ export class SplitMergeComponent implements OnInit {
       index = this.documents.length
     }
     this.documents.splice(index, 0, event.data)
+    this.previewDebounce$.next()
   }
 
   cancel() {
@@ -50,10 +68,10 @@ export class SplitMergeComponent implements OnInit {
     this.router.navigate([""])
   }
 
-  doIt() {
+  save(preview: Boolean = false) {
     this.loading = true
-    this.previewUrl = ''
-    this.splitMergeService.executeSplitMerge(true, false, SplitMergeMetadata.COPY_FIRST).subscribe(
+    this.previewUrl = undefined
+    this.splitMergeService.executeSplitMerge(preview, false, SplitMergeMetadata.COPY_FIRST).subscribe(
       result => {
         console.log(result)
         this.loading = false
