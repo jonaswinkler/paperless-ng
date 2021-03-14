@@ -1,8 +1,18 @@
 <app-page-header i18n-title title="Split & merge documents">
 </app-page-header>
 
-<p *ngFor="let d of documents">
-  {{d.title}}
-</p>
+<div class="col-6">
+  <div class="card-deck p-3 bg-light" dndDropzone (dndDrop)="onDrop($event, documents)">
+    <div class="spacer bg-primary" dndPlaceholderRef>
+    </div>
+    <div *ngFor="let d of documents" class="card" [dndDraggable]="d" dndEffectAllowed="move" (dndStart)="onDragStart($event)" (dndMoved)="onDragged(d, documents)">
+      <img class="rounded" [src]="getThumbUrl(d.id)">
+      {{d.title}}
+    </div>
+  </div>
 
-<button class="btn btn-primary" (click)="doIt()">Do it!</button>
+  <button class="btn btn-primary" (click)="doIt()">Do it!</button>
+</div>
+<div class="col-4">
+
+</div>

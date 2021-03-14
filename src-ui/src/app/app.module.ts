@@ -66,6 +66,7 @@ import { ApiVersionInterceptor } from './interceptors/api-version.interceptor';
 import { ColorSliderModule } from 'ngx-color/slider';
 import { ColorComponent } from './components/common/input/color/color.component';
 import { SplitMergeComponent } from './components/split-merge/split-merge.component';
+import { DndModule } from 'ngx-drag-drop';
 
 import localeFr from '@angular/common/locales/fr';
 import localeNl from '@angular/common/locales/nl';
@@ -150,7 +151,8 @@ registerLocaleData(localeRu)
     InfiniteScrollModule,
     PdfViewerModule,
     NgSelectModule,
-    ColorSliderModule
+    ColorSliderModule,
+    DndModule
   ],
   providers: [
     DatePipe,
