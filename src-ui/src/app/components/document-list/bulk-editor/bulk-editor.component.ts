@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PaperlessTag } from 'src/app/data/paperless-tag';
 import { PaperlessCorrespondent } from 'src/app/data/paperless-correspondent';
 import { PaperlessDocumentType } from 'src/app/data/paperless-document-type';
@@ -31,6 +31,9 @@ export class BulkEditorComponent {
   tagSelectionModel = new FilterableDropdownSelectionModel()
   correspondentSelectionModel = new FilterableDropdownSelectionModel()
   documentTypeSelectionModel = new FilterableDropdownSelectionModel()
+
+  @Output()
+  addSelectedToSplitMerge = new EventEmitter()
 
   constructor(
     private documentTypeService: DocumentTypeService,
@@ -213,5 +216,9 @@ export class BulkEditorComponent {
     this.documentService.bulkDownload(Array.from(this.list.selected), content).subscribe((result: any) => {
       saveAs(result, 'documents.zip');
     })
+  }
+
+  addToSplitMerge() {
+    this.addSelectedToSplitMerge.next()
   }
 }

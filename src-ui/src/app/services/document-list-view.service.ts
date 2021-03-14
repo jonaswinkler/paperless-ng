@@ -181,6 +181,10 @@ export class DocumentListViewService {
     return this.activeListViewState.selected
   }
 
+  get selectedDocuments(): PaperlessDocument[] {
+    return this.activeListViewState.documents.filter(d => this.activeListViewState.selected.has(d.id))
+  }
+
   setSort(field: string, reverse: boolean) {
     this.activeListViewState.sortField = field
     this.activeListViewState.sortReverse = reverse

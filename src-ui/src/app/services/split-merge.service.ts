@@ -20,6 +20,10 @@ export class SplitMergeService {
     this.documents.push(document)
   }
 
+  addDocuments(documents: PaperlessDocument[]) {
+    this.documents = this.documents.concat(documents)
+  }
+
   // just a demo
   hasDocuments(): boolean {
     return this.documents.length > 0
@@ -29,7 +33,7 @@ export class SplitMergeService {
   getDocuments() {
     return this.documents
   }
-  
+
   clear() {
     this.documents = []
   }
