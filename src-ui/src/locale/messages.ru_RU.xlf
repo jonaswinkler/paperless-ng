@@ -1749,7 +1749,7 @@
           <context context-type="sourcefile">src/app/components/dashboard/widgets/upload-file-widget/upload-file-widget.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
-        <target state="translated">Загрузить файлы</target>
+        <target state="translated">Загрузите файлы</target>
       </trans-unit>
       <trans-unit id="bd4a8607e4a002d939cffb347ec056664dfb2c73" datatype="html">
         <source>Dismiss completed</source>
