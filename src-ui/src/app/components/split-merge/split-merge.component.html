@@ -1,18 +1,26 @@
 <app-page-header i18n-title title="Split & merge documents">
 </app-page-header>
 
-<div class="col-6">
-  <div class="card-deck p-3 bg-light" dndDropzone (dndDrop)="onDrop($event, documents)">
-    <div class="spacer bg-primary" dndPlaceholderRef>
+<div class="row">
+  <div class="col-8">
+    <div class="card-deck p-4" dndDropzone (dndDrop)="onDrop($event, documents)">
+      <div class="spacer bg-primary" dndPlaceholderRef>
+      </div>
+      <div *ngFor="let d of documents" class="card" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
+        <img class="card-img-top" [src]="getThumbUrl(d.id)">
+        <div class="card-body p-2">
+          <p class="card-text">{{d.title}}</p>
+        </div>
+      </div>
     </div>
-    <div *ngFor="let d of documents" class="card" [dndDraggable]="d" dndEffectAllowed="move" (dndStart)="onDragStart($event)" (dndMoved)="onDragged(d, documents)">
-      <img class="rounded" [src]="getThumbUrl(d.id)">
-      {{d.title}}
-    </div>
+
+    <button class="btn btn-primary" (click)="doIt()">Do it!</button>
   </div>
-
-  <button class="btn btn-primary" (click)="doIt()">Do it!</button>
-</div>
-<div class="col-4">
-
+  <div class="col-4 preview-container text-center bg-light">
+    <div *ngIf="!loading && !previewUrl" class="mt-5 text-muted">Preview</div>
+    <div *ngIf="loading" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
+  </div>
 </div>

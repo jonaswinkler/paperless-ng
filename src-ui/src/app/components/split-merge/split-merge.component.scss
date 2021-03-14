@@ -1,3 +1,16 @@
+.card-deck .card {
+  max-width: 10rem;
+  min-width: 20%;
+}
+
 .spacer {
-  min-width: 1rem;
+  min-width: 0.5rem;
+}
+
+.preview-container {
+  height: calc(100vh - 170px);
+
+  .spinner-border {
+    margin-top: 40%;
+  }
 }

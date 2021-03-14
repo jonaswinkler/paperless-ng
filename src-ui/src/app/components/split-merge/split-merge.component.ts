@@ -12,25 +12,8 @@ import { DndDropEvent } from 'ngx-drag-drop';
   styleUrls: ['./split-merge.component.scss']
 })
 export class SplitMergeComponent implements OnInit {
-
-  onDragStart( event:DragEvent ) {
-    console.log( "Drag started!", event );
-  }
-
-  onDragged(document: PaperlessDocument, documents: PaperlessDocument[]) {
-    const index = this.documents.indexOf(document)
-    console.log(index)
-    this.documents.splice(index, 1)
-  }
-
-  onDrop(event:DndDropEvent, documents: PaperlessDocument[]) {
-    console.log('onDrop', event)
-    let index = event.index
-    if (typeof index === "undefined") {
-      index = this.documents.length
-    }
-    this.documents.splice(index, 0, event.data)
-  }
+  loading: false
+  previewUrl: String
 
   constructor(
     private splitMergeService: SplitMergeService,
@@ -49,14 +32,35 @@ export class SplitMergeComponent implements OnInit {
     return this.documentService.getThumbUrl(documentId)
   }
 
+  onDragged(document: PaperlessDocument, documents: PaperlessDocument[]) {
+    const index = this.documents.indexOf(document)
+    this.documents.splice(index, 1)
+  }
+
+  onDrop(event:DndDropEvent, documents: PaperlessDocument[]) {
+    let index = event.index
+    if (typeof index === "undefined") {
+      index = this.documents.length
+    }
+    this.documents.splice(index, 0, event.data)
+  }
+
   doIt() {
-    this.splitMergeService.executeSplitMerge(false, false, SplitMergeMetadata.COPY_FIRST).subscribe(
+    this.loading = true
+    this.previewUrl = ''
+    this.splitMergeService.executeSplitMerge(true, false, SplitMergeMetadata.COPY_FIRST).subscribe(
       result => {
         console.log(result)
+        this.loading = false
+        this.previewUrl = this.splitMergeService.getPreviewUrl(result[0])
         // this.splitMergeService.clear()
         // this.router.navigate([""])
       }
     )
   }
 
+  pdfPreviewLoaded(event) {
+    console.log(event);
+
+  }
 }
