@@ -12,7 +12,7 @@ import { DndDropEvent } from 'ngx-drag-drop';
   styleUrls: ['./split-merge.component.scss']
 })
 export class SplitMergeComponent implements OnInit {
-  loading: false
+  loading: Boolean = false
   previewUrl: String
 
   constructor(
@@ -43,6 +43,11 @@ export class SplitMergeComponent implements OnInit {
       index = this.documents.length
     }
     this.documents.splice(index, 0, event.data)
+  }
+
+  cancel() {
+    this.splitMergeService.clear()
+    this.router.navigate([""])
   }
 
   doIt() {

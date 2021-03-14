@@ -1,4 +1,31 @@
 <app-page-header i18n-title title="Split & merge documents">
+  <div class="btn-group mr-5">
+    <button class="btn btn-sm btn-outline-danger" (click)="cancel()">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#slash-circle" />
+      </svg>&nbsp;<ng-container i18n>Cancel</ng-container>
+    </button>
+  </div>
+
+  <div class="btn-group mr-5">
+    <button class="btn btn-sm btn-outline-primary"
+    [ngbPopover]="documentSelector" popoverTitle="Add documents" autoClose="true" popoverClass="shadow" #documentSelectorPopover="ngbPopover">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
+      </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
+    </button>
+    <ng-template #documentSelector>
+      Select docs
+    </ng-template>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn btn-sm btn-outline-primary" (click)="cancel()">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
+      </svg>&nbsp;<ng-container i18n>Save</ng-container>
+    </button>
+  </div>
 </app-page-header>
 
 <div class="row">
@@ -13,8 +40,6 @@
         </div>
       </div>
     </div>
-
-    <button class="btn btn-primary" (click)="doIt()">Do it!</button>
   </div>
   <div class="col-4 preview-container text-center bg-light">
     <div *ngIf="!loading && !previewUrl" class="mt-5 text-muted">Preview</div>
