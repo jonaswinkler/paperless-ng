@@ -68,7 +68,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.router.navigate([""])
   }
 
-  save(preview: Boolean = false) {
+  save(preview: boolean = false) {
     this.loading = true
     this.previewUrl = undefined
     this.splitMergeService.executeSplitMerge(preview, false, SplitMergeMetadata.COPY_FIRST).subscribe(
