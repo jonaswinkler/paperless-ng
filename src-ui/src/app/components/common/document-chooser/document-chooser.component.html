@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title" i18n>Choose Documents</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelClicked()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="m-n2 row row-cols-paperless-cards">
+    <app-document-card-small [simpleCard]="true" [selected]="list.isSelected(d)" (toggleSelected)="toggleSelected(d, $event)" [document]="d" *ngFor="let d of list.documents"></app-document-card-small>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="cancelClicked()" i18n>Cancel</button>
+  <button type="button" class="btn btn-outline-primary" [disabled]="list.selected.size == 0" (click)="confirmClicked.emit()" i18n>Add Selected</button>
+</div>

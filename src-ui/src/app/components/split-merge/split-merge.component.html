@@ -7,19 +7,7 @@
     </button>
   </div>
 
-  <div class="btn-group mr-5">
-    <button class="btn btn-sm btn-outline-primary"
-    [ngbPopover]="documentSelector" popoverTitle="Add documents" autoClose="true" popoverClass="shadow" #documentSelectorPopover="ngbPopover">
-      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
-        <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
-      </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
-    </button>
-    <ng-template #documentSelector>
-      Select docs
-    </ng-template>
-  </div>
-
-  <div class="btn-group">
+  <div class="btn-group ml-5">
     <button class="btn btn-sm btn-outline-primary" (click)="save()">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
@@ -29,22 +17,35 @@
 </app-page-header>
 
 <div class="row">
-  <div class="col-8">
+  <div class="col-7">
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline-primary" (click)="openChooser()">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+          <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
+        </svg>&nbsp;<ng-container i18n>Add Document(s)</ng-container>
+      </button>
+    </div>
     <div class="card-deck p-4" dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>
       </div>
       <div *ngFor="let d of documents" class="card" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
         <img class="card-img-top" [src]="getThumbUrl(d.id)">
         <div class="card-body p-2">
-          <p class="card-text">{{d.title}}</p>
+          <p class="card-text small">{{d.title}}</p>
+        </div>
+        <div class="card-footer p-2">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="pages_{{d.id}}">
+            <label class="custom-control-label" for="pages_{{d.id}}"i18n>Choose pages</label>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-4 preview-container text-center bg-light">
-    <div *ngIf="!loading && !previewUrl" class="mt-5 text-muted">Preview</div>
+  <div class="col-5 preview-container text-center bg-light">
+    <h6 class="my-2 text-muted" i18n>Preview</h6>
     <div *ngIf="loading" class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+      <span class="sr-only" i18n>Loading...</span>
     </div>
     <pdf-viewer *ngIf="previewUrl" [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
   </div>

@@ -67,6 +67,7 @@ import { ColorSliderModule } from 'ngx-color/slider';
 import { ColorComponent } from './components/common/input/color/color.component';
 import { SplitMergeComponent } from './components/split-merge/split-merge.component';
 import { DndModule } from 'ngx-drag-drop';
+import { DocumentChooserComponent } from './components/common/document-chooser/document-chooser.component';
 
 import localeFr from '@angular/common/locales/fr';
 import localeNl from '@angular/common/locales/nl';
@@ -138,7 +139,8 @@ registerLocaleData(localeRu)
     CustomDatePipe,
     DateComponent,
     ColorComponent,
-    SplitMergeComponent
+    SplitMergeComponent,
+    DocumentChooserComponent
   ],
   imports: [
     BrowserModule,

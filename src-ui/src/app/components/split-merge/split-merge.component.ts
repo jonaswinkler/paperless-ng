@@ -3,10 +3,13 @@ import { Router } from '@angular/router';
 import { SplitMergeMetadata } from 'src/app/data/split-merge-request';
 import { SplitMergeService } from 'src/app/services/split-merge.service';
 import { DocumentService } from 'src/app/services/rest/document.service';
+import { DocumentListViewService } from 'src/app/services/document-list-view.service';
 import { PaperlessDocument } from 'src/app/data/paperless-document';
 import { DndDropEvent } from 'ngx-drag-drop';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DocumentChooserComponent } from 'src/app/components/common/document-chooser/document-chooser.component'
 
 @Component({
   selector: 'app-split-merge',
@@ -25,7 +28,9 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   constructor(
     private splitMergeService: SplitMergeService,
     private documentService: DocumentService,
-    private router: Router
+    private list: DocumentListViewService,
+    private router: Router,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -34,7 +39,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.save(true)
     })
-    if (this.documents.length > 0) this.previewDebounce$.next()
+    if (this.splitMergeService.hasDocuments()) this.previewDebounce$.next()
   }
 
   ngOnDestroy() {
@@ -47,6 +52,17 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   getThumbUrl(documentId: number) {
     return this.documentService.getThumbUrl(documentId)
+  }
+
+  openChooser() {
+    let modal = this.modalService.open(DocumentChooserComponent, { backdrop: 'static', size: 'xl' })
+    modal.componentInstance.confirmClicked.subscribe(() => {
+      modal.componentInstance.buttonsEnabled = false
+      this.splitMergeService.addDocuments(this.list.selectedDocuments)
+      this.list.selectNone()
+      modal.close()
+      this.save(true)
+    })
   }
 
   onDragged(document: PaperlessDocument, documents: PaperlessDocument[]) {
