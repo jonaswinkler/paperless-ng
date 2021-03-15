@@ -61,7 +61,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
       this.splitMergeService.addDocuments(this.list.selectedDocuments)
       this.list.selectNone()
       modal.close()
-      this.save(true)
+      this.previewDebounce$.next()
     })
   }
 
@@ -98,14 +98,14 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     )
   }
 
-  duplicateDocument(d: PaperlessDocument) {
-    console.log('duplicate document');
-
+  duplicateDocument(d: PaperlessDocument, index: number) {
+    this.splitMergeService.addDocument(d, index)
+    this.previewDebounce$.next()
   }
 
-  deleteDocument(d: PaperlessDocument) {
-    console.log('delete document');
-
+  deleteDocument(d: PaperlessDocument, index: number) {
+    this.splitMergeService.removeDocument(d, index)
+    this.previewDebounce$.next()
   }
 
   pdfPreviewLoaded(event) {

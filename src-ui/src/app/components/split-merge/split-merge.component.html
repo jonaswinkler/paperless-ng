@@ -22,32 +22,32 @@
       <button class="btn btn-sm btn-outline-primary" (click)="openChooser()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
           <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
-        </svg>&nbsp;<ng-container i18n>Add Document(s)</ng-container>
+        </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
       </button>
     </div>
     <div class="card-deck p-4" dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>
       </div>
-      <div *ngFor="let d of documents" class="card" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
+      <div *ngFor="let d of documents; let i = index" class="card" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
         <img class="card-img-top" [src]="getThumbUrl(d.id)">
         <div class="card-body p-2">
           <p class="card-text small">{{d.title}}</p>
         </div>
         <div class="card-actions p-2">
           <div class="btn-group btn-group-sm mb-2 w-100">
-            <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="duplicateDocument(d)">
+            <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="deleteDocument(d, i)">
               <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                 <use xlink:href="assets/bootstrap-icons.svg#trash" />
               </svg>
             </button>
-            <button class="btn btn-sm btn-outline-primary" title="Duplicate" (click)="deleteDocument(d)">
+            <button class="btn btn-sm btn-outline-primary" title="Duplicate" (click)="duplicateDocument(d, i)">
               <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                 <use xlink:href="assets/bootstrap-icons.svg#files" />
               </svg>
             </button>
             <button class="btn btn-sm btn-outline-primary" title="Choose pages">
               <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
-                <use xlink:href="assets/bootstrap-icons.svg#hash" />
+                <use xlink:href="assets/bootstrap-icons.svg#file-earmark-binary" />
               </svg>
             </button>
           </div>

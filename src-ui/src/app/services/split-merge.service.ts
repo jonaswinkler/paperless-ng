@@ -15,23 +15,26 @@ export class SplitMergeService {
 
   constructor(private http: HttpClient) { }
 
-  // just a demo
-  addDocument(document: PaperlessDocument) {
-    this.documents.push(document)
+  addDocument(document: PaperlessDocument, atIndex?: number) {
+    if (atIndex !== undefined) this.documents.splice(atIndex, 0, document)
+    else this.documents.push(document)
   }
 
   addDocuments(documents: PaperlessDocument[]) {
     this.documents = this.documents.concat(documents)
   }
 
-  // just a demo
-  hasDocuments(): boolean {
-    return this.documents.length > 0
+  removeDocument(document: PaperlessDocument, atIndex?: number) {
+    if (!atIndex) atIndex = this.documents.indexOf(document)
+    this.documents.splice(atIndex, 1)
   }
 
-  // just a demo
   getDocuments() {
     return this.documents
+  }
+
+  hasDocuments(): boolean {
+    return this.documents.length > 0
   }
 
   clear() {
