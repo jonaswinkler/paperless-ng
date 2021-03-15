@@ -7,6 +7,25 @@
     object-position: top left;
     height: 10rem;
   }
+
+  .card-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10rem; // match card-img-top
+    background-color: rgba(0, 0, 0, 85%);
+    border-top-left-radius: 0.15rem;
+    border-top-right-radius: 0.15rem;
+    opacity: 0;
+    transition: all .2s ease, background-color 0s ease; // Safari requires all
+  }
+
+  &:hover {
+    .card-actions {
+      opacity: 1;
+    }
+  }
 }
 
 .spacer {
@@ -15,6 +34,7 @@
 
 .preview-container {
   height: calc(100vh - 170px);
+  overflow: hidden;
 
   .spinner-border {
     margin-top: 40%;

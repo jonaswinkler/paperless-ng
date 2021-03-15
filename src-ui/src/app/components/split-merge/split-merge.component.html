@@ -8,7 +8,7 @@
   </div>
 
   <div class="btn-group ml-5">
-    <button class="btn btn-sm btn-outline-primary" (click)="save()">
+    <button class="btn btn-sm btn-outline-primary" (click)="save()" [disabled]="splitMergeService.documents.length <= 1">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
       </svg>&nbsp;<ng-container i18n>Save</ng-container>
@@ -33,10 +33,23 @@
         <div class="card-body p-2">
           <p class="card-text small">{{d.title}}</p>
         </div>
-        <div class="card-footer p-2">
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="pages_{{d.id}}">
-            <label class="custom-control-label" for="pages_{{d.id}}"i18n>Choose pages</label>
+        <div class="card-actions p-2">
+          <div class="btn-group btn-group-sm mb-2 w-100">
+            <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="duplicateDocument(d)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#trash" />
+              </svg>
+            </button>
+            <button class="btn btn-sm btn-outline-primary" title="Duplicate" (click)="deleteDocument(d)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#files" />
+              </svg>
+            </button>
+            <button class="btn btn-sm btn-outline-primary" title="Choose pages">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#hash" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

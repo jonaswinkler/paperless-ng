@@ -98,6 +98,16 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     )
   }
 
+  duplicateDocument(d: PaperlessDocument) {
+    console.log('duplicate document');
+
+  }
+
+  deleteDocument(d: PaperlessDocument) {
+    console.log('delete document');
+
+  }
+
   pdfPreviewLoaded(event) {
     console.log(event);
 
