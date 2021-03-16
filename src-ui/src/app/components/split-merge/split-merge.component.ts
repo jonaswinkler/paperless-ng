@@ -10,6 +10,7 @@ import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DocumentChooserComponent } from 'src/app/components/common/document-chooser/document-chooser.component'
+import { PageChooserComponent } from 'src/app/components/common/page-chooser/page-chooser.component'
 
 @Component({
   selector: 'app-split-merge',
@@ -26,7 +27,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   private previewSub: Subscription
 
   constructor(
-    private splitMergeService: SplitMergeService,
+    public splitMergeService: SplitMergeService,
     private documentService: DocumentService,
     private list: DocumentListViewService,
     private router: Router,
@@ -54,7 +55,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     return this.documentService.getThumbUrl(documentId)
   }
 
-  openChooser() {
+  chooseDocuments() {
     let modal = this.modalService.open(DocumentChooserComponent, { backdrop: 'static', size: 'xl' })
     modal.componentInstance.confirmClicked.subscribe(() => {
       modal.componentInstance.buttonsEnabled = false
@@ -89,11 +90,14 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.previewUrl = undefined
     this.splitMergeService.executeSplitMerge(preview, false, SplitMergeMetadata.COPY_FIRST).subscribe(
       result => {
-        console.log(result)
+        console.log('API split_merge result:', result)
         this.loading = false
-        this.previewUrl = this.splitMergeService.getPreviewUrl(result[0])
-        // this.splitMergeService.clear()
-        // this.router.navigate([""])
+        if (preview) {
+          this.previewUrl = this.splitMergeService.getPreviewUrl(result[0])
+        } else {
+          this.splitMergeService.clear()
+          this.router.navigate([""])
+        }
       }
     )
   }
@@ -108,8 +112,18 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.previewDebounce$.next()
   }
 
-  pdfPreviewLoaded(event) {
-    console.log(event);
+  choosePages(d: PaperlessDocument) {
+    let modal = this.modalService.open(PageChooserComponent, { backdrop: 'static', size: 'lg' })
+    modal.componentInstance.document = d
+    modal.componentInstance.confirmPages.subscribe((pages) => {
+      console.log('pages chosen:', pages);
+      modal.componentInstance.buttonsEnabled = false
+      modal.close()
+      this.previewDebounce$.next()
+    })
+  }
 
+  pdfPreviewLoaded(event) {
+    console.log('pdf preview loaded:', event);
   }
 }

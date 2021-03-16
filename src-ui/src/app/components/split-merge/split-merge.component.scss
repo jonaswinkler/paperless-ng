@@ -1,11 +1,11 @@
 .card-deck .card {
-  max-width: 9rem;
-  min-width: 20%;
+  max-width: 25%;
+  min-width: 25%;
 
   .card-img-top {
     object-fit: cover;
     object-position: top left;
-    height: 10rem;
+    height: 13rem;
   }
 
   .card-actions {
@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 10rem; // match card-img-top
+    height: 13rem; // match card-img-top
     background-color: rgba(0, 0, 0, 85%);
     border-top-left-radius: 0.15rem;
     border-top-right-radius: 0.15rem;

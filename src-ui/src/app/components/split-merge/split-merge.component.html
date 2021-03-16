@@ -8,7 +8,7 @@
   </div>
 
   <div class="btn-group ml-5">
-    <button class="btn btn-sm btn-outline-primary" (click)="save()" [disabled]="splitMergeService.documents.length <= 1">
+    <button class="btn btn-sm btn-outline-primary" (click)="save()" [disabled]="splitMergeService.getDocuments().length <= 1">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
       </svg>&nbsp;<ng-container i18n>Save</ng-container>
@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-7">
     <div class="btn-group">
-      <button class="btn btn-sm btn-outline-primary" (click)="openChooser()">
+      <button class="btn btn-sm btn-outline-primary" (click)="chooseDocuments()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
           <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
         </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
@@ -33,8 +33,8 @@
         <div class="card-body p-2">
           <p class="card-text small">{{d.title}}</p>
         </div>
-        <div class="card-actions p-2">
-          <div class="btn-group btn-group-sm mb-2 w-100">
+        <div class="card-actions p-3">
+          <div class="btn-group btn-group-sm mb-3 w-100">
             <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="deleteDocument(d, i)">
               <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                 <use xlink:href="assets/bootstrap-icons.svg#trash" />
@@ -45,11 +45,19 @@
                 <use xlink:href="assets/bootstrap-icons.svg#files" />
               </svg>
             </button>
-            <button class="btn btn-sm btn-outline-primary" title="Choose pages">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
-                <use xlink:href="assets/bootstrap-icons.svg#file-earmark-binary" />
-              </svg>
-            </button>
+          </div>
+          <div class="input-group input-group-sm w-100">
+            <div class="input-group-prepend">
+              <div class="input-group-text" i18n>Pages</div>
+            </div>
+            <input class="form-control" value="*" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="choosePages(d)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+                  <use xlink:href="assets/bootstrap-icons.svg#pencil" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

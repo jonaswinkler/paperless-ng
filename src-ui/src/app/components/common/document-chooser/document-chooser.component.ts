@@ -8,7 +8,7 @@ import { DocumentListViewService } from 'src/app/services/document-list-view.ser
   templateUrl: './document-chooser.component.html',
   styleUrls: ['./document-chooser.component.scss']
 })
-export class DocumentChooserComponent implements OnInit, OnDestroy {
+export class DocumentChooserComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
