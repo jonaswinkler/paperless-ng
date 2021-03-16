@@ -8,7 +8,7 @@
   </div>
 
   <div class="btn-group ml-5">
-    <button class="btn btn-sm btn-outline-primary" (click)="save()" [disabled]="splitMergeService.getDocuments().length <= 1">
+    <button class="btn btn-sm btn-outline-primary" (click)="save()" [disabled]="splitMergeService.getDocuments().length < 1">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
       </svg>&nbsp;<ng-container i18n>Save</ng-container>
@@ -39,7 +39,7 @@
         </svg>&nbsp;{{addDocumentButtonTitle}}
       </button>
     </div>
-    <div class="p-4" dndDropzone (dndDrop)="onDrop($event, documents)">
+    <div class="py-4" dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>
       </div>
       <div *ngFor="let d of documents; let i = index" class="card w-100 mb-3" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
@@ -67,7 +67,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">{{pagesInputLabel}}:</div>
                   </div>
-                  <input class="form-control" placeholder="All" />
+                  <input class="form-control" placeholder="All" ngbTooltip="e.g. 1-3,5" />
                   <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button" (click)="choosePages(d)">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
