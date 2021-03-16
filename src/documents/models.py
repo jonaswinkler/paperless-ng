@@ -411,6 +411,56 @@ class SavedViewFilterRule(models.Model):
         verbose_name_plural = _("filter rules")
 
 
+class ConfigurationOptionManager(models.Manager):
+
+    CONFIGURATION_KEYS = {
+        "OCR_MODE": {"type": str, "default": "skip"},
+        "OCR_ROTATE_PAGES": {"type": bool, "default": True}
+    }
+
+    def __getattr__(self, item):
+        if not item in self.CONFIGURATION_KEYS:
+            raise AttributeError()
+
+        query = self.filter(key=item)
+        if query.exists() and query.first().value:
+            return self.CONFIGURATION_KEYS[item]["type"](query.first().value)
+        else:
+            return self._get_default(item)
+
+    def set_config(self, key, value):
+        if key in self.CONFIGURATION_KEYS:
+            if not type(value) == self.CONFIGURATION_KEYS[key]["type"]:
+                raise TypeError()
+
+            self.filter(key=key).update(value=value)
+        else:
+            raise KeyError()
+
+    def _get_default(self, key):
+        if f"PAPERLESS_{key}" in os.environ:
+            return os.environ[f"PAPERLESS_{key}"]
+        elif "default" in self.CONFIGURATION_KEYS[key]:
+            return self.CONFIGURATION_KEYS[key]['default']
+        else:
+            return None
+
+
+class ConfigurationOption(models.Model):
+
+    objects = ConfigurationOptionManager()
+
+    key = models.CharField(
+        max_length=128, unique=True)
+
+    value = models.CharField(
+        max_length=1024, blank=True, null=True
+    )
+
+
+db_settings = ConfigurationOption.objects
+
+
 # TODO: why is this in the models file?
 class FileInfo:
 

@@ -5,6 +5,7 @@ import re
 from PIL import Image
 from django.conf import settings
 
+from documents.models import db_settings
 from documents.parsers import DocumentParser, ParseError, \
     make_thumbnail_from_pdf
 
@@ -143,15 +144,15 @@ class RasterisedDocumentParser(DocumentParser):
             'progress_bar': False
         }
 
-        if settings.OCR_MODE == 'force' or safe_fallback:
+        if db_settings.OCR_MODE == 'force' or safe_fallback:
             ocrmypdf_args['force_ocr'] = True
-        elif settings.OCR_MODE in ['skip', 'skip_noarchive']:
+        elif db_settings.OCR_MODE in ['skip', 'skip_noarchive']:
             ocrmypdf_args['skip_text'] = True
-        elif settings.OCR_MODE == 'redo':
+        elif db_settings.OCR_MODE == 'redo':
             ocrmypdf_args['redo_ocr'] = True
         else:
             raise ParseError(
-                f"Invalid ocr mode: {settings.OCR_MODE}")
+                f"Invalid ocr mode: {db_settings.OCR_MODE}")
 
         if settings.OCR_CLEAN == 'clean':
             ocrmypdf_args['clean'] = True
@@ -161,7 +162,7 @@ class RasterisedDocumentParser(DocumentParser):
             else:
                 ocrmypdf_args['clean_final'] = True
 
-        if settings.OCR_DESKEW and not settings.OCR_MODE == 'redo':
+        if settings.OCR_DESKEW and not db_settings.OCR_MODE == 'redo':
             ocrmypdf_args['deskew'] = True
 
         if settings.OCR_ROTATE_PAGES:
@@ -212,7 +213,7 @@ class RasterisedDocumentParser(DocumentParser):
         text_original = self.extract_text(None, document_path)
         original_has_text = text_original and len(text_original) > 50
 
-        if settings.OCR_MODE == "skip_noarchive" and original_has_text:
+        if db_settings.OCR_MODE == "skip_noarchive" and original_has_text:
             self.log("debug",
                      "Document has text, skipping OCRmyPDF entirely.")
             self.text = text_original
