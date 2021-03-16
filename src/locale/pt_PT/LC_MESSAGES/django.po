@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-14 13:33+0100\n"
-"PO-Revision-Date: 2021-03-14 14:58\n"
+"PO-Revision-Date: 2021-03-16 21:31\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -124,19 +124,19 @@ msgstr ""
 
 #: documents/models.py:155
 msgid "checksum"
-msgstr ""
+msgstr "soma de verificação"
 
 #: documents/models.py:159
 msgid "The checksum of the original document."
-msgstr ""
+msgstr "A soma de verificação do documento original."
 
 #: documents/models.py:163
 msgid "archive checksum"
-msgstr ""
+msgstr "arquivar soma de verificação"
 
 #: documents/models.py:168
 msgid "The checksum of the archived document."
-msgstr ""
+msgstr "A soma de verificação do documento arquivado."
 
 #: documents/models.py:172 documents/models.py:328
 msgid "created"
@@ -160,19 +160,19 @@ msgstr "nome de ficheiro"
 
 #: documents/models.py:198
 msgid "Current filename in storage"
-msgstr ""
+msgstr "Nome do arquivo atual no armazenamento"
 
 #: documents/models.py:202
 msgid "archive filename"
-msgstr ""
+msgstr "nome do ficheiro de arquivo"
 
 #: documents/models.py:208
 msgid "Current archive filename in storage"
-msgstr ""
+msgstr "Nome do arquivo atual em no armazenamento"
 
 #: documents/models.py:212
 msgid "archive serial number"
-msgstr ""
+msgstr "numero de série de arquivo"
 
 #: documents/models.py:217
 msgid "The position of this document in your physical document archive."
