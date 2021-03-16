@@ -19,8 +19,9 @@ import { PageChooserComponent } from 'src/app/components/common/page-chooser/pag
 })
 export class SplitMergeComponent implements OnInit, OnDestroy {
 
-  loading: Boolean = false
-  previewUrl: String
+  public loading: Boolean = false
+  public previewUrl: String
+  public mode: String = 'merge'
 
   private previewDebounce$ = new Subject()
 
@@ -51,14 +52,24 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     return this.splitMergeService.getDocuments()
   }
 
+  get addDocumentButtonTitle(): string {
+    return this.mode == 'merge' ? 'Add Documents' : 'Select Document'
+  }
+
+  get pagesInputLabel(): string {
+    return this.mode == 'merge' ? 'Pages' : 'Split at'
+  }
+
   getThumbUrl(documentId: number) {
     return this.documentService.getThumbUrl(documentId)
   }
 
   chooseDocuments() {
     let modal = this.modalService.open(DocumentChooserComponent, { backdrop: 'static', size: 'xl' })
+    if (this.mode == 'split') modal.componentInstance.single = true
     modal.componentInstance.confirmClicked.subscribe(() => {
       modal.componentInstance.buttonsEnabled = false
+      if (this.mode == 'split') this.splitMergeService.clear()
       this.splitMergeService.addDocuments(this.list.selectedDocuments)
       this.list.selectNone()
       modal.close()
@@ -78,6 +89,10 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     }
     this.documents.splice(index, 0, event.data)
     this.previewDebounce$.next()
+  }
+
+  onModeChange() {
+    if (this.mode == 'split') this.splitMergeService.reduceDocumentsTo(1)
   }
 
   cancel() {
@@ -107,7 +122,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.previewDebounce$.next()
   }
 
-  deleteDocument(d: PaperlessDocument, index: number) {
+  removeDocument(d: PaperlessDocument, index: number) {
     this.splitMergeService.removeDocument(d, index)
     this.previewDebounce$.next()
   }

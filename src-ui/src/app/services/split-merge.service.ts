@@ -29,6 +29,10 @@ export class SplitMergeService {
     this.documents.splice(atIndex, 1)
   }
 
+  reduceDocumentsTo(size: number) {
+    if (this.documents.length > size) this.documents.length = size
+  }
+
   getDocuments() {
     return this.documents
   }

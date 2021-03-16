@@ -18,6 +18,9 @@ export class DocumentChooserComponent implements OnInit {
   @Output()
   public confirmClicked = new EventEmitter()
 
+  @Input()
+  public single: boolean = false
+
   ngOnInit(): void {
     this.list.selectNone()
     this.list.activateSavedView(null)
@@ -29,8 +32,13 @@ export class DocumentChooserComponent implements OnInit {
     this.activeModal.close()
   }
 
-  toggleSelected(document: PaperlessDocument, event: MouseEvent): void {
-    if (!event.shiftKey) this.list.toggleSelected(document)
-    else this.list.selectRangeTo(document)
+  toggleSelected(d: PaperlessDocument, event: MouseEvent): void {
+    if (this.single) {
+      if (!this.list.isSelected(d)) this.list.selectNone()
+      this.list.toggleSelected(d)
+    } else {
+      if (!event.shiftKey) this.list.toggleSelected(d)
+      else this.list.selectRangeTo(d)
+    }
   }
 }
