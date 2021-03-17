@@ -127,15 +127,33 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.previewDebounce$.next()
   }
 
-  choosePages(d: PaperlessDocument) {
+  choosePages(d: PaperlessDocument, index: number) {
     let modal = this.modalService.open(PageChooserComponent, { backdrop: 'static', size: 'lg' })
     modal.componentInstance.document = d
     modal.componentInstance.confirmPages.subscribe((pages) => {
       console.log('pages chosen:', pages);
+      this.splitMergeService.setDocumentPages(d, index, pages)
       modal.componentInstance.buttonsEnabled = false
       modal.close()
       this.previewDebounce$.next()
     })
+  }
+
+  pagesFieldChange(pageStr: string, d: PaperlessDocument, index: number) {
+    console.log(pageStr, d, index);
+    const pages =  pageStr.split(',').map(p => {
+      if (p.indexOf('-') !== -1) {
+        const minmax = p.split('-')
+        let range = []
+        for (let i = parseInt(minmax[0]); i <= parseInt(minmax[1]); i++) {
+          range.push(i)
+        }
+        return range
+      } else {
+        return parseInt(p)
+      }
+    })
+    this.splitMergeService.setDocumentPages(d, index, pages as number[])
   }
 
   pdfPreviewLoaded(event) {

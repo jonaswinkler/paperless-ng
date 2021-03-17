@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { PaperlessDocument } from 'src/app/data/paperless-document';
+import { PaperlessDocument, PaperlessDocumentPart } from 'src/app/data/paperless-document';
 import { DocumentService } from 'src/app/services/rest/document.service';
 
 @Component({
@@ -22,15 +22,14 @@ export class PageChooserComponent implements OnInit {
   @Input()
   document: PaperlessDocument
 
-  @Input()
-  private pages: Set<number>
+  private pages: number[]
 
   @Output()
-  public confirmPages = new EventEmitter<Set<number>>()
-
+  public confirmPages = new EventEmitter<number[]>()
 
   ngOnInit(): void {
-    if (!this.pages) this.pages = new Set<number>()
+    this.pages = (this.document as PaperlessDocumentPart).pages
+    if (!this.pages) this.pages = []
   }
 
   cancelClicked() {
@@ -38,16 +37,17 @@ export class PageChooserComponent implements OnInit {
   }
 
   confirmClicked() {
-    this.confirmPages.emit(this.pages)
+    this.confirmPages.emit(this.pages.sort())
   }
 
   public afterPageRendered(pageRenderedEvent: any) {
     const pageView = pageRenderedEvent.source /* as PDFPageView */
     const div = pageView.div as HTMLDivElement
+    div.classList.toggle('selected', this.pages.indexOf(parseInt(div.dataset.pageNumber)) !== -1)
     div.onclick = () => {
       let pageID: number = parseInt(div.dataset.pageNumber)
-      this.pages.has(pageID) ? this.pages.delete(pageID) : this.pages.add(pageID)
-      div.classList.toggle('selected', this.pages.has(pageID))
+      this.pages.indexOf(pageID) !== -1 ? this.pages.splice(this.pages.indexOf(pageID), 1) : this.pages.push(pageID)
+      div.classList.toggle('selected', this.pages.indexOf(pageID) !== -1)
     }
   }
 }

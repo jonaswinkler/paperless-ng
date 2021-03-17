@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PaperlessDocument } from '../data/paperless-document';
+import { PaperlessDocument, PaperlessDocumentPart } from '../data/paperless-document';
 import { SplitMergeMetadata, SplitMergeRequest } from '../data/split-merge-request';
 
 @Injectable({
@@ -45,13 +45,17 @@ export class SplitMergeService {
     this.documents = []
   }
 
+  setDocumentPages(d: PaperlessDocument, index: number, pages: number[]) {
+    (this.documents[index] as PaperlessDocumentPart).pages = pages
+  }
+
   executeSplitMerge(preview: boolean, delete_source: boolean, metadata: SplitMergeMetadata): Observable<string[]> {
     let request: SplitMergeRequest = {
       delete_source: delete_source,
       preview: preview,
       metadata: metadata,
       split_merge_plan: [
-        this.documents.map(d => { return {document: d.id} })
+        this.documents.map(d => { return {document: d.id, pages: (d as PaperlessDocumentPart).pages?.join(',')} })
       ]
     }
     return this.http.post<string[]>(`${environment.apiBaseUrl}split_merge/`, request)
