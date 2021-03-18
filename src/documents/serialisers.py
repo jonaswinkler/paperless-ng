@@ -557,7 +557,7 @@ class DocumentSplitMergePlanSerializer(serializers.Serializer):
         min_length=1,
         child=serializers.ListField(
             required=True,
-            min_length=0,
+            min_length=1,
             child=serializers.DictField()
         )
     )
@@ -565,12 +565,23 @@ class DocumentSplitMergePlanSerializer(serializers.Serializer):
     delete_source = serializers.BooleanField(default=False)
 
     metadata = serializers.ChoiceField(
-        required=True,
-        choices=("redo", "copy_first")
+        choices=("redo", "copy_first"),
+        default="copy_first"
     )
 
-    preview = serializers.BooleanField(default=False)
+    preview = serializers.BooleanField(default=True)
 
     def validate_split_merge_plan(self, split_merge_plan):
-        # TODO: validate this!
+        for target_doc in split_merge_plan:
+            for source_doc in target_doc:
+                if "document" not in source_doc:
+                    raise serializers.ValidationError(
+                        '"document" is required'
+                    )
+                try:
+                    Document.objects.get(id=source_doc["document"])
+                except Document.DoesNotExist:
+                    raise serializers.ValidationError(
+                        f"document {source_doc['document']} does not exist"
+                    )
         return split_merge_plan

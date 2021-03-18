@@ -30,7 +30,7 @@ class PdfCache:
         elif document.has_archive_version:
             filename = document.archive_path
         else:
-            raise MergeError(f"Document {document.pk} does not have PDF.")
+            raise MergeError(f"Document {document.pk} does not have a PDF.")
 
         if not os.path.exists(filename):
             raise MergeError(f"{filename} does not exist.")
