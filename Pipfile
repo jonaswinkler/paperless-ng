@@ -25,7 +25,7 @@ langdetect = "*"
 numpy = "~=1.19.5"
 pathvalidate = "*"
 # pinned to 8.1.0, since aarch64 wheels might not be available beyond that https://github.com/python-pillow/Pillow/issues/5202
-pillow = "==8.1.0"
+pillow = "==8.1.1"
 pikepdf = "~=2.5.0"
 python-gnupg = "*"
 python-dotenv = "*"
