@@ -39,7 +39,11 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.previewSub = this.previewDebounce$.pipe(
       debounceTime(400)
     ).subscribe(() => {
-      this.save(true)
+      if (this.splitMergeService.hasDocuments()) {
+        this.save(true)
+      } else {
+        this.previewUrl = undefined
+      }
     })
     if (this.splitMergeService.hasDocuments()) this.previewDebounce$.next()
   }
