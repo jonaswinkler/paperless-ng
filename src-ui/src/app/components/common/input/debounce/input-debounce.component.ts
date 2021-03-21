@@ -18,6 +18,9 @@ export class InputDebounceComponent {
   @Input()
   delay: number = 300
 
+  @Input()
+  classes: string
+
   @Output()
   value: EventEmitter<string> = new EventEmitter<string>()
 
@@ -31,6 +34,10 @@ export class InputDebounceComponent {
     ).subscribe(input =>
       this.value.emit(input)
     );
+  }
+
+  get cssClasses(): string {
+    return 'form-control ' + this.classes
   }
 
 }
