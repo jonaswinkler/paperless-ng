@@ -82,7 +82,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.documents.splice(index, 1)
   }
 
-  onDrop(event:DndDropEvent, documents: PaperlessDocument[]) {
+  onDrop(event: DndDropEvent, documents: PaperlessDocument[]) {
     let index = event.index
     if (typeof index === "undefined") {
       index = this.documents.length
@@ -141,7 +141,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   pagesFieldChange(pageStr: string, d: PaperlessDocument, index: number) {
     console.log(pageStr, d, index);
-    const pages: number[] =  pageStr.split(',').map(p => {
+    const pages: number[] = pageStr.split(',').map(p => {
       if (p.indexOf('-') !== -1) {
         const minmax = p.split('-')
         let range = []
@@ -157,6 +157,32 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     }).flat().filter(page => page !== null)
     this.splitMergeService.setDocumentPages(d, index, pages)
     this.previewDebounce$.next()
+  }
+
+  formatPages(pages: number[]): string {
+    let pageStrings = []
+    let rangeStart, rangeEnd
+
+    pages?.forEach(page => {
+      if (rangeStart == undefined) {
+        rangeStart = page
+      } else if (page - rangeStart == 1) {
+        rangeEnd = page
+      } else if (rangeEnd !== undefined && page - rangeEnd == 1) {
+        rangeEnd = page
+      } else {
+        pageStrings.push(rangeEnd !== undefined ? rangeStart + '-' + rangeEnd : rangeStart)
+        rangeStart = page
+        rangeEnd = undefined
+      }
+    })
+
+    if (rangeEnd !== undefined) {
+      pageStrings.push(rangeStart + '-' + rangeEnd)
+    } else if (rangeStart !== undefined) {
+      pageStrings.push(rangeStart)
+    }
+    return pageStrings.join(',')
   }
 
   pdfPreviewLoaded(event) {

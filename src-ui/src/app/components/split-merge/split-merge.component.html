@@ -67,7 +67,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">{{pagesInputLabel}}:</div>
                   </div>
-                  <app-input-debounce delay="500" classes="form-control-sm" placeholder="All" tooltip="e.g. 1-3,5" [inputValue]="d.pages?.join(',')" (value)="pagesFieldChange($event, d, i)"></app-input-debounce>
+                  <app-input-debounce delay="500" classes="form-control-sm" placeholder="All" tooltip="e.g. 1-3,5" [inputValue]="formatPages(d.pages)" (value)="pagesFieldChange($event, d, i)"></app-input-debounce>
                   <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button" (click)="choosePages(d, i)">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
