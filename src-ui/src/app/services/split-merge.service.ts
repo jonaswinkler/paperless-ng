@@ -46,7 +46,7 @@ export class SplitMergeService {
   }
 
   setDocumentPages(d: PaperlessDocument, index: number, pages: number[]) {
-    (this.documents[index] as PaperlessDocumentPart).pages = pages
+    (this.documents[index] as PaperlessDocumentPart).pages = pages.length > 0 ? pages : null
   }
 
   executeSplitMerge(preview: boolean, delete_source: boolean, metadata: SplitMergeMetadata): Observable<string[]> {
