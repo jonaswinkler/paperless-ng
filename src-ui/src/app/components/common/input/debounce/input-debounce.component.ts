@@ -24,7 +24,8 @@ export class InputDebounceComponent {
   @Output()
   value: EventEmitter<string> = new EventEmitter<string>()
 
-  public inputValue: string;
+  @Input()
+  inputValue: string;
 
   constructor(private elementRef: ElementRef) {
     fromEvent(elementRef.nativeElement, 'keyup').pipe(
