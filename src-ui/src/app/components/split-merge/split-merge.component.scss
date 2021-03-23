@@ -22,10 +22,15 @@
   height: calc(100vh - 170px);
   overflow: hidden;
 
+  &.tabbed {
+    height: calc(100vh - 200px);
+  }
+
   .spinner-border {
     margin-top: 40%;
   }
 }
+
 
 .split-document-preview ::ng-deep .ng2-pdf-viewer-container {
   width: 1px !important;

@@ -19,8 +19,8 @@ import { PageChooserComponent } from 'src/app/components/common/page-chooser/pag
 })
 export class SplitMergeComponent implements OnInit, OnDestroy {
 
-  public loading: Boolean = false
-  public previewUrl: String
+  public loading: boolean = false
+  public previewUrls: string[] = []
 
   private previewDebounce$ = new Subject()
 
@@ -40,8 +40,6 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       if (this.splitMergeService.hasDocuments()) {
         this.save(true)
-      } else {
-        this.previewUrl = undefined
       }
     })
     if (this.splitMergeService.hasDocuments()) this.previewDebounce$.next()
@@ -91,13 +89,13 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   save(preview: boolean = false) {
     this.loading = true
-    this.previewUrl = undefined
+    this.previewUrls = []
     this.splitMergeService.executeSplitMerge(preview, false, SplitMergeMetadata.COPY_FIRST).subscribe(
       result => {
         console.log('API split_merge result:', result)
         this.loading = false
         if (preview) {
-          this.previewUrl = this.splitMergeService.getPreviewUrl(result[0])
+          this.previewUrls = result.map(r => this.splitMergeService.getPreviewUrl(r))
         } else {
           this.splitMergeService.clear()
           this.router.navigate([""])

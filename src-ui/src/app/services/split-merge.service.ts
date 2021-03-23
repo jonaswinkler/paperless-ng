@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PaperlessDocument, PaperlessDocumentPart } from '../data/paperless-document';
+import { PaperlessDocument, PaperlessDocumentPart, PaperlessDocumentSeparator } from '../data/paperless-document';
 import { SplitMergeMetadata, SplitMergeRequest } from '../data/split-merge-request';
 
 @Injectable({
@@ -55,20 +55,30 @@ export class SplitMergeService {
       firstPages.push(page)
     }
     (this.documents[index] as PaperlessDocumentPart).pages = firstPages
-    this.documents.splice(index + 1, 0, { is_separator: true })
-    let d2 = { ...d }
+    this.documents.splice(index + 1, 0, { is_separator: true } as PaperlessDocumentSeparator)
+    let d2 = { ...d } as PaperlessDocumentPart
     d2.pages = secondPages
     this.documents.splice(index + 2, 0, d2)
   }
 
   executeSplitMerge(preview: boolean, delete_source: boolean, metadata: SplitMergeMetadata): Observable<string[]> {
+    let currentDocument = []
+    let split_merge_plan = [currentDocument]
+    this.documents.forEach(d => {
+      if ((d as PaperlessDocumentSeparator).is_separator) {
+        currentDocument = []
+        split_merge_plan.push(currentDocument)
+      } else {
+        currentDocument.push({document: d.id, pages: (d as PaperlessDocumentPart).pages?.join(',')})
+      }
+    })
+    console.log(split_merge_plan);
+
     let request: SplitMergeRequest = {
       delete_source: delete_source,
       preview: preview,
       metadata: metadata,
-      split_merge_plan: [
-        this.documents.map(d => { return {document: d.id, pages: (d as PaperlessDocumentPart).pages?.join(',')} })
-      ]
+      split_merge_plan: split_merge_plan
     }
     return this.http.post<string[]>(`${environment.apiBaseUrl}split_merge/`, request)
   }

@@ -67,10 +67,10 @@ export class PageChooserComponent implements OnInit {
     div.onclick = () => {
       let pageID: number = parseInt(div.dataset.pageNumber)
       if (this.splitting) { // only select 1 page
-        if (pageID == this.numPages) return
+        if (pageID == this.nPages) return
         this.pages = [pageID]
         div.parentNode.childNodes.forEach(pageEl => {
-          pageEl.classList.toggle('selected', false)
+          (pageEl as Element).classList.toggle('selected', false)
         })
         div.classList.toggle('selected', true)
       } else {

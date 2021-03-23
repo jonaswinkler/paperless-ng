@@ -73,11 +73,30 @@
       </div>
     </div>
   </div>
-  <div class="col-6 preview-container text-center bg-light">
-    <h6 class="my-2 text-muted" i18n>Preview</h6>
-    <div *ngIf="loading" class="spinner-border" role="status">
-      <span class="sr-only" i18n>Loading...</span>
+  <div class="col-6">
+    <ng-container *ngIf="previewUrls.length > 1">
+      <ul ngbNav #previewNav="ngbNav" class="nav-tabs">
+        <li *ngFor="let previewUrl of previewUrls; let j = index" [ngbNavItem]="j">
+          <a ngbNavLink><ng-container i18n>Document</ng-container> {{j + 1}}</a>
+          <ng-template ngbNavContent>
+            <div class="preview-container tabbed text-center bg-light">
+              <h6 class="my-2 text-muted" i18n>Preview</h6>
+              <div *ngIf="loading" class="spinner-border" role="status">
+                <span class="sr-only" i18n>Loading...</span>
+              </div>
+              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="previewNav"></div>
+    </ng-container>
+    <div *ngIf="previewUrls.length <= 1" class="preview-container text-center bg-light">
+      <h6 class="my-2 text-muted" i18n>Preview</h6>
+      <div *ngIf="loading" class="spinner-border" role="status">
+        <span class="sr-only" i18n>Loading...</span>
+      </div>
+      <pdf-viewer [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
     </div>
-    <pdf-viewer *ngIf="previewUrl" [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
   </div>
 </div>
