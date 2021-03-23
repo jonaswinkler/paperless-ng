@@ -5,10 +5,13 @@
     cursor: move;
   }
 
-  .doc-img {
-    object-fit: contain;
-    object-position: center center;
-    height: 7rem;
+  .doc-thumb {
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 5rem;
+    height: 100%;
+    width: 70%;
   }
 }
 
@@ -43,12 +46,16 @@
   min-width: 50vw;
 }
 
-button svg, label svg {
-  margin-right: 0.25rem;
+button span {
+  margin-left: 0.15rem;
 }
 
 app-input-debounce {
   flex: 1 1;
+
+  ::ng-deep .form-control {
+    border-radius: 0;
+  }
 }
 
 .separator {

@@ -17,7 +17,7 @@
 </app-page-header>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-lg-6">
     <div class="btn-toolbar" role="toolbar">
       <button class="btn btn-sm btn-outline-primary w-100" (click)="chooseDocuments()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
@@ -31,41 +31,41 @@
       <div *ngFor="let d of documents; let i = index" class="card w-100 mb-3" [class.separator]="d.is_separator" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
         <h6 *ngIf="d.is_separator" class="mt-1 text-muted small font-weight-bold" i18n>Document End</h6>
         <div *ngIf="!d.is_separator" class="row no-gutters">
-          <div class="col-md-2 d-flex handle">
-            <svg width="2em" height="100%" viewBox="0 0 16 16" fill="currentColor" class="mx-1">
+          <div class="col-md-3 d-flex handle">
+            <svg width="2em" height="100%" viewBox="0 0 16 16" fill="currentColor" class="mx-auto">
               <use xlink:href="assets/bootstrap-icons.svg#grip-horizontal" />
             </svg>
-            <img class="doc-img w-auto" [src]="getThumbUrl(d.id)">
+            <div class="doc-thumb" [style.background-image]="'url(' + getThumbUrl(d.id) + ')'"></div>
           </div>
-          <div class="col-md-10">
+          <div class="col-md-9">
             <div class="card-body p-3">
-              <h6 class="card-title mb-3">{{d.title}}</h6>
+              <h6 class="card-title mb-2">{{d.title}}</h6>
               <div class="card-actions">
                 <div class="btn-toolbar btn-toolbar-sm justify-content-between w-100">
                   <button class="btn btn-sm btn-outline-danger" title="Remove" (click)="removeDocument(d, i)">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                       <use xlink:href="assets/bootstrap-icons.svg#trash" />
-                    </svg>&nbsp;<ng-container i18n>Remove</ng-container>
+                    </svg><span class="d-none d-xl-inline">&nbsp;<ng-container i18n>Remove</ng-container></span>
                   </button>
                   <button class="btn btn-sm btn-outline-primary" title="Split" (click)="chooseSplit(d, i)">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                       <use xlink:href="assets/bootstrap-icons.svg#scissors" />
-                    </svg>&nbsp;<ng-container i18n>Split</ng-container>
+                    </svg><span class="d-none d-xl-inline">&nbsp;<ng-container i18n>Split</ng-container></span>
                   </button>
-                <div class="input-group input-group-sm">
+                </div>
+                <div class="input-group input-group-sm w-100 mt-2">
                   <div class="input-group-prepend">
-                    <div class="input-group-text"><ng-container>Pages</ng-container>:</div>
+                    <div class="input-group-text"><ng-container i18n>Pages</ng-container>:</div>
                   </div>
-                  <app-input-debounce delay="500" classes="form-control-sm" placeholder="All" tooltip="e.g. 1-3,5" [inputValue]="formatPages(d.pages)" (value)="pagesFieldChange($event, d, i)"></app-input-debounce>
+                  <app-input-debounce delay="500" classes="form-control-sm" placeholder="All" ngbTooltip="e.g. 1-3,5" [inputValue]="formatPages(d.pages)" (value)="pagesFieldChange($event, d, i)"></app-input-debounce>
                   <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button" (click)="choosePages(d, i)">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                         <use xlink:href="assets/bootstrap-icons.svg#pencil" />
-                      </svg>&nbsp;<ng-container i18n>Select Pages</ng-container>
+                      </svg><span class="d-none d-xl-inline">&nbsp;<ng-container i18n>Select Pages</ng-container></span>
                     </button>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-lg-6">
     <ng-container *ngIf="previewUrls.length > 1">
       <ul ngbNav #previewNav="ngbNav" class="nav-tabs">
         <li *ngFor="let previewUrl of previewUrls; let j = index" [ngbNavItem]="j">

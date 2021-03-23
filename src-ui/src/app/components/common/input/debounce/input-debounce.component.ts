@@ -13,9 +13,6 @@ export class InputDebounceComponent {
   placeholder: string
 
   @Input()
-  tooltip: string
-
-  @Input()
   delay: number = 300
 
   @Input()
