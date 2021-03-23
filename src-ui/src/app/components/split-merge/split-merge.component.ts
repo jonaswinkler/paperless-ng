@@ -40,9 +40,11 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       if (this.splitMergeService.hasDocuments()) {
         this.save(true)
+      } else {
+        this.previewUrls = []
       }
     })
-    if (this.splitMergeService.hasDocuments()) this.previewDebounce$.next()
+    this.previewDebounce$.next()
   }
 
   ngOnDestroy() {
