@@ -122,6 +122,11 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     })
   }
 
+  clearPages(d: PaperlessDocument, index: number) {
+    this.splitMergeService.setDocumentPages(d, index, [])
+    this.previewDebounce$.next()
+  }
+
   chooseSplit(d: PaperlessDocument, index: number) {
     let modal = this.modalService.open(PageChooserComponent, { backdrop: 'static', size: 'lg' })
     modal.componentInstance.document = d
