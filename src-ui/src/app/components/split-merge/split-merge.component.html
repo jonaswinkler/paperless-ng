@@ -1,6 +1,6 @@
 <app-page-header i18n-title title="Split & Merge Editor">
   <div class="btn-group mr-5">
-    <button class="btn btn-sm btn-outline-danger" (click)="cancel()">
+    <button class="btn btn-sm btn-outline-danger" i18n-title title="Cancel" (click)="cancel()">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#slash-circle" />
       </svg>&nbsp;<ng-container i18n>Cancel</ng-container>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="btn-group ml-5">
-    <button class="btn btn-sm btn-outline-primary" (click)="save()" [disabled]="splitMergeService.getDocuments().length < 1">
+    <button class="btn btn-sm btn-outline-primary" i18n-title title="Save" (click)="save()" [disabled]="splitMergeService.getDocuments().length < 1">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
       </svg>&nbsp;<ng-container i18n>Save</ng-container>
@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="btn-toolbar" role="toolbar">
-      <button class="btn btn-sm btn-outline-primary w-100" (click)="chooseDocuments()">
+      <button class="btn btn-sm btn-outline-primary w-100" i18n-title title="Add Documents" (click)="chooseDocuments()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
           <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
         </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
@@ -50,12 +50,12 @@
               <h6 class="card-title mb-2">{{d.title}}</h6>
               <div class="card-actions">
                 <div class="btn-toolbar btn-toolbar-sm justify-content-between w-100">
-                  <button class="btn btn-sm btn-outline-danger flex-fill" title="Remove" (click)="removeDocument(d, i)">
+                  <button class="btn btn-sm btn-outline-danger flex-fill" i18n-title title="Remove" (click)="removeDocument(d, i)">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                       <use xlink:href="assets/bootstrap-icons.svg#trash" />
                     </svg><span class="d-none d-xl-inline">&nbsp;<ng-container i18n>Remove</ng-container></span>
                   </button>
-                  <button class="btn btn-sm btn-outline-primary ml-2 flex-fill" title="Split" (click)="chooseSplit(d, i)">
+                  <button class="btn btn-sm btn-outline-primary ml-2 flex-fill" i18n-title title="Split" (click)="chooseSplit(d, i)">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                       <use xlink:href="assets/bootstrap-icons.svg#scissors" />
                     </svg><span class="d-none d-xl-inline">&nbsp;<ng-container i18n>Split</ng-container></span>
