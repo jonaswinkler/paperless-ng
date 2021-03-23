@@ -1,13 +1,13 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title"><ng-container i18n>Choose Pages</ng-container>: {{document.title}}</h4>
+  <h4 class="modal-title" id="modal-basic-title">{{title}}: {{document.title}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="cancelClicked()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <pdf-viewer class="page-chooser-viewer" [src]="previewUrl" [original-size]="false" [zoom]=".25" [autoresize]="true" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (page-rendered)="afterPageRendered($event)"></pdf-viewer>
+  <pdf-viewer class="page-chooser-viewer" [class.splitting]="splitting" [src]="previewUrl" [original-size]="false" [zoom]=".25" [autoresize]="true" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (page-rendered)="afterPageRendered($event)" (after-load-complete)="pdfLoaded($event)"></pdf-viewer>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-danger" (click)="cancelClicked()" i18n>Cancel</button>
-  <button type="button" class="btn btn-outline-primary" (click)="confirmClicked()" i18n>Add Selected</button>
+  <button type="button" class="btn btn-outline-primary" (click)="confirmClicked()">{{title}}</button>
 </div>

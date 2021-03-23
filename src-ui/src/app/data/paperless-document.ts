@@ -45,3 +45,7 @@ export interface PaperlessDocument extends ObjectWithId {
 export interface PaperlessDocumentPart extends PaperlessDocument {
   pages: number[]
 }
+
+export interface PaperlessDocumentSeparator extends PaperlessDocument {
+  is_separator: boolean
+}

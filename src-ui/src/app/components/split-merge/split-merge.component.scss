@@ -1,12 +1,14 @@
-.card {
-  cursor: move;
+@import "/src/theme";
 
-  .card-img {
-    object-fit: cover;
-    object-position: top left;
-    height: 10rem;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+.card {
+  .handle {
+    cursor: move;
+  }
+
+  .doc-img {
+    object-fit: contain;
+    object-position: center center;
+    height: 7rem;
   }
 }
 
@@ -25,6 +27,12 @@
   }
 }
 
+.split-document-preview ::ng-deep .ng2-pdf-viewer-container {
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
 ::ng-deep .document-selector {
   width: 80vw;
   min-width: 50vw;
@@ -36,4 +44,21 @@ button svg, label svg {
 
 app-input-debounce {
   flex: 1 1;
+}
+
+.separator {
+  border: 0;
+  height: 2rem;
+  opacity: 0.5;
+  background-color: transparent !important;
+  background-image: url('data:image/svg+xml;utf8, <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg"><path d="M -15 110 L100 10 L215 110" fill="none" stroke="%23000000" stroke-width="1" vector-effect="non-scaling-stroke"/></svg>');
+  background-position: bottom left;
+  background-size: 2% auto;
+  background-repeat: repeat-x;
+
+  h6 {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: .1em;
+  }
 }

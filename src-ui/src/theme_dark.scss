@@ -420,6 +420,10 @@ $border-color-dark-mode: #47494f;
   .ngb-dp-month {
     background-color: $bg-light-dark-mode;
   }
+
+  app-split-merge .separator {
+    filter: invert(1);
+  }
 }
 
 body.color-scheme-dark {
