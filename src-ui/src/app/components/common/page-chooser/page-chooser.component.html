@@ -9,5 +9,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-danger" (click)="cancelClicked()" i18n>Cancel</button>
-  <button type="button" class="btn btn-outline-primary" (click)="confirmClicked()">{{title}}</button>
+  <button type="button" class="btn btn-outline-primary" (click)="confirmClicked()" [disabled]="pages.length == 0">{{title}}</button>
 </div>

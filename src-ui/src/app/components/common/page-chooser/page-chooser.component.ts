@@ -26,7 +26,7 @@ export class PageChooserComponent implements OnInit {
   @Input()
   splitting: boolean = false
 
-  private pages: number[]
+  public pages: number[]
   private nPages: number
 
   @Output()
