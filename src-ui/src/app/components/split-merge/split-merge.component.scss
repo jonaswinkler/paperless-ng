@@ -39,7 +39,6 @@
   }
 }
 
-
 .split-document-preview ::ng-deep .ng2-pdf-viewer-container {
   width: 1px !important;
   height: 1px !important;
@@ -69,7 +68,7 @@ app-input-debounce {
     height: 20px;
     opacity: 0.5;
     background-color: transparent !important;
-    background-image: url('data:image/svg+xml;utf8, <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg"><path d="M -15 110 L100 10 L215 110" fill="none" stroke="%23000000" stroke-width="1" vector-effect="non-scaling-stroke"/></svg>');
+    background-image: url("data:image/svg+xml;utf8, <svg viewBox='0 0 200 110' xmlns='http://www.w3.org/2000/svg'><path d='M -15 110 L100 10 L215 110' fill='none' stroke='%23000000' stroke-width='1' vector-effect='non-scaling-stroke'/></svg>");
     background-position: bottom left;
     background-size: 2% auto;
     background-repeat: repeat-x;
@@ -78,7 +77,7 @@ app-input-debounce {
   h6 {
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     margin-top: -20px !important;
     z-index: 10;
   }
@@ -96,4 +95,9 @@ app-input-debounce {
     opacity: 1;
     pointer-events: all;
   }
+}
+
+.btn-toolbar > label {
+  line-height: 2rem;
+  margin-bottom: 0;
 }

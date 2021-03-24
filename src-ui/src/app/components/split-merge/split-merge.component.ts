@@ -20,7 +20,10 @@ import { PageChooserComponent } from 'src/app/components/common/page-chooser/pag
 export class SplitMergeComponent implements OnInit, OnDestroy {
 
   public loading: boolean = false
+
   public previewUrls: string[] = []
+
+  public delete_source_documents: boolean = false
 
   private previewDebounce$ = new Subject()
 
@@ -92,7 +95,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   save(preview: boolean = false) {
     this.loading = true
     this.previewUrls = []
-    this.splitMergeService.executeSplitMerge(preview, false, SplitMergeMetadata.COPY_FIRST).subscribe(
+    this.splitMergeService.executeSplitMerge(preview, this.delete_source_documents, SplitMergeMetadata.COPY_FIRST).subscribe(
       result => {
         console.log('API split_merge result:', result)
         this.loading = false

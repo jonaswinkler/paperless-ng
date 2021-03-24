@@ -72,7 +72,6 @@ export class SplitMergeService {
         currentDocument.push({document: d.id, pages: (d as PaperlessDocumentPart).pages?.join(',')})
       }
     })
-    console.log(split_merge_plan);
 
     let request: SplitMergeRequest = {
       delete_source: delete_source,
