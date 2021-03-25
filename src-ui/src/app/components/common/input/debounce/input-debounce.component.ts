@@ -13,13 +13,20 @@ export class InputDebounceComponent {
   placeholder: string
 
   @Input()
-  delay: number = 300
+  delay: number = 500
 
   @Input()
   classes: string
 
   @Input()
   allowClear: boolean = true
+
+  @Input()
+  set pattern(regexStr: string): RegExp {
+    this._pattern = new RegExp(regexStr)
+  }
+
+  _pattern: RegExp
 
   @Output()
   value: EventEmitter<string> = new EventEmitter<string>()
@@ -35,6 +42,16 @@ export class InputDebounceComponent {
     ).subscribe(input =>
       this.value.emit(input)
     );
+  }
+
+  keyUp(event: any) {
+    if (!this._pattern) return
+    if (event.key.length == 1 && !this._pattern.test(event.key)) { // e.g. dont do for backspace
+      // invalid character, prevent input
+      event.preventDefault()
+      event.stopImmediatePropagation()
+      this.inputValue = this.inputValue.slice(this.inputValue.length, 1)
+    }
   }
 
   get cssClasses(): string {
