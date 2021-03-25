@@ -144,7 +144,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   pagesFieldChange(pageStr: string, d: PaperlessDocument, index: number) {
     console.log(pageStr, d, index);
-    const pages: number[] = pageStr.split(',').map(p => {
+    let pages = pageStr.split(',').map(p => {
       if (p.indexOf('-') !== -1) {
         const minmax = p.split('-')
         let range = []
@@ -157,8 +157,10 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
       } else {
         return null
       }
-    }).flat().filter(page => page !== null)
-    this.splitMergeService.setDocumentPages(d, index, pages)
+    })
+    pages = [].concat.apply([], pages) // e.g. flat()
+    pages = pages.filter(page => page !== null)
+    this.splitMergeService.setDocumentPages(d, index, pages as number[])
     this.previewDebounce$.next()
   }
 
