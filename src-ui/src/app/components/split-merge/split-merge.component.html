@@ -131,7 +131,7 @@
               <div *ngIf="loading" class="spinner-border" role="status">
                 <span class="sr-only" i18n>Loading...</span>
               </div>
-              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
+              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2"></pdf-viewer>
             </div>
           </ng-template>
         </li>
@@ -143,7 +143,7 @@
       <div *ngIf="loading" class="spinner-border" role="status">
         <span class="sr-only" i18n>Loading...</span>
       </div>
-      <pdf-viewer *ngIf="previewUrls.length > 0" [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" (after-load-complete)="pdfPreviewLoaded($event)"></pdf-viewer>
+      <pdf-viewer *ngIf="previewUrls.length > 0" [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2"></pdf-viewer>
     </div>
   </div>
 </div>

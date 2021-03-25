@@ -144,7 +144,6 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   }
 
   pagesFieldChange(pageStr: string, d: PaperlessDocument, index: number) {
-    console.log(pageStr, d, index);
     let pages = pageStr.split(',').map(p => {
       if (p.indexOf('-') !== -1) {
         const minmax = p.split('-')
@@ -189,9 +188,5 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
       pageStrings.push(rangeStart)
     }
     return pageStrings.join(',')
-  }
-
-  pdfPreviewLoaded(event) {
-    console.log('pdf preview loaded:', event);
   }
 }
