@@ -132,11 +132,8 @@
           <a class="bg-light" ngbNavLink><ng-container i18n>Document</ng-container> {{j + 1}}</a>
           <ng-template ngbNavContent>
             <div class="preview-container px-2 tabbed text-center bg-light">
-              <h6 class="my-2 text-muted" i18n>Preview</h6>
-              <div *ngIf="loading" class="spinner-border" role="status">
-                <span class="sr-only" i18n>Loading...</span>
-              </div>
-              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2"></pdf-viewer>
+              <ng-container [ngTemplateOutlet]="previewHeader" [ngTemplateOutletContext]="{ $implicit: j }"></ng-container>
+              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" [(page)]="previewCurrentPages[j]" (after-load-complete)="pdfPreviewLoaded($event, j)"></pdf-viewer>
             </div>
           </ng-template>
         </li>
@@ -144,11 +141,26 @@
       <div [ngbNavOutlet]="previewNav"></div>
     </ng-container>
     <div *ngIf="!error && previewUrls.length <= 1" class="preview-container px-2 text-center bg-light">
-      <h6 class="my-2 text-muted" i18n>Preview</h6>
-      <div *ngIf="loading" class="spinner-border" role="status">
-        <span class="sr-only" i18n>Loading...</span>
-      </div>
-      <pdf-viewer *ngIf="previewUrls.length > 0" [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2"></pdf-viewer>
+      <ng-container [ngTemplateOutlet]="previewHeader" [ngTemplateOutletContext]="{ $implicit: 0 }"></ng-container>
+      <pdf-viewer *ngIf="previewUrls.length > 0" [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" [(page)]="previewCurrentPages[0]" (after-load-complete)="pdfPreviewLoaded($event, 0)"></pdf-viewer>
     </div>
   </div>
 </div>
+
+<ng-template #previewHeader let-index>
+  <div class="d-flex mt-2 p-2 w-100 justify-space-between">
+    <h6 class="mr-auto text-muted mt-1" i18n>Preview</h6>
+    <div *ngIf="previewNumPages[index] !== undefined" class="input-group input-group-sm w-auto">
+      <div class="input-group-prepend">
+        <div class="input-group-text" i18n>Page</div>
+      </div>
+      <input class="form-control flex-grow-0 w-auto" type="number" min="1" [max]="previewNumPages[index]" [(ngModel)]="previewCurrentPages[index]" />
+      <div class="input-group-append">
+        <div class="input-group-text" i18n>of {{previewNumPages[index]}}</div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" class="spinner-border" role="status">
+    <span class="sr-only" i18n>Loading...</span>
+  </div>
+</ng-template>
