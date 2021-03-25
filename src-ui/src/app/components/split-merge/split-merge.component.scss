@@ -56,6 +56,7 @@ button span {
 
 app-input-debounce {
   flex: 1 1;
+  position: relative;
 
   ::ng-deep .form-control {
     border-radius: 0;

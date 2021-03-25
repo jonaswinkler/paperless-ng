@@ -1,0 +1,23 @@
+.clear-wrapper {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  user-select: none;
+  width: 17px;
+  color: #999;
+
+  .clear {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  &:hover .clear {
+    color: #D0021B;
+  }
+}

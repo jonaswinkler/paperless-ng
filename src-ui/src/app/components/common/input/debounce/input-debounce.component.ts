@@ -18,6 +18,9 @@ export class InputDebounceComponent {
   @Input()
   classes: string
 
+  @Input()
+  allowClear: boolean = true
+
   @Output()
   value: EventEmitter<string> = new EventEmitter<string>()
 
@@ -36,6 +39,11 @@ export class InputDebounceComponent {
 
   get cssClasses(): string {
     return 'form-control ' + this.classes
+  }
+
+  clear() {
+    this.inputValue = ''
+    this.value.emit(this.inputValue)
   }
 
 }
