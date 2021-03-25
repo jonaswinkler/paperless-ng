@@ -22,7 +22,7 @@ export class InputDebounceComponent {
   allowClear: boolean = true
 
   @Input()
-  set pattern(regexStr: string): RegExp {
+  set pattern(regexStr: string) {
     this._pattern = new RegExp(regexStr)
   }
 
