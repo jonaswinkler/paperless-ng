@@ -28,7 +28,7 @@ export class SplitMergeService {
   removeDocument(document: PaperlessDocument, atIndex?: number) {
     if (!atIndex) atIndex = this.documents.indexOf(document)
     this.documents.splice(atIndex, 1)
-    if (this.documents.length && (this.documents[this.documents.length - 1] as PaperlessDocument).is_separator) {
+    if (this.documents.length && (this.documents[this.documents.length - 1] as PaperlessDocumentSeparator).is_separator) {
       this.documents.pop()
     }
   }
@@ -49,10 +49,10 @@ export class SplitMergeService {
     (this.documents[index] as PaperlessDocumentPart).pages = pages.length > 0 ? pages : null
   }
 
-  splitDocument(d: PaperlessDocument, index: number, secondPages: number[]) {
+  splitDocument(d: PaperlessDocument, index: number, secondPages: number[], enabledPages?: number[]) {
     const firstPages = []
     for (let page = 1; page < secondPages[0]; page++) {
-      firstPages.push(page)
+      if (!enabledPages || (enabledPages?.length && enabledPages.indexOf(page) !== -1)) firstPages.push(page)
     }
     (this.documents[index] as PaperlessDocumentPart).pages = firstPages
     this.documents.splice(index + 1, 0, { is_separator: true } as PaperlessDocumentSeparator)

@@ -27,6 +27,9 @@ export class PageChooserComponent implements OnInit {
   splitting: boolean = false
 
   public pages: number[]
+
+  public enabledPages: number[]
+
   private nPages: number
 
   @Output()
@@ -38,6 +41,7 @@ export class PageChooserComponent implements OnInit {
 
   ngOnInit(): void {
     this.pages = (this.document as PaperlessDocumentPart).pages
+    if (this.splitting && this.pages?.length) this.enabledPages = this.pages.concat([])
     if (!this.pages) this.pages = []
   }
 
@@ -50,7 +54,7 @@ export class PageChooserComponent implements OnInit {
       // we need pages as the full range since we wont know length of document later
       const startPage = this.pages.pop()
       for (let page = startPage + 1; page <= this.nPages; page++) {
-        this.pages.push(page)
+        if (!this.enabledPages || (this.enabledPages && this.enabledPages.indexOf(page) !== -1)) this.pages.push(page)
       }
     }
     this.confirmPages.emit(this.pages.sort((a, b) => { return a - b }))
@@ -63,19 +67,23 @@ export class PageChooserComponent implements OnInit {
   public afterPageRendered(pageRenderedEvent: any) {
     const pageView = pageRenderedEvent.source /* as PDFPageView */
     const div = pageView.div as HTMLDivElement
-    div.classList.toggle('selected', this.pages.indexOf(parseInt(div.dataset.pageNumber)) !== -1)
+    if (this.splitting && this.enabledPages?.length) {
+      div.classList.toggle('disabled', this.enabledPages.indexOf(parseInt(div.dataset.pageNumber)) == -1)
+    } else {
+      div.classList.toggle('selected', this.pages.indexOf(parseInt(div.dataset.pageNumber)) !== -1)
+    }
     div.onclick = () => {
-      let pageID: number = parseInt(div.dataset.pageNumber)
+      let pageNum: number = parseInt(div.dataset.pageNumber)
       if (this.splitting) { // only select 1 page
-        if (pageID == this.nPages) return
-        this.pages = [pageID]
+        if (pageNum == this.nPages || (this.enabledPages?.length && pageNum == Math.max(...this.enabledPages))) return
+        this.pages = [pageNum]
         div.parentNode.childNodes.forEach(pageEl => {
           (pageEl as Element).classList.toggle('selected', false)
         })
         div.classList.toggle('selected', true)
       } else {
-        this.pages.indexOf(pageID) !== -1 ? this.pages.splice(this.pages.indexOf(pageID), 1) : this.pages.push(pageID)
-        div.classList.toggle('selected', this.pages.indexOf(pageID) !== -1)
+        this.pages.indexOf(pageNum) !== -1 ? this.pages.splice(this.pages.indexOf(pageNum), 1) : this.pages.push(pageNum)
+        div.classList.toggle('selected', this.pages.indexOf(pageNum) !== -1)
       }
     }
   }

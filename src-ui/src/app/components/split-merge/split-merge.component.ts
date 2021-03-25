@@ -4,7 +4,7 @@ import { SplitMergeMetadata } from 'src/app/data/split-merge-request';
 import { SplitMergeService } from 'src/app/services/split-merge.service';
 import { DocumentService } from 'src/app/services/rest/document.service';
 import { DocumentListViewService } from 'src/app/services/document-list-view.service';
-import { PaperlessDocument } from 'src/app/data/paperless-document';
+import { PaperlessDocument, PaperlessDocumentPart } from 'src/app/data/paperless-document';
 import { DndDropEvent } from 'ngx-drag-drop';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -141,9 +141,10 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   chooseSplit(d: PaperlessDocument, index: number) {
     let modal = this.modalService.open(PageChooserComponent, { backdrop: 'static', size: 'lg' })
     modal.componentInstance.document = d
+    const enabledPages = (d as PaperlessDocumentPart).pages
     modal.componentInstance.splitting = true
     modal.componentInstance.confirmPages.subscribe((pages) => {
-      this.splitMergeService.splitDocument(d, index, pages)
+      this.splitMergeService.splitDocument(d, index, pages, enabledPages)
       modal.componentInstance.buttonsEnabled = false
       modal.close()
       this.previewDebounce$.next()

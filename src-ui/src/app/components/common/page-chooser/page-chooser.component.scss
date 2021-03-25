@@ -16,7 +16,7 @@
     justify-content: space-between;
     align-items: flex-start;
 
-    .page {
+    .page:not(.disabled) {
       margin: 2px 3% 2rem !important;
       cursor: pointer;
 
@@ -60,7 +60,7 @@
   &.splitting {
     .pdfViewer {
       .page:not(:last-child).selected::after,
-      .page:not(:last-child):hover::after {
+      .page:not(:last-child):not(.disabled):hover::after {
         background-color: $primary;
         width: 2rem;
         height: 100%;
@@ -76,6 +76,14 @@
         letter-spacing: 0.1rem;
         font-size: 80%;
         font-weight: bold;
+      }
+      
+      .page.disabled {
+        .canvasWrapper,
+        .textLayer {
+          opacity: 0.25;
+          pointer-events: none;
+        }
       }
     }
   }
