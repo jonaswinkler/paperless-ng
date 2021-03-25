@@ -78,7 +78,7 @@
           </button>
         </ng-container>
         <div *ngIf="!d.is_separator" class="row no-gutters">
-          <div class="col-md-3 d-flex handle" dndHandle>
+          <div class="col-md-3 bg-light d-flex handle" dndHandle>
             <svg width="2em" height="100%" viewBox="0 0 16 16" fill="currentColor" class="mx-auto">
               <use xlink:href="assets/bootstrap-icons.svg#grip-horizontal" />
             </svg>
@@ -131,7 +131,7 @@
         <li *ngFor="let previewUrl of previewUrls; let j = index" [ngbNavItem]="j">
           <a class="bg-light" ngbNavLink><ng-container i18n>Document</ng-container> {{j + 1}}</a>
           <ng-template ngbNavContent>
-            <div class="preview-container tabbed text-center bg-light">
+            <div class="preview-container px-2 tabbed text-center bg-light">
               <h6 class="my-2 text-muted" i18n>Preview</h6>
               <div *ngIf="loading" class="spinner-border" role="status">
                 <span class="sr-only" i18n>Loading...</span>
@@ -143,7 +143,7 @@
       </ul>
       <div [ngbNavOutlet]="previewNav"></div>
     </ng-container>
-    <div *ngIf="!error && previewUrls.length <= 1" class="preview-container text-center bg-light">
+    <div *ngIf="!error && previewUrls.length <= 1" class="preview-container px-2 text-center bg-light">
       <h6 class="my-2 text-muted" i18n>Preview</h6>
       <div *ngIf="loading" class="spinner-border" role="status">
         <span class="sr-only" i18n>Loading...</span>

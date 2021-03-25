@@ -1,4 +1,5 @@
 @import "src/theme";
+@import "src/theme_dark";
 
 .modal-body {
   max-height: 70vh;
@@ -64,6 +65,7 @@
         width: 2rem;
         height: 100%;
         content: "Split Here";
+        color: $text-color-dark-mode;
         position: absolute;
         top: 0;
         right: -2rem;
