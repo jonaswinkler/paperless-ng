@@ -8,7 +8,7 @@
   </div>
 
   <div class="btn-group ml-5">
-    <button type="button" class="btn btn-sm btn-outline-secondary"
+    <button type="button" class="btn btn-sm btn-outline-primary"
       [popoverTitle]="optionsTitle" [autoClose]="'outside'" [ngbPopover]="optionsPopoverBody" popoverclass="shadow" #optionsPopover="ngbPopover">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#gear" />
@@ -21,36 +21,32 @@
       </button>
     </ng-template>
     <ng-template #optionsPopoverBody>
-      <div class="form-group row">
-        <label for="metadata_options" class="col-sm-2 col-form-label" i18n>Metadata</label>
-        <div class="col-sm-10">
-          <div class="custom-control custom-radio">
-            <input type="radio" id="metadata_options-copy" name="metadata_options" class="custom-control-input">
-            <label class="custom-control-label" for="metadata_options-copy" i18n>Copy from first document</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="metadata_options-redo" name="metadata_options" class="custom-control-input">
-            <label class="custom-control-label" for="metadata_options-redo" i18n>Re-reun metadata detection on new document</label>
+      <div class="form-group row text-light">
+        <label for="source_options" class="col-sm-3 col-form-label pt-0" i18n>Delete source documents</label>
+        <div class="col-sm-9">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="source_options-delete" [(ngModel)]="delete_source_documents">
+            <label class="custom-control-label" for="source_options-delete"><ng-container i18n>Delete</ng-container><br/><small [class.text-muted]="!delete_source_documents" [class.text-danger]="delete_source_documents" i18n>Source documents will be immediately deleted.</small></label>
           </div>
         </div>
       </div>
-      <div class="form-group row">
-        <label for="source_options" class="col-sm-2 col-form-label" i18n>Source documents</label>
-        <div class="col-sm-10">
+      <div class="form-group mt-4 row text-light">
+        <label for="metadata_options" class="col-sm-3 col-form-label pt-0" i18n>Output document metadata</label>
+        <div class="col-sm-9">
           <div class="custom-control custom-radio">
-            <input type="radio" id="source_options-copy" name="source_options" class="custom-control-input">
-            <label class="custom-control-label" for="source_options-copy" i18n>Copy</label>
+            <input type="radio" id="metadata_setting-copy" name="metadata_setting" class="custom-control-input" [value]="splitMergeMetadata.COPY_FIRST" [(ngModel)]="metadata_setting">
+            <label class="custom-control-label" for="metadata_setting-copy"><ng-container i18n>First document</ng-container><br/><small class="text-muted" i18n>Metadata will be copied from first document.</small></label>
           </div>
           <div class="custom-control custom-radio">
-            <input type="radio" id="source_options-redo" name="source_options" class="custom-control-input">
-            <label class="custom-control-label" for="metadata-redo" i18n>Delete</label>
+            <input type="radio" id="metadata_setting-redo" name="metadata_setting" class="custom-control-input" [value]="splitMergeMetadata.REDO" [(ngModel)]="metadata_setting">
+            <label class="custom-control-label" for="metadata_setting-redo"><ng-container i18n>Redo</ng-container><br/><small class="text-muted" i18n>Metadata detection will be re-run on new document.</small></label>
           </div>
         </div>
       </div>
     </ng-template>
   </div>
 
-  <div class="btn-group ml-2">
+  <div class="btn-group ml-3">
     <button class="btn btn-sm btn-outline-primary" i18n-title title="Save" (click)="save()" [disabled]="splitMergeService.getDocuments().length < 1">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
@@ -61,14 +57,12 @@
 
 <div class="row">
   <div class="col-lg-6">
-    <div class="btn-toolbar justify-content-between" role="toolbar">
-      <div class="btn-group">
-        <button class="btn btn-sm btn-outline-primary" i18n-title title="Add Documents" (click)="chooseDocuments()">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
-            <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
-          </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
-        </button>
-      </div>
+    <div class="btn-toolbar" role="toolbar">
+      <button class="btn btn-sm btn-outline-primary w-100" i18n-title title="Add Documents" (click)="chooseDocuments()">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+          <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
+        </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
+      </button>
     </div>
     <div class="py-4" dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>

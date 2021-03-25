@@ -99,4 +99,8 @@ app-input-debounce {
 
 ::ng-deep .popover {
   min-width: 30rem;
+
+  .close {
+    line-height: 0.7;
+  }
 }

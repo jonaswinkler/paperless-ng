@@ -25,6 +25,8 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   public delete_source_documents: boolean = false
 
+  public metadata_setting: SplitMergeMetadata = SplitMergeMetadata.COPY_FIRST
+
   private previewDebounce$ = new Subject()
 
   private previewSub: Subscription
@@ -62,6 +64,10 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     return this.documentService.getThumbUrl(documentId)
   }
 
+  get splitMergeMetadata() {
+    return SplitMergeMetadata
+  }
+
   chooseDocuments() {
     let modal = this.modalService.open(DocumentChooserComponent, { backdrop: 'static', size: 'xl' })
     modal.componentInstance.confirmClicked.subscribe(() => {
@@ -95,7 +101,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   save(preview: boolean = false) {
     this.loading = true
     this.previewUrls = []
-    this.splitMergeService.executeSplitMerge(preview, this.delete_source_documents, SplitMergeMetadata.COPY_FIRST).subscribe(
+    this.splitMergeService.executeSplitMerge(preview, this.delete_source_documents, this.metadata_setting).subscribe(
       result => {
         console.log('API split_merge result:', result)
         this.loading = false
