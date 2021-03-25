@@ -28,10 +28,9 @@ export class SplitMergeService {
   removeDocument(document: PaperlessDocument, atIndex?: number) {
     if (!atIndex) atIndex = this.documents.indexOf(document)
     this.documents.splice(atIndex, 1)
-  }
-
-  reduceDocumentsTo(size: number) {
-    if (this.documents.length > size) this.documents.length = size
+    if (this.documents.length && (this.documents[this.documents.length - 1] as PaperlessDocument).is_separator) {
+      this.documents.pop()
+    }
   }
 
   getDocuments() {
