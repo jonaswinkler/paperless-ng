@@ -31,6 +31,8 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   private previewSub: Subscription
 
+  public error: string
+
   constructor(
     public splitMergeService: SplitMergeService,
     private documentService: DocumentService,
@@ -47,6 +49,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
         this.save(true)
       } else {
         this.previewUrls = []
+        this.error = undefined
       }
     })
     this.previewDebounce$.next()
@@ -103,14 +106,18 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
     this.previewUrls = []
     this.splitMergeService.executeSplitMerge(preview, this.delete_source_documents, this.metadata_setting).subscribe(
       result => {
-        console.log('API split_merge result:', result)
         this.loading = false
+        this.error = undefined
         if (preview) {
           this.previewUrls = result.map(r => this.splitMergeService.getPreviewUrl(r))
         } else {
           this.splitMergeService.clear()
           this.router.navigate([""])
         }
+      },
+      error => {
+        this.error = error
+        this.loading = false
       }
     )
   }

@@ -121,7 +121,12 @@
     </div>
   </div>
   <div class="col-lg-6">
-    <ng-container *ngIf="previewUrls.length > 1">
+    <ngb-alert *ngIf="error" type="danger" class="mt-2 mb-0" [dismissible]="false">
+      <h6 class="alert-heading" i18n>An error occurred during operation</h6>
+      <p class="mb-0 pb-1" i18n>Please check document settings and parts.</p>
+      <p class="mb-0 pb-1 small"><ng-container i18n>Message</ng-container>: <span class="font-italic">{{error}}</span></p>
+    </ngb-alert>
+    <ng-container *ngIf="!error && previewUrls.length > 1">
       <ul ngbNav #previewNav="ngbNav" class="nav-tabs">
         <li *ngFor="let previewUrl of previewUrls; let j = index" [ngbNavItem]="j">
           <a class="bg-light" ngbNavLink><ng-container i18n>Document</ng-container> {{j + 1}}</a>
@@ -138,7 +143,7 @@
       </ul>
       <div [ngbNavOutlet]="previewNav"></div>
     </ng-container>
-    <div *ngIf="previewUrls.length <= 1" class="preview-container text-center bg-light">
+    <div *ngIf="!error && previewUrls.length <= 1" class="preview-container text-center bg-light">
       <h6 class="my-2 text-muted" i18n>Preview</h6>
       <div *ngIf="loading" class="spinner-border" role="status">
         <span class="sr-only" i18n>Loading...</span>

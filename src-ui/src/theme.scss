@@ -5,3 +5,8 @@ $primaryFaded: #d1ddd2;
 $theme-colors: (
   "primary": $primary
 );
+
+.alert-heading {
+  font-size: 80%;
+  font-weight: bold;
+}

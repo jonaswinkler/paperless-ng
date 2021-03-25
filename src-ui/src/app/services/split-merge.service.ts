@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { PaperlessDocument, PaperlessDocumentPart, PaperlessDocumentSeparator } from '../data/paperless-document';
 import { SplitMergeMetadata, SplitMergeRequest } from '../data/split-merge-request';
@@ -79,7 +80,14 @@ export class SplitMergeService {
       metadata: metadata,
       split_merge_plan: split_merge_plan
     }
-    return this.http.post<string[]>(`${environment.apiBaseUrl}split_merge/`, request)
+    return this.http.post<string[]>(`${environment.apiBaseUrl}split_merge/`, request).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  handleError(error: HttpErrorResponse) {
+    console.log('API split_merge result error:', error)
+    return throwError(error.message)
   }
 
   getPreviewUrl(previewKey: string) {
