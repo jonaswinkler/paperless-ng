@@ -1,13 +1,12 @@
 <app-page-header i18n-title title="Split & Merge Editor">
-  <div class="btn-group mr-5">
-    <button class="btn btn-sm btn-outline-danger" i18n-title title="Cancel" (click)="cancel()">
+  <div class="btn-group">
+    <button class="btn btn-sm btn-outline-primary" i18n-title title="Add Documents" (click)="chooseDocuments()">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
-        <use xlink:href="assets/bootstrap-icons.svg#slash-circle" />
-      </svg>&nbsp;<ng-container i18n>Cancel</ng-container>
+        <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
+      </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
     </button>
   </div>
-
-  <div class="btn-group ml-5">
+  <div class="btn-group ml-2">
     <button type="button" class="btn btn-sm btn-outline-primary"
       [popoverTitle]="optionsTitle" [autoClose]="'outside'" [ngbPopover]="optionsPopoverBody" popoverclass="shadow" #optionsPopover="ngbPopover">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
@@ -46,25 +45,26 @@
     </ng-template>
   </div>
 
-  <div class="btn-group ml-3">
+  <div class="btn-group ml-2 mr-5">
     <button class="btn btn-sm btn-outline-primary" i18n-title title="Save" (click)="save()" [disabled]="splitMergeService.getDocuments().length < 1">
       <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#check-circle" />
       </svg>&nbsp;<ng-container i18n>Save</ng-container>
     </button>
   </div>
+
+  <div class="btn-group ml-5">
+    <button class="btn btn-sm btn-outline-danger" i18n-title title="Cancel" (click)="cancel()">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#slash-circle" />
+      </svg>&nbsp;<ng-container i18n>Cancel</ng-container>
+    </button>
+  </div>
 </app-page-header>
 
 <div class="row">
   <div class="col-lg-6">
-    <div class="btn-toolbar" role="toolbar">
-      <button class="btn btn-sm btn-outline-primary w-100" i18n-title title="Add Documents" (click)="chooseDocuments()">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
-          <use xlink:href="assets/bootstrap-icons.svg#plus-circle" />
-        </svg>&nbsp;<ng-container i18n>Add Documents</ng-container>
-      </button>
-    </div>
-    <div class="py-4" dndDropzone (dndDrop)="onDrop($event, documents)">
+    <div dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>
       </div>
       <div *ngFor="let d of documents; let i = index" class="card w-100 mb-3" [class.separator-card]="d.is_separator" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
