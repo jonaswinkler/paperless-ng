@@ -25,7 +25,7 @@
         <div class="col-sm-9">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="source_options-delete" [(ngModel)]="delete_source_documents">
-            <label class="custom-control-label" for="source_options-delete"><ng-container i18n>Delete</ng-container><br/><small [class.text-muted]="!delete_source_documents" [class.text-danger]="delete_source_documents" i18n>Source documents will be immediately deleted.</small></label>
+            <label class="custom-control-label" for="source_options-delete" [class.text-danger]="delete_source_documents"><ng-container i18n>Delete</ng-container><br/><small [class.text-muted]="!delete_source_documents" i18n>Source documents will be immediately deleted.</small></label>
           </div>
         </div>
       </div>
