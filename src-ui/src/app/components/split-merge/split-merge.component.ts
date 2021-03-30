@@ -11,6 +11,7 @@ import { debounceTime } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DocumentChooserComponent } from 'src/app/components/common/document-chooser/document-chooser.component'
 import { PageChooserComponent } from 'src/app/components/common/page-chooser/page-chooser.component'
+import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 
 @Component({
   selector: 'app-split-merge',
@@ -22,6 +23,8 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
   public loading: boolean = false
 
   public previewUrls: string[] = []
+  public previewNumPages: number[] = []
+  public previewCurrentPages: number[] = []
 
   public delete_source_documents: boolean = false
 
@@ -124,6 +127,7 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   removeDocument(d: PaperlessDocument, index: number) {
     this.splitMergeService.removeDocument(d, index)
+    this.previewNumPages[index] = this.previewCurrentPages[index] = undefined
     this.previewDebounce$.next()
   }
 
@@ -196,5 +200,10 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
       pageStrings.push(rangeStart)
     }
     return pageStrings.join(',')
+  }
+
+  pdfPreviewLoaded(pdf: PDFDocumentProxy, index: number) {
+    this.previewNumPages[index] = pdf.numPages
+    this.previewCurrentPages[index] = 1
   }
 }
