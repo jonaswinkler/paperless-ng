@@ -204,6 +204,9 @@ export class SplitMergeComponent implements OnInit, OnDestroy {
 
   pdfPreviewLoaded(pdf: PDFDocumentProxy, index: number) {
     this.previewNumPages[index] = pdf.numPages
-    this.previewCurrentPages[index] = 1
+  }
+
+  pdfPageRendered(event: any, index) { // CustomEvent is es6
+    if (event.pageNumber > 0 && this.previewCurrentPages[index] == undefined) this.previewCurrentPages[index] = 1
   }
 }

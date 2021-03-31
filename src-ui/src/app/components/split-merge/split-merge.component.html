@@ -133,7 +133,7 @@
           <ng-template ngbNavContent>
             <div class="preview-container px-2 tabbed text-center bg-light">
               <ng-container [ngTemplateOutlet]="previewHeader" [ngTemplateOutletContext]="{ $implicit: j }"></ng-container>
-              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" [(page)]="previewCurrentPages[j]" (after-load-complete)="pdfPreviewLoaded($event, j)"></pdf-viewer>
+              <pdf-viewer [src]="previewUrl" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" [(page)]="previewCurrentPages[j]" (after-load-complete)="pdfPreviewLoaded($event, j)" (page-rendered)="pdfPageRendered($event, j)"></pdf-viewer>
             </div>
           </ng-template>
         </li>
@@ -142,7 +142,7 @@
     </ng-container>
     <div *ngIf="!error && previewUrls.length <= 1" class="preview-container px-2 text-center bg-light">
       <ng-container [ngTemplateOutlet]="previewHeader" [ngTemplateOutletContext]="{ $implicit: 0 }"></ng-container>
-      <pdf-viewer *ngIf="previewUrls.length > 0" [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" [(page)]="previewCurrentPages[0]" (after-load-complete)="pdfPreviewLoaded($event, 0)"></pdf-viewer>
+      <pdf-viewer *ngIf="previewUrls.length > 0" [src]="previewUrls[0]" [original-size]="false" [show-borders]="true" [show-all]="true" [render-text-mode]="2" [(page)]="previewCurrentPages[0]" (after-load-complete)="pdfPreviewLoaded($event, 0)" (page-rendered)="pdfPageRendered($event, 0)"></pdf-viewer>
     </div>
   </div>
 </div>
