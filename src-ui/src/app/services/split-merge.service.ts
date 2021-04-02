@@ -28,11 +28,7 @@ export class SplitMergeService {
   removeDocument(document: PaperlessDocument, atIndex?: number) {
     if (!atIndex) atIndex = this.documents.indexOf(document)
     this.documents.splice(atIndex, 1)
-    if (this.documents.length > 0 && (this.documents[this.documents.length - 1] as PaperlessDocumentSeparator).is_separator) {
-      this.documents.pop()
-    } else if (this.documents.length > 0 && (this.documents[0] as PaperlessDocumentSeparator).is_separator) {
-      this.documents.shift()
-    }
+    this.sanitizeStartEndSeparators()
   }
 
   getDocuments() {
@@ -63,7 +59,16 @@ export class SplitMergeService {
     this.documents.splice(index + 2, 0, d2)
   }
 
+  sanitizeStartEndSeparators() {
+    if (this.documents.length > 0 && (this.documents[this.documents.length - 1] as PaperlessDocumentSeparator).is_separator) {
+      this.documents.pop()
+    } else if (this.documents.length > 0 && (this.documents[0] as PaperlessDocumentSeparator).is_separator) {
+      this.documents.shift()
+    }
+  }
+
   executeSplitMerge(preview: boolean, delete_source: boolean, metadata: SplitMergeMetadata): Observable<string[]> {
+    this.sanitizeStartEndSeparators()
     let currentDocument = []
     let split_merge_plan = [currentDocument]
     this.documents.forEach(d => {
