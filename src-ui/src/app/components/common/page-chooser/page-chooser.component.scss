@@ -1,5 +1,4 @@
 @import "src/theme";
-@import "src/theme_dark";
 
 .modal-body {
   max-height: 70vh;
@@ -65,7 +64,7 @@
         width: 2rem;
         height: 100%;
         content: "Split Here";
-        color: $text-color-dark-mode;
+        color: #abb2bf; // dark mode text color
         position: absolute;
         top: 0;
         right: -2rem;
@@ -77,7 +76,7 @@
         font-size: 80%;
         font-weight: bold;
       }
-      
+
       .page.disabled {
         .canvasWrapper,
         .textLayer {
