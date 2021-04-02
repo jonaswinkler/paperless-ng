@@ -369,22 +369,11 @@ class SavedViewViewSet(ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class BulkEditView(APIView):
+class BulkEditView(GenericAPIView):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = BulkEditSerializer
     parser_classes = (parsers.JSONParser,)
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -402,22 +391,11 @@ class BulkEditView(APIView):
             return HttpResponseBadRequest(str(e))
 
 
-class PostDocumentView(APIView):
+class PostDocumentView(GenericAPIView):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = PostDocumentSerializer
     parser_classes = (parsers.MultiPartParser,)
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
 
@@ -456,22 +434,11 @@ class PostDocumentView(APIView):
         return Response("OK")
 
 
-class SelectionDataView(APIView):
+class SelectionDataView(GenericAPIView):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = DocumentListSerializer
     parser_classes = (parsers.MultiPartParser, parsers.JSONParser)
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
 
     def post(self, request, format=None):
         serializer = self.get_serializer(data=request.data)
@@ -623,22 +590,11 @@ class StatisticsView(APIView):
         })
 
 
-class BulkDownloadView(APIView):
+class BulkDownloadView(GenericAPIView):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = BulkDownloadSerializer
     parser_classes = (parsers.JSONParser,)
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
 
     def post(self, request, format=None):
         serializer = self.get_serializer(data=request.data)
@@ -719,6 +675,7 @@ class DocumentSplitMergeViewSet(GenericViewSet):
                 tempdir=self.tempdir
             )
         except MergeError:
-            raise
+            logger.exception("Error during merge")
+            return HttpResponseBadRequest()
 
         return Response([os.path.basename(file) for file in pdf_files])

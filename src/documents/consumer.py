@@ -64,9 +64,9 @@ class Consumer(LoggingMixin):
                                                      {'type': 'status_update',
                                                       'data': payload})
 
-    def _fail(self, message, log_message=None):
+    def _fail(self, message, log_message=None, exc_info=None):
         self._send_progress(100, 100, 'FAILED', message)
-        self.log("error", log_message or message)
+        self.log("error", log_message or message, exc_info=exc_info)
         raise ConsumerError(f"{self.filename}: {log_message or message}")
 
     def __init__(self):
@@ -121,7 +121,8 @@ class Consumer(LoggingMixin):
         except Exception as e:
             self._fail(
                 MESSAGE_PRE_CONSUME_SCRIPT_ERROR,
-                f"Error while executing pre-consume script: {e}"
+                f"Error while executing pre-consume script: {e}",
+                exc_info=True
             )
 
     def run_post_consume_script(self, document):
@@ -151,7 +152,8 @@ class Consumer(LoggingMixin):
         except Exception as e:
             self._fail(
                 MESSAGE_POST_CONSUME_SCRIPT_ERROR,
-                f"Error while executing post-consume script: {e}"
+                f"Error while executing post-consume script: {e}",
+                exc_info=True
             )
 
     def try_consume_file(self,
@@ -258,7 +260,8 @@ class Consumer(LoggingMixin):
             document_parser.cleanup()
             self._fail(
                 str(e),
-                f"Error while consuming document {self.filename}: {e}"
+                f"Error while consuming document {self.filename}: {e}",
+                exc_info=True
             )
 
         # Prepare the document classifier.
@@ -329,7 +332,8 @@ class Consumer(LoggingMixin):
             self._fail(
                 str(e),
                 f"The following error occured while consuming "
-                f"{self.filename}: {e}"
+                f"{self.filename}: {e}",
+                exc_info=True
             )
         finally:
             document_parser.cleanup()

@@ -26,7 +26,7 @@ class TestPdfCache(DirectoriesMixin, TestCase):
 
     def test_open_no_pdf(self):
         doc = Document.objects.create(mime_type="image/jpeg")
-        self.assertRaisesMessage(MergeError, "does not have PDF.", self.cache.open_from_document, doc)
+        self.assertRaisesMessage(MergeError, "does not have a PDF.", self.cache.open_from_document, doc)
 
     def test_open_original_pdf(self):
         doc = Document.objects.create(mime_type="application/pdf", filename="test.pdf")
