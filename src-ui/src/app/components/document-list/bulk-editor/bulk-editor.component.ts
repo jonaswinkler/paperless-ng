@@ -16,6 +16,8 @@ import { MatchingModel } from 'src/app/data/matching-model';
 import { SettingsService, SETTINGS_KEYS } from 'src/app/services/settings.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { saveAs } from 'file-saver';
+import { SplitMergeService } from 'src/app/services/split-merge.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bulk-editor',
@@ -32,9 +34,6 @@ export class BulkEditorComponent {
   correspondentSelectionModel = new FilterableDropdownSelectionModel()
   documentTypeSelectionModel = new FilterableDropdownSelectionModel()
 
-  @Output()
-  addSelectedToSplitMerge = new EventEmitter()
-
   constructor(
     private documentTypeService: DocumentTypeService,
     private tagService: TagService,
@@ -44,7 +43,9 @@ export class BulkEditorComponent {
     private modalService: NgbModal,
     private openDocumentService: OpenDocumentsService,
     private settings: SettingsService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private splitMergeService: SplitMergeService,
+    private router: Router
   ) { }
 
   applyOnClose: boolean = this.settings.get(SETTINGS_KEYS.BULK_EDIT_APPLY_ON_CLOSE)
@@ -219,6 +220,7 @@ export class BulkEditorComponent {
   }
 
   addToSplitMerge() {
-    this.addSelectedToSplitMerge.next()
+    this.splitMergeService.addDocuments(this.list.selectedDocuments)
+    this.router.navigate(["split_merge"])
   }
 }

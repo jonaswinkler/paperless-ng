@@ -12,7 +12,6 @@ import { SavedViewService } from 'src/app/services/rest/saved-view.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { FilterEditorComponent } from './filter-editor/filter-editor.component';
 import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-view-config-dialog.component';
-import { SplitMergeService } from 'src/app/services/split-merge.service';
 
 @Component({
   selector: 'app-document-list',
@@ -28,8 +27,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private toastService: ToastService,
     private modalService: NgbModal,
-    private consumerStatusService: ConsumerStatusService,
-    private splitMergeService: SplitMergeService
+    private consumerStatusService: ConsumerStatusService
   ) { }
 
   @ViewChild("filterEditor")
@@ -211,10 +209,5 @@ export class DocumentListComponent implements OnInit, OnDestroy {
 
   trackByDocumentId(index, item: PaperlessDocument) {
     return item.id
-  }
-
-  addToSplitMerge() {
-    this.splitMergeService.addDocuments(this.list.selectedDocuments)
-    this.router.navigate(["split_merge"])
   }
 }
