@@ -149,7 +149,7 @@
 
 <ng-template #previewHeader let-index>
   <div class="d-flex mt-2 p-2 w-100 justify-space-between">
-    <h6 class="mr-auto text-muted mt-1" i18n>Preview</h6>
+    <h6 class="text-muted mt-1" [class.mx-auto]="previewNumPages[index] == undefined" [class.mr-auto]="previewNumPages[index] !== undefined" i18n>Preview</h6>
     <div *ngIf="previewNumPages[index] !== undefined" class="input-group input-group-sm w-auto">
       <div class="input-group-prepend">
         <div class="input-group-text" i18n>Page</div>
