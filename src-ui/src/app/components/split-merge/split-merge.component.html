@@ -70,7 +70,7 @@
       <div *ngFor="let d of documents; let i = index" class="card w-100 mb-3" [class.separator-card]="d.is_separator" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
         <ng-container *ngIf="d.is_separator">
           <div class="separator"></div>
-          <h6 class="text-muted small font-weight-bold d-inline-block pt-2 px-3 mb-2 mx-auto bg-body" i18n>Document End</h6>
+          <h6 class="text-muted small font-weight-bold d-inline-block py-2 px-3 mb-0 mx-auto bg-body" i18n>Document End</h6>
           <button class="btn btn-sm btn-danger" title="Remove" (click)="removeDocument(d, i)">
             <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
               <use xlink:href="assets/bootstrap-icons.svg#trash" />
