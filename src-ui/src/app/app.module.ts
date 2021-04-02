@@ -76,12 +76,14 @@ import localeEnGb from '@angular/common/locales/en-GB';
 import localeRo from '@angular/common/locales/ro';
 import localeRu from '@angular/common/locales/ru';
 import localeEs from '@angular/common/locales/es';
+import { DocumentAsnComponent } from './components/document-asn/document-asn.component';
 
 
 registerLocaleData(localeFr)
 registerLocaleData(localeNl)
 registerLocaleData(localeDe)
 registerLocaleData(localePt, "pt-BR")
+registerLocaleData(localePt, "pt-PT")
 registerLocaleData(localeIt)
 registerLocaleData(localeEnGb)
 registerLocaleData(localeRo)
@@ -139,6 +141,7 @@ registerLocaleData(localeEs)
     CustomDatePipe,
     DateComponent,
     ColorComponent,
+    DocumentAsnComponent,
     SplitMergeComponent
   ],
   imports: [
