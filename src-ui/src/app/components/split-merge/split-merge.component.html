@@ -63,8 +63,7 @@
 </app-page-header>
 
 <div class="row">
-  <div class="col-lg-6">
-    <div dndDropzone (dndDrop)="onDrop($event, documents)">
+  <div class="col-md-6 col-lg-5">
     <div class="h-100" dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>
       </div>
@@ -121,7 +120,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6 col-lg-7">
     <ngb-alert *ngIf="error" type="danger" class="mt-2 mb-0" [dismissible]="false">
       <h6 class="alert-heading" i18n>An error occurred during operation</h6>
       <p class="mb-0 pb-1" i18n>Please check document settings and parts.</p>
