@@ -675,6 +675,7 @@ class DocumentSplitMergeViewSet(GenericViewSet):
                 tempdir=self.tempdir
             )
         except MergeError:
-            raise
+            logger.exception("Error during merge")
+            return HttpResponseBadRequest()
 
         return Response([os.path.basename(file) for file in pdf_files])
