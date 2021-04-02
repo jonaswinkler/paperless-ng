@@ -98,8 +98,12 @@ $border-color-dark-mode: #47494f;
     .nav-link.bg-light {
       border-bottom-color: $border-color-dark-mode !important;
 
-      &:not(.active):hover {
+      &:not(.active) {
         background-color: $bg-dark-mode !important;
+
+        &:hover {
+          background-color: $bg-dark-mode !important;
+        }
       }
 
       &.active {

@@ -63,6 +63,15 @@ app-input-debounce {
   }
 }
 
+.nav-link.bg-light {
+  border-bottom-color: #f8f9fa;
+
+  &:not(.active) {
+    background-color: #fff !important;
+    border-bottom-color: #dee2e6;
+  }
+}
+
 .separator-card {
   .separator {
     border: 0;
