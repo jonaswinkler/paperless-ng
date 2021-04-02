@@ -65,6 +65,7 @@
 <div class="row">
   <div class="col-lg-6">
     <div dndDropzone (dndDrop)="onDrop($event, documents)">
+    <div class="h-100" dndDropzone (dndDrop)="onDrop($event, documents)">
       <div class="spacer bg-primary" dndPlaceholderRef>
       </div>
       <div *ngFor="let d of documents; let i = index" class="card w-100 mb-3" [class.separator-card]="d.is_separator" [dndDraggable]="d" dndEffectAllowed="move" (dndMoved)="onDragged(d, documents)">
