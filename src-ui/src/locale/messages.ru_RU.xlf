@@ -1418,7 +1418,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-card-small/document-card-small.component.html</context>
           <context context-type="linenumber">43</context>
         </context-group>
-        <target state="needs-translation">Created: <x id="INTERPOLATION" equiv-text="{{ document.created | customDate}}"/></target>
+        <target state="translated">Создано: <x id="INTERPOLATION" equiv-text="{{ document.created | customDate}}"/></target>
       </trans-unit>
       <trans-unit id="0f5d856cb63c69fde44fbfc653ec0655f9040865" datatype="html">
         <source>Added: <x id="INTERPOLATION" equiv-text="{{ document.added | customDate}}"/></source>
@@ -1426,7 +1426,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-card-small/document-card-small.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
-        <target state="needs-translation">Added: <x id="INTERPOLATION" equiv-text="{{ document.added | customDate}}"/></target>
+        <target state="translated">Добавлено: <x id="INTERPOLATION" equiv-text="{{ document.added | customDate}}"/></target>
       </trans-unit>
       <trans-unit id="a205126adef6251fc63305f1a6228d07bc2795a8" datatype="html">
         <source>Modified: <x id="INTERPOLATION" equiv-text="{{ document.modified | customDate}}"/></source>
@@ -1434,7 +1434,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-card-small/document-card-small.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
-        <target state="needs-translation">Modified: <x id="INTERPOLATION" equiv-text="{{ document.modified | customDate}}"/></target>
+        <target state="translated">Изменено: <x id="INTERPOLATION" equiv-text="{{ document.modified | customDate}}"/></target>
       </trans-unit>
       <trans-unit id="7985804062689412812" datatype="html">
         <source>Error executing bulk operation: <x id="PH" equiv-text="JSON.stringify(error.error)"/></source>
@@ -1887,7 +1887,7 @@
           <context context-type="sourcefile">src/app/components/document-asn/document-asn.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="needs-translation">Searching document with asn <x id="INTERPOLATION" equiv-text="{{asn}}"/></target>
+        <target state="translated">Поиск документа с asn <x id="INTERPOLATION" equiv-text="{{asn}}"/></target>
       </trans-unit>
       <trans-unit id="2807800733729323332" datatype="html">
         <source>Yes</source>
