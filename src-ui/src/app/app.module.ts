@@ -35,6 +35,7 @@ import { DocumentCardSmallComponent } from './components/document-list/document-
 import { BulkEditorComponent } from './components/document-list/bulk-editor/bulk-editor.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { TextComponent } from './components/common/input/text/text.component';
+import { InputDebounceComponent } from './components/common/input/debounce/input-debounce.component';
 import { SelectComponent } from './components/common/input/select/select.component';
 import { CheckComponent } from './components/common/input/check/check.component';
 import { SaveViewConfigDialogComponent } from './components/document-list/save-view-config-dialog/save-view-config-dialog.component';
@@ -66,6 +67,9 @@ import { ApiVersionInterceptor } from './interceptors/api-version.interceptor';
 import { ColorSliderModule } from 'ngx-color/slider';
 import { ColorComponent } from './components/common/input/color/color.component';
 import { SplitMergeComponent } from './components/split-merge/split-merge.component';
+import { DndModule } from 'ngx-drag-drop';
+import { DocumentChooserComponent } from './components/common/document-chooser/document-chooser.component';
+import { PageChooserComponent } from './components/common/page-chooser/page-chooser.component';
 
 import localeFr from '@angular/common/locales/fr';
 import localeNl from '@angular/common/locales/nl';
@@ -120,6 +124,7 @@ registerLocaleData(localeEs)
     DocumentCardSmallComponent,
     BulkEditorComponent,
     TextComponent,
+    InputDebounceComponent,
     SelectComponent,
     CheckComponent,
     SaveViewConfigDialogComponent,
@@ -142,7 +147,9 @@ registerLocaleData(localeEs)
     DateComponent,
     ColorComponent,
     DocumentAsnComponent,
-    SplitMergeComponent
+    SplitMergeComponent,
+    DocumentChooserComponent,
+    PageChooserComponent
   ],
   imports: [
     BrowserModule,
@@ -155,7 +162,8 @@ registerLocaleData(localeEs)
     InfiniteScrollModule,
     PdfViewerModule,
     NgSelectModule,
-    ColorSliderModule
+    ColorSliderModule,
+    DndModule
   ],
   providers: [
     DatePipe,

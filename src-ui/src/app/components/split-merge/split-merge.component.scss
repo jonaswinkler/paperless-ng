@@ -1,0 +1,116 @@
+@import "/src/theme";
+
+.card {
+  .handle {
+    cursor: move;
+  }
+
+  .doc-thumb {
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 5rem;
+    height: 100%;
+    width: 70%;
+  }
+
+  &.separator-card {
+    border: none;
+    background: transparent;
+  }
+}
+
+.spacer {
+  min-height: 0.25rem;
+  width: 100%;
+  margin: 1rem;
+}
+
+.preview-container {
+  height: calc(100vh - 170px);
+  overflow: hidden;
+
+  &.tabbed {
+    height: calc(100vh - 200px);
+  }
+
+  .spinner-border {
+    margin-top: 40%;
+  }
+}
+
+.split-document-preview ::ng-deep .ng2-pdf-viewer-container {
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+::ng-deep .document-selector {
+  width: 80vw;
+  min-width: 50vw;
+}
+
+button span {
+  margin-left: 0.15rem;
+}
+
+app-input-debounce {
+  flex: 1 1;
+  position: relative;
+
+  ::ng-deep .form-control {
+    border-radius: 0;
+  }
+}
+
+.nav-link.bg-light {
+  border-bottom-color: #f8f9fa;
+
+  &:not(.active) {
+    background-color: #fff !important;
+    border-bottom-color: #dee2e6;
+  }
+}
+
+.separator-card {
+  .separator {
+    border: 0;
+    height: 20px;
+    opacity: 0.5;
+    background-color: transparent !important;
+    background-image: url("data:image/svg+xml;utf8, <svg viewBox='0 0 200 110' xmlns='http://www.w3.org/2000/svg'><path d='M -15 110 L100 10 L215 110' fill='none' stroke='%23000000' stroke-width='1' vector-effect='non-scaling-stroke'/></svg>");
+    background-position: bottom left;
+    background-size: 2% auto;
+    background-repeat: repeat-x;
+  }
+
+  h6 {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-top: -20px !important;
+    z-index: 10;
+  }
+
+  button {
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &:hover button {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+::ng-deep .popover {
+  min-width: 30rem;
+
+  .close {
+    line-height: 0.7;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PaperlessTag } from 'src/app/data/paperless-tag';
 import { PaperlessCorrespondent } from 'src/app/data/paperless-correspondent';
 import { PaperlessDocumentType } from 'src/app/data/paperless-document-type';
@@ -16,6 +16,8 @@ import { MatchingModel } from 'src/app/data/matching-model';
 import { SettingsService, SETTINGS_KEYS } from 'src/app/services/settings.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { saveAs } from 'file-saver';
+import { SplitMergeService } from 'src/app/services/split-merge.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bulk-editor',
@@ -41,7 +43,9 @@ export class BulkEditorComponent {
     private modalService: NgbModal,
     private openDocumentService: OpenDocumentsService,
     private settings: SettingsService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private splitMergeService: SplitMergeService,
+    private router: Router
   ) { }
 
   applyOnClose: boolean = this.settings.get(SETTINGS_KEYS.BULK_EDIT_APPLY_ON_CLOSE)
@@ -213,5 +217,10 @@ export class BulkEditorComponent {
     this.documentService.bulkDownload(Array.from(this.list.selected), content).subscribe((result: any) => {
       saveAs(result, 'documents.zip');
     })
+  }
+
+  addToSplitMerge() {
+    this.splitMergeService.addDocuments(this.list.selectedDocuments)
+    this.router.navigate(["split_merge"])
   }
 }

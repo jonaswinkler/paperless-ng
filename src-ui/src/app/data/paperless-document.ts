@@ -41,3 +41,11 @@ export interface PaperlessDocument extends ObjectWithId {
     archive_serial_number?: number
 
 }
+
+export interface PaperlessDocumentPart extends PaperlessDocument {
+  pages: number[]
+}
+
+export interface PaperlessDocumentSeparator extends PaperlessDocument {
+  is_separator: boolean
+}

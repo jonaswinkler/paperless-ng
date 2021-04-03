@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <div style="top: 0; right: 0; font-size: large" class="text-right position-absolute mr-1">
+      <div *ngIf="!simpleCard" style="top: 0; right: 0; font-size: large" class="text-right position-absolute mr-1">
         <div *ngFor="let t of getTagsLimited$() | async">
           <app-tag [tag]="t" (click)="clickTag.emit(t.id);$event.stopPropagation()" [clickable]="true" linkTitle="Filter by tag" i18n-linkTitle></app-tag>
         </div>
@@ -22,13 +22,13 @@
 
     <div class="card-body p-2">
       <p class="card-text">
-        <ng-container *ngIf="document.correspondent">
+        <ng-container *ngIf="document.correspondent && !simpleCard">
           <a [routerLink]="" title="Filter by correspondent" i18n-title (click)="clickCorrespondent.emit(document.correspondent);$event.stopPropagation()" class="font-weight-bold">{{(document.correspondent$ | async)?.name}}</a>:
         </ng-container>
         {{document.title | documentTitle}}
       </p>
     </div>
-    <div class="card-footer pt-0 pb-2 px-2">
+    <div *ngIf="!simpleCard" class="card-footer pt-0 pb-2 px-2">
       <div class="list-group list-group-flush border-0 pt-1 pb-2 card-info">
         <button *ngIf="document.document_type" type="button" class="list-group-item list-group-item-action bg-transparent pl-0 p-1 border-0" title="Filter by document type"
          (click)="clickDocumentType.emit(document.document_type);$event.stopPropagation()">

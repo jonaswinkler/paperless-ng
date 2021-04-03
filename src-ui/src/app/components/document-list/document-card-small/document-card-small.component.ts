@@ -17,11 +17,14 @@ export class DocumentCardSmallComponent implements OnInit {
   @Input()
   selected = false
 
-  @Output()
-  toggleSelected = new EventEmitter()
-
   @Input()
   document: PaperlessDocument
+
+  @Input()
+  simpleCard: boolean = false
+  
+  @Output()
+  toggleSelected = new EventEmitter()
 
   @Output()
   clickTag = new EventEmitter<number>()
@@ -93,6 +96,6 @@ export class DocumentCardSmallComponent implements OnInit {
   }
 
   mouseLeaveCard() {
-    this.popover.close()
+    this.popover?.close()
   }
 }
