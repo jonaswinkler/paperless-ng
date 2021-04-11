@@ -56,7 +56,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="needs-translation">Documents</target>
+        <target state="translated">Dokumenty</target>
       </trans-unit>
       <trans-unit id="2155249406916744630" datatype="html">
         <source>View &quot;<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>&quot; saved successfully.</source>
@@ -552,7 +552,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
-        <target state="needs-translation">Documents</target>
+        <target state="translated">Dokumenty</target>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
         <source>Edit</source>
