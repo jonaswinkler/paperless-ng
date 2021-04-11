@@ -64,7 +64,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.ts</context>
           <context context-type="linenumber">116</context>
         </context-group>
-        <target state="needs-translation">View "<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>" saved successfully.</target>
+        <target state="translated">Widok "<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>" został zapisany.</target>
       </trans-unit>
       <trans-unit id="6837554170707123455" datatype="html">
         <source>View &quot;<x id="PH" equiv-text="savedView.name"/>&quot; created successfully.</source>
@@ -120,7 +120,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">64</context>
         </context-group>
-        <target state="needs-translation">Views</target>
+        <target state="translated">Widoki</target>
       </trans-unit>
       <trans-unit id="b69d81ff62cdc22b6bf88fe0b72dc1f66ccfa44f" datatype="html">
         <source>Save as...</source>
@@ -208,7 +208,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">141</context>
         </context-group>
-        <target state="needs-translation">Added</target>
+        <target state="translated">Dodano</target>
       </trans-unit>
       <trans-unit id="9021887951960049161" datatype="html">
         <source>Confirm delete</source>
@@ -328,7 +328,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
-        <target state="needs-translation">Page</target>
+        <target state="translated">Strona</target>
       </trans-unit>
       <trans-unit id="c972a8e7d09f86e0c408a80349990fb213b32c08" datatype="html">
         <source>of <x id="INTERPOLATION" equiv-text="{{previewNumPages}}"/></source>
@@ -464,7 +464,7 @@
           <context context-type="sourcefile">src/app/components/dashboard/dashboard.component.ts</context>
           <context context-type="linenumber">35</context>
         </context-group>
-        <target state="needs-translation">Welcome to Paperless-ng!</target>
+        <target state="translated">Witaj w Paperless-ng!</target>
       </trans-unit>
       <trans-unit id="f65253954b66e929a8b4d5ecaf61f9129f8cec64" datatype="html">
         <source>Dashboard</source>
@@ -472,7 +472,7 @@
           <context context-type="sourcefile">src/app/components/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="needs-translation">Dashboard</target>
+        <target state="translated">Kokpit</target>
       </trans-unit>
       <trans-unit id="93754014749412887" datatype="html">
         <source>Do you really want to delete the tag &quot;<x id="PH" equiv-text="object.name"/>&quot;?</source>
@@ -480,7 +480,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.ts</context>
           <context context-type="linenumber">26</context>
         </context-group>
-        <target state="needs-translation">Do you really want to delete the tag "<x id="PH" equiv-text="object.name"/>"?</target>
+        <target state="translated">Czy na pewno chcesz usunąć tag <x id="PH" equiv-text="object.name"/>"?</target>
       </trans-unit>
       <trans-unit id="cafc87479686947e2590b9f588a88040aeaf660b" datatype="html">
         <source>Tags</source>
@@ -488,7 +488,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="needs-translation">Tags</target>
+        <target state="translated">Tagi</target>
       </trans-unit>
       <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
         <source>Create</source>
@@ -504,7 +504,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
-        <target state="needs-translation">Filter by:</target>
+        <target state="translated">Filtruj według:</target>
       </trans-unit>
       <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
         <source>Name</source>
@@ -512,7 +512,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Nazwa</target>
       </trans-unit>
       <trans-unit id="8fa4d523f7b91df4390120b85ed0406138273e1a" datatype="html">
         <source>Color</source>
@@ -520,7 +520,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
-        <target state="needs-translation">Color</target>
+        <target state="translated">Kolor</target>
       </trans-unit>
       <trans-unit id="d0c4488f742efeba0915e90e285a022da813deff" datatype="html">
         <source>Matching</source>
@@ -584,7 +584,7 @@
           <context context-type="sourcefile">src/app/components/manage/logs/logs.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="needs-translation">Logs</target>
+        <target state="translated">Logi</target>
       </trans-unit>
       <trans-unit id="5610279464668232148" datatype="html">
         <source>Saved view &quot;<x id="PH" equiv-text="savedView.name"/>&quot; deleted.</source>
@@ -600,7 +600,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
           <context context-type="linenumber">89</context>
         </context-group>
-        <target state="needs-translation">Settings saved successfully.</target>
+        <target state="translated">Ustawienia zostały zapisane.</target>
       </trans-unit>
       <trans-unit id="6839066544204061364" datatype="html">
         <source>Use system language</source>
@@ -616,7 +616,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
           <context context-type="linenumber">100</context>
         </context-group>
-        <target state="needs-translation">Use date format of display language</target>
+        <target state="translated">Użyj formatu daty według wyświetlanego języka</target>
       </trans-unit>
       <trans-unit id="8488620293789898901" datatype="html">
         <source>Error while storing settings on server: <x id="PH" equiv-text="JSON.stringify(error.error)"/></source>
@@ -624,7 +624,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
           <context context-type="linenumber">117</context>
         </context-group>
-        <target state="needs-translation">Error while storing settings on server: <x id="PH" equiv-text="JSON.stringify(error.error)"/></target>
+        <target state="translated">Błąd podczas zapisywania ustawień na serwerze: <x id="PH" equiv-text="JSON.stringify(error.error)"/></target>
       </trans-unit>
       <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
         <source>Settings</source>
@@ -632,7 +632,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="needs-translation">Settings</target>
+        <target state="translated">Ustawienia</target>
       </trans-unit>
       <trans-unit id="11ebd254cc9294717105c5982eb0cd2af30a446d" datatype="html">
         <source>General settings</source>
@@ -640,7 +640,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
-        <target state="needs-translation">General settings</target>
+        <target state="translated">Ustawienia ogólne</target>
       </trans-unit>
       <trans-unit id="8bcabdf6b16cad0313a86c7e940c5e3ad7f9f8ab" datatype="html">
         <source>Notifications</source>
@@ -648,7 +648,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">116</context>
         </context-group>
-        <target state="needs-translation">Notifications</target>
+        <target state="translated">Powiadomienia</target>
       </trans-unit>
       <trans-unit id="99dee94e92dbd9e21a008d4569f9719ed206ae37" datatype="html">
         <source>Saved views</source>
@@ -656,7 +656,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">134</context>
         </context-group>
-        <target state="needs-translation">Saved views</target>
+        <target state="translated">Zapisane widoki</target>
       </trans-unit>
       <trans-unit id="bbe41ac2ea4a6c00ea941a41b33105048f8e9f13" datatype="html">
         <source>Appearance</source>
@@ -664,7 +664,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
-        <target state="needs-translation">Appearance</target>
+        <target state="translated">Wygląd</target>
       </trans-unit>
       <trans-unit id="75f8908d266f7cc9b9e68e0be906fd080a223606" datatype="html">
         <source>Display language</source>
@@ -672,7 +672,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
-        <target state="needs-translation">Display language</target>
+        <target state="translated">Język</target>
       </trans-unit>
       <trans-unit id="1284a077dc18a2d1ff1b744f16f1797eea28ae37" datatype="html">
         <source>You need to reload the page after applying a new language.</source>
@@ -680,7 +680,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
-        <target state="needs-translation">You need to reload the page after applying a new language.</target>
+        <target state="translated">Musisz przeładować stronę po wybraniu nowego języka.</target>
       </trans-unit>
       <trans-unit id="0cd55822928764cc82a62ee3e6f3adbc1c630479" datatype="html">
         <source>Date display</source>
@@ -688,7 +688,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
-        <target state="needs-translation">Date display</target>
+        <target state="translated">Wyświetlanie daty</target>
       </trans-unit>
       <trans-unit id="7df4de0d0704a06a302d853e31f2580eba98f127" datatype="html">
         <source>Date format</source>
@@ -696,7 +696,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
-        <target state="needs-translation">Date format</target>
+        <target state="translated">Format daty</target>
       </trans-unit>
       <trans-unit id="69852399a18b8ca4fca8c5bfddd3f00a6d137593" datatype="html">
         <source>Short: <x id="INTERPOLATION" equiv-text="{{today | customDate:&apos;shortDate&apos;:null:computedDateLocale}}"/></source>
@@ -704,7 +704,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="needs-translation">Short: <x id="INTERPOLATION" equiv-text="{{today | customDate:'shortDate':null:computedDateLocale}}"/></target>
+        <target state="translated">Krótki: <x id="INTERPOLATION" equiv-text="{{today | customDate:'shortDate':null:computedDateLocale}}"/></target>
       </trans-unit>
       <trans-unit id="d01a59285e711252b98c4f193394e4b854615c78" datatype="html">
         <source>Medium: <x id="INTERPOLATION" equiv-text="{{today | customDate:&apos;mediumDate&apos;:null:computedDateLocale}}"/></source>
@@ -712,7 +712,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">55</context>
         </context-group>
-        <target state="needs-translation">Medium: <x id="INTERPOLATION" equiv-text="{{today | customDate:'mediumDate':null:computedDateLocale}}"/></target>
+        <target state="translated">Średni: <x id="INTERPOLATION" equiv-text="{{today | customDate:'mediumDate':null:computedDateLocale}}"/></target>
       </trans-unit>
       <trans-unit id="00481629776699b1caebd12b3b1176e2e23740a8" datatype="html">
         <source>Long: <x id="INTERPOLATION" equiv-text="{{today | customDate:&apos;longDate&apos;:null:computedDateLocale}}"/></source>
@@ -720,7 +720,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">59</context>
         </context-group>
-        <target state="needs-translation">Long: <x id="INTERPOLATION" equiv-text="{{today | customDate:'longDate':null:computedDateLocale}}"/></target>
+        <target state="translated">Długi: <x id="INTERPOLATION" equiv-text="{{today | customDate:'longDate':null:computedDateLocale}}"/></target>
       </trans-unit>
       <trans-unit id="2045151788cbdda7512752e408da59a6b54a8ef0" datatype="html">
         <source>Items per page</source>
@@ -728,7 +728,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">67</context>
         </context-group>
-        <target state="needs-translation">Items per page</target>
+        <target state="translated">Ilość elementów na stronie</target>
       </trans-unit>
       <trans-unit id="c4435e56bf0289e78fedc462f1d21fb30b9de55d" datatype="html">
         <source>Document editor</source>
@@ -736,7 +736,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">83</context>
         </context-group>
-        <target state="needs-translation">Document editor</target>
+        <target state="translated">Edytor dokumentów</target>
       </trans-unit>
       <trans-unit id="4903e521c9bfd11ce88e7a5575106ef638912e0d" datatype="html">
         <source>Use PDF viewer provided by the browser</source>
@@ -744,7 +744,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">87</context>
         </context-group>
-        <target state="needs-translation">Use PDF viewer provided by the browser</target>
+        <target state="translated">Wyświetl PDF przez wbudowaną przeglądarkę</target>
       </trans-unit>
       <trans-unit id="d7db07023e53f8396d18d375c2b78c25fc81c197" datatype="html">
         <source>This is usually faster for displaying large PDF documents, but it might not work on some browsers.</source>
@@ -2099,7 +2099,7 @@
           <context context-type="sourcefile">src/app/services/toast.service.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
-        <target state="needs-translation">Information</target>
+        <target state="translated">Informacje</target>
       </trans-unit>
       <trans-unit id="2691296884221415710" datatype="html">
         <source>Correspondent</source>
@@ -2131,7 +2131,7 @@
           <context context-type="sourcefile">src/app/services/rest/document.service.ts</context>
           <context context-type="linenumber">22</context>
         </context-group>
-        <target state="needs-translation">Added</target>
+        <target state="translated">Dodano</target>
       </trans-unit>
       <trans-unit id="3553216189604488439" datatype="html">
         <source>Modified</source>
@@ -2139,7 +2139,7 @@
           <context context-type="sourcefile">src/app/services/rest/document.service.ts</context>
           <context context-type="linenumber">23</context>
         </context-group>
-        <target state="needs-translation">Modified</target>
+        <target state="translated">Zmodyfikowano</target>
       </trans-unit>
       <trans-unit id="4561076822163447092" datatype="html">
         <source>Create new item</source>
