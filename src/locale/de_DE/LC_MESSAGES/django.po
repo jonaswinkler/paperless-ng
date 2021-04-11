@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-05 22:05+0200\n"
-"PO-Revision-Date: 2021-04-06 19:38\n"
+"PO-Revision-Date: 2021-04-11 15:29\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -336,7 +336,7 @@ msgstr "Titel oder Inhalt enthält"
 
 #: documents/models.py:393
 msgid "fulltext query"
-msgstr ""
+msgstr "Volltextsuche"
 
 #: documents/models.py:394
 msgid "more like this"
