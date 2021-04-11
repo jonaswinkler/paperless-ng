@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-05 22:05+0200\n"
-"PO-Revision-Date: 2021-04-11 17:35\n"
+"PO-Revision-Date: 2021-04-11 18:42\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -248,19 +248,19 @@ msgstr "pokaż na pasku bocznym"
 
 #: documents/models.py:361
 msgid "sort field"
-msgstr ""
+msgstr "pole sortowania"
 
 #: documents/models.py:367
 msgid "sort reverse"
-msgstr ""
+msgstr "sortuj malejąco"
 
 #: documents/models.py:373
 msgid "title contains"
-msgstr ""
+msgstr "tytuł zawiera"
 
 #: documents/models.py:374
 msgid "content contains"
-msgstr ""
+msgstr "zawartość zawiera"
 
 #: documents/models.py:375
 msgid "ASN is"
@@ -622,43 +622,43 @@ msgstr "Przetwarzaj tylko dokumenty, które całkowicie pasują do tej nazwy pli
 
 #: paperless_mail/models.py:146
 msgid "maximum age"
-msgstr ""
+msgstr "nie starsze niż"
 
 #: paperless_mail/models.py:148
 msgid "Specified in days."
-msgstr ""
+msgstr "dni."
 
 #: paperless_mail/models.py:151
 msgid "attachment type"
-msgstr ""
+msgstr "typ załącznika"
 
 #: paperless_mail/models.py:154
 msgid "Inline attachments include embedded images, so it's best to combine this option with a filename filter."
-msgstr ""
+msgstr "Załączniki typu \"inline\" zawierają osadzone obrazy, więc najlepiej połączyć tę opcję z filtrem nazwy pliku."
 
 #: paperless_mail/models.py:159
 msgid "action"
-msgstr ""
+msgstr "akcja"
 
 #: paperless_mail/models.py:165
 msgid "action parameter"
-msgstr ""
+msgstr "parametr akcji"
 
 #: paperless_mail/models.py:167
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action."
-msgstr ""
+msgstr "Dodatkowy parametr dla akcji wybranej powyżej, tj. docelowy folder akcji \"Przenieś do określonego folderu\"."
 
 #: paperless_mail/models.py:173
 msgid "assign title from"
-msgstr ""
+msgstr "przypisz tytuł"
 
 #: paperless_mail/models.py:183
 msgid "assign this tag"
-msgstr ""
+msgstr "przypisz ten tag"
 
 #: paperless_mail/models.py:191
 msgid "assign this document type"
-msgstr ""
+msgstr "przypisz ten typ dokumentu"
 
 #: paperless_mail/models.py:195
 msgid "assign correspondent from"
