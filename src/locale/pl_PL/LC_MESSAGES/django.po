@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-05 22:05+0200\n"
-"PO-Revision-Date: 2021-04-11 18:42\n"
+"PO-Revision-Date: 2021-04-11 20:04\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -264,177 +264,177 @@ msgstr "zawartość zawiera"
 
 #: documents/models.py:375
 msgid "ASN is"
-msgstr ""
+msgstr "numer archiwum jest"
 
 #: documents/models.py:376
 msgid "correspondent is"
-msgstr ""
+msgstr "korespondentem jest"
 
 #: documents/models.py:377
 msgid "document type is"
-msgstr ""
+msgstr "typ dokumentu jest"
 
 #: documents/models.py:378
 msgid "is in inbox"
-msgstr ""
+msgstr "jest w skrzynce odbiorczej"
 
 #: documents/models.py:379
 msgid "has tag"
-msgstr ""
+msgstr "ma tag"
 
 #: documents/models.py:380
 msgid "has any tag"
-msgstr ""
+msgstr "ma dowolny tag"
 
 #: documents/models.py:381
 msgid "created before"
-msgstr ""
+msgstr "utworzony przed"
 
 #: documents/models.py:382
 msgid "created after"
-msgstr ""
+msgstr "utworzony po"
 
 #: documents/models.py:383
 msgid "created year is"
-msgstr ""
+msgstr "rok utworzenia to"
 
 #: documents/models.py:384
 msgid "created month is"
-msgstr ""
+msgstr "miesiąc utworzenia to"
 
 #: documents/models.py:385
 msgid "created day is"
-msgstr ""
+msgstr "dzień utworzenia to"
 
 #: documents/models.py:386
 msgid "added before"
-msgstr ""
+msgstr "dodany przed"
 
 #: documents/models.py:387
 msgid "added after"
-msgstr ""
+msgstr "dodany po"
 
 #: documents/models.py:388
 msgid "modified before"
-msgstr ""
+msgstr "zmodyfikowany przed"
 
 #: documents/models.py:389
 msgid "modified after"
-msgstr ""
+msgstr "zmodyfikowany po"
 
 #: documents/models.py:390
 msgid "does not have tag"
-msgstr ""
+msgstr "nie ma tagu"
 
 #: documents/models.py:391
 msgid "does not have ASN"
-msgstr ""
+msgstr "nie ma numeru archiwum"
 
 #: documents/models.py:392
 msgid "title or content contains"
-msgstr ""
+msgstr "tytuł lub zawartość zawiera"
 
 #: documents/models.py:393
 msgid "fulltext query"
-msgstr ""
+msgstr "zapytanie pełnotekstowe"
 
 #: documents/models.py:394
 msgid "more like this"
-msgstr ""
+msgstr "podobne dokumenty"
 
 #: documents/models.py:405
 msgid "rule type"
-msgstr ""
+msgstr "typ reguły"
 
 #: documents/models.py:409
 msgid "value"
-msgstr ""
+msgstr "wartość"
 
 #: documents/models.py:415
 msgid "filter rule"
-msgstr ""
+msgstr "reguła filtrowania"
 
 #: documents/models.py:416
 msgid "filter rules"
-msgstr ""
+msgstr "reguły filtrowania"
 
 #: documents/serialisers.py:53
 #, python-format
 msgid "Invalid regular expression: %(error)s"
-msgstr ""
+msgstr "Nieprawidłowe wyrażenie regularne: %(error)s"
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
-msgstr ""
+msgstr "Nieprawidłowy kolor."
 
 #: documents/serialisers.py:451
 #, python-format
 msgid "File type %(type)s not supported"
-msgstr ""
+msgstr "Typ pliku %(type)s nie jest obsługiwany"
 
 #: documents/templates/index.html:21
 msgid "Paperless-ng is loading..."
-msgstr ""
+msgstr "Ładowanie Paperless-ng..."
 
 #: documents/templates/registration/logged_out.html:13
 msgid "Paperless-ng signed out"
-msgstr ""
+msgstr "Wylogowano z Paperless-ng"
 
 #: documents/templates/registration/logged_out.html:41
 msgid "You have been successfully logged out. Bye!"
-msgstr ""
+msgstr "Poprawnie wylogowano. Do zobaczenia!"
 
 #: documents/templates/registration/logged_out.html:42
 msgid "Sign in again"
-msgstr ""
+msgstr "Zaloguj się ponownie"
 
 #: documents/templates/registration/login.html:13
 msgid "Paperless-ng sign in"
-msgstr ""
+msgstr "Logowanie do Paperless-ng"
 
 #: documents/templates/registration/login.html:42
 msgid "Please sign in."
-msgstr ""
+msgstr "Proszę się zalogować."
 
 #: documents/templates/registration/login.html:45
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Twoja nazwa użytkownika i hasło nie są zgodne. Spróbuj ponownie."
 
 #: documents/templates/registration/login.html:48
 msgid "Username"
-msgstr ""
+msgstr "Użytkownik"
 
 #: documents/templates/registration/login.html:49
 msgid "Password"
-msgstr ""
+msgstr "Hasło"
 
 #: documents/templates/registration/login.html:54
 msgid "Sign in"
-msgstr ""
+msgstr "Zaloguj się"
 
 #: paperless/settings.py:298
 msgid "English (US)"
-msgstr ""
+msgstr "Angielski (USA)"
 
 #: paperless/settings.py:299
 msgid "English (GB)"
-msgstr ""
+msgstr "Angielski (Wielka Brytania)"
 
 #: paperless/settings.py:300
 msgid "German"
-msgstr ""
+msgstr "Niemiecki"
 
 #: paperless/settings.py:301
 msgid "Dutch"
-msgstr ""
+msgstr "Holenderski"
 
 #: paperless/settings.py:302
 msgid "French"
-msgstr ""
+msgstr "Francuski"
 
 #: paperless/settings.py:303
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugalski (Brazylia)"
 
 #: paperless/settings.py:304
 msgid "Portuguese"
@@ -442,11 +442,11 @@ msgstr ""
 
 #: paperless/settings.py:305
 msgid "Italian"
-msgstr ""
+msgstr "Włoski"
 
 #: paperless/settings.py:306
 msgid "Romanian"
-msgstr ""
+msgstr "Rumuński"
 
 #: paperless/settings.py:307
 msgid "Russian"
@@ -458,7 +458,7 @@ msgstr ""
 
 #: paperless/urls.py:113
 msgid "Paperless-ng administration"
-msgstr ""
+msgstr "Administracja Paperless-ng"
 
 #: paperless_mail/admin.py:25
 msgid "Filter"
@@ -662,9 +662,9 @@ msgstr "przypisz ten typ dokumentu"
 
 #: paperless_mail/models.py:195
 msgid "assign correspondent from"
-msgstr ""
+msgstr "przypisz korespondenta z"
 
 #: paperless_mail/models.py:205
 msgid "assign this correspondent"
-msgstr ""
+msgstr "przypisz tego korespondenta"
 
