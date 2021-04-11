@@ -256,7 +256,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
-        <target state="needs-translation">Delete</target>
+        <target state="translated">Usuń</target>
       </trans-unit>
       <trans-unit id="dc75033a5238fdc4f462212c847a45ba8018a3fd" datatype="html">
         <source>Download</source>
@@ -304,7 +304,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.html</context>
           <context context-type="linenumber">81</context>
         </context-group>
-        <target state="needs-translation">Metadata</target>
+        <target state="translated">Metadane</target>
       </trans-unit>
       <trans-unit id="3f5a652a1f473f4e243e3c6805ef1b383e270bb7" datatype="html">
         <source>Discard</source>
@@ -544,7 +544,7 @@
           <context context-type="sourcefile">src/app/components/manage/tag-list/tag-list.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
-        <target state="needs-translation">Actions</target>
+        <target state="translated">Akcje</target>
       </trans-unit>
       <trans-unit id="9d51b3c90afda70700229d1b8a55371c13cb3bce" datatype="html">
         <source>Documents</source>
@@ -1823,7 +1823,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/metadata-collapse/metadata-collapse.component.ts</context>
           <context context-type="linenumber">18</context>
         </context-group>
-        <target state="needs-translation">Metadata</target>
+        <target state="translated">Metadane</target>
       </trans-unit>
       <trans-unit id="3797570084942068182" datatype="html">
         <source>Select</source>
@@ -2171,7 +2171,7 @@
           <context context-type="sourcefile">src/app/components/manage/generic-list/generic-list.component.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
-        <target state="needs-translation">Automatic</target>
+        <target state="translated">Automatyczny</target>
       </trans-unit>
       <trans-unit id="5044611416737085530" datatype="html">
         <source>Do you really want to delete this element?</source>
@@ -2195,7 +2195,7 @@
           <context context-type="sourcefile">src/app/components/manage/generic-list/generic-list.component.ts</context>
           <context context-type="linenumber">106</context>
         </context-group>
-        <target state="needs-translation">Delete</target>
+        <target state="translated">Usuń</target>
       </trans-unit>
       <trans-unit id="5467489005440577210" datatype="html">
         <source>Error while deleting element: <x id="PH" equiv-text="JSON.stringify(error.error)"/></source>
@@ -2211,7 +2211,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">12</context>
         </context-group>
-        <target state="needs-translation">Any word</target>
+        <target state="translated">Dowolne słowo</target>
       </trans-unit>
       <trans-unit id="7517655726614958140" datatype="html">
         <source>Any: Document contains any of these words (space separated)</source>
@@ -2227,7 +2227,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">13</context>
         </context-group>
-        <target state="needs-translation">All words</target>
+        <target state="translated">Wszystkie słowa</target>
       </trans-unit>
       <trans-unit id="111914402588955480" datatype="html">
         <source>All: Document contains all of these words (space separated)</source>
@@ -2243,7 +2243,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">14</context>
         </context-group>
-        <target state="needs-translation">Exact match</target>
+        <target state="translated">Dokładne dopasowanie</target>
       </trans-unit>
       <trans-unit id="7109184332944610787" datatype="html">
         <source>Exact: Document contains this string</source>
@@ -2259,7 +2259,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
-        <target state="needs-translation">Regular expression</target>
+        <target state="translated">Wyrażenie regularne</target>
       </trans-unit>
       <trans-unit id="7548151332424148033" datatype="html">
         <source>Regular expression: Document matches this regular expression</source>
@@ -2275,7 +2275,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">16</context>
         </context-group>
-        <target state="needs-translation">Fuzzy word</target>
+        <target state="translated">Dopasowanie rozmyte</target>
       </trans-unit>
       <trans-unit id="8419167206585286450" datatype="html">
         <source>Fuzzy: Document contains a word similar to this word</source>
