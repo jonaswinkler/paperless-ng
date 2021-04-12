@@ -432,7 +432,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.html</context>
           <context context-type="linenumber">121</context>
         </context-group>
-        <target state="needs-translation">Original document metadata</target>
+        <target state="translated">Metadane oryginalnego dokumentu</target>
       </trans-unit>
       <trans-unit id="7174dcea4a3d0b743e7e4a78747e902230727f67" datatype="html">
         <source>Archived document metadata</source>
@@ -440,7 +440,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.html</context>
           <context context-type="linenumber">122</context>
         </context-group>
-        <target state="needs-translation">Archived document metadata</target>
+        <target state="translated">Metadane zarchiwizowanego dokumentu</target>
       </trans-unit>
       <trans-unit id="3fb9f1a31c3798173b2fea72638732c783b152fe" datatype="html">
         <source>Save &amp; next</source>
@@ -576,7 +576,7 @@
           <context context-type="sourcefile">src/app/components/manage/document-type-list/document-type-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="needs-translation">Document types</target>
+        <target state="translated">Typy dokumentów</target>
       </trans-unit>
       <trans-unit id="eb3d5aefff38a814b76da74371cbf02c0789a1ef" datatype="html">
         <source>Logs</source>
@@ -608,7 +608,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
           <context context-type="linenumber">94</context>
         </context-group>
-        <target state="needs-translation">Use system language</target>
+        <target state="translated">Użyj języka systemowego</target>
       </trans-unit>
       <trans-unit id="7729897675462249787" datatype="html">
         <source>Use date format of display language</source>
@@ -760,7 +760,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">94</context>
         </context-group>
-        <target state="needs-translation">Dark mode</target>
+        <target state="translated">Tryb ciemny</target>
       </trans-unit>
       <trans-unit id="f8cb5506e70fd71fddc9bb71cee18bfff7b29637" datatype="html">
         <source>Use system settings</source>
@@ -1049,7 +1049,7 @@
           <context context-type="linenumber">11</context>
         </context-group>
         <note priority="1" from="description">app title</note>
-        <target state="needs-translation">Paperless-ng</target>
+        <target state="translated">Paperless-ng</target>
       </trans-unit>
       <trans-unit id="069566c6ed4f051b5b5617ef1935837226585dad" datatype="html">
         <source>Search documents</source>
@@ -1057,7 +1057,7 @@
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
-        <target state="needs-translation">Search documents</target>
+        <target state="translated">Szukaj dokumentów</target>
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
