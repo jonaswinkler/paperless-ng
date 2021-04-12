@@ -63,7 +63,7 @@ migrations() {
 		# of the current container starts.
 		flock 200
 		echo "Apply database migrations..."
-		sudo -HEu paperless python3 manage.py migrate
+		${SUDO_CMD} python3 manage.py migrate
 	)  200>/usr/src/paperless/data/migration_lock
 
 }
@@ -74,13 +74,15 @@ search_index() {
 
 	if [[ (! -f "$index_version_file") || $(< $index_version_file) != "$index_version" ]]; then
 		echo "Search index out of date. Updating..."
-		sudo -HEu paperless python3 manage.py document_index reindex
-		echo $index_version | sudo -HEu paperless tee $index_version_file >/dev/null
+		${SUDO_CMD} python3 manage.py document_index reindex
+		echo $index_version | ${SUDO_CMD} tee $index_version_file >/dev/null
 	fi
 }
 
 initialize() {
-	map_uidgid
+	if [[ -z "$PAPERLESS_ROOTLESS" ]]; then
+		map_uidgid
+	fi
 
 	for dir in export data data/index media media/documents media/documents/originals media/documents/thumbnails; do
 		if [[ ! -d "../$dir" ]]
@@ -93,8 +95,10 @@ initialize() {
 	echo "creating directory /tmp/paperless"
 	mkdir -p /tmp/paperless
 
-	chown -R paperless:paperless ../
-	chown -R paperless:paperless /tmp/paperless
+	if [[ -z "$PAPERLESS_ROOTLESS" ]]; then
+		chown -R paperless:paperless ../
+		chown -R paperless:paperless /tmp/paperless
+	fi
 
 	migrations
 
@@ -140,6 +144,12 @@ install_languages() {
 
 echo "Paperless-ng docker container starting..."
 
+if [[ -z "$PAPERLESS_ROOTLESS" ]]; then
+	SUDO_CMD="sudo -HEu paperless"
+else
+	SUDO_CMD=""
+fi
+
 # Install additional languages if specified
 if [[ ! -z "$PAPERLESS_OCR_LANGUAGES"  ]]; then
 		install_languages "$PAPERLESS_OCR_LANGUAGES"
@@ -149,7 +159,7 @@ initialize
 
 if [[ "$1" != "/"* ]]; then
 	echo Executing management command "$@"
-	exec sudo -HEu paperless python3 manage.py "$@"
+	exec ${SUDO_CMD} python3 manage.py "$@"
 else
 	echo Executing "$@"
 	exec "$@"
