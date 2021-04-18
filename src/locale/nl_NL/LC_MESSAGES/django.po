@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-17 13:41+0200\n"
-"PO-Revision-Date: 2021-04-18 12:15\n"
+"PO-Revision-Date: 2021-04-18 13:19\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -76,7 +76,7 @@ msgstr "Kleur"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr "is \"Postvak in\"-etiket"
+msgstr "is \"Postvak in\"-label"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
@@ -324,7 +324,7 @@ msgstr "gewijzigd na"
 
 #: documents/models.py:390
 msgid "does not have tag"
-msgstr "heeft geen etiket"
+msgstr "heeft geen label"
 
 #: documents/models.py:391
 msgid "does not have ASN"
@@ -486,7 +486,7 @@ msgstr "Metadata"
 
 #: paperless_mail/admin.py:48
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr "Automatisch metadata toewijzen aan documenten vanuit deze regel. Indien je geen etiketten, documenttypes of correspondenten toewijst, zal Paperless nog steeds alle regels verwerken die je hebt gedefinieerd."
+msgstr "Automatisch metadata toewijzen aan documenten vanuit deze regel. Indien je geen labels, documenttypes of correspondenten toewijst, zal Paperless nog steeds alle regels verwerken die je hebt gedefinieerd."
 
 #: paperless_mail/apps.py:9
 msgid "Paperless mail"
