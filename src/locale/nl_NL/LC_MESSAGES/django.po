@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-17 13:41+0200\n"
-"PO-Revision-Date: 2021-04-17 11:47\n"
+"PO-Revision-Date: 2021-04-18 10:56\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -23,7 +23,7 @@ msgstr "Documenten"
 
 #: documents/models.py:32
 msgid "Any word"
-msgstr "Eender welk woord"
+msgstr "Elk woord"
 
 #: documents/models.py:33
 msgid "All words"
@@ -80,15 +80,15 @@ msgstr "is \"Postvak in\"-etiket"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
-msgstr "Markeer dit etiket als een \"Postvak in\"-etiket: alle nieuw verwerkte documenten krijgen de \"Postvak in\"-etiketten."
+msgstr "Markeert dit label als een \"Postvak in\"-label: alle nieuw verwerkte documenten krijgen de \"Postvak in\"-labels."
 
 #: documents/models.py:94
 msgid "tag"
-msgstr "etiket"
+msgstr "label"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr "etiketten"
+msgstr "labels"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
@@ -128,7 +128,7 @@ msgstr "checksum"
 
 #: documents/models.py:159
 msgid "The checksum of the original document."
-msgstr "Het controlecijfer van het originele document."
+msgstr "De checksum van het oorspronkelijke document."
 
 #: documents/models.py:163
 msgid "archive checksum"
@@ -280,11 +280,11 @@ msgstr "zit in \"Postvak in\""
 
 #: documents/models.py:379
 msgid "has tag"
-msgstr "heeft etiket"
+msgstr "heeft label"
 
 #: documents/models.py:380
 msgid "has any tag"
-msgstr "heeft één van de etiketten"
+msgstr "heeft één van de labels"
 
 #: documents/models.py:381
 msgid "created before"
