@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-17 13:41+0200\n"
-"PO-Revision-Date: 2021-05-04 11:45\n"
+"PO-Revision-Date: 2021-05-04 13:14\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -19,422 +19,422 @@ msgstr ""
 
 #: documents/apps.py:10
 msgid "Documents"
-msgstr ""
+msgstr "Dokument"
 
 #: documents/models.py:32
 msgid "Any word"
-msgstr ""
+msgstr "Valfritt ord"
 
 #: documents/models.py:33
 msgid "All words"
-msgstr ""
+msgstr "Alla ord"
 
 #: documents/models.py:34
 msgid "Exact match"
-msgstr ""
+msgstr "Exakt matchning"
 
 #: documents/models.py:35
 msgid "Regular expression"
-msgstr ""
+msgstr "Reguljära uttryck"
 
 #: documents/models.py:36
 msgid "Fuzzy word"
-msgstr ""
+msgstr "Fuzzy word"
 
 #: documents/models.py:37
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisk"
 
 #: documents/models.py:41 documents/models.py:350 paperless_mail/models.py:25
 #: paperless_mail/models.py:109
 msgid "name"
-msgstr ""
+msgstr "namn"
 
 #: documents/models.py:45
 msgid "match"
-msgstr ""
+msgstr "träff"
 
 #: documents/models.py:49
 msgid "matching algorithm"
-msgstr ""
+msgstr "matchande algoritm"
 
 #: documents/models.py:55
 msgid "is insensitive"
-msgstr ""
+msgstr "är ej skiftlägeskänsligt"
 
 #: documents/models.py:74 documents/models.py:120
 msgid "correspondent"
-msgstr ""
+msgstr "korrespondent"
 
 #: documents/models.py:75
 msgid "correspondents"
-msgstr ""
+msgstr "korrespondenter"
 
 #: documents/models.py:81
 msgid "color"
-msgstr ""
+msgstr "färg"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr ""
+msgstr "är inkorgstagg"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
-msgstr ""
+msgstr "Markerar denna tagg som en inkorgstagg: Alla nyligen konsumerade dokument kommer att taggas med inkorgstaggar."
 
 #: documents/models.py:94
 msgid "tag"
-msgstr ""
+msgstr "tagg"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr ""
+msgstr "taggar"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
-msgstr ""
+msgstr "dokumenttyp"
 
 #: documents/models.py:102
 msgid "document types"
-msgstr ""
+msgstr "dokumenttyper"
 
 #: documents/models.py:110
 msgid "Unencrypted"
-msgstr ""
+msgstr "Okrypterad"
 
 #: documents/models.py:111
 msgid "Encrypted with GNU Privacy Guard"
-msgstr ""
+msgstr "Krypterad med GNU Privacy Guard"
 
 #: documents/models.py:124
 msgid "title"
-msgstr ""
+msgstr "titel"
 
 #: documents/models.py:137
 msgid "content"
-msgstr ""
+msgstr "innehåll"
 
 #: documents/models.py:139
 msgid "The raw, text-only data of the document. This field is primarily used for searching."
-msgstr ""
+msgstr "Dokumentets råa, enbart text data. Detta fält används främst för sökning."
 
 #: documents/models.py:144
 msgid "mime type"
-msgstr ""
+msgstr "MIME-typ"
 
 #: documents/models.py:155
 msgid "checksum"
-msgstr ""
+msgstr "kontrollsumma"
 
 #: documents/models.py:159
 msgid "The checksum of the original document."
-msgstr ""
+msgstr "Kontrollsumman för originaldokumentet."
 
 #: documents/models.py:163
 msgid "archive checksum"
-msgstr ""
+msgstr "arkivera kontrollsumma"
 
 #: documents/models.py:168
 msgid "The checksum of the archived document."
-msgstr ""
+msgstr "Kontrollsumman för arkiverat dokument."
 
 #: documents/models.py:172 documents/models.py:328
 msgid "created"
-msgstr ""
+msgstr "skapad"
 
 #: documents/models.py:176
 msgid "modified"
-msgstr ""
+msgstr "ändrad"
 
 #: documents/models.py:180
 msgid "storage type"
-msgstr ""
+msgstr "Lagringstyp"
 
 #: documents/models.py:188
 msgid "added"
-msgstr ""
+msgstr "tillagd"
 
 #: documents/models.py:192
 msgid "filename"
-msgstr ""
+msgstr "filnamn"
 
 #: documents/models.py:198
 msgid "Current filename in storage"
-msgstr ""
+msgstr "Nuvarande filnamn i lagring"
 
 #: documents/models.py:202
 msgid "archive filename"
-msgstr ""
+msgstr "arkivfilnamn"
 
 #: documents/models.py:208
 msgid "Current archive filename in storage"
-msgstr ""
+msgstr "Nuvarande arkivfilnamn i lagring"
 
 #: documents/models.py:212
 msgid "archive serial number"
-msgstr ""
+msgstr "arkivets serienummer"
 
 #: documents/models.py:217
 msgid "The position of this document in your physical document archive."
-msgstr ""
+msgstr "Placeringen av detta dokument i ditt fysiska dokumentarkiv."
 
 #: documents/models.py:223
 msgid "document"
-msgstr ""
+msgstr "dokument"
 
 #: documents/models.py:224
 msgid "documents"
-msgstr ""
+msgstr "dokument"
 
 #: documents/models.py:311
 msgid "debug"
-msgstr ""
+msgstr "felsök"
 
 #: documents/models.py:312
 msgid "information"
-msgstr ""
+msgstr "information"
 
 #: documents/models.py:313
 msgid "warning"
-msgstr ""
+msgstr "varning"
 
 #: documents/models.py:314
 msgid "error"
-msgstr ""
+msgstr "fel"
 
 #: documents/models.py:315
 msgid "critical"
-msgstr ""
+msgstr "kritisk"
 
 #: documents/models.py:319
 msgid "group"
-msgstr ""
+msgstr "grupp"
 
 #: documents/models.py:322
 msgid "message"
-msgstr ""
+msgstr "meddelande"
 
 #: documents/models.py:325
 msgid "level"
-msgstr ""
+msgstr "nivå"
 
 #: documents/models.py:332
 msgid "log"
-msgstr ""
+msgstr "logg"
 
 #: documents/models.py:333
 msgid "logs"
-msgstr ""
+msgstr "loggar"
 
 #: documents/models.py:344 documents/models.py:401
 msgid "saved view"
-msgstr ""
+msgstr "sparad vy"
 
 #: documents/models.py:345
 msgid "saved views"
-msgstr ""
+msgstr "sparade vyer"
 
 #: documents/models.py:348
 msgid "user"
-msgstr ""
+msgstr "användare"
 
 #: documents/models.py:354
 msgid "show on dashboard"
-msgstr ""
+msgstr "visa på instrumentpanelen"
 
 #: documents/models.py:357
 msgid "show in sidebar"
-msgstr ""
+msgstr "visa i sidofältet"
 
 #: documents/models.py:361
 msgid "sort field"
-msgstr ""
+msgstr "sortera fält"
 
 #: documents/models.py:367
 msgid "sort reverse"
-msgstr ""
+msgstr "sortera omvänd"
 
 #: documents/models.py:373
 msgid "title contains"
-msgstr ""
+msgstr "titel innehåller"
 
 #: documents/models.py:374
 msgid "content contains"
-msgstr ""
+msgstr "innehåll innehåller"
 
 #: documents/models.py:375
 msgid "ASN is"
-msgstr ""
+msgstr "ASN är"
 
 #: documents/models.py:376
 msgid "correspondent is"
-msgstr ""
+msgstr "korrespondent är"
 
 #: documents/models.py:377
 msgid "document type is"
-msgstr ""
+msgstr "dokumenttyp är"
 
 #: documents/models.py:378
 msgid "is in inbox"
-msgstr ""
+msgstr "är i inkorgen"
 
 #: documents/models.py:379
 msgid "has tag"
-msgstr ""
+msgstr "har tagg"
 
 #: documents/models.py:380
 msgid "has any tag"
-msgstr ""
+msgstr "har någon tagg"
 
 #: documents/models.py:381
 msgid "created before"
-msgstr ""
+msgstr "skapad före"
 
 #: documents/models.py:382
 msgid "created after"
-msgstr ""
+msgstr "skapad efter"
 
 #: documents/models.py:383
 msgid "created year is"
-msgstr ""
+msgstr "skapat år är"
 
 #: documents/models.py:384
 msgid "created month is"
-msgstr ""
+msgstr "skapad månad är"
 
 #: documents/models.py:385
 msgid "created day is"
-msgstr ""
+msgstr "skapad dag är"
 
 #: documents/models.py:386
 msgid "added before"
-msgstr ""
+msgstr "tillagd före"
 
 #: documents/models.py:387
 msgid "added after"
-msgstr ""
+msgstr "tillagd efter"
 
 #: documents/models.py:388
 msgid "modified before"
-msgstr ""
+msgstr "ändrad före"
 
 #: documents/models.py:389
 msgid "modified after"
-msgstr ""
+msgstr "ändrad efter"
 
 #: documents/models.py:390
 msgid "does not have tag"
-msgstr ""
+msgstr "har inte tagg"
 
 #: documents/models.py:391
 msgid "does not have ASN"
-msgstr ""
+msgstr "har inte ASN"
 
 #: documents/models.py:392
 msgid "title or content contains"
-msgstr ""
+msgstr "titeln eller innehållet innehåller"
 
 #: documents/models.py:393
 msgid "fulltext query"
-msgstr ""
+msgstr "fulltextfråga"
 
 #: documents/models.py:394
 msgid "more like this"
-msgstr ""
+msgstr "mer som detta"
 
 #: documents/models.py:405
 msgid "rule type"
-msgstr ""
+msgstr "regeltyp"
 
 #: documents/models.py:409
 msgid "value"
-msgstr ""
+msgstr "värde"
 
 #: documents/models.py:415
 msgid "filter rule"
-msgstr ""
+msgstr "filtrera regel"
 
 #: documents/models.py:416
 msgid "filter rules"
-msgstr ""
+msgstr "filtrera regler"
 
 #: documents/serialisers.py:53
 #, python-format
 msgid "Invalid regular expression: %(error)s"
-msgstr ""
+msgstr "Ogiltigt reguljärt uttryck: %(error)s"
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
-msgstr ""
+msgstr "Ogiltig färg."
 
 #: documents/serialisers.py:451
 #, python-format
 msgid "File type %(type)s not supported"
-msgstr ""
+msgstr "Filtypen %(type)s stöds inte"
 
 #: documents/templates/index.html:21
 msgid "Paperless-ng is loading..."
-msgstr ""
+msgstr "Paperless-ng laddas..."
 
 #: documents/templates/registration/logged_out.html:13
 msgid "Paperless-ng signed out"
-msgstr ""
+msgstr "Paperless-ng utloggad"
 
 #: documents/templates/registration/logged_out.html:41
 msgid "You have been successfully logged out. Bye!"
-msgstr ""
+msgstr "Du är nu utloggad!"
 
 #: documents/templates/registration/logged_out.html:42
 msgid "Sign in again"
-msgstr ""
+msgstr "Logga in igen"
 
 #: documents/templates/registration/login.html:13
 msgid "Paperless-ng sign in"
-msgstr ""
+msgstr "Paperless-ng inloggning"
 
 #: documents/templates/registration/login.html:42
 msgid "Please sign in."
-msgstr ""
+msgstr "Vänligen logga in."
 
 #: documents/templates/registration/login.html:45
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Ditt användarnamn och lösenord stämde inte. Försök igen."
 
 #: documents/templates/registration/login.html:48
 msgid "Username"
-msgstr ""
+msgstr "Användarnamn"
 
 #: documents/templates/registration/login.html:49
 msgid "Password"
-msgstr ""
+msgstr "Lösenord"
 
 #: documents/templates/registration/login.html:54
 msgid "Sign in"
-msgstr ""
+msgstr "Logga in"
 
 #: paperless/settings.py:298
 msgid "English (US)"
-msgstr ""
+msgstr "Engelska (USA)"
 
 #: paperless/settings.py:299
 msgid "English (GB)"
-msgstr ""
+msgstr "Engelska (GB)"
 
 #: paperless/settings.py:300
 msgid "German"
-msgstr ""
+msgstr "Tyska"
 
 #: paperless/settings.py:301
 msgid "Dutch"
-msgstr ""
+msgstr "Holländska"
 
 #: paperless/settings.py:302
 msgid "French"
-msgstr ""
+msgstr "Franska"
 
 #: paperless/settings.py:303
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugisiska (Brasilien)"
 
 #: paperless/settings.py:304
 msgid "Portuguese"
@@ -442,11 +442,11 @@ msgstr "Portugisiska"
 
 #: paperless/settings.py:305
 msgid "Italian"
-msgstr ""
+msgstr "Italienska"
 
 #: paperless/settings.py:306
 msgid "Romanian"
-msgstr ""
+msgstr "Rumänska"
 
 #: paperless/settings.py:307
 msgid "Russian"
@@ -462,213 +462,213 @@ msgstr "Polska"
 
 #: paperless/urls.py:113
 msgid "Paperless-ng administration"
-msgstr ""
+msgstr "Paperless-ng administration"
 
 #: paperless_mail/admin.py:25
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: paperless_mail/admin.py:27
 msgid "Paperless will only process mails that match ALL of the filters given below."
-msgstr ""
+msgstr "Paperless kommer endast att behandla e-postmeddelanden som matchar ALLA filter som anges nedan."
 
 #: paperless_mail/admin.py:37
 msgid "Actions"
-msgstr ""
+msgstr "Åtgärder"
 
 #: paperless_mail/admin.py:39
 msgid "The action applied to the mail. This action is only performed when documents were consumed from the mail. Mails without attachments will remain entirely untouched."
-msgstr ""
+msgstr "Åtgärden tillämpas på e-postmeddelandet. Denna åtgärd utförs endast när dokument konsumerades från e-postmeddelandet. E-post utan bilagor kommer att förbli helt orörda."
 
 #: paperless_mail/admin.py:46
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: paperless_mail/admin.py:48
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr ""
+msgstr "Tilldela metadata till dokument som konsumeras från denna regel automatiskt. Om du inte tilldelar taggar, typer eller korrespondenter här kommer paperless fortfarande att behandla alla matchande regler som du har definierat."
 
 #: paperless_mail/apps.py:9
 msgid "Paperless mail"
-msgstr ""
+msgstr "Paperless e-post"
 
 #: paperless_mail/models.py:11
 msgid "mail account"
-msgstr ""
+msgstr "e-postkonto"
 
 #: paperless_mail/models.py:12
 msgid "mail accounts"
-msgstr ""
+msgstr "e-postkonton"
 
 #: paperless_mail/models.py:19
 msgid "No encryption"
-msgstr ""
+msgstr "Ingen kryptering"
 
 #: paperless_mail/models.py:20
 msgid "Use SSL"
-msgstr ""
+msgstr "Använd SSL"
 
 #: paperless_mail/models.py:21
 msgid "Use STARTTLS"
-msgstr ""
+msgstr "Använd STARTTLS"
 
 #: paperless_mail/models.py:29
 msgid "IMAP server"
-msgstr ""
+msgstr "IMAP-server"
 
 #: paperless_mail/models.py:33
 msgid "IMAP port"
-msgstr ""
+msgstr "IMAP port"
 
 #: paperless_mail/models.py:36
 msgid "This is usually 143 for unencrypted and STARTTLS connections, and 993 for SSL connections."
-msgstr ""
+msgstr "Detta är vanligtvis 143 för okrypterade och STARTTLS-anslutningar, och 993 för SSL-anslutningar."
 
 #: paperless_mail/models.py:40
 msgid "IMAP security"
-msgstr ""
+msgstr "IMAP säkerhet"
 
 #: paperless_mail/models.py:46
 msgid "username"
-msgstr ""
+msgstr "användarnamn"
 
 #: paperless_mail/models.py:50
 msgid "password"
-msgstr ""
+msgstr "lösenord"
 
 #: paperless_mail/models.py:60
 msgid "mail rule"
-msgstr ""
+msgstr "e-postregel"
 
 #: paperless_mail/models.py:61
 msgid "mail rules"
-msgstr ""
+msgstr "e-postregler"
 
 #: paperless_mail/models.py:67
 msgid "Only process attachments."
-msgstr ""
+msgstr "Behandla endast bilagor."
 
 #: paperless_mail/models.py:68
 msgid "Process all files, including 'inline' attachments."
-msgstr ""
+msgstr "Behandla alla filer, inklusive \"inline\" bilagor."
 
 #: paperless_mail/models.py:78
 msgid "Mark as read, don't process read mails"
-msgstr ""
+msgstr "Markera som läst, bearbeta inte lästa meddelanden"
 
 #: paperless_mail/models.py:79
 msgid "Flag the mail, don't process flagged mails"
-msgstr ""
+msgstr "Flagga mailet, bearbeta inte flaggade mail"
 
 #: paperless_mail/models.py:80
 msgid "Move to specified folder"
-msgstr ""
+msgstr "Flytta till angiven mapp"
 
 #: paperless_mail/models.py:81
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 #: paperless_mail/models.py:88
 msgid "Use subject as title"
-msgstr ""
+msgstr "Använd ämne som titel"
 
 #: paperless_mail/models.py:89
 msgid "Use attachment filename as title"
-msgstr ""
+msgstr "Använd bilagans filnamn som titel"
 
 #: paperless_mail/models.py:99
 msgid "Do not assign a correspondent"
-msgstr ""
+msgstr "Tilldela inte en korrespondent"
 
 #: paperless_mail/models.py:101
 msgid "Use mail address"
-msgstr ""
+msgstr "Använd e-postadress"
 
 #: paperless_mail/models.py:103
 msgid "Use name (or mail address if not available)"
-msgstr ""
+msgstr "Använd namn (eller e-postadress om inte tillgängligt)"
 
 #: paperless_mail/models.py:105
 msgid "Use correspondent selected below"
-msgstr ""
+msgstr "Använd korrespondent som valts nedan"
 
 #: paperless_mail/models.py:113
 msgid "order"
-msgstr ""
+msgstr "ordning"
 
 #: paperless_mail/models.py:120
 msgid "account"
-msgstr ""
+msgstr "konto"
 
 #: paperless_mail/models.py:124
 msgid "folder"
-msgstr ""
+msgstr "mapp"
 
 #: paperless_mail/models.py:128
 msgid "filter from"
-msgstr ""
+msgstr "filtrera från"
 
 #: paperless_mail/models.py:131
 msgid "filter subject"
-msgstr ""
+msgstr "filtrera ämne"
 
 #: paperless_mail/models.py:134
 msgid "filter body"
-msgstr ""
+msgstr "filtrera kropp"
 
 #: paperless_mail/models.py:138
 msgid "filter attachment filename"
-msgstr ""
+msgstr "filtrera filnamn för bilaga"
 
 #: paperless_mail/models.py:140
 msgid "Only consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr ""
+msgstr "Konsumera endast dokument som helt och hållet matchar detta filnamn om det anges. Wildcards som *.pdf eller *faktura* är tillåtna. Ej skiftlägeskänsliga."
 
 #: paperless_mail/models.py:146
 msgid "maximum age"
-msgstr ""
+msgstr "maximal ålder"
 
 #: paperless_mail/models.py:148
 msgid "Specified in days."
-msgstr ""
+msgstr "Anges i dagar."
 
 #: paperless_mail/models.py:151
 msgid "attachment type"
-msgstr ""
+msgstr "typ av bilaga"
 
 #: paperless_mail/models.py:154
 msgid "Inline attachments include embedded images, so it's best to combine this option with a filename filter."
-msgstr ""
+msgstr "Bifogade bilagor inkluderar inbäddade bilder, så det är bäst att kombinera detta alternativ med ett filnamnsfilter."
 
 #: paperless_mail/models.py:159
 msgid "action"
-msgstr ""
+msgstr "åtgärd"
 
 #: paperless_mail/models.py:165
 msgid "action parameter"
-msgstr ""
+msgstr "åtgärdsparameter"
 
 #: paperless_mail/models.py:167
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action."
-msgstr ""
+msgstr "Ytterligare parameter för åtgärden som valts ovan, dvs målmappen för flytta till mapp-åtgärden."
 
 #: paperless_mail/models.py:173
 msgid "assign title from"
-msgstr ""
+msgstr "tilldela titel från"
 
 #: paperless_mail/models.py:183
 msgid "assign this tag"
-msgstr ""
+msgstr "tilldela denna tagg"
 
 #: paperless_mail/models.py:191
 msgid "assign this document type"
-msgstr ""
+msgstr "tilldela den här dokumenttypen"
 
 #: paperless_mail/models.py:195
 msgid "assign correspondent from"
-msgstr ""
+msgstr "tilldela korrespondent från"
 
 #: paperless_mail/models.py:205
 msgid "assign this correspondent"
-msgstr ""
+msgstr "tilldela denna korrespondent"
 
