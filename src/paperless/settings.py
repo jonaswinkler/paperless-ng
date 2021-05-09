@@ -3,11 +3,14 @@ import math
 import multiprocessing
 import os
 import re
+import mimetypes
 
 from concurrent_log_handler.queue import setup_logging_queues
 from dotenv import load_dotenv
 
 from django.utils.translation import gettext_lazy as _
+
+mimetypes.add_type("text/javascript", ".js", True)
 
 # Tap paperless.conf if it's available
 if os.path.exists("../paperless.conf"):
