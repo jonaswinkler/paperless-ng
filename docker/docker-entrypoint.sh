@@ -15,59 +15,6 @@ map_uidgid() {
     fi
 }
 
-
-wait_for_postgres() {
-	attempt_num=1
-	max_attempts=5
-
-	echo "Waiting for PostgreSQL to start..."
-
-	host="${PAPERLESS_DBHOST}"
-	port="${PAPERLESS_DBPORT}"
-
-	if [[ -z $port ]] ;
-	then
-		port="5432"
-	fi
-
-	while !</dev/tcp/$host/$port ;
-	do
-
-		if [ $attempt_num -eq $max_attempts ]
-		then
-			echo "Unable to connect to database."
-			exit 1
-		else
-			echo "Attempt $attempt_num failed! Trying again in 5 seconds..."
-
-		fi
-
-		attempt_num=$(expr "$attempt_num" + 1)
-		sleep 5
-	done
-
-
-}
-
-
-migrations() {
-
-	if [[ -n "${PAPERLESS_DBHOST}" ]]
-	then
-		wait_for_postgres
-	fi
-
-	(
-		# flock is in place to prevent multiple containers from doing migrations
-		# simultaneously. This also ensures that the db is ready when the command
-		# of the current container starts.
-		flock 200
-		echo "Apply database migrations..."
-		sudo -HEu paperless python3 manage.py migrate
-	)  200>/usr/src/paperless/data/migration_lock
-
-}
-
 initialize() {
 	map_uidgid
 
@@ -82,11 +29,12 @@ initialize() {
 	echo "creating directory /tmp/paperless"
 	mkdir -p /tmp/paperless
 
+    set +e
 	chown -R paperless:paperless ../
 	chown -R paperless:paperless /tmp/paperless
+    set -e
 
-	migrations
-
+    gosu paperless /sbin/docker-prepare.sh
 }
 
 install_languages() {
@@ -137,9 +85,8 @@ initialize
 
 if [[ "$1" != "/"* ]]; then
 	echo Executing management command "$@"
-	exec sudo -HEu paperless python3 manage.py "$@"
+	exec gosu paperless python3 manage.py "$@"
 else
 	echo Executing "$@"
 	exec "$@"
 fi
-

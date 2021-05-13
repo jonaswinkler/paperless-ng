@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 22:31+0100\n"
-"PO-Revision-Date: 2021-03-18 20:12\n"
+"POT-Creation-Date: 2021-05-04 15:00+0000\n"
+"PO-Revision-Date: 2021-05-04 21:51\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -23,7 +23,7 @@ msgstr "Documenten"
 
 #: documents/models.py:32
 msgid "Any word"
-msgstr "Eender welk woord"
+msgstr "Elk woord"
 
 #: documents/models.py:33
 msgid "All words"
@@ -76,19 +76,19 @@ msgstr "Kleur"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr "is \"Postvak in\"-etiket"
+msgstr "is \"Postvak in\"-label"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
-msgstr "Markeer dit etiket als een \"Postvak in\"-etiket: alle nieuw verwerkte documenten krijgen de \"Postvak in\"-etiketten."
+msgstr "Markeert dit label als een \"Postvak in\"-label: alle nieuw verwerkte documenten krijgen de \"Postvak in\"-labels."
 
 #: documents/models.py:94
 msgid "tag"
-msgstr "etiket"
+msgstr "label"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr "etiketten"
+msgstr "labels"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
@@ -128,7 +128,7 @@ msgstr "checksum"
 
 #: documents/models.py:159
 msgid "The checksum of the original document."
-msgstr "Het controlecijfer van het originele document."
+msgstr "De checksum van het oorspronkelijke document."
 
 #: documents/models.py:163
 msgid "archive checksum"
@@ -226,7 +226,7 @@ msgstr "bericht"
 msgid "logs"
 msgstr "berichten"
 
-#: documents/models.py:344 documents/models.py:396
+#: documents/models.py:344 documents/models.py:401
 msgid "saved view"
 msgstr "opgeslagen view"
 
@@ -250,103 +250,111 @@ msgstr "weergeven in zijbalk"
 msgid "sort field"
 msgstr "sorteerveld"
 
-#: documents/models.py:364
+#: documents/models.py:367
 msgid "sort reverse"
 msgstr "omgekeerd sorteren"
 
-#: documents/models.py:370
+#: documents/models.py:373
 msgid "title contains"
 msgstr "titel bevat"
 
-#: documents/models.py:371
+#: documents/models.py:374
 msgid "content contains"
 msgstr "inhoud bevat"
 
-#: documents/models.py:372
+#: documents/models.py:375
 msgid "ASN is"
 msgstr "ASN is"
 
-#: documents/models.py:373
+#: documents/models.py:376
 msgid "correspondent is"
 msgstr "correspondent is"
 
-#: documents/models.py:374
+#: documents/models.py:377
 msgid "document type is"
 msgstr "documenttype is"
 
-#: documents/models.py:375
+#: documents/models.py:378
 msgid "is in inbox"
 msgstr "zit in \"Postvak in\""
 
-#: documents/models.py:376
+#: documents/models.py:379
 msgid "has tag"
-msgstr "heeft etiket"
+msgstr "heeft label"
 
-#: documents/models.py:377
+#: documents/models.py:380
 msgid "has any tag"
-msgstr "heeft één van de etiketten"
+msgstr "heeft één van de labels"
 
-#: documents/models.py:378
+#: documents/models.py:381
 msgid "created before"
 msgstr "aangemaakt voor"
 
-#: documents/models.py:379
+#: documents/models.py:382
 msgid "created after"
 msgstr "aangemaakt na"
 
-#: documents/models.py:380
+#: documents/models.py:383
 msgid "created year is"
 msgstr "aangemaakt jaar is"
 
-#: documents/models.py:381
+#: documents/models.py:384
 msgid "created month is"
 msgstr "aangemaakte maand is"
 
-#: documents/models.py:382
+#: documents/models.py:385
 msgid "created day is"
 msgstr "aangemaakte dag is"
 
-#: documents/models.py:383
+#: documents/models.py:386
 msgid "added before"
 msgstr "toegevoegd voor"
 
-#: documents/models.py:384
+#: documents/models.py:387
 msgid "added after"
 msgstr "toegevoegd na"
 
-#: documents/models.py:385
+#: documents/models.py:388
 msgid "modified before"
 msgstr "gewijzigd voor"
 
-#: documents/models.py:386
+#: documents/models.py:389
 msgid "modified after"
 msgstr "gewijzigd na"
 
-#: documents/models.py:387
+#: documents/models.py:390
 msgid "does not have tag"
-msgstr "heeft geen etiket"
+msgstr "heeft geen label"
 
-#: documents/models.py:388
+#: documents/models.py:391
 msgid "does not have ASN"
 msgstr "heeft geen ASN"
 
-#: documents/models.py:389
+#: documents/models.py:392
 msgid "title or content contains"
 msgstr "titel of inhoud bevat"
 
-#: documents/models.py:400
+#: documents/models.py:393
+msgid "fulltext query"
+msgstr "inhoud doorzoeken"
+
+#: documents/models.py:394
+msgid "more like this"
+msgstr "meer zoals dit"
+
+#: documents/models.py:405
 msgid "rule type"
 msgstr "type regel"
 
-#: documents/models.py:404
+#: documents/models.py:409
 msgid "value"
 msgstr "waarde"
 
-#: documents/models.py:410
+#: documents/models.py:415
 msgid "filter rule"
 msgstr "filterregel"
 
-#: documents/models.py:411
+#: documents/models.py:416
 msgid "filter rules"
 msgstr "filterregels"
 
@@ -404,51 +412,59 @@ msgstr "Wachtwoord"
 msgid "Sign in"
 msgstr "Aanmelden"
 
-#: paperless/settings.py:298
+#: paperless/settings.py:300
 msgid "English (US)"
 msgstr "Engels (US)"
 
-#: paperless/settings.py:299
+#: paperless/settings.py:301
 msgid "English (GB)"
 msgstr "Engels (Brits)"
 
-#: paperless/settings.py:300
+#: paperless/settings.py:302
 msgid "German"
 msgstr "Duits"
 
-#: paperless/settings.py:301
+#: paperless/settings.py:303
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: paperless/settings.py:302
+#: paperless/settings.py:304
 msgid "French"
 msgstr "Frans"
 
-#: paperless/settings.py:303
+#: paperless/settings.py:305
 msgid "Portuguese (Brazil)"
 msgstr "Portugees (Brazilië)"
 
-#: paperless/settings.py:304
+#: paperless/settings.py:306
 msgid "Portuguese"
 msgstr "Portugees"
 
-#: paperless/settings.py:305
+#: paperless/settings.py:307
 msgid "Italian"
 msgstr "Italiaans"
 
-#: paperless/settings.py:306
+#: paperless/settings.py:308
 msgid "Romanian"
 msgstr "Roemeens"
 
-#: paperless/settings.py:307
+#: paperless/settings.py:309
 msgid "Russian"
 msgstr "Russisch"
 
-#: paperless/settings.py:308
+#: paperless/settings.py:310
 msgid "Spanish"
 msgstr "Spaans"
 
-#: paperless/urls.py:118
+#: paperless/settings.py:311
+msgid "Polish"
+msgstr "Pools"
+
+#: paperless/settings.py:312
+msgid "Swedish"
+msgstr ""
+
+#: paperless/urls.py:113
 msgid "Paperless-ng administration"
 msgstr "Paperless-ng administratie"
 
@@ -474,7 +490,7 @@ msgstr "Metadata"
 
 #: paperless_mail/admin.py:48
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr "Automatisch metadata toewijzen aan documenten vanuit deze regel. Indien je geen etiketten, documenttypes of correspondenten toewijst, zal Paperless nog steeds alle regels verwerken die je hebt gedefinieerd."
+msgstr "Automatisch metadata toewijzen aan documenten vanuit deze regel. Indien je geen labels, documenttypes of correspondenten toewijst, zal Paperless nog steeds alle regels verwerken die je hebt gedefinieerd."
 
 #: paperless_mail/apps.py:9
 msgid "Paperless mail"

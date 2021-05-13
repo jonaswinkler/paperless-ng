@@ -21,8 +21,6 @@ import { CorrespondentEditDialogComponent } from './components/manage/correspond
 import { TagEditDialogComponent } from './components/manage/tag-list/tag-edit-dialog/tag-edit-dialog.component';
 import { DocumentTypeEditDialogComponent } from './components/manage/document-type-list/document-type-edit-dialog/document-type-edit-dialog.component';
 import { TagComponent } from './components/common/tag/tag.component';
-import { SearchComponent } from './components/search/search.component';
-import { ResultHighlightComponent } from './components/search/result-highlight/result-highlight.component';
 import { PageHeaderComponent } from './components/common/page-header/page-header.component';
 import { AppFrameComponent } from './components/app-frame/app-frame.component';
 import { ToastsComponent } from './components/common/toasts/toasts.component';
@@ -66,6 +64,7 @@ import { LocalizedDateParserFormatter } from './utils/ngb-date-parser-formatter'
 import { ApiVersionInterceptor } from './interceptors/api-version.interceptor';
 import { ColorSliderModule } from 'ngx-color/slider';
 import { ColorComponent } from './components/common/input/color/color.component';
+import { DocumentAsnComponent } from './components/document-asn/document-asn.component';
 import { SplitMergeComponent } from './components/split-merge/split-merge.component';
 import { DndModule } from 'ngx-drag-drop';
 import { DocumentChooserComponent } from './components/common/document-chooser/document-chooser.component';
@@ -80,7 +79,8 @@ import localeEnGb from '@angular/common/locales/en-GB';
 import localeRo from '@angular/common/locales/ro';
 import localeRu from '@angular/common/locales/ru';
 import localeEs from '@angular/common/locales/es';
-import { DocumentAsnComponent } from './components/document-asn/document-asn.component';
+import localePl from '@angular/common/locales/pl';
+import localeSv from '@angular/common/locales/sv';
 
 
 registerLocaleData(localeFr)
@@ -93,6 +93,8 @@ registerLocaleData(localeEnGb)
 registerLocaleData(localeRo)
 registerLocaleData(localeRu)
 registerLocaleData(localeEs)
+registerLocaleData(localePl)
+registerLocaleData(localeSv)
 
 @NgModule({
   declarations: [
@@ -111,8 +113,6 @@ registerLocaleData(localeEs)
     TagEditDialogComponent,
     DocumentTypeEditDialogComponent,
     TagComponent,
-    SearchComponent,
-    ResultHighlightComponent,
     PageHeaderComponent,
     AppFrameComponent,
     ToastsComponent,

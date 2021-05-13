@@ -5,6 +5,71 @@
 Changelog
 *********
 
+paperless-ng 1.4.2
+##################
+
+* Fixed an issue with ``sudo`` that caused paperless to not start on many Raspberry Pi devices. Thank you `WhiteHatTux`_!
+
+paperless-ng 1.4.1
+##################
+
+* Added Polish locale.
+
+* Changed some parts of the Dockerfile to hopefully restore functionality on certain ARM devices.
+
+* Updated python dependencies.
+
+* `Michael Shamoon`_ added a sticky filter / bulk edit bar.
+
+* `sbrl`_ changed the docker-entrypoint.sh script to increase compatibility with NFS shares.
+
+* `Chris Nagy`_ added support for creating a super user by passing ``PAPERLESS_ADMIN_USER`` and
+  ``PAPERLESS_ADMIN_PASSWORD`` as environment variables to the docker container.
+
+paperless-ng 1.4.0
+##################
+
+* Docker images now use tesseract 4.1.1, which should fix a series of issues with OCR.
+
+* The full text search now displays results using the default document list. This enables
+  selection, filtering and bulk edit on search results.
+
+* Changes
+
+  * Firefox only: Highlight search query in PDF previews.
+
+  * New URL pattern for accessing documents by ASN directly (http://<paperless>/asn/123)
+
+  * Added logging when executing pre- and post-consume scripts.
+
+  * Better error logging during document consumption.
+
+  * Updated python dependencies.
+
+  * Automatically inserts typed text when opening "Create new" dialogs on the document details page.
+
+* Fixes
+
+  * Fixed an issue with null characters in the document content.
+
+.. note::
+
+  The changed to the full text searching require you to reindex your documents.
+  *The docker image does this automatically, you don't need to do anything.*
+  To do this, execute the ``document_index reindex`` management command
+  (see :ref:`administration-index`).
+
+.. note::
+
+  Some packages that paperless depends on are slowly dropping Python 3.6
+  support one after another, including the web server. Supporting Python
+  3.6 means that I cannot update these packages anymore.
+
+  At some point, paperless will drop Python 3.6 support. If using a bare
+  metal installation and you're still on Python 3.6, upgrade to 3.7 or newer.
+
+  If using docker, this does not affect you.
+
 paperless-ng 1.3.2
 ##################
 
@@ -107,17 +172,6 @@ paperless-ng 1.2.0
 * Fixed a crash of the document archiver management command when trying to process documents with unknown mime types.
 
 * Paperless no longer depends on ``libpoppler-cpp-dev``.
-
-.. note::
-
-  Some packages that paperless depends on are slowly dropping Python 3.6
-  support one after another, including the web server. Supporting Python
-  3.6 means that I cannot update these packages anymore.
-
-  At some point, paperless will drop Python 3.6 support. If using a bare
-  metal installation and you're still on Python 3.6, upgrade to 3.7 or newer.
-
-  If using docker, this does not affect you.
 
 paperless-ng 1.1.4
 ##################
@@ -1312,6 +1366,9 @@ bulk of the work on this big change.
 
 * Initial release
 
+.. _WhiteHatTux: https://github.com/WhiteHatTux
+.. _Chris Nagy: https://github.com/what-name
+.. _sbrl: https://github.com/sbrl
 .. _slorenz: https://github.com/sisao
 .. _Jo Vandeginste: https://github.com/jovandeginste
 .. _zjean: https://github.com/zjean

@@ -11,16 +11,15 @@ RUN ./configure && make
 FROM python:3.7-slim
 
 # Binary dependencies
-RUN echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list \
-  && apt-get update \
-  && apt-get -y --no-install-recommends install \
+RUN apt-get update \
+	&& apt-get -y --no-install-recommends install \
   	# Basic dependencies
 		curl \
 		gnupg \
 		imagemagick \
 		gettext \
-		sudo \
 		tzdata \
+		gosu \
 		# fonts for text file thumbnail generation
 		fonts-liberation \
 		# for Numpy
@@ -28,16 +27,23 @@ RUN echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.lis
 		libxslt1-dev \
 		# thumbnail size reduction
 		optipng \
+		libxml2 \
+		pngquant \
+		unpaper \
+		zlib1g \
+		ghostscript \
+		icc-profiles-free \
+  && echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list \
+  && apt-get update \
+  && apt-get -y --no-install-recommends install \
+		# fixes sudo / gosu issues
+		libseccomp2 \
 		# Mime type detection
 		file \
 		libmagic-dev \
 		media-types \
-  	# OCRmyPDF dependencies
-		ghostscript \
-		icc-profiles-free \
+  		# OCRmyPDF dependencies
 		liblept5 \
-		libxml2 \
-		pngquant \
 		qpdf \
 		tesseract-ocr \
 		tesseract-ocr-eng \
@@ -45,8 +51,6 @@ RUN echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.lis
 		tesseract-ocr-fra \
 		tesseract-ocr-ita \
 		tesseract-ocr-spa \
-		unpaper \
-		zlib1g \
   && rm -rf /var/lib/apt/lists/*
 
 # copy jbig2enc
@@ -78,6 +82,7 @@ RUN cd docker \
 	&& mkdir /var/log/supervisord /var/run/supervisord \
 	&& cp supervisord.conf /etc/supervisord.conf \
 	&& cp docker-entrypoint.sh /sbin/docker-entrypoint.sh \
+	&& cp docker-prepare.sh /sbin/docker-prepare.sh \
 	&& chmod 755 /sbin/docker-entrypoint.sh \
 	&& chmod +x install_management_commands.sh \
 	&& ./install_management_commands.sh \
@@ -93,8 +98,8 @@ COPY src/ ./
 RUN addgroup --gid 1000 paperless \
 	&& useradd --uid 1000 --gid paperless --home-dir /usr/src/paperless paperless \
 	&& chown -R paperless:paperless ../ \
-	&& sudo -HEu paperless python3 manage.py collectstatic --clear --no-input \
-	&& sudo -HEu paperless python3 manage.py compilemessages
+	&& gosu paperless python3 manage.py collectstatic --clear --no-input \
+	&& gosu paperless python3 manage.py compilemessages
 
 VOLUME ["/usr/src/paperless/data", "/usr/src/paperless/media", "/usr/src/paperless/consume", "/usr/src/paperless/export"]
 ENTRYPOINT ["/sbin/docker-entrypoint.sh"]

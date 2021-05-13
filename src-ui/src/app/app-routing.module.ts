@@ -10,7 +10,6 @@ import { LogsComponent } from './components/manage/logs/logs.component';
 import { SettingsComponent } from './components/manage/settings/settings.component';
 import { TagListComponent } from './components/manage/tag-list/tag-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { SearchComponent } from './components/search/search.component';
 import {DocumentAsnComponent} from "./components/document-asn/document-asn.component";
 import { SplitMergeComponent } from './components/split-merge/split-merge.component';
 
@@ -21,7 +20,6 @@ const routes: Routes = [
     {path: 'documents', component: DocumentListComponent },
     {path: 'split_merge', component: SplitMergeComponent },
     {path: 'view/:id', component: DocumentListComponent },
-    {path: 'search', component: SearchComponent },
     {path: 'documents/:id', component: DocumentDetailComponent },
       {path: 'asn/:id', component: DocumentAsnComponent },
 

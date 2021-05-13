@@ -288,6 +288,8 @@ if os.getenv("PAPERLESS_DBHOST"):
     if os.getenv("PAPERLESS_DBPORT"):
         DATABASES["default"]["PORT"] = os.getenv("PAPERLESS_DBPORT")
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 ###############################################################################
 # Internationalization                                                        #
 ###############################################################################
@@ -305,7 +307,9 @@ LANGUAGES = [
     ("it-it", _("Italian")),
     ("ro-ro", _("Romanian")),
     ("ru-ru", _("Russian")),
-    ("es-es", _("Spanish"))
+    ("es-es", _("Spanish")),
+    ("pl-pl", _("Polish")),
+    ("sv-se", _("Swedish")),
 ]
 
 LOCALE_PATHS = [

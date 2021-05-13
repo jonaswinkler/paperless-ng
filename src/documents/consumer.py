@@ -116,6 +116,9 @@ class Consumer(LoggingMixin):
                 f"Configured pre-consume script "
                 f"{settings.PRE_CONSUME_SCRIPT} does not exist.")
 
+        self.log("info",
+                 f"Executing pre-consume script {settings.PRE_CONSUME_SCRIPT}")
+
         try:
             Popen((settings.PRE_CONSUME_SCRIPT, self.path)).wait()
         except Exception as e:
@@ -135,6 +138,11 @@ class Consumer(LoggingMixin):
                 f"Configured post-consume script "
                 f"{settings.POST_CONSUME_SCRIPT} does not exist."
             )
+
+        self.log(
+            "info",
+            f"Executing post-consume script {settings.POST_CONSUME_SCRIPT}"
+        )
 
         try:
             Popen((
