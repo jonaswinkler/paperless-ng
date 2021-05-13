@@ -1,8 +1,8 @@
+import logging
 import os
 import re
 import tempfile
 
-from django.conf import settings
 from django_q.tasks import async_task
 
 from documents import tasks
@@ -10,6 +10,9 @@ from documents.consumer import ConsumerError
 from documents.models import Document
 
 from pikepdf import Pdf
+
+
+logger = logging.getLogger("paperless.merge")
 
 
 class MergeError(Exception):
@@ -98,7 +101,12 @@ def copy_pdf_metadata(source: Pdf, target: Pdf):
     with source.open_metadata() as source_meta:
         with target.open_metadata() as target_meta:
             for k in source_meta:
-                target_meta[k] = source_meta[k]
+                try:
+                    target_meta[k] = source_meta[k]
+                except TypeError:
+                    # TODO: https://github.com/pikepdf/pikepdf/issues/188
+                    logger.warning(f"Could not copy metadata {k} while "
+                                   f"merging documents", exc_info=True)
 
 
 def copy_document_metadata(document: Document, consume_task):
