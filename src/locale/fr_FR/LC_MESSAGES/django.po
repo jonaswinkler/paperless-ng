@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-05-16 10:09\n"
+"PO-Revision-Date: 2021-05-16 18:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -470,11 +470,11 @@ msgstr "Administration de Paperless-ng"
 
 #: paperless_mail/admin.py:15
 msgid "Authentication"
-msgstr ""
+msgstr "Authentification"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
-msgstr ""
+msgstr "Paramètres avancés"
 
 #: paperless_mail/admin.py:37
 msgid "Filter"
