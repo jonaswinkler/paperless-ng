@@ -2181,7 +2181,7 @@
           <context context-type="linenumber">28</context>
         </context-group>
         <note priority="1" from="description">Score is a value returned by the full text search engine and specifies how well a result matches the given query</note>
-        <target state="needs-translation">Search score</target>
+        <target state="translated">Zoekscore</target>
       </trans-unit>
       <trans-unit id="4561076822163447092" datatype="html">
         <source>Create new item</source>
