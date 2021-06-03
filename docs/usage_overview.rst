@@ -299,7 +299,7 @@ Matching inexact or partial words:
 .. code::
 
   produ*name
-	
+
 .. code::
 
   *partialname
