@@ -294,11 +294,19 @@ Matching dates:
   added:yesterday
   modified:today
 
-Matching inexact words:
+Matching inexact or partial words:
 
 .. code::
 
   produ*name
+	
+.. code::
+
+  *partialname
+
+.. code::
+
+  partial*
 
 .. note::
 
