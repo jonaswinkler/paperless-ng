@@ -5,6 +5,8 @@ __pycache__/
 # C extensions
 *.so
 
+nohup.out
+
 # Distribution / packaging
 .Python
 env/

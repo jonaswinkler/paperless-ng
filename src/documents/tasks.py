@@ -62,7 +62,6 @@ def train_classifier():
             "Classifier error: " + str(e)
         )
 
-
 def consume_file(path,
                  override_filename=None,
                  override_title=None,

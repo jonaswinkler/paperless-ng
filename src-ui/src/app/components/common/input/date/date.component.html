@@ -1,8 +1,8 @@
 <div class="form-group">
   <label [for]="inputId">{{title}}</label>
   <div class="input-group" [class.is-invalid]="error">
-    <input class="form-control" [class.is-invalid]="error"  [placeholder]="placeholder" [id]="inputId" (dateSelect)="onChange(value)" (change)="onChange(value)"
-           name="dp" [(ngModel)]="value" ngbDatepicker #datePicker="ngbDatepicker" #datePickerContent="ngModel">
+    <input class="form-control" [class.is-invalid]="error" [minDate]="{year: 1980, month: 1, day: 1}" [maxDate]="{year: 2030, month: 1, day: 1}" [placeholder]="placeholder" [id]="inputId" (dateSelect)="onChange(value)" (change)="onChange(value)"
+           name="dp" [(ngModel)]="value"  ngbDatepicker #datePicker="ngbDatepicker" #datePickerContent="ngModel">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary calendar" (click)="datePicker.toggle()" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
