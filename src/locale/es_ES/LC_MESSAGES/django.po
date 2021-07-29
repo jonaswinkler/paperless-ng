@@ -64,11 +64,11 @@ msgstr "es insensible"
 
 #: documents/models.py:74 documents/models.py:120
 msgid "correspondent"
-msgstr "Tipo de documento"
+msgstr "correspondiente"
 
 #: documents/models.py:75
 msgid "correspondents"
-msgstr "Tipos de documento"
+msgstr "correspondientes"
 
 #: documents/models.py:81
 msgid "color"
@@ -108,7 +108,7 @@ msgstr "Encriptado con GNU Privacy Guard"
 
 #: documents/models.py:124
 msgid "title"
-msgstr "titulo"
+msgstr "título"
 
 #: documents/models.py:137
 msgid "content"
@@ -268,7 +268,7 @@ msgstr "ASN es"
 
 #: documents/models.py:376
 msgid "correspondent is"
-msgstr "tipo de documento es"
+msgstr "el correspondiente es"
 
 #: documents/models.py:377
 msgid "document type is"
@@ -438,7 +438,7 @@ msgstr "Portugués (Brasil)"
 
 #: paperless/settings.py:309
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugués"
 
 #: paperless/settings.py:310
 msgid "Italian"
@@ -458,11 +458,11 @@ msgstr "Español"
 
 #: paperless/settings.py:314
 msgid "Polish"
-msgstr ""
+msgstr "Polaco"
 
 #: paperless/settings.py:315
 msgid "Swedish"
-msgstr ""
+msgstr "Sueco"
 
 #: paperless/urls.py:120
 msgid "Paperless-ng administration"
@@ -470,11 +470,11 @@ msgstr "Paperless-ng Administración"
 
 #: paperless_mail/admin.py:15
 msgid "Authentication"
-msgstr ""
+msgstr "Autenticación"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
-msgstr ""
+msgstr "Ajustes avanzados"
 
 #: paperless_mail/admin.py:37
 msgid "Filter"
@@ -490,7 +490,7 @@ msgstr "Acciones"
 
 #: paperless_mail/admin.py:51
 msgid "The action applied to the mail. This action is only performed when documents were consumed from the mail. Mails without attachments will remain entirely untouched."
-msgstr "La acción aplicada al correo. Esta acción solo se realiza cuando los documentos se consumen del correo. Los correos sin archivos adjuntos permanecerán totalmente intactos."
+msgstr "La acción se aplicó al correo. Esta acción sólo se realiza cuando los documentos se consumen desde el correo. Los correos sin archivos adjuntos permanecerán totalmente intactos."
 
 #: paperless_mail/admin.py:58
 msgid "Metadata"
@@ -498,7 +498,7 @@ msgstr "Metadatos"
 
 #: paperless_mail/admin.py:60
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr "Asignar metadatos a documentos consumidos por esta regla automáticamente. Si no asigna etiquetas, o ipos aquí, paperless procesará igualmente todas las reglas que haya definido."
+msgstr "Asigna metadatos a documentos consumidos por esta regla automáticamente. Si no asigna etiquetas, o correspondientes aquí, paperless procesará igualmente todas las reglas que haya definido."
 
 #: paperless_mail/apps.py:9
 msgid "Paperless mail"
@@ -550,11 +550,11 @@ msgstr "contraseña"
 
 #: paperless_mail/models.py:54
 msgid "character set"
-msgstr ""
+msgstr "tipo de carácter"
 
 #: paperless_mail/models.py:57
 msgid "The character set to use when communicating with the mail server, such as 'UTF-8' or 'US-ASCII'."
-msgstr ""
+msgstr "El tipo de carácter a utilizar cuando se comunique con un servidor de correo, como 'UTF-8' o 'US-ASCII'"
 
 #: paperless_mail/models.py:68
 msgid "mail rule"
@@ -590,7 +590,7 @@ msgstr "Borrar"
 
 #: paperless_mail/models.py:96
 msgid "Use subject as title"
-msgstr "Usar asunto como titulo"
+msgstr "Usar asunto como título"
 
 #: paperless_mail/models.py:97
 msgid "Use attachment filename as title"
@@ -598,7 +598,7 @@ msgstr "Usar nombre del fichero adjunto como título"
 
 #: paperless_mail/models.py:107
 msgid "Do not assign a correspondent"
-msgstr "No asignar un tipo de documento"
+msgstr "No asignar un correspondiente"
 
 #: paperless_mail/models.py:109
 msgid "Use mail address"
@@ -606,11 +606,11 @@ msgstr "Usar dirección de correo"
 
 #: paperless_mail/models.py:111
 msgid "Use name (or mail address if not available)"
-msgstr "Usar nombre (o dirección de correo si no está disponible)"
+msgstr "Usar nombre (o dirección de correo sino está disponible)"
 
 #: paperless_mail/models.py:113
 msgid "Use correspondent selected below"
-msgstr "Usar el tipo seleccionado debajo"
+msgstr "Usar el correspondiente seleccionado debajo"
 
 #: paperless_mail/models.py:121
 msgid "order"
@@ -626,7 +626,7 @@ msgstr "carpeta"
 
 #: paperless_mail/models.py:134
 msgid "Subfolders must be separated by dots."
-msgstr ""
+msgstr "Las subcarpetas deben estar separadas por puntos."
 
 #: paperless_mail/models.py:138
 msgid "filter from"
@@ -662,7 +662,7 @@ msgstr "tipo de fichero adjunto"
 
 #: paperless_mail/models.py:164
 msgid "Inline attachments include embedded images, so it's best to combine this option with a filename filter."
-msgstr "Adjuntos incrustados incluyen imágenes, por lo que es mejor combina resta opción un filtro de nombre de fichero."
+msgstr "Adjuntos incrustados incluyen imágenes, por lo que es mejor combinar esta opción con un filtro de nombre de fichero."
 
 #: paperless_mail/models.py:169
 msgid "action"
@@ -674,7 +674,7 @@ msgstr "parámetro de acción"
 
 #: paperless_mail/models.py:177
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action. Subfolders must be separated by dots."
-msgstr ""
+msgstr "Parámetro adicional para la acción seleccionada previamente. Ej: La carpeta destino de la acción 'mover a carpeta'. Subcarpetas deben estar separadas por puntos. "
 
 #: paperless_mail/models.py:184
 msgid "assign title from"
@@ -690,9 +690,8 @@ msgstr "asignar este tipo de documento"
 
 #: paperless_mail/models.py:206
 msgid "assign correspondent from"
-msgstr "Asignar tipo de documento desde"
+msgstr "Asignar correspondiente desde"
 
 #: paperless_mail/models.py:216
 msgid "assign this correspondent"
-msgstr "asignar este tipo de documento"
-
+msgstr "asignar este correspondiente"
