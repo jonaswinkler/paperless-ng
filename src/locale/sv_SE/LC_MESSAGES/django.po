@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-07-30 15:17\n"
+"PO-Revision-Date: 2021-07-30 16:25\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -39,7 +39,7 @@ msgstr "Reguljära uttryck"
 
 #: documents/models.py:36
 msgid "Fuzzy word"
-msgstr "Närliggande ord"
+msgstr "Ungefärligt ord"
 
 #: documents/models.py:37
 msgid "Automatic"
@@ -76,19 +76,19 @@ msgstr "färg"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr "är inkorgstagg"
+msgstr "är inkorgsetikett"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
-msgstr "Markerar denna tagg som en inkorgstagg: Alla nyligen konsumerade dokument kommer att taggas med inkorgstaggar."
+msgstr "Markerar denna etikett som en inkorgsetikett: Alla nyligen konsumerade dokument kommer att märkas med inkorgsetiketter."
 
 #: documents/models.py:94
 msgid "tag"
-msgstr "tagg"
+msgstr "etikett"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr "taggar"
+msgstr "etiketter"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
@@ -116,7 +116,7 @@ msgstr "innehåll"
 
 #: documents/models.py:139
 msgid "The raw, text-only data of the document. This field is primarily used for searching."
-msgstr "Dokumentets råa, enbart text data. Detta fält används främst för sökning."
+msgstr "Dokumentets obearbetade textdata. Detta fält används främst för sökning."
 
 #: documents/models.py:144
 msgid "mime type"
@@ -136,7 +136,7 @@ msgstr "arkivera kontrollsumma"
 
 #: documents/models.py:168
 msgid "The checksum of the archived document."
-msgstr "Kontrollsumman för arkiverat dokument."
+msgstr "Kontrollsumman för det arkiverade dokumentet."
 
 #: documents/models.py:172 documents/models.py:328
 msgid "created"
@@ -148,7 +148,7 @@ msgstr "ändrad"
 
 #: documents/models.py:180
 msgid "storage type"
-msgstr "Lagringstyp"
+msgstr "lagringstyp"
 
 #: documents/models.py:188
 msgid "added"
@@ -160,7 +160,7 @@ msgstr "filnamn"
 
 #: documents/models.py:198
 msgid "Current filename in storage"
-msgstr "Nuvarande filnamn i lagring"
+msgstr "Nuvarande filnamn i lagringsutrymmet"
 
 #: documents/models.py:202
 msgid "archive filename"
@@ -168,11 +168,11 @@ msgstr "arkivfilnamn"
 
 #: documents/models.py:208
 msgid "Current archive filename in storage"
-msgstr "Nuvarande arkivfilnamn i lagring"
+msgstr "Nuvarande arkivfilnamn i lagringsutrymmet"
 
 #: documents/models.py:212
 msgid "archive serial number"
-msgstr "arkivets serienummer"
+msgstr "serienummer (arkivering)"
 
 #: documents/models.py:217
 msgid "The position of this document in your physical document archive."
@@ -240,7 +240,7 @@ msgstr "användare"
 
 #: documents/models.py:354
 msgid "show on dashboard"
-msgstr "visa på instrumentpanelen"
+msgstr "visa på kontrollpanelen"
 
 #: documents/models.py:357
 msgid "show in sidebar"
@@ -252,7 +252,7 @@ msgstr "sortera fält"
 
 #: documents/models.py:367
 msgid "sort reverse"
-msgstr "sortera omvänd"
+msgstr "sortera omvänt"
 
 #: documents/models.py:373
 msgid "title contains"
@@ -280,7 +280,7 @@ msgstr "är i inkorgen"
 
 #: documents/models.py:379
 msgid "has tag"
-msgstr "har tagg"
+msgstr "har etikett"
 
 #: documents/models.py:380
 msgid "has any tag"
