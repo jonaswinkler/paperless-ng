@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-07-30 17:24\n"
+"PO-Revision-Date: 2021-07-30 18:02\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -570,7 +570,7 @@ msgstr "Behandla endast bilagor."
 
 #: paperless_mail/models.py:76
 msgid "Process all files, including 'inline' attachments."
-msgstr "Behandla alla filer, inklusive \"inline\" bilagor."
+msgstr "Behandla alla filer, inklusive infogade bilagor."
 
 #: paperless_mail/models.py:86
 msgid "Mark as read, don't process read mails"
@@ -646,11 +646,11 @@ msgstr "filtrera filnamn för bilaga"
 
 #: paperless_mail/models.py:150
 msgid "Only consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Konsumera endast dokument som helt och hållet matchar detta filnamn om det anges. Wildcards som *.pdf eller *faktura* är tillåtna. Ej skiftlägeskänsliga."
+msgstr "Konsumera endast dokument som matchar exakt detta filnamn, om det är angivet. Jokertecken som *.pdf eller *faktura* är tillåtna. Ej skiftlägeskänsligt."
 
 #: paperless_mail/models.py:156
 msgid "maximum age"
-msgstr "maximal ålder"
+msgstr "högsta ålder"
 
 #: paperless_mail/models.py:158
 msgid "Specified in days."
@@ -662,7 +662,7 @@ msgstr "typ av bilaga"
 
 #: paperless_mail/models.py:164
 msgid "Inline attachments include embedded images, so it's best to combine this option with a filename filter."
-msgstr "Bifogade bilagor inkluderar inbäddade bilder, så det är bäst att kombinera detta alternativ med ett filnamnsfilter."
+msgstr "Infogade bilagor inkluderar inbäddade bilder, så det är bäst att kombinera detta alternativ med ett filnamnsfilter."
 
 #: paperless_mail/models.py:169
 msgid "action"
@@ -674,7 +674,7 @@ msgstr "åtgärdsparameter"
 
 #: paperless_mail/models.py:177
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action. Subfolders must be separated by dots."
-msgstr "Ytterligare parametrar för åtgärden som valts ovan, d.v.s. målmappen för flytten till mapp-åtgärder. Undermappar måste vara separerade med punkter."
+msgstr "Ytterligare parametrar för åtgärden som valts ovan, d.v.s. målmappen för åtgärden \"flytta till angiven mapp\". Undermappar måste vara separerade med punkter."
 
 #: paperless_mail/models.py:184
 msgid "assign title from"
@@ -682,7 +682,7 @@ msgstr "tilldela titel från"
 
 #: paperless_mail/models.py:194
 msgid "assign this tag"
-msgstr "tilldela denna tagg"
+msgstr "tilldela denna etikett"
 
 #: paperless_mail/models.py:202
 msgid "assign this document type"
