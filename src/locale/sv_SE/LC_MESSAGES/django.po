@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-05-16 11:15\n"
+"PO-Revision-Date: 2021-07-30 15:17\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -39,7 +39,7 @@ msgstr "Reguljära uttryck"
 
 #: documents/models.py:36
 msgid "Fuzzy word"
-msgstr "Fuzzy word"
+msgstr "Närliggande ord"
 
 #: documents/models.py:37
 msgid "Automatic"
