@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-07-30 16:25\n"
+"PO-Revision-Date: 2021-07-30 17:24\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -284,7 +284,7 @@ msgstr "har etikett"
 
 #: documents/models.py:380
 msgid "has any tag"
-msgstr "har någon tagg"
+msgstr "har någon etikett"
 
 #: documents/models.py:381
 msgid "created before"
@@ -324,7 +324,7 @@ msgstr "ändrad efter"
 
 #: documents/models.py:390
 msgid "does not have tag"
-msgstr "har inte tagg"
+msgstr "har inte etikett"
 
 #: documents/models.py:391
 msgid "does not have ASN"
@@ -332,7 +332,7 @@ msgstr "har inte ASN"
 
 #: documents/models.py:392
 msgid "title or content contains"
-msgstr "titeln eller innehållet innehåller"
+msgstr "titel eller innehåll innehåller"
 
 #: documents/models.py:393
 msgid "fulltext query"
@@ -382,7 +382,7 @@ msgstr "Paperless-ng utloggad"
 
 #: documents/templates/registration/logged_out.html:45
 msgid "You have been successfully logged out. Bye!"
-msgstr "Du är nu utloggad!"
+msgstr "Du är nu utloggad. Hejdå!"
 
 #: documents/templates/registration/logged_out.html:46
 msgid "Sign in again"
@@ -398,7 +398,7 @@ msgstr "Vänligen logga in."
 
 #: documents/templates/registration/login.html:50
 msgid "Your username and password didn't match. Please try again."
-msgstr "Ditt användarnamn och lösenord stämde inte. Försök igen."
+msgstr "Ditt användarnamn och lösenord matchade inte. Vänligen försök igen."
 
 #: documents/templates/registration/login.html:53
 msgid "Username"
@@ -498,7 +498,7 @@ msgstr "Metadata"
 
 #: paperless_mail/admin.py:60
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr "Tilldela metadata till dokument som konsumeras från denna regel automatiskt. Om du inte tilldelar taggar, typer eller korrespondenter här kommer paperless fortfarande att behandla alla matchande regler som du har definierat."
+msgstr "Tilldela metadata till dokument som konsumeras från denna regel automatiskt. Om du inte tilldelar etiketter, typer eller korrespondenter här kommer paperless fortfarande att behandla alla matchande regler som du har definierat."
 
 #: paperless_mail/apps.py:9
 msgid "Paperless mail"
@@ -530,7 +530,7 @@ msgstr "IMAP-server"
 
 #: paperless_mail/models.py:33
 msgid "IMAP port"
-msgstr "IMAP port"
+msgstr "IMAP-port"
 
 #: paperless_mail/models.py:36
 msgid "This is usually 143 for unencrypted and STARTTLS connections, and 993 for SSL connections."
@@ -538,7 +538,7 @@ msgstr "Detta är vanligtvis 143 för okrypterade och STARTTLS-anslutningar, och
 
 #: paperless_mail/models.py:40
 msgid "IMAP security"
-msgstr "IMAP säkerhet"
+msgstr "IMAP-säkerhet"
 
 #: paperless_mail/models.py:46
 msgid "username"
@@ -578,7 +578,7 @@ msgstr "Markera som läst, bearbeta inte lästa meddelanden"
 
 #: paperless_mail/models.py:87
 msgid "Flag the mail, don't process flagged mails"
-msgstr "Flagga mailet, bearbeta inte flaggade mail"
+msgstr "Flagga meddelandet, bearbeta inte flaggade meddelanden"
 
 #: paperless_mail/models.py:88
 msgid "Move to specified folder"
