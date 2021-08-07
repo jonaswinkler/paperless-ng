@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-08-07 12:02\n"
+"PO-Revision-Date: 2021-08-07 13:02\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -462,7 +462,7 @@ msgstr "Polski"
 
 #: paperless/settings.py:315
 msgid "Swedish"
-msgstr ""
+msgstr "Szwedzki"
 
 #: paperless/urls.py:120
 msgid "Paperless-ng administration"
@@ -626,7 +626,7 @@ msgstr "folder"
 
 #: paperless_mail/models.py:134
 msgid "Subfolders must be separated by dots."
-msgstr ""
+msgstr "Podfoldery muszą być oddzielone kropkami."
 
 #: paperless_mail/models.py:138
 msgid "filter from"
@@ -674,7 +674,7 @@ msgstr "parametr akcji"
 
 #: paperless_mail/models.py:177
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action. Subfolders must be separated by dots."
-msgstr ""
+msgstr "Dodatkowy parametr dla akcji wybranej powyżej, tj. docelowy folder akcji \"Przenieś do określonego folderu\". Podfoldery muszą być oddzielone kropkami."
 
 #: paperless_mail/models.py:184
 msgid "assign title from"
