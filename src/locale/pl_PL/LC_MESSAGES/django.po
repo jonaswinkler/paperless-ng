@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-05-16 10:09\n"
+"PO-Revision-Date: 2021-08-07 12:02\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -470,11 +470,11 @@ msgstr "Administracja Paperless-ng"
 
 #: paperless_mail/admin.py:15
 msgid "Authentication"
-msgstr ""
+msgstr "Uwierzytelnianie"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
-msgstr ""
+msgstr "Ustawienia zaawansowane"
 
 #: paperless_mail/admin.py:37
 msgid "Filter"
@@ -550,11 +550,11 @@ msgstr "hasło"
 
 #: paperless_mail/models.py:54
 msgid "character set"
-msgstr ""
+msgstr "Kodowanie"
 
 #: paperless_mail/models.py:57
 msgid "The character set to use when communicating with the mail server, such as 'UTF-8' or 'US-ASCII'."
-msgstr ""
+msgstr "Zestaw znaków używany podczas komunikowania się z serwerem poczty, np. \"UTF-8\" lub \"US-ASCII\"."
 
 #: paperless_mail/models.py:68
 msgid "mail rule"
