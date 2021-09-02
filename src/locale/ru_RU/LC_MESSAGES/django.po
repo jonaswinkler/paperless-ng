@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-09-02 21:48\n"
+"PO-Revision-Date: 2021-09-02 22:44\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -474,7 +474,7 @@ msgstr "Аутентификация"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
-msgstr ""
+msgstr "Продвинутые настройки"
 
 #: paperless_mail/admin.py:37
 msgid "Filter"
@@ -550,11 +550,11 @@ msgstr "пароль"
 
 #: paperless_mail/models.py:54
 msgid "character set"
-msgstr ""
+msgstr "Кодировка"
 
 #: paperless_mail/models.py:57
 msgid "The character set to use when communicating with the mail server, such as 'UTF-8' or 'US-ASCII'."
-msgstr ""
+msgstr "Кодировка, используемая при общении с почтовым сервером, например 'UTF-8' или 'US-ASCII'."
 
 #: paperless_mail/models.py:68
 msgid "mail rule"
@@ -674,7 +674,7 @@ msgstr "параметр действия"
 
 #: paperless_mail/models.py:177
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action. Subfolders must be separated by dots."
-msgstr ""
+msgstr "Дополнительный параметр для указанного выше действия, то есть целевая папка операции перемещения в папку. Вложенные папки должны быть разделены точками."
 
 #: paperless_mail/models.py:184
 msgid "assign title from"
