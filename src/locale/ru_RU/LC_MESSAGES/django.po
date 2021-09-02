@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-05-16 10:09\n"
+"PO-Revision-Date: 2021-09-02 21:48\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -458,11 +458,11 @@ msgstr "Испанский"
 
 #: paperless/settings.py:314
 msgid "Polish"
-msgstr ""
+msgstr "Польский"
 
 #: paperless/settings.py:315
 msgid "Swedish"
-msgstr ""
+msgstr "Шведский"
 
 #: paperless/urls.py:120
 msgid "Paperless-ng administration"
@@ -470,7 +470,7 @@ msgstr "Администрирование Paperless-ng"
 
 #: paperless_mail/admin.py:15
 msgid "Authentication"
-msgstr ""
+msgstr "Аутентификация"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
@@ -626,7 +626,7 @@ msgstr "каталог"
 
 #: paperless_mail/models.py:134
 msgid "Subfolders must be separated by dots."
-msgstr ""
+msgstr "Подпапки должны быть разделены точками."
 
 #: paperless_mail/models.py:138
 msgid "filter from"
