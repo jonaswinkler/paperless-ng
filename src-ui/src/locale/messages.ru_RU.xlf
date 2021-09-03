@@ -1759,7 +1759,7 @@
           <context context-type="linenumber">4</context>
         </context-group>
         <note priority="1" from="description">This button dismisses all status messages about processed documents on the dashboard (failed and successful)</note>
-        <target state="translated">Скрытие завершено</target>
+        <target state="translated">Скрыть завершённые</target>
       </trans-unit>
       <trans-unit id="90917e1a0a7bb59e9d11bdde9183e9391963e17b" datatype="html">
         <source>{VAR_PLURAL, plural, =1 {One more document} other {<x id="INTERPOLATION"/> more documents}}</source>
