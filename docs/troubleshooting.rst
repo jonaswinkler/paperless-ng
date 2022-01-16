@@ -112,7 +112,7 @@ If using docker-compose, this is achieved by the following configuration change 
 .. code:: yaml
 
     gotenberg:
-        image: thecodingmachine/gotenberg
+        image: thecodingmachine/gotenberg:6
         restart: unless-stopped
         environment:
             DISABLE_GOOGLE_CHROME: 1

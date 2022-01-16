@@ -451,7 +451,7 @@ requires are as follows:
         # ...
 
         gotenberg:
-            image: thecodingmachine/gotenberg
+            image: thecodingmachine/gotenberg:6
             restart: unless-stopped
             environment:
                 DISABLE_GOOGLE_CHROME: 1
