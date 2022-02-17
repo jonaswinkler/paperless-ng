@@ -320,7 +320,7 @@
           <context context-type="sourcefile">src/app/components/document-detail/document-detail.component.html</context>
           <context context-type="linenumber">132</context>
         </context-group>
-        <target state="translated">Salvar</target>
+        <target state="translated">Guardar</target>
       </trans-unit>
       <trans-unit id="8380d9eff8613c0bc58edc7cebc2aa72e17b11e3" datatype="html">
         <source>Page</source>
@@ -472,7 +472,7 @@
           <context context-type="sourcefile">src/app/components/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="translated">Dashboard</target>
+        <target state="translated">Painel de controlo</target>
       </trans-unit>
       <trans-unit id="93754014749412887" datatype="html">
         <source>Do you really want to delete the tag &quot;<x id="PH" equiv-text="object.name"/>&quot;?</source>
@@ -856,7 +856,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">126</context>
         </context-group>
-        <target state="translated">Não mostrar notificações no dashboard</target>
+        <target state="translated">Não mostrar notificações no painel de controlo</target>
       </trans-unit>
       <trans-unit id="e27bd3804d2936a6897e81c2e52e294490e5e5a8" datatype="html">
         <source>This will suppress all messages about document processing status on the dashboard.</source>
@@ -864,7 +864,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">126</context>
         </context-group>
-        <target state="translated">Isso esconderá todas as mensagens sobre o status de processamento de documentos no painel de controle.</target>
+        <target state="translated">Isto vai esconder todas as mensagens sobre o estado de processamento do documento do painel de controlo.</target>
       </trans-unit>
       <trans-unit id="8cb90334f5dfd7fc67205085f59381e2a334ccfc" datatype="html">
         <source>Appears on</source>
@@ -880,7 +880,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">149</context>
         </context-group>
-        <target state="translated">Exibir no dashboard</target>
+        <target state="translated">Exibir no painel de controlo</target>
       </trans-unit>
       <trans-unit id="541bfc5b123b3f8867fd681eaceefb663a811973" datatype="html">
         <source>Show in sidebar</source>
@@ -1718,7 +1718,7 @@
           <context context-type="sourcefile">src/app/components/dashboard/widgets/upload-file-widget/upload-file-widget.component.ts</context>
           <context context-type="linenumber">126</context>
         </context-group>
-        <target state="translated">Carregamento concluído, à espera...</target>
+        <target state="translated">Carregamento concluído, aguardando...</target>
       </trans-unit>
       <trans-unit id="1405142710727603568" datatype="html">
         <source>HTTP error: <x id="PH" equiv-text="error.status"/> <x id="PH_1" equiv-text="error.statusText"/></source>
