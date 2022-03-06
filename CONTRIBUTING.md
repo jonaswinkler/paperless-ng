@@ -25,6 +25,8 @@ I'm trying to get most of paperless tested, so please do the same for your code!
 
 To test your code, execute `pytest` in the src/ directory. Executing that in the project root is no good. This also generates a html coverage report, which you can use to see if you missed anything important during testing.
 
+Before you can run `pytest`, ensure to install `pytest-xdist` and `pytest-cov` by running `pip3 install pytest-xdist pytest-cov`.
+
 ## More info:
 
 ... is available in the documentation. https://paperless-ng.readthedocs.io/en/latest/extending.html
