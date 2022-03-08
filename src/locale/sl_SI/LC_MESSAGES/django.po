@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2022-01-16 17:11\n"
+"PO-Revision-Date: 2022-03-08 18:09\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "Language: sl_SI\n"
@@ -43,16 +43,16 @@ msgstr ""
 
 #: documents/models.py:37
 msgid "Automatic"
-msgstr ""
+msgstr "Samodejno"
 
 #: documents/models.py:41 documents/models.py:350 paperless_mail/models.py:25
 #: paperless_mail/models.py:117
 msgid "name"
-msgstr ""
+msgstr "ime"
 
 #: documents/models.py:45
 msgid "match"
-msgstr ""
+msgstr "ujemanje"
 
 #: documents/models.py:49
 msgid "matching algorithm"
@@ -60,7 +60,7 @@ msgstr ""
 
 #: documents/models.py:55
 msgid "is insensitive"
-msgstr ""
+msgstr "brez razlikovanje velikosti črk"
 
 #: documents/models.py:74 documents/models.py:120
 msgid "correspondent"
@@ -196,11 +196,11 @@ msgstr ""
 
 #: documents/models.py:313
 msgid "warning"
-msgstr ""
+msgstr "opozorilo"
 
 #: documents/models.py:314
 msgid "error"
-msgstr ""
+msgstr "napaka"
 
 #: documents/models.py:315
 msgid "critical"
