@@ -12,7 +12,7 @@
 
 Paperless-ng is a fork of the original project, adding a new interface and many other changes under the hood. These key points should help you decide whether Paperless-ng is something you would prefer over Paperless:
 
-* Interface: The new front end is the main interface for Paperless-ng, the old interface still exists but most customizations (such as thumbnails for the document list) have been removed.0
+* Interface: The new front end is the main interface for Paperless-ng, the old interface still exists but most customizations (such as thumbnails for the document list) have been removed.
 * Encryption: Paperless-ng does not support GnuPG anymore, since storing your data on encrypted file systems (that you optionally mount on demand) achieves about the same result.
 * Resource usage: Paperless-ng does use a bit more resources than Paperless. Running the web server requires about 300MB of RAM or more, depending on the configuration. While adding documents, it requires about 300MB additional RAM, depending on the document. It still runs on Raspberry Pi (many users do that), but it has been generally geared to better use the resources of more powerful systems.
 * API changes: If you rely on the REST API of paperless, some of its functionality has been changed.
