@@ -78,6 +78,7 @@ services:
     image: iwishiwasaneagle/apache-tika-arm
     restart: unless-stopped
 
-volumes:
+  media:
+  redisdata:
   data:
   media:
