@@ -1912,7 +1912,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">91</context>
         </context-group>
-        <target state="needs-translation">English (GB)</target>
+        <target state="translated">Angol (GB)</target>
       </trans-unit>
       <trans-unit id="1858110241312746425" datatype="html">
         <source>German</source>
@@ -1928,7 +1928,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">93</context>
         </context-group>
-        <target state="needs-translation">Dutch</target>
+        <target state="translated">Holland</target>
       </trans-unit>
       <trans-unit id="7633754075223722162" datatype="html">
         <source>French</source>
@@ -1936,7 +1936,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">94</context>
         </context-group>
-        <target state="needs-translation">French</target>
+        <target state="translated">Francia</target>
       </trans-unit>
       <trans-unit id="153799456510623899" datatype="html">
         <source>Portuguese</source>
@@ -1952,7 +1952,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">96</context>
         </context-group>
-        <target state="needs-translation">Portuguese (Brazil)</target>
+        <target state="translated">Portugál (Brazil)</target>
       </trans-unit>
       <trans-unit id="2935232983274991580" datatype="html">
         <source>Italian</source>
@@ -1960,7 +1960,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">97</context>
         </context-group>
-        <target state="needs-translation">Italian</target>
+        <target state="translated">Olasz</target>
       </trans-unit>
       <trans-unit id="8118856427047826368" datatype="html">
         <source>Romanian</source>
@@ -1968,7 +1968,7 @@
           <context context-type="sourcefile">src/app/services/settings.service.ts</context>
           <context context-type="linenumber">98</context>
         </context-group>
-        <target state="needs-translation">Romanian</target>
+        <target state="translated">Román</target>
       </trans-unit>
       <trans-unit id="7137419789978325708" datatype="html">
         <source>Russian</source>
@@ -2253,7 +2253,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">12</context>
         </context-group>
-        <target state="needs-translation">Any word</target>
+        <target state="translated">Bármely szó</target>
       </trans-unit>
       <trans-unit id="7517655726614958140" datatype="html">
         <source>Any: Document contains any of these words (space separated)</source>
@@ -2269,7 +2269,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">13</context>
         </context-group>
-        <target state="needs-translation">All words</target>
+        <target state="translated">Minden szó</target>
       </trans-unit>
       <trans-unit id="111914402588955480" datatype="html">
         <source>All: Document contains all of these words (space separated)</source>
@@ -2285,7 +2285,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">14</context>
         </context-group>
-        <target state="needs-translation">Exact match</target>
+        <target state="translated">Pontos egyezés</target>
       </trans-unit>
       <trans-unit id="7109184332944610787" datatype="html">
         <source>Exact: Document contains this string</source>
