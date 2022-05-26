@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-05-16 10:09\n"
+"PO-Revision-Date: 2022-05-26 09:33\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -23,15 +23,15 @@ msgstr "Dokumentumok"
 
 #: documents/models.py:32
 msgid "Any word"
-msgstr ""
+msgstr "Bármely szó"
 
 #: documents/models.py:33
 msgid "All words"
-msgstr ""
+msgstr "Minden szó"
 
 #: documents/models.py:34
 msgid "Exact match"
-msgstr ""
+msgstr "Pontos egyezés"
 
 #: documents/models.py:35
 msgid "Regular expression"
@@ -48,11 +48,11 @@ msgstr "Automatikus"
 #: documents/models.py:41 documents/models.py:350 paperless_mail/models.py:25
 #: paperless_mail/models.py:117
 msgid "name"
-msgstr ""
+msgstr "név"
 
 #: documents/models.py:45
 msgid "match"
-msgstr ""
+msgstr "egyezés"
 
 #: documents/models.py:49
 msgid "matching algorithm"
@@ -64,15 +64,15 @@ msgstr ""
 
 #: documents/models.py:74 documents/models.py:120
 msgid "correspondent"
-msgstr ""
+msgstr "partner"
 
 #: documents/models.py:75
 msgid "correspondents"
-msgstr ""
+msgstr "partnerek"
 
 #: documents/models.py:81
 msgid "color"
-msgstr ""
+msgstr "szín"
 
 #: documents/models.py:87
 msgid "is inbox tag"
@@ -84,11 +84,11 @@ msgstr ""
 
 #: documents/models.py:94
 msgid "tag"
-msgstr ""
+msgstr "címke"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr ""
+msgstr "cimkék"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
@@ -180,11 +180,11 @@ msgstr ""
 
 #: documents/models.py:223
 msgid "document"
-msgstr ""
+msgstr "dokumentum"
 
 #: documents/models.py:224
 msgid "documents"
-msgstr ""
+msgstr "dokumentumok"
 
 #: documents/models.py:311
 msgid "debug"
@@ -192,43 +192,43 @@ msgstr ""
 
 #: documents/models.py:312
 msgid "information"
-msgstr ""
+msgstr "információ"
 
 #: documents/models.py:313
 msgid "warning"
-msgstr ""
+msgstr "figyelmeztetés"
 
 #: documents/models.py:314
 msgid "error"
-msgstr ""
+msgstr "hiba"
 
 #: documents/models.py:315
 msgid "critical"
-msgstr ""
+msgstr "kritikus"
 
 #: documents/models.py:319
 msgid "group"
-msgstr ""
+msgstr "csoport"
 
 #: documents/models.py:322
 msgid "message"
-msgstr ""
+msgstr "üzenet"
 
 #: documents/models.py:325
 msgid "level"
-msgstr ""
+msgstr "szint"
 
 #: documents/models.py:332
 msgid "log"
-msgstr ""
+msgstr "napló"
 
 #: documents/models.py:333
 msgid "logs"
-msgstr ""
+msgstr "naplók"
 
 #: documents/models.py:344 documents/models.py:401
 msgid "saved view"
-msgstr ""
+msgstr "mentett nézet"
 
 #: documents/models.py:345
 msgid "saved views"
@@ -344,19 +344,19 @@ msgstr ""
 
 #: documents/models.py:405
 msgid "rule type"
-msgstr ""
+msgstr "szabály típus"
 
 #: documents/models.py:409
 msgid "value"
-msgstr ""
+msgstr "érték"
 
 #: documents/models.py:415
 msgid "filter rule"
-msgstr ""
+msgstr "szűrési szabály"
 
 #: documents/models.py:416
 msgid "filter rules"
-msgstr ""
+msgstr "szûrési szabályok"
 
 #: documents/serialisers.py:53
 #, python-format
@@ -365,7 +365,7 @@ msgstr ""
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
-msgstr ""
+msgstr "Érvénytelen szín."
 
 #: documents/serialisers.py:451
 #, python-format
@@ -386,7 +386,7 @@ msgstr ""
 
 #: documents/templates/registration/logged_out.html:46
 msgid "Sign in again"
-msgstr ""
+msgstr "Jelentkezz be újra"
 
 #: documents/templates/registration/login.html:15
 msgid "Paperless-ng sign in"
@@ -394,23 +394,23 @@ msgstr ""
 
 #: documents/templates/registration/login.html:47
 msgid "Please sign in."
-msgstr ""
+msgstr "Kérjük, jelentkezzen be!"
 
 #: documents/templates/registration/login.html:50
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "A felhasználói név és a jelszó nem egyezik. Próbáld újra!"
 
 #: documents/templates/registration/login.html:53
 msgid "Username"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: documents/templates/registration/login.html:54
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: documents/templates/registration/login.html:59
 msgid "Sign in"
-msgstr ""
+msgstr "Bejelentkezés"
 
 #: paperless/settings.py:303
 msgid "English (US)"
@@ -418,7 +418,7 @@ msgstr "Angol (US)"
 
 #: paperless/settings.py:304
 msgid "English (GB)"
-msgstr ""
+msgstr "Angol (GB)"
 
 #: paperless/settings.py:305
 msgid "German"
@@ -426,15 +426,15 @@ msgstr "Német"
 
 #: paperless/settings.py:306
 msgid "Dutch"
-msgstr ""
+msgstr "Holland"
 
 #: paperless/settings.py:307
 msgid "French"
-msgstr ""
+msgstr "Francia"
 
 #: paperless/settings.py:308
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugál (Brazil)"
 
 #: paperless/settings.py:309
 msgid "Portuguese"
@@ -442,11 +442,11 @@ msgstr ""
 
 #: paperless/settings.py:310
 msgid "Italian"
-msgstr ""
+msgstr "Olasz"
 
 #: paperless/settings.py:311
 msgid "Romanian"
-msgstr ""
+msgstr "Román"
 
 #: paperless/settings.py:312
 msgid "Russian"
@@ -470,11 +470,11 @@ msgstr ""
 
 #: paperless_mail/admin.py:15
 msgid "Authentication"
-msgstr ""
+msgstr "Hitelesítés"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
-msgstr ""
+msgstr "Haladó beállítások"
 
 #: paperless_mail/admin.py:37
 msgid "Filter"
@@ -542,11 +542,11 @@ msgstr ""
 
 #: paperless_mail/models.py:46
 msgid "username"
-msgstr ""
+msgstr "felhasználónév"
 
 #: paperless_mail/models.py:50
 msgid "password"
-msgstr ""
+msgstr "jelszó"
 
 #: paperless_mail/models.py:54
 msgid "character set"
