@@ -8,7 +8,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="needs-translation">Document added</target>
+        <target state="translated">Dokumentum hozzáadva</target>
       </trans-unit>
       <trans-unit id="9204248378636247318" datatype="html">
         <source>Document <x id="PH" equiv-text="status.filename"/> was added to paperless.</source>
@@ -16,7 +16,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="needs-translation">Document <x id="PH" equiv-text="status.filename"/> was added to paperless.</target>
+        <target state="translated">A(z) <x id="PH" equiv-text="status.filename"/> dokumentum a papírmenteshez adva.</target>
       </trans-unit>
       <trans-unit id="1931214133925051574" datatype="html">
         <source>Open document</source>
@@ -24,7 +24,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
-        <target state="needs-translation">Open document</target>
+        <target state="translated">Dokumentum megnyitása</target>
       </trans-unit>
       <trans-unit id="8582620835547864448" datatype="html">
         <source>Could not add <x id="PH" equiv-text="status.filename"/>: <x id="PH_1" equiv-text="status.message"/></source>
@@ -40,7 +40,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">65</context>
         </context-group>
-        <target state="needs-translation">New document detected</target>
+        <target state="translated">Új dokumentum észlelve</target>
       </trans-unit>
       <trans-unit id="587031278561344416" datatype="html">
         <source>Document <x id="PH" equiv-text="status.filename"/> is being processed by paperless.</source>
@@ -112,7 +112,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
-        <target state="needs-translation">Sort</target>
+        <target state="translated">Rendezés</target>
       </trans-unit>
       <trans-unit id="b7641aed03492978b4ec6843b1e53f30464294d9" datatype="html">
         <source>Views</source>
@@ -608,7 +608,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.ts</context>
           <context context-type="linenumber">94</context>
         </context-group>
-        <target state="needs-translation">Use system language</target>
+        <target state="translated">Rendszer nyelv használata</target>
       </trans-unit>
       <trans-unit id="7729897675462249787" datatype="html">
         <source>Use date format of display language</source>
@@ -648,7 +648,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">116</context>
         </context-group>
-        <target state="needs-translation">Notifications</target>
+        <target state="translated">Értesítések</target>
       </trans-unit>
       <trans-unit id="99dee94e92dbd9e21a008d4569f9719ed206ae37" datatype="html">
         <source>Saved views</source>
@@ -664,7 +664,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
-        <target state="needs-translation">Appearance</target>
+        <target state="translated">Megjelenítés</target>
       </trans-unit>
       <trans-unit id="75f8908d266f7cc9b9e68e0be906fd080a223606" datatype="html">
         <source>Display language</source>
@@ -672,7 +672,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
-        <target state="needs-translation">Display language</target>
+        <target state="translated">Megjelenítés nyelve</target>
       </trans-unit>
       <trans-unit id="1284a077dc18a2d1ff1b744f16f1797eea28ae37" datatype="html">
         <source>You need to reload the page after applying a new language.</source>
@@ -696,7 +696,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
-        <target state="needs-translation">Date format</target>
+        <target state="translated">Dátum formátum</target>
       </trans-unit>
       <trans-unit id="69852399a18b8ca4fca8c5bfddd3f00a6d137593" datatype="html">
         <source>Short: <x id="INTERPOLATION" equiv-text="{{today | customDate:&apos;shortDate&apos;:null:computedDateLocale}}"/></source>
@@ -760,7 +760,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">94</context>
         </context-group>
-        <target state="needs-translation">Dark mode</target>
+        <target state="translated">Sötét mód</target>
       </trans-unit>
       <trans-unit id="f8cb5506e70fd71fddc9bb71cee18bfff7b29637" datatype="html">
         <source>Use system settings</source>
@@ -768,7 +768,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">97</context>
         </context-group>
-        <target state="needs-translation">Use system settings</target>
+        <target state="translated">Rendszerbeállítások használata</target>
       </trans-unit>
       <trans-unit id="8ee474504043fa89821d626e4f3413240fa91b53" datatype="html">
         <source>Enable dark mode</source>
@@ -776,7 +776,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">98</context>
         </context-group>
-        <target state="needs-translation">Enable dark mode</target>
+        <target state="translated">Sötét mód engedélyezése</target>
       </trans-unit>
       <trans-unit id="71bad20b37410c8972c9aa0f7c62996534b84339" datatype="html">
         <source>Invert thumbnails in dark mode</source>
@@ -824,7 +824,7 @@
           <context context-type="sourcefile">src/app/components/manage/settings/settings.component.html</context>
           <context context-type="linenumber">119</context>
         </context-group>
-        <target state="needs-translation">Document processing</target>
+        <target state="translated">Dokumentumfeldolgozás</target>
       </trans-unit>
       <trans-unit id="2ad4d76b36341c589d94004ad2a213fd4d6f5ca0" datatype="html">
         <source>Show notifications when new documents are detected</source>
@@ -984,7 +984,7 @@
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-edit-dialog/correspondent-edit-dialog.component.html</context>
           <context context-type="linenumber">11</context>
         </context-group>
-        <target state="needs-translation">Matching pattern</target>
+        <target state="translated">Egyezési minta</target>
       </trans-unit>
       <trans-unit id="632e529f49cf3d367dfbd15bd055e9b53aef30fb" datatype="html">
         <source>Case insensitive</source>
@@ -1057,7 +1057,7 @@
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
-        <target state="needs-translation">Search documents</target>
+        <target state="translated">Dokumentumok keresése</target>
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
@@ -1089,7 +1089,7 @@
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">160</context>
         </context-group>
-        <target state="needs-translation">Info</target>
+        <target state="translated">Infó</target>
       </trans-unit>
       <trans-unit id="fcfd4675b4c90f08d18d3abede9a9a4dff4cfdc7" datatype="html">
         <source>Documentation</source>
@@ -1113,7 +1113,7 @@
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">181</context>
         </context-group>
-        <target state="needs-translation">Suggest an idea</target>
+        <target state="translated">Ötlet javaslása</target>
       </trans-unit>
       <trans-unit id="af665f8de8fabe306aaf27443957e69bcbbce63c" datatype="html">
         <source>Logged in as <x id="INTERPOLATION" equiv-text="{{displayName}}"/></source>
@@ -1153,7 +1153,7 @@
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
-        <target state="needs-translation">Without correspondent</target>
+        <target state="translated">Partner nélküli</target>
       </trans-unit>
       <trans-unit id="8705701325879965907" datatype="html">
         <source>Type: <x id="PH" equiv-text="this.documentTypes.find(dt =&gt; dt.id == +rule.value)?.name"/></source>
@@ -1169,7 +1169,7 @@
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
           <context context-type="linenumber">46</context>
         </context-group>
-        <target state="needs-translation">Without document type</target>
+        <target state="translated">Típus nélküli dokumentum</target>
       </trans-unit>
       <trans-unit id="8180755793012580465" datatype="html">
         <source>Tag: <x id="PH" equiv-text="this.tags.find(t =&gt; t.id == +rule.value)?.name"/></source>
@@ -1185,7 +1185,7 @@
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
           <context context-type="linenumber">54</context>
         </context-group>
-        <target state="needs-translation">Without any tag</target>
+        <target state="translated">Cimke nélküli</target>
       </trans-unit>
       <trans-unit id="6523384805359286307" datatype="html">
         <source>Title: <x id="PH" equiv-text="rule.value"/></source>
@@ -1776,7 +1776,7 @@
           <context context-type="sourcefile">src/app/components/dashboard/widgets/upload-file-widget/upload-file-widget.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
-        <target state="needs-translation">Open document</target>
+        <target state="translated">Dokumentum megnyitása</target>
       </trans-unit>
       <trans-unit id="45854ddec74086b271e62be6a363f4fa5036f7fc" datatype="html">
         <source>First steps</source>
