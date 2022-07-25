@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-10-13 19:07\n"
+"PO-Revision-Date: 2022-07-25 21:02\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -76,7 +76,7 @@ msgstr "barva"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr "tag přichozí"
+msgstr "je štítek doručené pošty"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
@@ -84,11 +84,11 @@ msgstr "Označí tento tag jako tag pro příchozí: Všechny nově zkonzumovan�
 
 #: documents/models.py:94
 msgid "tag"
-msgstr "tag"
+msgstr "štítek"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr "tagy"
+msgstr "štítky"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
