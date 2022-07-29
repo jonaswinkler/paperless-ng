@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2022-05-26 09:33\n"
+"PO-Revision-Date: 2022-07-29 15:59\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -92,15 +92,15 @@ msgstr "cimkék"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
-msgstr ""
+msgstr "dokumentum típus"
 
 #: documents/models.py:102
 msgid "document types"
-msgstr ""
+msgstr "dokumentum típusok"
 
 #: documents/models.py:110
 msgid "Unencrypted"
-msgstr ""
+msgstr "Titkosítatlan"
 
 #: documents/models.py:111
 msgid "Encrypted with GNU Privacy Guard"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: documents/models.py:176
 msgid "modified"
-msgstr ""
+msgstr "módosítva"
 
 #: documents/models.py:180
 msgid "storage type"
@@ -156,7 +156,7 @@ msgstr ""
 
 #: documents/models.py:192
 msgid "filename"
-msgstr ""
+msgstr "fájlnév"
 
 #: documents/models.py:198
 msgid "Current filename in storage"
