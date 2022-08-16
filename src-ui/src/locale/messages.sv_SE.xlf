@@ -2317,7 +2317,7 @@
           <context context-type="sourcefile">src/app/data/matching-model.ts</context>
           <context context-type="linenumber">16</context>
         </context-group>
-        <target state="translated">Fuzzy word</target>
+        <target state="translated">Ungefärligt ord</target>
       </trans-unit>
       <trans-unit id="8419167206585286450" datatype="html">
         <source>Fuzzy: Document contains a word similar to this word</source>

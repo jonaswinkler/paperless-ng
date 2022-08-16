@@ -912,7 +912,7 @@
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-list.component.ts</context>
           <context context-type="linenumber">26</context>
         </context-group>
-        <target state="translated">¿Estás seguro de querer borrar el tipo de documento "<x id="PH" equiv-text="object.name"/>"?</target>
+        <target state="translated">¿Estás seguro de querer borrar el corresponsal "<x id="PH" equiv-text="object.name"/>"?</target>
       </trans-unit>
       <trans-unit id="c3f3334de899327bf3ec8999236e10798ff76e72" datatype="html">
         <source>Correspondents</source>
@@ -920,7 +920,7 @@
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <target state="translated">Tipos de documento</target>
+        <target state="translated">Corresponsales</target>
       </trans-unit>
       <trans-unit id="0488919cff4fcc2174d34e4a1167f1b3c586ca37" datatype="html">
         <source>Last correspondence</source>
@@ -928,7 +928,7 @@
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-list.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
-        <target state="translated">Último tipo de documento</target>
+        <target state="translated">Última coincidencia</target>
       </trans-unit>
       <trans-unit id="1234709746630139322" datatype="html">
         <source>Confirmation</source>
@@ -960,7 +960,7 @@
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-edit-dialog/correspondent-edit-dialog.component.ts</context>
           <context context-type="linenumber">21</context>
         </context-group>
-        <target state="translated">Crear nuevo tipo de documento</target>
+        <target state="translated">Crear nuevo corresponsal</target>
       </trans-unit>
       <trans-unit id="2059822531169388684" datatype="html">
         <source>Edit correspondent</source>
@@ -968,7 +968,7 @@
           <context context-type="sourcefile">src/app/components/manage/correspondent-list/correspondent-edit-dialog/correspondent-edit-dialog.component.ts</context>
           <context context-type="linenumber">25</context>
         </context-group>
-        <target state="translated">Editar tipo de documento</target>
+        <target state="translated">Editar corresponsal</target>
       </trans-unit>
       <trans-unit id="3d5caa52b0a51bfd2757215f7614183554d740f0" datatype="html">
         <source>Matching algorithm</source>
@@ -1153,7 +1153,7 @@
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
-        <target state="translated">Sin tipo de documento</target>
+        <target state="translated">Sin corresponsal</target>
       </trans-unit>
       <trans-unit id="8705701325879965907" datatype="html">
         <source>Type: <x id="PH" equiv-text="this.documentTypes.find(dt =&gt; dt.id == +rule.value)?.name"/></source>
@@ -1257,7 +1257,7 @@
           <context context-type="sourcefile">src/app/components/document-list/filter-editor/filter-editor.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
-        <target state="translated">Filtrar tipos de documento</target>
+        <target state="translated">Filtrar corresponsales</target>
       </trans-unit>
       <trans-unit id="0ad509732aaf702b7ea8c771c7809fa84bc85908" datatype="html">
         <source>Filter document types</source>
@@ -1362,7 +1362,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-card-large/document-card-large.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
-        <target state="translated">Filtrar por tipo de documento</target>
+        <target state="translated">Filtrar por corresponsal</target>
       </trans-unit>
       <trans-unit id="bdb9a910523610254872e147222689e9a4115b84" datatype="html">
         <source>Filter by tag</source>
@@ -1501,7 +1501,7 @@
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">159</context>
         </context-group>
-        <target state="translated">Confirmar asignación correspondiente</target>
+        <target state="translated">Confirmar asignación corresponsal</target>
       </trans-unit>
       <trans-unit id="6900893559485781849" datatype="html">
         <source>This operation will assign the correspondent &quot;<x id="PH" equiv-text="correspondent.name"/>&quot; to <x id="PH_1" equiv-text="this.list.selected.size"/> selected document(s).</source>
@@ -1509,7 +1509,7 @@
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">161</context>
         </context-group>
-        <target state="translated">Esta operacion asignará el tipo de documento "<x id="PH" equiv-text="correspondent.name"/>" a <x id="PH_1" equiv-text="this.list.selected.size"/> documento(s) seleccionado(s).</target>
+        <target state="translated">Esta operacion asignará el corresponsal "<x id="PH" equiv-text="correspondent.name"/>" a <x id="PH_1" equiv-text="this.list.selected.size"/> documento(s) seleccionado(s).</target>
       </trans-unit>
       <trans-unit id="1257522660364398440" datatype="html">
         <source>This operation will remove the correspondent from <x id="PH" equiv-text="this.list.selected.size"/> selected document(s).</source>
@@ -1517,7 +1517,7 @@
           <context context-type="sourcefile">src/app/components/document-list/bulk-editor/bulk-editor.component.ts</context>
           <context context-type="linenumber">163</context>
         </context-group>
-        <target state="translated">Esta operación eliminará el tipo de documento de <x id="PH" equiv-text="this.list.selected.size"/> documento(s) seleccionado(s).</target>
+        <target state="translated">Esta operación eliminará el corresponsal de <x id="PH" equiv-text="this.list.selected.size"/> documento(s) seleccionado(s).</target>
       </trans-unit>
       <trans-unit id="5393409374423140648" datatype="html">
         <source>Confirm document type assignment</source>

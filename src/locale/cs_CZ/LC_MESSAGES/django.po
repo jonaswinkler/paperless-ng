@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-05-16 10:09\n"
+"PO-Revision-Date: 2022-07-25 21:02\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -76,7 +76,7 @@ msgstr "barva"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr "tag přichozí"
+msgstr "je štítek doručené pošty"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
@@ -84,11 +84,11 @@ msgstr "Označí tento tag jako tag pro příchozí: Všechny nově zkonzumovan�
 
 #: documents/models.py:94
 msgid "tag"
-msgstr "tag"
+msgstr "štítek"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr "tagy"
+msgstr "štítky"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
@@ -164,11 +164,11 @@ msgstr "Aktuální název souboru v úložišti"
 
 #: documents/models.py:202
 msgid "archive filename"
-msgstr ""
+msgstr "Název archivovaného souboru"
 
 #: documents/models.py:208
 msgid "Current archive filename in storage"
-msgstr ""
+msgstr "Aktuální název souboru archivu v úložišti"
 
 #: documents/models.py:212
 msgid "archive serial number"
@@ -328,19 +328,19 @@ msgstr "nemá tag"
 
 #: documents/models.py:391
 msgid "does not have ASN"
-msgstr ""
+msgstr "Nemá ASN"
 
 #: documents/models.py:392
 msgid "title or content contains"
-msgstr ""
+msgstr "Titulek nebo obsah obsahuje"
 
 #: documents/models.py:393
 msgid "fulltext query"
-msgstr ""
+msgstr "Fulltextový dotaz"
 
 #: documents/models.py:394
 msgid "more like this"
-msgstr ""
+msgstr "Podobné"
 
 #: documents/models.py:405
 msgid "rule type"
@@ -361,11 +361,11 @@ msgstr "filtrovací pravidla"
 #: documents/serialisers.py:53
 #, python-format
 msgid "Invalid regular expression: %(error)s"
-msgstr ""
+msgstr "Neplatný regulární výraz: %(error)s"
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
-msgstr ""
+msgstr "Neplatná barva."
 
 #: documents/serialisers.py:451
 #, python-format
@@ -414,11 +414,11 @@ msgstr "Přihlásit se"
 
 #: paperless/settings.py:303
 msgid "English (US)"
-msgstr ""
+msgstr "Angličtina (US)"
 
 #: paperless/settings.py:304
 msgid "English (GB)"
-msgstr ""
+msgstr "Angličtina (GB)"
 
 #: paperless/settings.py:305
 msgid "German"
@@ -434,35 +434,35 @@ msgstr "Francouzština"
 
 #: paperless/settings.py:308
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugalština (Brazílie)"
 
 #: paperless/settings.py:309
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalština"
 
 #: paperless/settings.py:310
 msgid "Italian"
-msgstr ""
+msgstr "Italština"
 
 #: paperless/settings.py:311
 msgid "Romanian"
-msgstr ""
+msgstr "Rumunština"
 
 #: paperless/settings.py:312
 msgid "Russian"
-msgstr ""
+msgstr "Ruština"
 
 #: paperless/settings.py:313
 msgid "Spanish"
-msgstr ""
+msgstr "Španělština"
 
 #: paperless/settings.py:314
 msgid "Polish"
-msgstr ""
+msgstr "Polština"
 
 #: paperless/settings.py:315
 msgid "Swedish"
-msgstr ""
+msgstr "Švédština"
 
 #: paperless/urls.py:120
 msgid "Paperless-ng administration"
@@ -470,11 +470,11 @@ msgstr "Správa Paperless-ng"
 
 #: paperless_mail/admin.py:15
 msgid "Authentication"
-msgstr ""
+msgstr "Autentizace"
 
 #: paperless_mail/admin.py:18
 msgid "Advanced settings"
-msgstr ""
+msgstr "Pokročilá nastavení"
 
 #: paperless_mail/admin.py:37
 msgid "Filter"
@@ -550,11 +550,11 @@ msgstr "heslo"
 
 #: paperless_mail/models.py:54
 msgid "character set"
-msgstr ""
+msgstr "Znaková sada"
 
 #: paperless_mail/models.py:57
 msgid "The character set to use when communicating with the mail server, such as 'UTF-8' or 'US-ASCII'."
-msgstr ""
+msgstr "Znaková sada používaná při komunikaci s poštovním serverem, jako je 'UTF-8' nebo 'US-ASCII'."
 
 #: paperless_mail/models.py:68
 msgid "mail rule"
@@ -626,7 +626,7 @@ msgstr "složka"
 
 #: paperless_mail/models.py:134
 msgid "Subfolders must be separated by dots."
-msgstr ""
+msgstr "Podsložky musí být odděleny tečkou."
 
 #: paperless_mail/models.py:138
 msgid "filter from"
@@ -674,7 +674,7 @@ msgstr "parametr akce"
 
 #: paperless_mail/models.py:177
 msgid "Additional parameter for the action selected above, i.e., the target folder of the move to folder action. Subfolders must be separated by dots."
-msgstr ""
+msgstr "Další parametr pro výše vybranou akci, například cílová složka akce přesunutí do složky. Podsložky musí být odděleny tečkou."
 
 #: paperless_mail/models.py:184
 msgid "assign title from"

@@ -3,39 +3,39 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-09-21 04:54\n"
+"PO-Revision-Date: 2022-03-08 19:06\n"
 "Last-Translator: \n"
-"Language-Team: Chinese Traditional\n"
-"Language: zh_TW\n"
+"Language-Team: Slovenian\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Crowdin-Project: paperless-ng\n"
 "X-Crowdin-Project-ID: 434940\n"
-"X-Crowdin-Language: zh-TW\n"
+"X-Crowdin-Language: sl\n"
 "X-Crowdin-File: /dev/src/locale/en_US/LC_MESSAGES/django.po\n"
 "X-Crowdin-File-ID: 54\n"
 
 #: documents/apps.py:10
 msgid "Documents"
-msgstr "文檔"
+msgstr "Dokumenti"
 
 #: documents/models.py:32
 msgid "Any word"
-msgstr "任何字串"
+msgstr "Katerakoli beseda"
 
 #: documents/models.py:33
 msgid "All words"
-msgstr "所有字詞"
+msgstr "Vse besede"
 
 #: documents/models.py:34
 msgid "Exact match"
-msgstr "精確匹配"
+msgstr "Točno ujemanje"
 
 #: documents/models.py:35
 msgid "Regular expression"
-msgstr "正則表達式"
+msgstr "Regular expression"
 
 #: documents/models.py:36
 msgid "Fuzzy word"
@@ -43,16 +43,16 @@ msgstr ""
 
 #: documents/models.py:37
 msgid "Automatic"
-msgstr ""
+msgstr "Samodejno"
 
 #: documents/models.py:41 documents/models.py:350 paperless_mail/models.py:25
 #: paperless_mail/models.py:117
 msgid "name"
-msgstr ""
+msgstr "ime"
 
 #: documents/models.py:45
 msgid "match"
-msgstr ""
+msgstr "ujemanje"
 
 #: documents/models.py:49
 msgid "matching algorithm"
@@ -60,67 +60,67 @@ msgstr ""
 
 #: documents/models.py:55
 msgid "is insensitive"
-msgstr ""
+msgstr "brez razlikovanje velikosti črk"
 
 #: documents/models.py:74 documents/models.py:120
 msgid "correspondent"
-msgstr ""
+msgstr "dopisnik"
 
 #: documents/models.py:75
 msgid "correspondents"
-msgstr ""
+msgstr "dopisniki"
 
 #: documents/models.py:81
 msgid "color"
-msgstr ""
+msgstr "barva"
 
 #: documents/models.py:87
 msgid "is inbox tag"
-msgstr ""
+msgstr "je oznaka mape Prejeto"
 
 #: documents/models.py:89
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
-msgstr ""
+msgstr "Označi to oznako kot oznako mape Prejeto: vsi na novo porabljeni dokumenti bodo označeni z oznakami mape Prejeto."
 
 #: documents/models.py:94
 msgid "tag"
-msgstr ""
+msgstr "oznaka"
 
 #: documents/models.py:95 documents/models.py:151
 msgid "tags"
-msgstr ""
+msgstr "oznake"
 
 #: documents/models.py:101 documents/models.py:133
 msgid "document type"
-msgstr ""
+msgstr "vrsta dokumenta"
 
 #: documents/models.py:102
 msgid "document types"
-msgstr ""
+msgstr "vrsta dokumentov"
 
 #: documents/models.py:110
 msgid "Unencrypted"
-msgstr ""
+msgstr "Nešifrirano"
 
 #: documents/models.py:111
 msgid "Encrypted with GNU Privacy Guard"
-msgstr ""
+msgstr "Šifrirano z GNU Privacy Guard"
 
 #: documents/models.py:124
 msgid "title"
-msgstr ""
+msgstr "naslov"
 
 #: documents/models.py:137
 msgid "content"
-msgstr ""
+msgstr "vsebina"
 
 #: documents/models.py:139
 msgid "The raw, text-only data of the document. This field is primarily used for searching."
-msgstr ""
+msgstr "Neobdelani besedilni podatki dokumenta. To polje se uporablja predvsem za iskanje."
 
 #: documents/models.py:144
 msgid "mime type"
-msgstr ""
+msgstr "vrsta mime"
 
 #: documents/models.py:155
 msgid "checksum"
@@ -140,127 +140,127 @@ msgstr ""
 
 #: documents/models.py:172 documents/models.py:328
 msgid "created"
-msgstr ""
+msgstr "ustvarjeno"
 
 #: documents/models.py:176
 msgid "modified"
-msgstr ""
+msgstr "spremenjeno"
 
 #: documents/models.py:180
 msgid "storage type"
-msgstr ""
+msgstr "Vrsta shrambe"
 
 #: documents/models.py:188
 msgid "added"
-msgstr ""
+msgstr "dodano"
 
 #: documents/models.py:192
 msgid "filename"
-msgstr ""
+msgstr "ime datoteke"
 
 #: documents/models.py:198
 msgid "Current filename in storage"
-msgstr ""
+msgstr "Trenutno ime dokumenta v shrambi"
 
 #: documents/models.py:202
 msgid "archive filename"
-msgstr ""
+msgstr "ime arhivske datoteke"
 
 #: documents/models.py:208
 msgid "Current archive filename in storage"
-msgstr ""
+msgstr "Trenutno ime dokumenta v shrambi"
 
 #: documents/models.py:212
 msgid "archive serial number"
-msgstr ""
+msgstr "arhivska serijska številka"
 
 #: documents/models.py:217
 msgid "The position of this document in your physical document archive."
-msgstr ""
+msgstr "Položaj tega dokumenta v vašem fizičnem arhivu dokumentov."
 
 #: documents/models.py:223
 msgid "document"
-msgstr ""
+msgstr "dokument"
 
 #: documents/models.py:224
 msgid "documents"
-msgstr ""
+msgstr "dokumenti"
 
 #: documents/models.py:311
 msgid "debug"
-msgstr ""
+msgstr "razhroščevanje"
 
 #: documents/models.py:312
 msgid "information"
-msgstr ""
+msgstr "informacija"
 
 #: documents/models.py:313
 msgid "warning"
-msgstr ""
+msgstr "opozorilo"
 
 #: documents/models.py:314
 msgid "error"
-msgstr ""
+msgstr "napaka"
 
 #: documents/models.py:315
 msgid "critical"
-msgstr ""
+msgstr "kritično"
 
 #: documents/models.py:319
 msgid "group"
-msgstr ""
+msgstr "skupina"
 
 #: documents/models.py:322
 msgid "message"
-msgstr ""
+msgstr "sporočilo"
 
 #: documents/models.py:325
 msgid "level"
-msgstr ""
+msgstr "nivo"
 
 #: documents/models.py:332
 msgid "log"
-msgstr ""
+msgstr "dnevnik"
 
 #: documents/models.py:333
 msgid "logs"
-msgstr ""
+msgstr "dnevniki"
 
 #: documents/models.py:344 documents/models.py:401
 msgid "saved view"
-msgstr ""
+msgstr "shranjeni pogled"
 
 #: documents/models.py:345
 msgid "saved views"
-msgstr ""
+msgstr "shranjeni pogledi"
 
 #: documents/models.py:348
 msgid "user"
-msgstr ""
+msgstr "uporabnik"
 
 #: documents/models.py:354
 msgid "show on dashboard"
-msgstr ""
+msgstr "prikaži na pregledni plošči"
 
 #: documents/models.py:357
 msgid "show in sidebar"
-msgstr ""
+msgstr "prikaži v stranski vrstici"
 
 #: documents/models.py:361
 msgid "sort field"
-msgstr ""
+msgstr "polje za razvrščanje"
 
 #: documents/models.py:367
 msgid "sort reverse"
-msgstr ""
+msgstr "razvrsti obratno"
 
 #: documents/models.py:373
 msgid "title contains"
-msgstr ""
+msgstr "naslov vsebuje"
 
 #: documents/models.py:374
 msgid "content contains"
-msgstr ""
+msgstr "vsebina vsebuje"
 
 #: documents/models.py:375
 msgid "ASN is"
@@ -268,63 +268,63 @@ msgstr ""
 
 #: documents/models.py:376
 msgid "correspondent is"
-msgstr ""
+msgstr "dopisnik"
 
 #: documents/models.py:377
 msgid "document type is"
-msgstr ""
+msgstr "vrsta dokumenta"
 
 #: documents/models.py:378
 msgid "is in inbox"
-msgstr ""
+msgstr "je v Prejetem"
 
 #: documents/models.py:379
 msgid "has tag"
-msgstr ""
+msgstr "ima oznako"
 
 #: documents/models.py:380
 msgid "has any tag"
-msgstr ""
+msgstr "ima katero koli oznako"
 
 #: documents/models.py:381
 msgid "created before"
-msgstr ""
+msgstr "Ustvarjeno pred"
 
 #: documents/models.py:382
 msgid "created after"
-msgstr ""
+msgstr "Ustvarjeno po"
 
 #: documents/models.py:383
 msgid "created year is"
-msgstr ""
+msgstr "Leto nastanka"
 
 #: documents/models.py:384
 msgid "created month is"
-msgstr ""
+msgstr "Mesec nastanka"
 
 #: documents/models.py:385
 msgid "created day is"
-msgstr ""
+msgstr "Dan nastanka"
 
 #: documents/models.py:386
 msgid "added before"
-msgstr ""
+msgstr "dodano pred"
 
 #: documents/models.py:387
 msgid "added after"
-msgstr ""
+msgstr "dodano po"
 
 #: documents/models.py:388
 msgid "modified before"
-msgstr ""
+msgstr "spremenjeno pred"
 
 #: documents/models.py:389
 msgid "modified after"
-msgstr ""
+msgstr "spremenjeno po"
 
 #: documents/models.py:390
 msgid "does not have tag"
-msgstr ""
+msgstr "nima oznake"
 
 #: documents/models.py:391
 msgid "does not have ASN"
@@ -332,7 +332,7 @@ msgstr ""
 
 #: documents/models.py:392
 msgid "title or content contains"
-msgstr ""
+msgstr "naslov ali vsebina vsebuje"
 
 #: documents/models.py:393
 msgid "fulltext query"
@@ -340,81 +340,81 @@ msgstr ""
 
 #: documents/models.py:394
 msgid "more like this"
-msgstr ""
+msgstr "več takega"
 
 #: documents/models.py:405
 msgid "rule type"
-msgstr ""
+msgstr "vrsta pravila"
 
 #: documents/models.py:409
 msgid "value"
-msgstr ""
+msgstr "vrednost"
 
 #: documents/models.py:415
 msgid "filter rule"
-msgstr ""
+msgstr "Filtriraj pravilo"
 
 #: documents/models.py:416
 msgid "filter rules"
-msgstr ""
+msgstr "filtriraj pravila"
 
 #: documents/serialisers.py:53
 #, python-format
 msgid "Invalid regular expression: %(error)s"
-msgstr ""
+msgstr "Neveljaven splošen izraz: %(error)s"
 
 #: documents/serialisers.py:177
 msgid "Invalid color."
-msgstr ""
+msgstr "Napačna barva."
 
 #: documents/serialisers.py:451
 #, python-format
 msgid "File type %(type)s not supported"
-msgstr ""
+msgstr "Vrsta datoteke %(type)s ni podprta"
 
 #: documents/templates/index.html:22
 msgid "Paperless-ng is loading..."
-msgstr ""
+msgstr "Paperless-ng se nalaga..."
 
 #: documents/templates/registration/logged_out.html:14
 msgid "Paperless-ng signed out"
-msgstr ""
+msgstr "Paperless-ng odjavljen"
 
 #: documents/templates/registration/logged_out.html:45
 msgid "You have been successfully logged out. Bye!"
-msgstr ""
+msgstr "Uspešno ste bili odjavljeni. Adijo!"
 
 #: documents/templates/registration/logged_out.html:46
 msgid "Sign in again"
-msgstr ""
+msgstr "Ponovno se prijavite"
 
 #: documents/templates/registration/login.html:15
 msgid "Paperless-ng sign in"
-msgstr ""
+msgstr "Paperless-ng prijava"
 
 #: documents/templates/registration/login.html:47
 msgid "Please sign in."
-msgstr ""
+msgstr "Prosimo, prijavite se."
 
 #: documents/templates/registration/login.html:50
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Vaše uporabniško ime in geslo se ne ujemata s podatki v bazi. Prosim poskusite ponovno."
 
 #: documents/templates/registration/login.html:53
 msgid "Username"
-msgstr ""
+msgstr "Uporabniško ime"
 
 #: documents/templates/registration/login.html:54
 msgid "Password"
-msgstr ""
+msgstr "Geslo"
 
 #: documents/templates/registration/login.html:59
 msgid "Sign in"
-msgstr ""
+msgstr "Prijava"
 
 #: paperless/settings.py:303
 msgid "English (US)"
-msgstr ""
+msgstr "Angleščina (ZDA)"
 
 #: paperless/settings.py:304
 msgid "English (GB)"
@@ -602,51 +602,51 @@ msgstr ""
 
 #: paperless_mail/models.py:109
 msgid "Use mail address"
-msgstr ""
+msgstr "Uporabi e-poštni naslov"
 
 #: paperless_mail/models.py:111
 msgid "Use name (or mail address if not available)"
-msgstr ""
+msgstr "Uporabi ime (ali e-poštni naslov, če ime ni na voljo)"
 
 #: paperless_mail/models.py:113
 msgid "Use correspondent selected below"
-msgstr ""
+msgstr "Uporabite dopisnika, izbranega spodaj"
 
 #: paperless_mail/models.py:121
 msgid "order"
-msgstr ""
+msgstr "Vrstni red"
 
 #: paperless_mail/models.py:128
 msgid "account"
-msgstr ""
+msgstr "Račun"
 
 #: paperless_mail/models.py:132
 msgid "folder"
-msgstr ""
+msgstr "Mapa"
 
 #: paperless_mail/models.py:134
 msgid "Subfolders must be separated by dots."
-msgstr ""
+msgstr "Pod mape morajo biti ločene s pikami."
 
 #: paperless_mail/models.py:138
 msgid "filter from"
-msgstr ""
+msgstr "Filtriraj prejeto"
 
 #: paperless_mail/models.py:141
 msgid "filter subject"
-msgstr ""
+msgstr "Filtriraj predmet"
 
 #: paperless_mail/models.py:144
 msgid "filter body"
-msgstr ""
+msgstr "Filtriraj vsebino"
 
 #: paperless_mail/models.py:148
 msgid "filter attachment filename"
-msgstr ""
+msgstr "Filtriraj datotečna imena"
 
 #: paperless_mail/models.py:150
 msgid "Only consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr ""
+msgstr "Uporabljajte samo dokumente, ki se v celoti ujemajo s tem imenom datoteke, če je navedeno. Dovoljeni so nadomestni znaki, kot sta *.pdf ali *račun*. Neobčutljiva na velike in male črke."
 
 #: paperless_mail/models.py:156
 msgid "maximum age"
