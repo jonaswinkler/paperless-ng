@@ -64,7 +64,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.ts</context>
           <context context-type="linenumber">116</context>
         </context-group>
-        <target state="needs-translation">View "<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>" saved successfully.</target>
+        <target state="translated">عرض "<x id="PH" equiv-text="this.list.activeSavedViewTitle"/>" حفظ بنجاح.</target>
       </trans-unit>
       <trans-unit id="6837554170707123455" datatype="html">
         <source>View &quot;<x id="PH" equiv-text="savedView.name"/>&quot; created successfully.</source>
@@ -72,7 +72,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.ts</context>
           <context context-type="linenumber">138</context>
         </context-group>
-        <target state="needs-translation">View "<x id="PH" equiv-text="savedView.name"/>" created successfully.</target>
+        <target state="translated">عرض "<x id="PH" equiv-text="savedView.name"/>" انشئ بنجاح.</target>
       </trans-unit>
       <trans-unit id="9ca82952a6bc860b5391d5975322d8af8ceddfa4" datatype="html">
         <source>Select</source>
@@ -136,7 +136,7 @@
           <context context-type="sourcefile">src/app/components/document-list/document-list.component.html</context>
           <context context-type="linenumber">71</context>
         </context-group>
-        <target state="needs-translation">Save "<x id="INTERPOLATION" equiv-text="{{list.activeSavedViewTitle}}"/>"</target>
+        <target state="translated">احفظ "<x id="INTERPOLATION" equiv-text="{{list.activeSavedViewTitle}}"/>"</target>
       </trans-unit>
       <trans-unit id="439e7cc3c1ecefded167ed4d37f7d22dad6a9159" datatype="html">
         <source>{VAR_PLURAL, plural, =1 {Selected <x id="INTERPOLATION"/> of one document} other {Selected <x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/> documents}}</source>
