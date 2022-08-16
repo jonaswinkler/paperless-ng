@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: paperless-ng\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-16 09:38+0000\n"
-"PO-Revision-Date: 2021-12-13 11:45\n"
+"PO-Revision-Date: 2022-08-16 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Arabic, Saudi Arabia\n"
 "Language: ar_SA\n"
@@ -19,19 +19,19 @@ msgstr ""
 
 #: documents/apps.py:10
 msgid "Documents"
-msgstr ""
+msgstr "المستندات"
 
 #: documents/models.py:32
 msgid "Any word"
-msgstr ""
+msgstr "أي كلمة"
 
 #: documents/models.py:33
 msgid "All words"
-msgstr ""
+msgstr "كل الكلمات"
 
 #: documents/models.py:34
 msgid "Exact match"
-msgstr ""
+msgstr "تطابق تام"
 
 #: documents/models.py:35
 msgid "Regular expression"
@@ -43,12 +43,12 @@ msgstr ""
 
 #: documents/models.py:37
 msgid "Automatic"
-msgstr ""
+msgstr "تلقائي"
 
 #: documents/models.py:41 documents/models.py:350 paperless_mail/models.py:25
 #: paperless_mail/models.py:117
 msgid "name"
-msgstr ""
+msgstr "الإسم"
 
 #: documents/models.py:45
 msgid "match"
