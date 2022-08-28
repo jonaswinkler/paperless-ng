@@ -106,17 +106,18 @@ You may experience these errors when using the optional TIKA integration:
 Gotenberg is a server that converts Office documents into PDF documents and has a default timeout of 10 seconds.
 When conversion takes longer, Gotenberg raises this error.
 
-You can increase the timeout by configuring an environment variable for gotenberg (see also `here <https://thecodingmachine.github.io/gotenberg/#environment_variables.default_wait_timeout>`__).
+You can increase the timeout by configuring a command flag for Gotenberg (see also `here <https://gotenberg.dev/docs/modules/api#properties>`__).
 If using docker-compose, this is achieved by the following configuration change in the ``docker-compose.yml`` file:
 
 .. code:: yaml
 
     gotenberg:
-        image: thecodingmachine/gotenberg
+        image: gotenberg/gotenberg:latest
         restart: unless-stopped
-        environment:
-            DISABLE_GOOGLE_CHROME: 1
-            DEFAULT_WAIT_TIMEOUT: 30
+        command:
+            - "gotenberg"
+            - "--chromium-disable-routes=true"
+            - "--api-timeout=60"
 
 Permission denied errors in the consumption directory
 #####################################################

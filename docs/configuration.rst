@@ -451,10 +451,11 @@ requires are as follows:
         # ...
 
         gotenberg:
-            image: thecodingmachine/gotenberg
+            image: gotenberg/gotenberg:latest
             restart: unless-stopped
-            environment:
-                DISABLE_GOOGLE_CHROME: 1
+            command:
+                - "gotenberg"
+                - "--chromium-disable-routes=true"
 
         tika:
             image: apache/tika

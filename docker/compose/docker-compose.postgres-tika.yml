@@ -71,14 +71,15 @@ services:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
       PAPERLESS_TIKA_ENABLED: 1
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000/forms/libreoffice/convert#
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
 
   gotenberg:
-    image: thecodingmachine/gotenberg
+    image: gotenberg/gotenberg:latest
     restart: unless-stopped
-    environment:
-      DISABLE_GOOGLE_CHROME: 1
+    command:
+      - "gotenberg"
+      - "--chromium-disable-routes=true"
 
   tika:
     image: apache/tika
