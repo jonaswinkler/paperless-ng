@@ -115,9 +115,15 @@ class RasterisedDocumentParser(DocumentParser):
 
         from pdfminer.high_level import extract_text as pdfminer_extract_text
         from pdfminer.pdftypes import PDFException
+        from pdfminer.layout import LAParams
+        
+        # Experimentally, word_magin < 1.0 (default: 0.1) inserts spaces between letters in some
+        # documents.
+        laparams = LAParams()
+        laparams.word_margin = 1
 
         try:
-            stripped = post_process_text(pdfminer_extract_text(pdf_file))
+            stripped = post_process_text(pdfminer_extract_text(pdf_file, laparams = laparams))
 
             self.log("debug", f"Extracted text from PDF file {pdf_file}")
             return stripped
