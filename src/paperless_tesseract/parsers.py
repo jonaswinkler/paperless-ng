@@ -124,7 +124,7 @@ class RasterisedDocumentParser(DocumentParser):
 
         try:
             stripped = post_process_text(pdfminer_extract_text(pdf_file,
-                laparams=laparams))
+                                         laparams=laparams))
 
             self.log("debug", f"Extracted text from PDF file {pdf_file}")
             return stripped
