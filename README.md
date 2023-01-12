@@ -6,6 +6,10 @@
 [![Docker Hub Pulls](https://img.shields.io/docker/pulls/jonaswinkler/paperless-ng.svg)](https://hub.docker.com/r/jonaswinkler/paperless-ng)
 [![Coverage Status](https://coveralls.io/repos/github/jonaswinkler/paperless-ng/badge.svg?branch=master)](https://coveralls.io/github/jonaswinkler/paperless-ng?branch=master)
 
+# Archive notice
+
+This project is not dead! Rather, this project is now maintained as a community effort at https://github.com/paperless-ngx/paperless-ngx, a direct continuation of this project and drop-in replacement. Please see their project page and the documentation at https://docs.paperless-ngx.com/ for details.
+
 # Paperless-ng
 
 [Paperless (click me)](https://github.com/the-paperless-project/paperless) is an application by Daniel Quinn and contributors that indexes your scanned documents and allows you to easily search for documents and store metadata alongside your documents.
