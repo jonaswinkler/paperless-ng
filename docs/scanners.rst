@@ -18,6 +18,8 @@ Physical scanners
 +---------+----------------+-----+-----+-----+------+----------+----------------+
 |         |                | FTP | NFS | SMB | SMTP | API [1]_ |                |
 +=========+================+=====+=====+=====+======+==========+================+
+| Brother | `ADS-1000W`_   | yes | no  | no  | no   |          |`CitizenStile`_ |
++=========+================+=====+=====+=====+======+==========+================+
 | Brother | `ADS-1700W`_   | yes | no  | yes | yes  |          |`holzhannes`_   |
 +---------+----------------+-----+-----+-----+------+----------+----------------+
 | Brother | `ADS-1600W`_   | yes | no  | yes | yes  |          |`holzhannes`_   |
@@ -44,6 +46,7 @@ Physical scanners
 +---------+----------------+-----+-----+-----+------+----------+----------------+
 
 .. _MFC-L5850DW: https://www.brother-usa.com/products/mfcl5850dw
+.. _ADS-1000W: https://www.brother-usa.com/products/ads1000w
 .. _ADS-1700W: https://www.brother-usa.com/products/ads1700w
 .. _ADS-1600W: https://www.brother-usa.com/products/ads1600w
 .. _ADS-1500W: https://www.brother.ca/en/p/ads1500w
@@ -67,6 +70,7 @@ Physical scanners
 .. _holzhannes: https://github.com/holzhannes
 .. _ytzelf: https://github.com/ytzelf
 .. _Unkn0wnCat: https://github.com/Unkn0wnCat
+.. _CitizenStile: https://github.com/CitizenStile
 
 .. [1] Scanners with API Integration allow to push scanned documents directly to :ref:`Paperless API <api-file_uploads>`, sometimes referred to as Webhook or Document POST.
 
