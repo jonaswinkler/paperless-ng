@@ -15,6 +15,7 @@ RUN apt-get update \
 	&& apt-get -y --no-install-recommends install \
   	# Basic dependencies
 		curl \
+		dos2unix \
 		gnupg \
 		imagemagick \
 		gettext \
@@ -73,7 +74,8 @@ RUN apt-get update \
 COPY docker/ ./docker/
 
 RUN cd docker \
-  && cp imagemagick-policy.xml /etc/ImageMagick-6/policy.xml \
+	&& dos2unix *.sh \
+	&& cp imagemagick-policy.xml /etc/ImageMagick-6/policy.xml \
 	&& mkdir /var/log/supervisord /var/run/supervisord \
 	&& cp supervisord.conf /etc/supervisord.conf \
 	&& cp docker-entrypoint.sh /sbin/docker-entrypoint.sh \
